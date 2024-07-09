@@ -1,6 +1,6 @@
 # 2023-2 MeasureSoftGram Frontend
 
-Frontend repository of MeasureSoftGram application.
+Frontend repository of MeasureSoftGram application in 2024.1.
 
 ## Badges
 
