@@ -24,8 +24,7 @@ Frontend repository of MeasureSoftGram application in 2024.1.
 
 ## Links
 
-- Prod: [https://measure-soft-gram.vercel.app/](https://measure-soft-gram.vercel.app/)
-- Stage: [https://measure-soft-gram-staging.vercel.app/](https://measure-soft-gram-staging.vercel.app/)
+- Prod/Homolog: [https://2024-1-measure-soft-gram.vercel.app/](https://2024-1-measure-soft-gram.vercel.app/)
 
 ## Installation
 
