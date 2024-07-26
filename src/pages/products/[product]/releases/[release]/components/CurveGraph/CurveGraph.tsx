@@ -1,6 +1,7 @@
 import { LineChart } from '@mui/x-charts';
 import { Characteristic } from '@customTypes/product';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
 export interface CurveGraphProps {
   planejado: Characteristic[];
@@ -44,30 +45,35 @@ export default function SimpleLineChart({ planejado, realizado }: CurveGraphProp
   if (planned.length !== accomplished.length) {
     return (
       <div>
-        <p>O número do resultados das caracteristicas planejadas deve ser igual ao número de realizadas realizadas</p>
+        <p>O número do resultados das caracteristicas planejadas deve ser igual ao número de realizadas</p>
       </div>
     );
   }
 
   return (
-    <LineChart
-      width={700}
-      height={400}
-      series={series}
-      xAxis={[{
-        scaleType: 'point',
-        data: labels,
-        min: 0.0,
-        max: 1,
-        tickMinStep: 0,
-      }]}
-      yAxis={[
-        {
-          scaleType: 'linear',
+    <Box
+      display="flex"
+      alignItems="center"
+      data-testid="line-chart">
+      <LineChart
+        width={700}
+        height={400}
+        series={series}
+        xAxis={[{
+          scaleType: 'point',
+          data: labels,
           min: 0.0,
           max: 1,
-        },
-      ]}
-    />
+          tickMinStep: 0,
+        }]}
+        yAxis={[
+          {
+            scaleType: 'linear',
+            min: 0.0,
+            max: 1,
+          },
+        ]}
+      />
+    </Box>
   );
 }
