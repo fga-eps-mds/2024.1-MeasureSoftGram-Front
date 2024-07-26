@@ -1,44 +1,53 @@
-
-import * as React from 'react';
 import { LineChart } from '@mui/x-charts';
-
-
-
+import { Characteristic } from '@customTypes/product';
+import { useEffect, useState } from 'react';
 
 export interface CurveGraphProps {
-  planejado: number[];
-  realizado?: number[];
-  labels: string[];
+  planejado: Characteristic[];
+  realizado: Characteristic[];
 }
 
-export default function SimpleLineChart({ planejado, realizado, labels }: CurveGraphProps) {
+export default function SimpleLineChart({ planejado, realizado }: CurveGraphProps) {
+  const [labels, setLabels] = useState<string[]>([]);
+  const [planned, setPlanned] = useState<number[]>([]);
+  const [accomplished, setAccomplihsed] = useState<number[]>([]);
 
-  console.log(planejado, realizado, labels)
+  useEffect(() => {
+
+    const labelsAux: string[] = []
+    const plannedAux: number[] = []
+    const accomplishedAux: number[] = []
+
+    planejado.forEach(characteristic => {
+      const accomplishedCharacteristic = realizado.find(el => el.name === characteristic.name)
+
+      if (accomplishedCharacteristic) {
+        accomplishedAux.push(accomplishedCharacteristic.value)
+      }
+
+      labelsAux.push(characteristic.name)
+      plannedAux.push(characteristic.value)
+    })
+
+    setLabels(labelsAux)
+    setPlanned(plannedAux)
+    setAccomplihsed(accomplishedAux)
+
+  }, [planejado, realizado])
+
   const series: any[] = [
-    { data: planejado, label: 'Planejado', color: '#33568E', }
+    { data: planned, label: 'Planejado', color: '#33568E' },
+    { data: accomplished, label: 'Realizado', color: '#ff8c00' }
   ]
 
-  if (realizado && realizado.length > 0) {
-    series.push({ data: realizado, label: 'Realizado', color: '#ff8c00', })
 
-    if (planejado.length !== realizado.length) {
-      return (
-        <div>
-          <p>O número do resultados das caracteristicas planejadas deve ser igual ao número de realizadas realizadas</p>
-        </div>
-      );
-    }
-  }
-
-  if (labels.length !== planejado.length) {
+  if (planned.length !== accomplished.length) {
     return (
       <div>
-        <p>Quantidade de caracteristicas incompativel com o número de resultados</p>
+        <p>O número do resultados das caracteristicas planejadas deve ser igual ao número de realizadas realizadas</p>
       </div>
     );
   }
-
-
 
   return (
     <LineChart

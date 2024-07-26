@@ -139,22 +139,10 @@ class ProductQuery {
     return api.get<any>(url, { params: releaseId && { release_id: releaseId } });
   }
 
-  async getReleasesAndPlannedXAccomplishedByID(organizationId: string, productId: string, releaseId: string) {
-    const url = `organizations/${organizationId}/products/${productId}/create/release/${releaseId}/planeed-x-accomplished`;
+  async getReleaseAnalysisDataByReleaseId(organizationId: string, productId: string, releaseId: string) {
+    const url = `organizations/${organizationId}/products/${productId}/create/release/${releaseId}/analysis_data`;
     return api.get<any>(url);
   }
-
-  // getReleasesAndPlannedXAccomplishedByID(
-  //   organizationId: string,
-  //   productId: string,
-  //   releaseId: string
-  // ): AxiosRequestConfig {
-  //   const url = `organizations/${organizationId}/products/${productId}/create/release/${releaseId}/planeed-x-accomplished`;
-  //   return {
-  //     url,
-  //     method: 'get'
-  //   };
-  // }
 
   getReleaseList(organizationId: string, productId: string, releaseId?: number): AxiosRequestConfig {
     const url = `organizations/${organizationId}/products/${productId}/create/release/`;

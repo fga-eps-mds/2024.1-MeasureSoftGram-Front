@@ -6,7 +6,7 @@ import Release from '../index.page';
 
 jest.mock('@services/product', () => ({
   productQuery: {
-    getReleasesAndPlannedXAccomplishedByID: jest.fn(),
+    getReleaseAnalysisDataByReleaseId: jest.fn(),
     getReleaseList: jest.fn(),
     getCompareGoalAccomplished: jest.fn()
   }
