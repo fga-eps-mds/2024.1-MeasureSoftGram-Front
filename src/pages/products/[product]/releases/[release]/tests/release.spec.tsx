@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, act, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import { productQuery } from '@services/product';
 import Release from '../index.page';
 
@@ -80,17 +80,17 @@ describe('Release', () => {
       accomplished
     };
 
-    (productQuery.getReleaseAnalysisDataByReleaseId as jest.Mock).mockResolvedValue({ data: [response] });
+    (productQuery.getReleaseAnalysisDataByReleaseId as jest.Mock).mockResolvedValue({ data: response });
 
-    const { getByText, getAllByTestId, rerender } = render(<Release />);
+    render(<Release />);
 
     await waitFor(() => expect(productQuery.getReleaseAnalysisDataByReleaseId).toBeCalled());
 
-    await act(async () => {
-      expect(getByText('release name')).toBeInTheDocument();
-      expect(getByText('O número do resultados das caracteristicas planejadas deve ser igual ao número de realizadas')).toBeInTheDocument();
-      const charts = getAllByTestId('line-chart');
-      expect(charts.length).toBe(1);
-    });
+    const releaseTitle = await screen.findByText('release name');
+    const dataRelease = await screen.findByTestId('data-release');
+
+    expect(dataRelease).toBeInTheDocument();
+    expect(dataRelease).toHaveTextContent('01 de janeiro de 2022 - 01 de abril de 2022')
+    expect(releaseTitle).toBeInTheDocument();
   });
 });

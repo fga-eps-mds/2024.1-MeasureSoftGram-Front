@@ -49,12 +49,12 @@ const Release: any = () => {
               <Typography fontSize="32px" fontWeight="400">
                 Release
               </Typography>
-              <Typography fontSize="32px" fontWeight="500" color="#33568E">
+              <Typography data-testid='release-name' fontSize="32px" fontWeight="500" color="#33568E">
                 {release?.release_name}
               </Typography>
             </Box>
             Duração da release
-            <Typography fontSize="14px" fontWeight="300">
+            <Typography data-testid='data-release' fontSize="14px" fontWeight="300">
               {formatDate(release?.start_at)} - {formatDate(release?.end_at)}
             </Typography>
           </Box>
