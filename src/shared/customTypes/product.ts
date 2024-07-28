@@ -206,8 +206,18 @@ export interface ReleasesPaginated {
   results?: IReleases[];
 }
 
+export interface Characteristic {
+  name: string;
+  value: number;
+}
+
+export interface AccomplishedRepository {
+  repository_name: string;
+  characteristics: Characteristic[];
+}
+
 export interface IReleasesWithGoalAndAccomplished {
   release: IReleases;
-  planned: Characteristics;
-  accomplished?: any;
+  planned: Characteristic[];
+  accomplished?: AccomplishedRepository[];
 }

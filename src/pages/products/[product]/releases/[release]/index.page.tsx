@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import getLayout from '@components/Layout';
 import { productQuery } from '@services/product';
-import { IReleasesWithGoalAndAccomplished } from '@customTypes/product';
+import { AccomplishedRepository, Characteristic, IReleasesWithGoalAndAccomplished } from '@customTypes/product';
 import { Box } from '@mui/system';
 import { Container, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { formatDate } from '@utils/formatDate';
-// import SimpleLineChart from './components/CurveGraph/CurveGraph';
 import dynamic from 'next/dynamic';
 import * as Styles from './styles';
 
@@ -18,7 +17,7 @@ const Release: any = () => {
   const routerParams: any = router.query;
 
   const [rpXrr, setRpXrr] = useState<IReleasesWithGoalAndAccomplished | undefined>();
-  const [planejado, setPlanejado] = useState<number[]>([]);
+  const [planejado, setPlanejado] = useState<Characteristic[]>([]);
   const [release, setRelease] = useState<any>();
 
   useEffect(() => {
@@ -27,23 +26,16 @@ const Release: any = () => {
       const productId = routerParams.product.split('-')[1];
       const releaseId = routerParams.release;
 
-      productQuery.getReleasesAndPlannedXAccomplishedByID(
+      productQuery.getReleaseAnalysisDataByReleaseId(
         organizationId, productId, releaseId
       ).then((res) => {
         setRpXrr(res.data);
-        setPlanejado([
-          (res.data.planned.reliability || 0),
-          (res.data.planned.maintainability || 0),
-        ]);
+        setPlanejado(res.data.planned);
         setRelease(res.data.release);
       });
     }
   }, [router.isReady]);
 
-  const xLabels = [
-    'Reliability',
-    'Maintainability',
-  ];
 
   return (
     <>
@@ -57,23 +49,23 @@ const Release: any = () => {
               <Typography fontSize="32px" fontWeight="400">
                 Release
               </Typography>
-              <Typography fontSize="32px" fontWeight="500" color="#33568E">
+              <Typography data-testid='release-name' fontSize="32px" fontWeight="500" color="#33568E">
                 {release?.release_name}
               </Typography>
             </Box>
             Duração da release
-            <Typography fontSize="14px" fontWeight="300">
+            <Typography data-testid='data-release' fontSize="14px" fontWeight="300">
               {formatDate(release?.start_at)} - {formatDate(release?.end_at)}
             </Typography>
           </Box>
         </Box>
         {
-          rpXrr !== undefined && Object.keys(rpXrr?.accomplished).map((repositorio: string) => (
+          rpXrr !== undefined && rpXrr?.accomplished?.map((repositorio: AccomplishedRepository) => (
             <Styles.ContainerGraph>
               <Typography fontSize="24px" fontWeight="400">
-                {repositorio}
+                {repositorio.repository_name}
               </Typography>
-              <SimpleLineChart planejado={planejado} realizado={rpXrr?.accomplished[repositorio]} labels={xLabels} />
+              <SimpleLineChart planejado={planejado} realizado={repositorio.characteristics} />
             </Styles.ContainerGraph>
           ))
         }
