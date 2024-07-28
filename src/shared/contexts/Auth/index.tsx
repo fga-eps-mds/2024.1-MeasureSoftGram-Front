@@ -127,7 +127,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     const code = router?.query?.code;
-    if (code && provider === 'github') {
+    if (code && provider === 'github' && !token) {
       signInWithGithub(code as string);
     }
   }, [provider, router?.query?.code, signInWithGithub]);
