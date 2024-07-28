@@ -34,7 +34,7 @@ const Release: any = () => {
         setRelease(res.data.release);
       });
     }
-  }, [router.isReady]);
+  }, [router.isReady, routerParams.product, routerParams.release]);
 
 
   return (
@@ -65,7 +65,7 @@ const Release: any = () => {
               <Typography fontSize="24px" fontWeight="400">
                 {repositorio.repository_name}
               </Typography>
-              <SimpleLineChart planejado={planejado} realizado={repositorio.characteristics} />
+              <SimpleLineChart planejado={planejado} realizado={repositorio.characteristics} normDiff={repositorio.norm_diff} />
             </Styles.ContainerGraph>
           ))
         }
