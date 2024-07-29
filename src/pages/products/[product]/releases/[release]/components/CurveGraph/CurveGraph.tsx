@@ -11,19 +11,21 @@ export interface CurveGraphProps {
 export default function SimpleLineChart({ planejado, realizado }: CurveGraphProps) {
   const [labels, setLabels] = useState<string[]>([]);
   const [planned, setPlanned] = useState<number[]>([]);
-  const [accomplished, setAccomplihsed] = useState<number[]>([]);
+  const [accomplished, setAccomplished] = useState<number[]>([]);
+  const [diff, setDiff] = useState<number[]>([]);
 
   useEffect(() => {
-
     const labelsAux: string[] = []
     const plannedAux: number[] = []
     const accomplishedAux: number[] = []
+    const diffAux: number[] = []
 
     planejado.forEach(characteristic => {
       const accomplishedCharacteristic = realizado.find(el => el.name === characteristic.name)
 
       if (accomplishedCharacteristic) {
         accomplishedAux.push(accomplishedCharacteristic.value)
+        diffAux.push(accomplishedCharacteristic.diff)
       }
 
       labelsAux.push(characteristic.name)
@@ -32,13 +34,15 @@ export default function SimpleLineChart({ planejado, realizado }: CurveGraphProp
 
     setLabels(labelsAux)
     setPlanned(plannedAux)
-    setAccomplihsed(accomplishedAux)
+    setAccomplished(accomplishedAux)
+    setDiff(diffAux)
 
   }, [planejado, realizado])
 
   const series: any[] = [
-    { data: planned, label: 'Planejado', color: '#33568E' },
-    { data: accomplished, label: 'Realizado', color: '#ff8c00' }
+    { data: planned, label: 'Planejado', color: '#2DA1C8' },
+    { data: accomplished, label: 'Realizado', color: '#EBA133' },
+    { data: diff, label: 'Diff', color: '#F16141' }
   ]
 
 
