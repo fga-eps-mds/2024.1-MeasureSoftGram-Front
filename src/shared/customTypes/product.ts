@@ -209,6 +209,7 @@ export interface ReleasesPaginated {
 export interface Characteristic {
   name: string;
   value: number;
+  diff: number;
 }
 
 export interface AccomplishedRepository {

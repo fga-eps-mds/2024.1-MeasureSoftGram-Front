@@ -22,7 +22,7 @@ describe('ProductQuery', () => {
   it('updateProduct should call api.get with the right URL', async () => {
     const organizationId = 1;
     const id = '2';
-    await productQuery.updateProduct(id, { name: 'teste', organizationId: organizationId });
+    await productQuery.updateProduct(id, { name: 'teste', organizationId });
     expect(api.put).toHaveBeenCalledWith(`/organizations/${organizationId}/products/${id}/`, {
       name: 'teste',
       organizationId: 1
@@ -180,10 +180,10 @@ describe('ProductQuery', () => {
 
   it('createProduct should call api.get with the right URL', async () => {
     const organizationId = 1;
-    await productQuery.createProduct({ name: 'teste', organizationId: organizationId });
+    await productQuery.createProduct({ name: 'teste', organizationId });
     expect(api.post).toHaveBeenCalledWith(`/organizations/${organizationId}/products/`, {
       name: 'teste',
-      organizationId: organizationId
+      organizationId
     });
   });
 
@@ -192,6 +192,17 @@ describe('ProductQuery', () => {
     const id = '2';
     await productQuery.deleteProduct(id, organizationId);
     expect(api.delete).toHaveBeenCalledWith(`/organizations/${organizationId}/products/${id}/`);
+  });
+
+  it('Should call analysis_data endpoint', async () => {
+    const organizationId = '1';
+    const productId = '2';
+    const releaseId = '1';
+
+    await productQuery.getReleaseAnalysisDataByReleaseId(organizationId, productId, releaseId);
+    expect(api.get).toHaveBeenCalledWith(
+      `organizations/${organizationId}/products/${productId}/create/release/${releaseId}/analysis_data`
+    );
   });
 
   afterEach(() => {
