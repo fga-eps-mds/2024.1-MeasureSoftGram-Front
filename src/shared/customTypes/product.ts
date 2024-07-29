@@ -214,6 +214,7 @@ export interface Characteristic {
 export interface AccomplishedRepository {
   repository_name: string;
   characteristics: Characteristic[];
+  norm_diff?: number;
 }
 
 export interface IReleasesWithGoalAndAccomplished {

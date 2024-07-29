@@ -1,14 +1,18 @@
 import { LineChart } from '@mui/x-charts';
 import { Characteristic } from '@customTypes/product';
 import { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Card, CardContent, Divider, Tooltip, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import messages from './messages';
 
 export interface CurveGraphProps {
   planejado: Characteristic[];
   realizado: Characteristic[];
+  normDiff?: number;
 }
 
-export default function SimpleLineChart({ planejado, realizado }: CurveGraphProps) {
+export default function SimpleLineChart({ planejado, realizado, normDiff }: CurveGraphProps) {
   const [labels, setLabels] = useState<string[]>([]);
   const [planned, setPlanned] = useState<number[]>([]);
   const [accomplished, setAccomplihsed] = useState<number[]>([]);
@@ -45,35 +49,59 @@ export default function SimpleLineChart({ planejado, realizado }: CurveGraphProp
   if (planned.length !== accomplished.length) {
     return (
       <div>
-        <p>O número do resultados das caracteristicas planejadas deve ser igual ao número de realizadas</p>
+        <p>{messages.plannedAndAccomplishedDifferentSize}</p>
       </div>
     );
   }
+
+  const renderNormDiff = () =>
+    <>
+      <Divider />
+      <Box display="flex" justifyContent='space-between' mt={2} p={1}>
+        <Box display="flex" alignItems='center' >
+          <Typography mr={1}>
+            {messages.normDiff}
+          </Typography>
+          <Tooltip title={messages.normDiffExplanation} >
+            <InfoOutlinedIcon fontSize='small' />
+          </Tooltip>
+        </Box>
+        {normDiff?.toFixed(2)}
+      </Box>
+    </>
 
   return (
     <Box
       display="flex"
       alignItems="center"
+      mt={2}
       data-testid="line-chart">
-      <LineChart
-        width={700}
-        height={400}
-        series={series}
-        xAxis={[{
-          scaleType: 'point',
-          data: labels,
-          min: 0.0,
-          max: 1,
-          tickMinStep: 0,
-        }]}
-        yAxis={[
-          {
-            scaleType: 'linear',
-            min: 0.0,
-            max: 1,
-          },
-        ]}
-      />
+      <Card>
+        <CardContent>
+          <Stack>
+            <LineChart
+              width={700}
+              height={400}
+              series={series}
+              xAxis={[{
+                scaleType: 'point',
+                data: labels,
+                min: 0.0,
+                max: 1,
+                tickMinStep: 0,
+              }]}
+              yAxis={[
+                {
+                  scaleType: 'linear',
+                  min: 0.0,
+                  max: 1,
+                },
+              ]}
+            />
+            {normDiff && renderNormDiff()}
+          </Stack>
+        </CardContent>
+      </Card>
     </Box>
   );
 }
