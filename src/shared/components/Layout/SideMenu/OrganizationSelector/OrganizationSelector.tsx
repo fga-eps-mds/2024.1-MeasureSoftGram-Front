@@ -5,9 +5,9 @@ import LetterAvatar from '@components/LetterAvatar';
 import useBoolean from '@hooks/useBoolean';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
+import { Organization } from '@customTypes/organization';
 import SideMenuItem from '../SideMenuItem';
 import SideList from '../SideList';
-import { Organization } from '@customTypes/organization';
 
 function OrganizationSelector() {
   const { organizationList, setCurrentOrganizations, currentOrganization, fetchOrganizations } = useOrganizationContext();
@@ -22,10 +22,10 @@ function OrganizationSelector() {
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && !organizationList.length) {
       fetchOrganizations();
     }
-  }, [isOpen, fetchOrganizations]);
+  }, [isOpen, fetchOrganizations, organizationList]);
 
   return (
     <>
