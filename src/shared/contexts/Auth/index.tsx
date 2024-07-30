@@ -92,7 +92,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
             organizations_url: '',
           }
         };
-      } else if (response.type === 'error') {
+      }
+
+      if (response.type === 'error') {
         removeAuthStorage();
         toast.error(`Erro ao realizar login: ${response.error.message || 'Erro desconhecido'}`);
         return response;
@@ -114,7 +116,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         toast.success('Login realizado com sucesso!');
         await router.push('/home');
         return response;
-      } else if (response.type === 'error') {
+      } if (response.type === 'error') {
         toast.error(`Erro ao realizar login: ${response.error.message || 'Erro desconhecido'}`);
         return response;
       }
