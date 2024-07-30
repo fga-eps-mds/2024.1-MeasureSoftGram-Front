@@ -13,9 +13,16 @@ interface Props {
   value: 'characteristics' | 'subcharacteristics' | 'measures' | 'metrics';
   addHistoricalTSQMI?: boolean;
   addCurrentGoal?: boolean;
+  metricsSource?: 'github' | 'sonarqube';
 }
 
-export function useRequestValues({ type, value, addHistoricalTSQMI = false, addCurrentGoal = false }: Props) {
+export function useRequestValues({
+  type,
+  value,
+  addHistoricalTSQMI = false,
+  addCurrentGoal = false,
+  metricsSource
+}: Props) {
   const { currentOrganization } = useOrganizationContext();
   const { currentProduct } = useProductContext();
   const { currentRepository, historicalTSQMI } = useRepositoryContext();
@@ -35,18 +42,23 @@ export function useRequestValues({ type, value, addHistoricalTSQMI = false, addC
         .then(async (response) => {
           if (addCurrentGoal && currentOrganization?.id && currentProduct?.id) {
             try {
-              const { data: currentGoal } = await productQuery.getCurrentReleaseGoal(currentOrganization.id, currentProduct.id);
+              const { data: currentGoal } = await productQuery.getCurrentReleaseGoal(
+                currentOrganization.id,
+                currentProduct.id
+              );
               response.data?.results?.forEach((res: Historical) => {
-                res.goal = currentGoal.data[res.key]
-              })
+                res.goal = currentGoal.data[res.key];
+              });
             } catch {
               response.data?.results?.forEach((res: Historical) => {
-                res.goal = undefined
-              })
+                res.goal = undefined;
+              });
             }
           }
 
-          return response.data
+          const data = response.data;
+
+          return data;
         })
         .finally(() => {
           setIsLoadingEnd();
@@ -61,11 +73,30 @@ export function useRequestValues({ type, value, addHistoricalTSQMI = false, addC
     }
   );
 
-  const returnData = _.cloneDeep(data?.results ?? []);
+
+  let returnData = _.cloneDeep(data?.results ?? []);
+
   if (addHistoricalTSQMI && !_.isEmpty(returnData) && !_.find(returnData, { key: 'TSQMI' })) {
     returnData.push(historicalTSQMI);
   }
 
+  if (returnData?.length && metricsSource) {
+    if (metricsSource === 'github') {
+      returnData = returnData.filter(
+        (res: any) => res.key === 'ci_feedback_time' || res.key === 'closed_issues' || res.key === 'total_issues'
+      );
+    }
+
+    if (metricsSource === 'sonarqube') {
+      returnData = returnData.filter(
+        (res: any) => res.key !== 'ci_feedback_time' && res.key !== 'closed_issues' && res.key !== 'total_issues'
+      );
+
+      console.log(returnData);
+    }
+  }
+
+  console.log(metricsSource, returnData);
   return {
     data: returnData,
     error,
