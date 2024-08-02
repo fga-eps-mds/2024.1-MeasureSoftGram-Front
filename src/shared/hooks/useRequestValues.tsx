@@ -92,8 +92,6 @@ export function useRequestValues({
       returnData = returnData.filter(
         (res: any) => res.key !== 'total_builds' && res.key !== 'sum_ci_feedback_times' && res.key !== 'resolved_issues' && res.key !== 'total_issues' && res.key !== 'ci_feedback_time' && res.key !== 'team_throughput'
       );
-
-      console.log(returnData);
     }
   }
 
