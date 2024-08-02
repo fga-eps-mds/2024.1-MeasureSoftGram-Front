@@ -13,7 +13,7 @@ interface Props {
   value: 'characteristics' | 'subcharacteristics' | 'measures' | 'metrics';
   addHistoricalTSQMI?: boolean;
   addCurrentGoal?: boolean;
-  metricsSource?: 'github' | 'sonarqube';
+  collectionSource?: 'github' | 'sonarqube';
 }
 
 export function useRequestValues({
@@ -21,7 +21,7 @@ export function useRequestValues({
   value,
   addHistoricalTSQMI = false,
   addCurrentGoal = false,
-  metricsSource
+  collectionSource,
 }: Props) {
   const { currentOrganization } = useOrganizationContext();
   const { currentProduct } = useProductContext();
@@ -80,23 +80,22 @@ export function useRequestValues({
     returnData.push(historicalTSQMI);
   }
 
-  if (returnData?.length && metricsSource) {
-    if (metricsSource === 'github') {
+  if (returnData?.length && collectionSource) {
+
+    if (collectionSource === 'github') {
       returnData = returnData.filter(
-        (res: any) => res.key === 'ci_feedback_time' || res.key === 'closed_issues' || res.key === 'total_issues'
+        (res: any) => (res.key === 'total_builds' || res.key === 'sum_ci_feedback_times' || res.key === 'resolved_issues' || res.key === 'total_issues') || res.key === 'ci_feedback_time' || res.key === 'team_throughput'
       );
     }
 
-    if (metricsSource === 'sonarqube') {
+    if (collectionSource === 'sonarqube') {
       returnData = returnData.filter(
-        (res: any) => res.key !== 'ci_feedback_time' && res.key !== 'closed_issues' && res.key !== 'total_issues'
+        (res: any) => res.key !== 'total_builds' && res.key !== 'sum_ci_feedback_times' && res.key !== 'resolved_issues' && res.key !== 'total_issues' && res.key !== 'ci_feedback_time' && res.key !== 'team_throughput'
       );
-
-      console.log(returnData);
     }
   }
 
-  console.log(metricsSource, returnData);
+  console.log(collectionSource, returnData);
   return {
     data: returnData,
     error,
