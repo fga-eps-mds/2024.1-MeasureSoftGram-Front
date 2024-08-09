@@ -12,6 +12,7 @@ import { Container, Box, Typography } from "@mui/material";
 
 import useRequireAuth from "@hooks/useRequireAuth";
 
+import { useTranslation } from "react-i18next";
 import CardInfo from "./components/CardInfo/CardInfo";
 
 import ListNavCard from "./components/ListNavCard/ListNavCard";
@@ -92,6 +93,8 @@ const Home: NextPageWithLayout = () => {
 
   const navListData: Array<string> = cardsData.map(cardData => cardData.id);
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Head>
@@ -102,7 +105,7 @@ const Home: NextPageWithLayout = () => {
         <Box
           display="flex"
           flexDirection="row"
-          >
+        >
           <Box
             display="flex"
             flexDirection="column"
@@ -113,14 +116,14 @@ const Home: NextPageWithLayout = () => {
             position="sticky"
             top="0"
             maxHeight="72vh"
-            >
+          >
             <Box display="flex">
-              <Typography variant="h4" style={{color: "#33568E", fontWeight: "bold"}}>
-                Página inicial
+              <Typography variant="h4" style={{ color: "#33568E", fontWeight: "bold" }}>
+                {t('homepage.title')}
               </Typography>
             </Box>
             <Box>
-              <Typography style={{fontSize: "16px"}}>
+              <Typography style={{ fontSize: "16px" }}>
                 Aqui você poderá obter algumas informações sobre nosso produto.
               </Typography>
             </Box>
