@@ -12,6 +12,9 @@ import { AuthProvider } from '@contexts/Auth';
 import { useRouter } from 'next/router';
 import { RotatingLines } from 'react-loader-spinner';
 import { Modal, Box } from '@mui/material';
+import { appWithI18Next, useSyncLanguage } from 'ni18n';
+import { useTranslation } from 'react-i18next';
+import { ni18nConfig } from "../../n18n.config";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement, disableBreadcrumb?: boolean) => typeof page;
@@ -29,6 +32,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [showError, setShowError] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const disableBreadcrumb = Component.disableBreadcrumb ?? false;
+
+  const locale: any =
+    typeof window !== 'undefined' && window.localStorage.getItem('locale_lang')
+
+  useSyncLanguage(locale);
 
   const router = useRouter();
   const transformValue = 'translate(-50%, -50%)';
@@ -105,6 +113,17 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     setErrorOccurred(false);
   }
 
+  const changeLanguage = (i18n: any, language: string) => {
+    window.localStorage.setItem('locale_lang', language)
+    i18n.changeLanguage(language)
+  }
+
+  const languages = [
+    { code: 'en', translateKey: 'en' },
+    { code: 'pt', translateKey: 'pt' },
+  ]
+
+  const { t, i18n } = useTranslation()
 
   return (
     <AuthProvider>
@@ -123,6 +142,19 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         />
         <RepositoryProvider>
           <ProductProvider>
+            <div>
+              {languages.map((language) => (
+                <button
+                  type='button'
+                  data-id={`${language.code}-button`}
+                  className={i18n.language === language.code ? 'active' : undefined}
+                  onClick={() => changeLanguage(i18n, language.code)}
+                  key={language.code}
+                >
+                  {t(language.translateKey)}
+                </button>
+              ))}
+            </div>
             <Theme>
               {getLayout(<Component {...pageProps} />, disableBreadcrumb)}
               <>
@@ -237,4 +269,4 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
-export default MyApp;
+export default appWithI18Next(MyApp, ni18nConfig);
