@@ -9,12 +9,15 @@
     "organization": {
       "id": "Organizations",
       "title": "Organizations",
-      "description": "On the organizations page, you can find a list of all the organizations using MeasureSoftGram, as well as all their registered products."
+      "description": "On the organizations page, you can find a list of all the organizations using MeasureSoftGram, as well as all their registered products.",
+      "view-organization": "VIEW ORGANIZATIONS AND PRODUCTS",
+      "create-organization": "Create organization"
     },
     "product": {
       "id": "Products",
       "title": "Products",
-      "description": "Products are software that belong to an organization and have a client. Due to their nature, the same product can have multiple repositories associated with it, allowing continuous implementation on more than one work front."
+      "description": "Products are software that belong to an organization and have a client. Due to their nature, the same product can have multiple repositories associated with it, allowing continuous implementation on more than one work front.",
+      "create-product": "Create Product"
     },
     "repository": {
       "id": "Repositories",

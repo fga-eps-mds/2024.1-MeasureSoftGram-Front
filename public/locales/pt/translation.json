@@ -9,12 +9,15 @@
     "organization": {
       "id": "Organizações",
       "title": "Organizações",
-      "description": "Na página de organizações, você pode encontrar uma lista de todas as organizações que estão utilizando o MeasureSoftGram, além de encontrar também todos os seus produtos cadastrados."
+      "description": "Na páina de organizações, você pode encontrar uma lista de todas as organizações que estão utilizando o MeasureSoftGram, além de encontrar também todos os seus produtos cadastrados.",
+      "view-organization": "Visualizar organização e produtos",
+      "create-organization": "Criar organização"
     },
     "product": {
       "id": "Produtos",
       "title": "Produtos",
-      "description": "Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação contínua em mais de uma frente de trabalho."
+      "description": "Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação contínua em mais de uma frente de trabalho.",
+      "create-product": "Criar Produto"
     },
     "repository": {
       "id": "Repositórios",
