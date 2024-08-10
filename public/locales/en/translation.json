@@ -39,5 +39,19 @@
       "title": "Configuration",
       "description": "A configuration represents the result of planning the quality measurement objectives of a release. This planning involves defining which quality characteristics will be observed during the development period of a release. Thus, it is possible to choose and configure the parameters of metrics, measures, and indicators at all levels of the model. It is possible to define weight values, the relationship matrix of characteristics, reference values for measures, and the selection of characteristics, sub-characteristics, metrics, and measures to be observed."
     }
+  },
+  "sidebar": {
+    "tooltip": {
+      "user-menu": "User menu",
+      "organization-selection": "Organization Selection",
+      "product-selection": "Product Selection"
+    },
+    "select": {
+      "config": "Settings",
+      "end-session": "Log out"
+    },
+    "product": {
+      "placeholder": "Select Product"
+    }
   }
 }

@@ -39,5 +39,19 @@
       "title": "Configuração",
       "description": "Uma configuração representa o resultado do planejamento dos objetivos de medição da qualidade de um release. Esse planejamento envolve a definição de quais características da qualidade serão observadas durante o período de desenvolvimento de um release. Assim, é possível escolher e configurar os parâmetros das métricas, medidas e indicadores em todos os níveis do modelo. É possível definir valores de pesos, matriz da relação das características, valores de referência das medidas e escolha de características, subcaracterísticas, métricas e medidas a serem observadas."
     }
+  },
+  "sidebar": {
+    "tooltip": {
+      "user-menu": "Menu do usuário",
+      "organization-selection": "Seleção de Organização",
+      "product-selection": "Seleção de Produtos"
+    },
+    "select": {
+      "config": "Configurações",
+      "end-session": "Finalizar Sessão"
+    },
+    "product": {
+      "placeholder": "Selecione o produto"
+    }
   }
 }
