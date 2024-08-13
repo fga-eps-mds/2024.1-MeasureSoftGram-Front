@@ -21,7 +21,7 @@ Object {
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                 style="color: rgb(51, 86, 142); font-weight: bold;"
               >
-                homepage.sub-title
+                sub-title
               </h4>
             </div>
             <div
@@ -31,7 +31,7 @@ Object {
                 class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                 style="font-size: 16px;"
               >
-                homepage.description
+                description
               </p>
             </div>
             <div
@@ -70,7 +70,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      homepage.organization.id
+                      organization.id
                     </p>
                   </div>
                   <span
@@ -91,7 +91,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      homepage.repository.id
+                      repository.id
                     </p>
                   </div>
                   <span
@@ -112,7 +112,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      homepage.pre-config.id
+                      pre-config.id
                     </p>
                   </div>
                   <span
@@ -133,7 +133,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      homepage.config.id
+                      config.id
                     </p>
                   </div>
                   <span
@@ -151,7 +151,7 @@ Object {
             >
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="homepage.organization.id"
+                id="organization.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -176,12 +176,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        homepage.organization.title
+                        organization.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        homepage.organization.description
+                        organization.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -197,7 +197,7 @@ Object {
                               tabindex="0"
                               type="button"
                             >
-                              homepage.organization.view-organization
+                              organization.view-organization
                               <span
                                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
@@ -211,7 +211,7 @@ Object {
                               tabindex="0"
                               type="button"
                             >
-                              homepage.organization.create-organization
+                              organization.create-organization
                               <span
                                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
@@ -245,12 +245,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        homepage.product.title
+                        product.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        homepage.product.description
+                        product.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -263,7 +263,7 @@ Object {
                             tabindex="0"
                             type="button"
                           >
-                            homepage.product.create-product
+                            product.create-product
                             <span
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
@@ -276,7 +276,7 @@ Object {
               </div>
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="homepage.repository.id"
+                id="repository.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -301,12 +301,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        homepage.repository.title
+                        repository.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        homepage.repository.description
+                        repository.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -337,12 +337,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        homepage.release.title
+                        release.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        homepage.release.description
+                        release.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -353,7 +353,7 @@ Object {
               </div>
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="homepage.pre-config.id"
+                id="pre-config.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -378,12 +378,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        homepage.pre-config.title
+                        pre-config.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        homepage.pre-config.description
+                        pre-config.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -394,7 +394,7 @@ Object {
               </div>
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="homepage.config.id"
+                id="config.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -419,12 +419,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        homepage.config.title
+                        config.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        homepage.config.description
+                        config.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -456,7 +456,7 @@ Object {
               class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
               style="color: rgb(51, 86, 142); font-weight: bold;"
             >
-              homepage.sub-title
+              sub-title
             </h4>
           </div>
           <div
@@ -466,7 +466,7 @@ Object {
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
               style="font-size: 16px;"
             >
-              homepage.description
+              description
             </p>
           </div>
           <div
@@ -505,7 +505,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    homepage.organization.id
+                    organization.id
                   </p>
                 </div>
                 <span
@@ -526,7 +526,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    homepage.repository.id
+                    repository.id
                   </p>
                 </div>
                 <span
@@ -547,7 +547,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    homepage.pre-config.id
+                    pre-config.id
                   </p>
                 </div>
                 <span
@@ -568,7 +568,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    homepage.config.id
+                    config.id
                   </p>
                 </div>
                 <span
@@ -586,7 +586,7 @@ Object {
           >
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="homepage.organization.id"
+              id="organization.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -611,12 +611,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      homepage.organization.title
+                      organization.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      homepage.organization.description
+                      organization.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -632,7 +632,7 @@ Object {
                             tabindex="0"
                             type="button"
                           >
-                            homepage.organization.view-organization
+                            organization.view-organization
                             <span
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
@@ -646,7 +646,7 @@ Object {
                             tabindex="0"
                             type="button"
                           >
-                            homepage.organization.create-organization
+                            organization.create-organization
                             <span
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
@@ -680,12 +680,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      homepage.product.title
+                      product.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      homepage.product.description
+                      product.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -698,7 +698,7 @@ Object {
                           tabindex="0"
                           type="button"
                         >
-                          homepage.product.create-product
+                          product.create-product
                           <span
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
@@ -711,7 +711,7 @@ Object {
             </div>
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="homepage.repository.id"
+              id="repository.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -736,12 +736,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      homepage.repository.title
+                      repository.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      homepage.repository.description
+                      repository.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -772,12 +772,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      homepage.release.title
+                      release.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      homepage.release.description
+                      release.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -788,7 +788,7 @@ Object {
             </div>
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="homepage.pre-config.id"
+              id="pre-config.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -813,12 +813,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      homepage.pre-config.title
+                      pre-config.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      homepage.pre-config.description
+                      pre-config.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -829,7 +829,7 @@ Object {
             </div>
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="homepage.config.id"
+              id="config.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -854,12 +854,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      homepage.config.title
+                      config.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      homepage.config.description
+                      config.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
