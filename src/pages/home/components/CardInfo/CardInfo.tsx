@@ -13,7 +13,7 @@ interface Props {
 
 const CardInfo: React.FC<Props> = ({ cardData }) => {
 
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
 
   return <Card
     id={cardData?.id}
@@ -144,7 +144,7 @@ const CardInfo: React.FC<Props> = ({ cardData }) => {
                 >
                   <Link href="/products">
                     <Button variant="contained" fullWidth>
-                      {t("homepage.organization.view-organization")}
+                      {t("organization.view-organization")}
                     </Button>
                   </Link>
                 </Box>
@@ -155,7 +155,7 @@ const CardInfo: React.FC<Props> = ({ cardData }) => {
                   >
                     <Link href="/organizations">
                       <Button variant="contained" fullWidth>
-                        {t("homepage.organization.create-organization")}
+                        {t("organization.create-organization")}
                       </Button>
                     </Link>
                   </Box></Box>
@@ -168,7 +168,7 @@ const CardInfo: React.FC<Props> = ({ cardData }) => {
                 >
                   <Link href="/products/create">
                     <Button variant="contained" fullWidth>
-                      {t("homepage.product.create-product")}
+                      {t("product.create-product")}
                     </Button>
                   </Link>
                 </Box>

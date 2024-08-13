@@ -28,14 +28,14 @@ function UserMenu({ username }: Props) {
   const { logout } = useAuth();
   const router = useRouter();
 
-  const { t } = useTranslation();
+  const { t } = useTranslation('sidebar');
 
   return (
     <>
       <SideMenuItem
         startIcon={<Avatar sx={{ width: 34, height: 34, backgroundColor: '#000' }} />}
         text={username ?? '???'}
-        tooltip={t("sidebar.tooltip.user-menu")}
+        tooltip={t("tooltip.user-menu")}
         endIcon={<FiChevronRight fontSize={28} />}
         onClick={handleClick}
         selected={false}
@@ -54,7 +54,7 @@ function UserMenu({ username }: Props) {
           <ListItemIcon>
             <FaCog fontSize="small" />
           </ListItemIcon>
-          <ListItemText> {t("sidebar.select.config")} </ListItemText>
+          <ListItemText> {t("select.config")} </ListItemText>
         </MenuItem>
 
         <MenuItem
@@ -65,7 +65,7 @@ function UserMenu({ username }: Props) {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          <ListItemText>{t("sidebar.select.end-session")}</ListItemText>
+          <ListItemText>{t("select.end-session")}</ListItemText>
         </MenuItem>
       </Menu>
     </>

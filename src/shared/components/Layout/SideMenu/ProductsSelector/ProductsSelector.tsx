@@ -24,15 +24,15 @@ function ProductSelector() {
     void router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
   };
 
-  const { t } = useTranslation();
+  const { t } = useTranslation('sidebar');
 
   return (
     <>
       <SideMenuItem
         startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox />} />}
-        text={currentProduct?.name ?? t("sidebar.product.placeholder")}
+        text={currentProduct?.name ?? t("product.placeholder")}
         endIcon={<FiRepeat />}
-        tooltip={t("sidebar.tooltip.product-selection")}
+        tooltip={t("tooltip.product-selection")}
         onClick={onClick}
         selected={false}
       />

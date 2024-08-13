@@ -20,38 +20,38 @@ import ListNavCard from "./components/ListNavCard/ListNavCard";
 
 const Home: NextPageWithLayout = () => {
   useRequireAuth();
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
 
   const cardsData: Array<InfoData> = [
     {
-      id: t('homepage.organization.id'),
+      id: t('organization.id'),
       elements: [
         {
           imageSrc: "/images/png/structure.png",
-          title: t('homepage.organization.title'),
-          description: t('homepage.organization.description'),
+          title: t('organization.title'),
+          description: t('organization.description'),
           routeTo: 'products'
         },
         {
           imageSrc: "/images/png/development.png",
-          title: t('homepage.product.title'),
-          description: t('homepage.product.description'),
+          title: t('product.title'),
+          description: t('product.description'),
           routeTo: 'products/create'
         }
       ]
     },
     {
-      id: t('homepage.repository.id'),
+      id: t('repository.id'),
       elements: [
         {
           imageSrc: "/images/png/folders.png",
-          title: t('homepage.repository.title'),
-          description: t('homepage.repository.description')
+          title: t('repository.title'),
+          description: t('repository.description')
         },
         {
           imageSrc: "/images/png/new-offer.png",
-          title: t('homepage.release.title'),
-          description: t('homepage.release.description')
+          title: t('release.title'),
+          description: t('release.description')
         }
       ]
     },
@@ -72,22 +72,22 @@ const Home: NextPageWithLayout = () => {
     //   ]
     // },
     {
-      id: t('homepage.pre-config.id'),
+      id: t('pre-config.id'),
       elements: [
         {
           imageSrc: "/images/png/setting.png",
-          title: t('homepage.pre-config.title'),
-          description: t('homepage.pre-config.description')
+          title: t('pre-config.title'),
+          description: t('pre-config.description')
         }
       ]
     },
     {
-      id: t('homepage.config.id'),
+      id: t('config.id'),
       elements: [
         {
           imageSrc: "/images/png/web-management.png",
-          title: t('homepage.config.title'),
-          description: t('homepage.config.description')
+          title: t('config.title'),
+          description: t('config.description')
         }
       ]
     }
@@ -99,7 +99,7 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>{t('homepage.title')} - MeasureSoftGram</title>
+        <title>{t('title')} - MeasureSoftGram</title>
       </Head>
 
       <Container>
@@ -120,12 +120,12 @@ const Home: NextPageWithLayout = () => {
           >
             <Box display="flex">
               <Typography variant="h4" style={{ color: "#33568E", fontWeight: "bold" }}>
-                {t('homepage.sub-title')}
+                {t('sub-title')}
               </Typography>
             </Box>
             <Box>
               <Typography style={{ fontSize: "16px" }}>
-                {t('homepage.description')}
+                {t('description')}
               </Typography>
             </Box>
 

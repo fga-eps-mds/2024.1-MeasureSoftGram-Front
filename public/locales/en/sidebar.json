@@ -1,0 +1,14 @@
+{
+  "tooltip": {
+    "user-menu": "User menu",
+    "organization-selection": "Organization Selection",
+    "product-selection": "Product Selection"
+  },
+  "select": {
+    "config": "Settings",
+    "end-session": "Log out"
+  },
+  "product": {
+    "placeholder": "Select Product"
+  }
+}

@@ -28,7 +28,7 @@ function OrganizationSelector() {
     }
   }, [isOpen, fetchOrganizations, organizationList]);
 
-  const { t } = useTranslation();
+  const { t } = useTranslation('sidebar');
 
   return (
     <>
@@ -36,7 +36,7 @@ function OrganizationSelector() {
         startIcon={<LetterAvatar name={currentOrganization?.name ?? '?'} icon={<BsFillBuildingFill />} />}
         text={currentOrganization?.name ?? 'Selecione a Organização'}
         endIcon={<FiRepeat />}
-        tooltip={t("sidebar.tooltip.organization-selection")}
+        tooltip={t("tooltip.organization-selection")}
         onClick={openMenu}
         selected={false}
       />
