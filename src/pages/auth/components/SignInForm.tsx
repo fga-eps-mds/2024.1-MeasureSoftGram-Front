@@ -19,11 +19,13 @@ export const SignInForm = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<LoginFormData>();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
@@ -33,6 +35,7 @@ export const SignInForm = () => {
     setProvider('credentials');
     await signInWithCredentials(data);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', gap: '2rem' }}>

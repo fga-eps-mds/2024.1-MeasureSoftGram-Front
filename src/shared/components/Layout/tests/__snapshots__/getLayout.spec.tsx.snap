@@ -23,7 +23,7 @@ Object {
               class="MuiBox-root css-10wzbhq"
             >
               <div
-                aria-label="Seleção de Organização"
+                aria-label="tooltip.organization-selection"
                 class="styles__Wrapper-sc-13gge7k-0 PRxzx"
                 data-mui-internal-clone-element="true"
               >
@@ -96,7 +96,7 @@ Object {
               class="MuiBox-root css-10wzbhq"
             >
               <div
-                aria-label="Seleção de Produto"
+                aria-label="tooltip.product-selection"
                 class="styles__Wrapper-sc-13gge7k-0 PRxzx"
                 data-mui-internal-clone-element="true"
               >
@@ -144,7 +144,7 @@ Object {
                 <div
                   class="MuiBox-root css-ofjrfz"
                 >
-                  Selecione o Produto
+                  product.placeholder
                 </div>
                 <div
                   class="MuiBox-root css-1p2jtab"
@@ -204,7 +204,7 @@ Object {
               class="MuiBox-root css-10wzbhq"
             >
               <div
-                aria-label="Menu de usuário"
+                aria-label="tooltip.user-menu"
                 class="styles__Wrapper-sc-13gge7k-0 PRxzx"
                 data-mui-internal-clone-element="true"
               >
@@ -406,7 +406,7 @@ Object {
             class="MuiBox-root css-10wzbhq"
           >
             <div
-              aria-label="Seleção de Organização"
+              aria-label="tooltip.organization-selection"
               class="styles__Wrapper-sc-13gge7k-0 PRxzx"
               data-mui-internal-clone-element="true"
             >
@@ -479,7 +479,7 @@ Object {
             class="MuiBox-root css-10wzbhq"
           >
             <div
-              aria-label="Seleção de Produto"
+              aria-label="tooltip.product-selection"
               class="styles__Wrapper-sc-13gge7k-0 PRxzx"
               data-mui-internal-clone-element="true"
             >
@@ -527,7 +527,7 @@ Object {
               <div
                 class="MuiBox-root css-ofjrfz"
               >
-                Selecione o Produto
+                product.placeholder
               </div>
               <div
                 class="MuiBox-root css-1p2jtab"
@@ -587,7 +587,7 @@ Object {
             class="MuiBox-root css-10wzbhq"
           >
             <div
-              aria-label="Menu de usuário"
+              aria-label="tooltip.user-menu"
               class="styles__Wrapper-sc-13gge7k-0 PRxzx"
               data-mui-internal-clone-element="true"
             >

@@ -12,6 +12,9 @@ import { AuthProvider } from '@contexts/Auth';
 import { useRouter } from 'next/router';
 import { RotatingLines } from 'react-loader-spinner';
 import { Modal, Box } from '@mui/material';
+import { appWithI18Next, useSyncLanguage } from 'ni18n';
+import { useTranslation } from 'react-i18next';
+import { ni18nConfig } from "../../n18n.config";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement, disableBreadcrumb?: boolean) => typeof page;
@@ -29,6 +32,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const [showError, setShowError] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const disableBreadcrumb = Component.disableBreadcrumb ?? false;
+
+  const locale: any =
+    typeof window !== 'undefined' && window.localStorage.getItem('locale_lang')
+
+  useSyncLanguage(locale);
 
   const router = useRouter();
   const transformValue = 'translate(-50%, -50%)';
@@ -104,7 +112,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     setShowError(false);
     setErrorOccurred(false);
   }
-
 
   return (
     <AuthProvider>
@@ -237,4 +244,4 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
-export default MyApp;
+export default appWithI18Next(MyApp, ni18nConfig);

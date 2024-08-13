@@ -1,0 +1,14 @@
+{
+  "tooltip": {
+    "user-menu": "Menu do usuário",
+    "organization-selection": "Seleção de Organização",
+    "product-selection": "Seleção de Produtos"
+  },
+  "select": {
+    "config": "Configurações",
+    "end-session": "Finalizar Sessão"
+  },
+  "product": {
+    "placeholder": "Selecione o produto"
+  }
+}

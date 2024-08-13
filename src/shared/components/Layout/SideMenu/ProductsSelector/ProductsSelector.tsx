@@ -6,6 +6,7 @@ import useBoolean from '@hooks/useBoolean';
 import { useRouter } from 'next/router';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
+import { useTranslation } from 'react-i18next';
 import SideList from '../SideList';
 import SideMenuItem from '../SideMenuItem';
 
@@ -23,13 +24,15 @@ function ProductSelector() {
     void router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
   };
 
+  const { t } = useTranslation('sidebar');
+
   return (
     <>
       <SideMenuItem
         startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox />} />}
-        text={currentProduct?.name ?? 'Selecione o Produto'}
+        text={currentProduct?.name ?? t("product.placeholder")}
         endIcon={<FiRepeat />}
-        tooltip="Seleção de Produto"
+        tooltip={t("tooltip.product-selection")}
         onClick={onClick}
         selected={false}
       />

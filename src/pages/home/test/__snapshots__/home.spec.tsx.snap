@@ -21,7 +21,73 @@ Object {
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                 style="color: rgb(51, 86, 142); font-weight: bold;"
               >
-                Página inicial
+                sub-title
+                <div>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                    data-id="en-button"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="flag"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                    data-id="pt-button"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="flag"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
               </h4>
             </div>
             <div
@@ -31,7 +97,7 @@ Object {
                 class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                 style="font-size: 16px;"
               >
-                Aqui você poderá obter algumas informações sobre nosso produto.
+                description
               </p>
             </div>
             <div
@@ -70,7 +136,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      Organizações e Produtos
+                      organization.id
                     </p>
                   </div>
                   <span
@@ -91,7 +157,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      Repositórios e Releases
+                      repository.id
                     </p>
                   </div>
                   <span
@@ -112,7 +178,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      Pré-configuração
+                      pre-config.id
                     </p>
                   </div>
                   <span
@@ -133,7 +199,7 @@ Object {
                     <p
                       class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                     >
-                      Configuração
+                      config.id
                     </p>
                   </div>
                   <span
@@ -151,7 +217,7 @@ Object {
             >
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="Organizações e Produtos"
+                id="organization.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -176,12 +242,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        Organizações
+                        organization.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        Na página de organizações, você pode encontrar uma lista de todas as organizações que estão utilizando o MeasureSoftGram, além de encontrar também todos os seus produtos cadastrados.
+                        organization.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -197,7 +263,7 @@ Object {
                               tabindex="0"
                               type="button"
                             >
-                              Visualizar Organizações e Produtos
+                              organization.view-organization
                               <span
                                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
@@ -211,7 +277,7 @@ Object {
                               tabindex="0"
                               type="button"
                             >
-                              Criar Organização
+                              organization.create-organization
                               <span
                                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
@@ -245,12 +311,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        Produtos
+                        product.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
+                        product.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -263,7 +329,7 @@ Object {
                             tabindex="0"
                             type="button"
                           >
-                            Criar Produto
+                            product.create-product
                             <span
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
@@ -276,7 +342,7 @@ Object {
               </div>
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="Repositórios e Releases"
+                id="repository.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -301,12 +367,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        Repositórios
+                        repository.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        Repositórios são espaços de armazenamento de pacotes de software. Esses pacotes podem ser acessados e instalados por qualquer um que tenha aceso à eles, porém, o repositório armazena apenas modificações de quem é autorizado para isso. Tal característica permite que um único produto possua diversos repositórios, sendo que cada um possui as próprias modificações, permitindo o desenvolvimento simultâneo de funcionalidades diferentes.
+                        repository.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -337,12 +403,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        Releases
+                        release.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        Releases representam as versões de lançamentos de um produto. Um produto, sistema computacional e seus subsistemas pode ter seu código-fonte centralizado em um repositório ou distribuído em múltiplos. No caso de múltiplos repositórios cada um possui suas respectivas releases. Além disso, existem dois tipos de releases, as majors e minors. O MeasureSoftGram atua no planejamento das releases majors utilizando a pré-configuração e suas subsequentes configurações.
+                        release.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -353,7 +419,7 @@ Object {
               </div>
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="Pré-configuração"
+                id="pre-config.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -378,12 +444,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        Pré-configuração
+                        pre-config.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                         A Pré-configuração representa o setup do modelo. Ela traz habilitada todas as métricas, medidas e seus valores de referência, subcaracterísticas, características, calculadas pelo modelo. Também há uma pré-definição dos pesos relativos para as medidas, subcaracterísticas e características, que são distribuídos de forma proporcional às respectivas quantidades.  Ao planejar a primeira release do produto, a  pré-configuração “deixa de existir” e passam haver as configurações. É definida no arquivo msgram.json.
+                        pre-config.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -394,7 +460,7 @@ Object {
               </div>
               <div
                 class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="Configuração"
+                id="config.id"
               >
                 <div
                   class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -419,12 +485,12 @@ Object {
                       <div
                         class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                       >
-                        Configuração
+                        config.title
                       </div>
                       <p
                         class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                       >
-                        Uma configuração representa o resultado do planejamento dos objetivos de medição da qualidade de um release. Esse planejamento envolve a definição de qual(ais) características da qualidade que serão observadas durante o período de desenvolvimento de um release. Assim, é possível escolher e configurar os parâmetros das métricas, medidas e indicadores, em  todos os níveis do modelo. É possível definir valores de pesos, matriz da relação das características, valores de referência das medidas e escolha de características, sub-características, métricas e medidas a a serem observadas.
+                        config.description
                       </p>
                       <div
                         class="MuiBox-root css-1vp8jwk"
@@ -456,7 +522,73 @@ Object {
               class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
               style="color: rgb(51, 86, 142); font-weight: bold;"
             >
-              Página inicial
+              sub-title
+              <div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-id="en-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="flag"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-id="pt-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="flag"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
             </h4>
           </div>
           <div
@@ -466,7 +598,7 @@ Object {
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
               style="font-size: 16px;"
             >
-              Aqui você poderá obter algumas informações sobre nosso produto.
+              description
             </p>
           </div>
           <div
@@ -505,7 +637,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    Organizações e Produtos
+                    organization.id
                   </p>
                 </div>
                 <span
@@ -526,7 +658,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    Repositórios e Releases
+                    repository.id
                   </p>
                 </div>
                 <span
@@ -547,7 +679,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    Pré-configuração
+                    pre-config.id
                   </p>
                 </div>
                 <span
@@ -568,7 +700,7 @@ Object {
                   <p
                     class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
                   >
-                    Configuração
+                    config.id
                   </p>
                 </div>
                 <span
@@ -586,7 +718,7 @@ Object {
           >
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="Organizações e Produtos"
+              id="organization.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -611,12 +743,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      Organizações
+                      organization.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      Na página de organizações, você pode encontrar uma lista de todas as organizações que estão utilizando o MeasureSoftGram, além de encontrar também todos os seus produtos cadastrados.
+                      organization.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -632,7 +764,7 @@ Object {
                             tabindex="0"
                             type="button"
                           >
-                            Visualizar Organizações e Produtos
+                            organization.view-organization
                             <span
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
@@ -646,7 +778,7 @@ Object {
                             tabindex="0"
                             type="button"
                           >
-                            Criar Organização
+                            organization.create-organization
                             <span
                               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
@@ -680,12 +812,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      Produtos
+                      product.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
+                      product.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -698,7 +830,7 @@ Object {
                           tabindex="0"
                           type="button"
                         >
-                          Criar Produto
+                          product.create-product
                           <span
                             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                           />
@@ -711,7 +843,7 @@ Object {
             </div>
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="Repositórios e Releases"
+              id="repository.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -736,12 +868,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      Repositórios
+                      repository.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      Repositórios são espaços de armazenamento de pacotes de software. Esses pacotes podem ser acessados e instalados por qualquer um que tenha aceso à eles, porém, o repositório armazena apenas modificações de quem é autorizado para isso. Tal característica permite que um único produto possua diversos repositórios, sendo que cada um possui as próprias modificações, permitindo o desenvolvimento simultâneo de funcionalidades diferentes.
+                      repository.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -772,12 +904,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      Releases
+                      release.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      Releases representam as versões de lançamentos de um produto. Um produto, sistema computacional e seus subsistemas pode ter seu código-fonte centralizado em um repositório ou distribuído em múltiplos. No caso de múltiplos repositórios cada um possui suas respectivas releases. Além disso, existem dois tipos de releases, as majors e minors. O MeasureSoftGram atua no planejamento das releases majors utilizando a pré-configuração e suas subsequentes configurações.
+                      release.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -788,7 +920,7 @@ Object {
             </div>
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="Pré-configuração"
+              id="pre-config.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -813,12 +945,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      Pré-configuração
+                      pre-config.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                       A Pré-configuração representa o setup do modelo. Ela traz habilitada todas as métricas, medidas e seus valores de referência, subcaracterísticas, características, calculadas pelo modelo. Também há uma pré-definição dos pesos relativos para as medidas, subcaracterísticas e características, que são distribuídos de forma proporcional às respectivas quantidades.  Ao planejar a primeira release do produto, a  pré-configuração “deixa de existir” e passam haver as configurações. É definida no arquivo msgram.json.
+                      pre-config.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
@@ -829,7 +961,7 @@ Object {
             </div>
             <div
               class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="Configuração"
+              id="config.id"
             >
               <div
                 class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
@@ -854,12 +986,12 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
                     >
-                      Configuração
+                      config.title
                     </div>
                     <p
                       class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
                     >
-                      Uma configuração representa o resultado do planejamento dos objetivos de medição da qualidade de um release. Esse planejamento envolve a definição de qual(ais) características da qualidade que serão observadas durante o período de desenvolvimento de um release. Assim, é possível escolher e configurar os parâmetros das métricas, medidas e indicadores, em  todos os níveis do modelo. É possível definir valores de pesos, matriz da relação das características, valores de referência das medidas e escolha de características, sub-características, métricas e medidas a a serem observadas.
+                      config.description
                     </p>
                     <div
                       class="MuiBox-root css-1vp8jwk"
