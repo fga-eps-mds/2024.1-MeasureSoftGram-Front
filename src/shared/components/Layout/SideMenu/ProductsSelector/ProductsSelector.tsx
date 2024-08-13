@@ -1,4 +1,4 @@
-import React, { useTransition } from 'react';
+import React from 'react';
 import { FiBox, FiRepeat } from 'react-icons/fi';
 import LetterAvatar from '@components/LetterAvatar';
 import { useProductContext } from '@contexts/ProductProvider';

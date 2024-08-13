@@ -113,18 +113,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     setErrorOccurred(false);
   }
 
-  const changeLanguage = (i18n: any, language: string) => {
-    window.localStorage.setItem('locale_lang', language)
-    i18n.changeLanguage(language)
-  }
-
-  const languages = [
-    { code: 'en', translateKey: 'en' },
-    { code: 'pt', translateKey: 'pt' },
-  ]
-
-  const { t, i18n } = useTranslation()
-
   return (
     <AuthProvider>
       <OrganizationProvider>
@@ -142,19 +130,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         />
         <RepositoryProvider>
           <ProductProvider>
-            <div>
-              {languages.map((language) => (
-                <button
-                  type='button'
-                  data-id={`${language.code}-button`}
-                  className={i18n.language === language.code ? 'active' : undefined}
-                  onClick={() => changeLanguage(i18n, language.code)}
-                  key={language.code}
-                >
-                  {t(language.translateKey)}
-                </button>
-              ))}
-            </div>
             <Theme>
               {getLayout(<Component {...pageProps} />, disableBreadcrumb)}
               <>

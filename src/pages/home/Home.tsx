@@ -8,11 +8,12 @@ import Head from "next/head";
 
 import { InfoData } from "@customTypes/home";
 
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Button } from "@mui/material";
 
 import useRequireAuth from "@hooks/useRequireAuth";
 
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 import CardInfo from "./components/CardInfo/CardInfo";
 
 import ListNavCard from "./components/ListNavCard/ListNavCard";
@@ -20,7 +21,7 @@ import ListNavCard from "./components/ListNavCard/ListNavCard";
 
 const Home: NextPageWithLayout = () => {
   useRequireAuth();
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
 
   const cardsData: Array<InfoData> = [
     {
@@ -95,6 +96,20 @@ const Home: NextPageWithLayout = () => {
 
   const navListData: Array<string> = cardsData.map(cardData => cardData.id);
 
+  // eslint-disable-next-line no-shadow
+  const changeLanguage = (i18n: any, language: string) => {
+    window.localStorage.setItem('locale_lang', language)
+    i18n.changeLanguage(language)
+  }
+
+  const languages = [
+    { code: 'en', translateKey: 'en' },
+    { code: 'pt', translateKey: 'pt' },
+  ]
+
+  function getImageSrc(key: string) {
+    return `/images/png/${key}.png`
+  }
 
   return (
     <>
@@ -121,6 +136,20 @@ const Home: NextPageWithLayout = () => {
             <Box display="flex">
               <Typography variant="h4" style={{ color: "#33568E", fontWeight: "bold" }}>
                 {t('sub-title')}
+
+                <div>
+                  {languages.map((language) => (
+                    <Button
+                      type='button'
+                      data-id={`${language.code}-button`}
+                      className={i18n.language === language.code ? 'active' : undefined}
+                      onClick={() => changeLanguage(i18n, language.code)}
+                      key={language.code}
+                    >
+                      <Image src={getImageSrc(t(language.translateKey))} alt="flag" height={30} width={30} />
+                    </Button>
+                  ))}
+                </div>
               </Typography>
             </Box>
             <Box>
