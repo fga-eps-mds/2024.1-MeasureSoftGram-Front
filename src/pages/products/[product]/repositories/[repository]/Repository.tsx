@@ -230,15 +230,7 @@ const Repository: NextPageWithLayout = () => {
             <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>Métricas</h2>
           </Box>
 
-          <GraphicChart key="sonargraph" title="Sonar" type="line" value="metrics" metricsSource='sonarqube' />
-
-          <GraphicChart
-            key="ghGraph"
-            title="Github"
-            type="line"
-            value="metrics"
-            metricsSource='github'
-          />
+          <GraphicChart key="sonargraph" title="Métricas" type="line" value="metrics" />
 
           <Box marginY="12px">
             <LatestValueTable title="Métricas" value="metrics" />
