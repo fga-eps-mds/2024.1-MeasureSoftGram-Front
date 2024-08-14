@@ -92,7 +92,6 @@ const GraphicChart = ({
   );
 
   const filteredChartsOptions = chartsOption.filter((option, index) => {
-    console.log(`ESTOU AQUI ${value}`, historical)
     if (type === 'gauge') {
       return (index <= 1) ? true : false;
     }
