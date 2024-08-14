@@ -22,7 +22,7 @@ interface Prop {
   autoGrid?: boolean;
   addHistoricalTSQMI?: boolean;
   addCurrentGoal?: boolean;
-  metricsSource?: 'github' | 'sonarqube'
+  collectionSource?: 'github' | 'sonarqube'
 }
 
 type formatFunctionType = {
@@ -44,14 +44,14 @@ const GraphicChart = ({
   autoGrid = false,
   addHistoricalTSQMI = false,
   addCurrentGoal = false,
-  metricsSource,
+  collectionSource,
 }: Prop) => {
   const {
     data: historical,
     error,
     isLoading,
     isEmpty
-  } = useRequestValues({ type: valueType, value, addHistoricalTSQMI, addCurrentGoal, metricsSource });
+  } = useRequestValues({ type: valueType, value, addHistoricalTSQMI, addCurrentGoal, collectionSource });
   const { hasKey } = useProductConfigFilterContext();
   const [showCharts, setShowCharts] = useState(false);
   const { currentProduct } = useProductContext();

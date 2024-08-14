@@ -124,7 +124,7 @@ exports[`<TreeViewFilter /> should render correctly 1`] = `
               tabindex="-1"
             >
               <div
-                class="css-1g86id8-MuiTreeItem-content MuiTreeItem-content"
+                class="css-1bcfi89-MuiTreeItem-content MuiTreeItem-content"
               >
                 <div
                   class="MuiTreeItem-iconContainer"

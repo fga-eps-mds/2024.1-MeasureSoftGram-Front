@@ -8,47 +8,51 @@ import Head from "next/head";
 
 import { InfoData } from "@customTypes/home";
 
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Button } from "@mui/material";
 
 import useRequireAuth from "@hooks/useRequireAuth";
 
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
 import CardInfo from "./components/CardInfo/CardInfo";
 
 import ListNavCard from "./components/ListNavCard/ListNavCard";
 
+
 const Home: NextPageWithLayout = () => {
   useRequireAuth();
+  const { t, i18n } = useTranslation('home');
 
   const cardsData: Array<InfoData> = [
     {
-      id: "Organizações e Produtos",
+      id: t('organization.id'),
       elements: [
         {
           imageSrc: "/images/png/structure.png",
-          title: "Organizações",
-          description: "Na página de organizações, você pode encontrar uma lista de todas as organizações que estão utilizando o MeasureSoftGram, além de encontrar também todos os seus produtos cadastrados.",
+          title: t('organization.title'),
+          description: t('organization.description'),
           routeTo: 'products'
         },
         {
           imageSrc: "/images/png/development.png",
-          title: "Produtos",
-          description: "Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.",
+          title: t('product.title'),
+          description: t('product.description'),
           routeTo: 'products/create'
         }
       ]
     },
     {
-      id: "Repositórios e Releases",
+      id: t('repository.id'),
       elements: [
         {
           imageSrc: "/images/png/folders.png",
-          title: "Repositórios",
-          description: "Repositórios são espaços de armazenamento de pacotes de software. Esses pacotes podem ser acessados e instalados por qualquer um que tenha aceso à eles, porém, o repositório armazena apenas modificações de quem é autorizado para isso. Tal característica permite que um único produto possua diversos repositórios, sendo que cada um possui as próprias modificações, permitindo o desenvolvimento simultâneo de funcionalidades diferentes."
+          title: t('repository.title'),
+          description: t('repository.description')
         },
         {
           imageSrc: "/images/png/new-offer.png",
-          title: "Releases",
-          description: "Releases representam as versões de lançamentos de um produto. Um produto, sistema computacional e seus subsistemas pode ter seu código-fonte centralizado em um repositório ou distribuído em múltiplos. No caso de múltiplos repositórios cada um possui suas respectivas releases. Além disso, existem dois tipos de releases, as majors e minors. O MeasureSoftGram atua no planejamento das releases majors utilizando a pré-configuração e suas subsequentes configurações."
+          title: t('release.title'),
+          description: t('release.description')
         }
       ]
     },
@@ -69,22 +73,22 @@ const Home: NextPageWithLayout = () => {
     //   ]
     // },
     {
-      id: "Pré-configuração",
+      id: t('pre-config.id'),
       elements: [
         {
           imageSrc: "/images/png/setting.png",
-          title: "Pré-configuração",
-          description: " A Pré-configuração representa o setup do modelo. Ela traz habilitada todas as métricas, medidas e seus valores de referência, subcaracterísticas, características, calculadas pelo modelo. Também há uma pré-definição dos pesos relativos para as medidas, subcaracterísticas e características, que são distribuídos de forma proporcional às respectivas quantidades.  Ao planejar a primeira release do produto, a  pré-configuração “deixa de existir” e passam haver as configurações. É definida no arquivo msgram.json."
+          title: t('pre-config.title'),
+          description: t('pre-config.description')
         }
       ]
     },
     {
-      id: "Configuração",
+      id: t('config.id'),
       elements: [
         {
           imageSrc: "/images/png/web-management.png",
-          title: "Configuração",
-          description: "Uma configuração representa o resultado do planejamento dos objetivos de medição da qualidade de um release. Esse planejamento envolve a definição de qual(ais) características da qualidade que serão observadas durante o período de desenvolvimento de um release. Assim, é possível escolher e configurar os parâmetros das métricas, medidas e indicadores, em  todos os níveis do modelo. É possível definir valores de pesos, matriz da relação das características, valores de referência das medidas e escolha de características, sub-características, métricas e medidas a a serem observadas."
+          title: t('config.title'),
+          description: t('config.description')
         }
       ]
     }
@@ -92,17 +96,32 @@ const Home: NextPageWithLayout = () => {
 
   const navListData: Array<string> = cardsData.map(cardData => cardData.id);
 
+  // eslint-disable-next-line no-shadow
+  const changeLanguage = (i18n: any, language: string) => {
+    window.localStorage.setItem('locale_lang', language)
+    i18n.changeLanguage(language)
+  }
+
+  const languages = [
+    { code: 'en', translateKey: 'en' },
+    { code: 'pt', translateKey: 'pt' },
+  ]
+
+  function getImageSrc(key: string) {
+    return `/images/png/${key}.png`
+  }
+
   return (
     <>
       <Head>
-        <title> Tela inicial MeasureSoftGram </title>
+        <title>{t('title')} - MeasureSoftGram</title>
       </Head>
 
       <Container>
         <Box
           display="flex"
           flexDirection="row"
-          >
+        >
           <Box
             display="flex"
             flexDirection="column"
@@ -113,15 +132,29 @@ const Home: NextPageWithLayout = () => {
             position="sticky"
             top="0"
             maxHeight="72vh"
-            >
+          >
             <Box display="flex">
-              <Typography variant="h4" style={{color: "#33568E", fontWeight: "bold"}}>
-                Página inicial
+              <Typography variant="h4" style={{ color: "#33568E", fontWeight: "bold" }}>
+                {t('sub-title')}
+
+                <div>
+                  {languages.map((language) => (
+                    <Button
+                      type='button'
+                      data-id={`${language.code}-button`}
+                      className={i18n.language === language.code ? 'active' : undefined}
+                      onClick={() => changeLanguage(i18n, language.code)}
+                      key={language.code}
+                    >
+                      <Image src={getImageSrc(t(language.translateKey))} alt="flag" height={30} width={30} />
+                    </Button>
+                  ))}
+                </div>
               </Typography>
             </Box>
             <Box>
-              <Typography style={{fontSize: "16px"}}>
-                Aqui você poderá obter algumas informações sobre nosso produto.
+              <Typography style={{ fontSize: "16px" }}>
+                {t('description')}
               </Typography>
             </Box>
 

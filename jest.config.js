@@ -5,7 +5,7 @@ const aliases = require('./settings/alias').reduce((acc, alias) => {
 
 module.exports = {
   roots: ['<rootDir>/src'],
-  collectCoverageFrom: ['app/**/*.{js,jsx,ts,tsx}', '!**/messages.ts'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}'],
   testRegex: '((\\.|/*.)(spec))\\.tsx?$',
   coverageDirectory: 'coverage',
   preset: 'ts-jest',
