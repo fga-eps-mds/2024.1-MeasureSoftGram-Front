@@ -9,6 +9,21 @@
     "end-session": "Finalizar Sessão"
   },
   "product": {
-    "placeholder": "Selecione o produto"
+    "placeholder": "Selecione o produto",
+    "add-product": "Adicionar Produto"
+  },
+  "organization": {
+    "add-organization": "Adicionar organização"
+  },
+  "release": {
+    "more": "VER MAIS..."
+  },
+  "delete": {
+    "title": "Confirmar exclusão",
+    "alert": "Coisas inesperadas podem acontecer se você não ler isso!",
+    "organization-text": "Isso irá deletar permanentemente a organização",
+    "organization-text2": ", assim como seus produtos e todos os membros associados.",
+    "product-text": "Isso irá deletar permanentemente o produto: ",
+    "button": "EU LI E ENTENDO OS EFEITOS"
   }
 }

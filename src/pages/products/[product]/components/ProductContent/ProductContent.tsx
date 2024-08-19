@@ -14,6 +14,7 @@ import { useProductContext } from '@contexts/ProductProvider';
 
 import { getPathId } from '@utils/pathDestructer';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import Skeleton from './Skeleton';
 
 interface Props {
@@ -27,6 +28,7 @@ const ProductContent: React.FC<Props> = ({ repositoriesTsqmiHistory }) => {
   const [pathId, setPathId] = useState({} as { productId: string; organizationId: string });
 
   const { query } = useRouter();
+  const { t } = useTranslation('overview');
 
   if (!Object.keys(pathId).length && currentProduct) {
     const [organizationId, productId] = getPathId(query?.product as string);
@@ -51,6 +53,7 @@ const ProductContent: React.FC<Props> = ({ repositoriesTsqmiHistory }) => {
     );
   }
 
+
   return (
     <Container>
       <Box display="flex" flexDirection="column">
@@ -58,14 +61,14 @@ const ProductContent: React.FC<Props> = ({ repositoriesTsqmiHistory }) => {
           <Box>
             <Box display="flex">
               <Typography variant="h4" marginRight="10px">
-                Overview
+                {t('title')}
               </Typography>
               <Typography variant="h4" fontWeight="500" color="#33568E">
                 {currentProduct?.name}
               </Typography>
             </Box>
             <Typography variant="caption" color="gray">
-              última atualização: {lastUpdateDate}
+              {t('last-update')} : {lastUpdateDate}
             </Typography>
           </Box>
         </Box>
@@ -73,7 +76,7 @@ const ProductContent: React.FC<Props> = ({ repositoriesTsqmiHistory }) => {
 
       <Box display="flex" justifyContent="end">
         <Button onClick={handleOpenCreateRelease} variant="contained">
-          Planejar release
+          {t('plan-release')}
         </Button>
       </Box>
 

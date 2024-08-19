@@ -18,11 +18,9 @@ const GraphicRepositoriesTsqmiHistory = ({ history }: Props) => {
   const formatedOptions = formatRepositoriesTsqmiHistory(history);
 
   return (
-    <>
-      <Styles.GraphicContainer>
-        <ReactEcharts option={formatedOptions} style={{ height: '450px', width: '100%' }} />
-      </Styles.GraphicContainer>
-    </>
+    <Styles.GraphicContainer>
+      <ReactEcharts option={formatedOptions} style={{ height: '450px', width: '100%' }} />
+    </Styles.GraphicContainer>
   );
 };
 

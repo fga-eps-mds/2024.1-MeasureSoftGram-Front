@@ -9,6 +9,21 @@
     "end-session": "Log out"
   },
   "product": {
-    "placeholder": "Select Product"
+    "placeholder": "Select Product",
+    "add-product": "Add product"
+  },
+  "organization": {
+    "add-organization": "Add organization"
+  },
+  "release": {
+    "more": "MORE..."
+  },
+  "delete": {
+    "title": "Confirm deletion",
+    "alert": "Unexpected things may happen if you don't read this!",
+    "organization-text": "This will permanently delete the organization",
+    "organization-text2": ", as well as its products and all associated members.",
+    "product-text": "This will permanently delete the product :",
+    "button": "I HAVE READ AND UNDERSTAND THE EFFECTS"
   }
 }
