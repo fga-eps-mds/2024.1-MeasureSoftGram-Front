@@ -18,6 +18,7 @@ import LatestValueTable from '@components/LatestValueTable';
 import Layout from '@components/Layout/Layout';
 import ProductConfigFilterProvider from '@contexts/ProductConfigFilterProvider/ProductConfigFilterProvider';
 import { useRepositoryContext } from '@contexts/RepositoryProvider';
+import { useTranslation } from 'react-i18next';
 import TreeViewFilter from './components/TreeViewFilter';
 import Headers from './components/Header';
 import CustomTabs from './components/CustomTabs';
@@ -36,6 +37,7 @@ const Repository: NextPageWithLayout = () => {
   const [isHistoricCharacteristicOpen, setIsHistoricCharacteristicOpen] = useState(true);
   const [isHistoricSubCharacteristicOpen, setIsHistoricSubCharacteristicOpen] = useState(true);
   const [isHistoricMeasureOpen, setIsHistoricMeasureOpen] = useState(true);
+  const { t } = useTranslation('repositories');
 
   const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -51,7 +53,7 @@ const Repository: NextPageWithLayout = () => {
           />
 
           <OptionsHeader
-            title='Características'
+            title={t('repository.characteristic')}
             isHistoricOpen={isHistoricCharacteristicOpen}
             setIsHistoricOpen={setIsHistoricCharacteristicOpen}
           />
@@ -65,10 +67,10 @@ const Repository: NextPageWithLayout = () => {
                   <LineAxisIcon key="tab1-1" sx={{ fontSize: '21px' }} />
                 ]}
                 tabPanelItems={[
-                  <GraphicChart key="tab1-0-0" title="Histórico das Características" type="msg" value="characteristics" />,
+                  <GraphicChart key="tab1-0-0" title={t('repository.history')} type="msg" value="characteristics" />,
                   <GraphicChart
                     key="tab1-1-1"
-                    title="Histórico das Características"
+                    title={t('repository.history')}
                     type="line"
                     value="characteristics"
                     addHistoricalTSQMI
@@ -87,7 +89,7 @@ const Repository: NextPageWithLayout = () => {
                 tabPanelItems={[
                   <GraphicChart
                     key="tab2-0-0"
-                    title="Cenário atual das Características"
+                    title={t("repository.actual-scenario")}
                     type="gauge"
                     autoGrid
                     value="characteristics"
@@ -96,7 +98,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <GraphicChart
                     key="tab2-0-1"
-                    title="Cenário atual das Características"
+                    title={t("repository.actual-scenario")}
                     type="radar"
                     value="characteristics"
                     valueType="latest-values"
@@ -104,7 +106,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <LatestValueTable
                     key="tab2-0-2"
-                    title="Características"
+                    title={t('repository.history')}
                     value="characteristics"
                   />
                 ]}
@@ -113,7 +115,7 @@ const Repository: NextPageWithLayout = () => {
           }
 
           <OptionsHeader
-            title='Sub-Características'
+            title={t('repository.sub-characteristic')}
             isHistoricOpen={isHistoricSubCharacteristicOpen}
             setIsHistoricOpen={setIsHistoricSubCharacteristicOpen}
           />
@@ -126,7 +128,7 @@ const Repository: NextPageWithLayout = () => {
                   <LineAxisIcon key="tab1-0" sx={{ fontSize: '21px' }} />
                 ]}
                 tabPanelItems={[
-                  <GraphicChart key="tab1-0-0" title="Sub-Características" type="line" value="subcharacteristics" />
+                  <GraphicChart key="tab1-0-0" title={t('repository.sub-characteristic')} type="line" value="subcharacteristics" />
                 ]}
               />
               :
@@ -141,7 +143,7 @@ const Repository: NextPageWithLayout = () => {
                 tabPanelItems={[
                   <GraphicChart
                     key="tab2-0-0"
-                    title="Cenário atual das Sub-Características"
+                    title={t('repository.sub-characteristic-sub')}
                     type="gauge"
                     autoGrid
                     value="subcharacteristics"
@@ -150,7 +152,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <GraphicChart
                     key="tab2-0-1"
-                    title="Cenário atual das Sub-Características"
+                    title={t('repository.sub-characteristic-sub')}
                     type="radar"
                     value="subcharacteristics"
                     valueType="latest-values"
@@ -158,7 +160,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <LatestValueTable
                     key="tab2-0-2"
-                    title="Sub-Características"
+                    title={t('repository.sub-characteristic')}
                     value="subcharacteristics"
                   />
                 ]}
@@ -167,7 +169,7 @@ const Repository: NextPageWithLayout = () => {
           }
 
           <OptionsHeader
-            title='Medidas'
+            title={t('repository.measure')}
             isHistoricOpen={isHistoricMeasureOpen}
             setIsHistoricOpen={setIsHistoricMeasureOpen}
           />
@@ -180,7 +182,7 @@ const Repository: NextPageWithLayout = () => {
                   <LineAxisIcon key="tab1-0" sx={{ fontSize: '21px' }} />,
                 ]}
                 tabPanelItems={[
-                  <GraphicChart key="tab1-0-0" title="Medidas" type="line" value="measures" />
+                  <GraphicChart key="tab1-0-0" title={t('repository.measure')} type="line" value="measures" />
                 ]}
 
               />
@@ -197,7 +199,7 @@ const Repository: NextPageWithLayout = () => {
                 tabPanelItems={[
                   <GraphicChart
                     key="tab2-0-0"
-                    title="Cenário atual das Medidas"
+                    title={t('repository.measure-scenario')}
                     type="gauge"
                     autoGrid
                     value="measures"
@@ -206,7 +208,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <GraphicChart
                     key="tab2-0-1"
-                    title="Cenário atual das Medidas"
+                    title={t('repository.measure-scenario')}
                     type="radar"
                     value="measures"
                     valueType="latest-values"
@@ -214,7 +216,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <LatestValueTable
                     key="tab2-0-2"
-                    title="Medidas"
+                    title={t('repository.measure')}
                     value="measures"
                   />
                 ]}
@@ -227,7 +229,7 @@ const Repository: NextPageWithLayout = () => {
             height={60}
             alignItems="center"
           >
-            <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>Histórico de medidas</h2>
+            <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>{t('repository.measure-history')}</h2>
           </Box>
 
           <GraphicChart key="sonargraph-measure" title="Sonar" type="line" value="measures" collectionSource='sonarqube' />
@@ -246,7 +248,7 @@ const Repository: NextPageWithLayout = () => {
             height={60}
             alignItems="center"
           >
-            <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>Histórico de métricas</h2>
+            <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>{t('repository.measure-history')}</h2>
           </Box>
 
           <GraphicChart key="sonargraph" title="Sonar" type="line" value="metrics" collectionSource='sonarqube' />
@@ -260,7 +262,7 @@ const Repository: NextPageWithLayout = () => {
           />
 
           <Box marginY="12px">
-            <LatestValueTable title="Métricas" value="metrics" />
+            <LatestValueTable title={t('repository.metrics')} value="metrics" />
           </Box>
         </Box >
       </Container >

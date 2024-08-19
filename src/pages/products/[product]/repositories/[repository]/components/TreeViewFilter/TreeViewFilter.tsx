@@ -76,6 +76,7 @@ export default function TreeViewFilter() {
   const { data: rawData } = useProductCurrentPreConfig();
   const { setConfigFilter } = useProductConfigFilterContext();
   const [show, setShow] = useState<boolean>(true);
+  const { t } = useTranslation();
 
   const data = useMemo(() => formatData(rawData ?? []), [rawData]);
 
@@ -203,7 +204,7 @@ export default function TreeViewFilter() {
         <Box display={show ? "auto" : "none"}>
           <Box width="100%" position="sticky" top={0} zIndex={4}>
             <Box display="flex" flexDirection="row" alignItems="center" paddingBottom="6px" paddingTop="10px">
-              <SearchButton onInput={(e) => handleSearch(e.target.value)} label="Pesquisar" />
+              <SearchButton onInput={(e) => handleSearch(e.target.value)} label={t('search')} />
             </Box>
             <Divider sx={{ width: '100%', mt: '5px', border: '1px solid rgba(0, 0, 0, 0.20)' }} />
           </Box>

@@ -21,6 +21,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import { repository } from '@services/repository';
+import { useTranslation } from 'react-i18next';
 import { useQuery } from '../hooks/useQuery';
 
 interface ApiErrorResponse {
@@ -77,6 +78,8 @@ const RepositoryForm: NextPageWithLayout = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
+  const { t } = useTranslation('repositories');
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setRepositoryData({ ...repositoryData, [name]: value });
@@ -103,13 +106,13 @@ const RepositoryForm: NextPageWithLayout = () => {
               platform: result.data.platform
             });
           } else {
-            throw new Error('Erro ao carregar dados do repositório.');
+            throw new Error(t('error.data'));
           }
 
 
         } catch (error) {
           console.error('Erro ao buscar dados do repositório:', error);
-          toast.error('Não foi possível carregar os dados do repositório.');
+          toast.error(t('error.error'));
         }
       };
       fetchRepositoryData();
@@ -147,7 +150,7 @@ const RepositoryForm: NextPageWithLayout = () => {
       }
 
       if (result.type === 'success') {
-        toast.success(isEditMode ? 'Repositório atualizado com sucesso!' : 'Repositório criado com sucesso!');
+        toast.success(isEditMode ? t('edit.sucess') : t('register.sucess'));
         router.push(`/products/${currentOrganization?.id}-${currentProduct?.id}/repositories`);
       } else if (result.type === 'error') {
 
@@ -211,16 +214,16 @@ const RepositoryForm: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>{isEditMode ? 'Editar Repositório' : 'Cadastro de Repositório'}</title>
+        <title>{isEditMode ? t('edit.title') : t('register.title')}</title>
       </Head>
       <Container>
         <Box display="flex" flexDirection="column" alignItems="flex-start" marginTop="40px">
-          <Typography variant="h4">{isEditMode ? 'Editar Repositório' : 'Cadastro de Repositório'}</Typography>
+          <Typography variant="h4">{isEditMode ? t('edit.title') : t('register.title')}</Typography>
           <form onSubmit={handleSubmit}>
             <Box width="100%">
               <TextField
                 name="product"
-                label="Produto"
+                label={t('edit.product')}
                 variant="outlined"
                 value={currentProduct?.name || ''}
                 disabled
@@ -233,7 +236,7 @@ const RepositoryForm: NextPageWithLayout = () => {
               />
               <TextField
                 name="name"
-                label="Nome do Repositório"
+                label={t('edit.name')}
                 variant="outlined"
                 value={repositoryData.name}
                 onChange={handleInputChange}
@@ -243,7 +246,7 @@ const RepositoryForm: NextPageWithLayout = () => {
               />
               <TextField
                 name="description"
-                label="Descrição"
+                label={t('edit.description')}
                 variant="outlined"
                 value={repositoryData.description}
                 onChange={handleInputChange}
@@ -254,7 +257,7 @@ const RepositoryForm: NextPageWithLayout = () => {
               />
               <TextField
                 name="url"
-                label="URL do Repositório"
+                label={t('edit.url')}
                 variant="outlined"
                 value={repositoryData.url}
                 onChange={handleInputChange}
@@ -262,12 +265,12 @@ const RepositoryForm: NextPageWithLayout = () => {
                 fullWidth
               />
               <FormControl fullWidth margin="normal">
-                <InputLabel id="platform-label">Plataforma</InputLabel>
+                <InputLabel id="platform-label">{t('edit.plataform')}</InputLabel>
                 <Select
                   labelId="platform-label"
                   id="platform"
                   value={repositoryData.platform}
-                  label="Plataforma"
+                  label={t('edit.plataform')}
                   onChange={(e) => setRepositoryData({ ...repositoryData, platform: e.target.value as string })}
                   renderValue={(value) => (
                     <Box display="flex" alignItems="center">
@@ -286,7 +289,7 @@ const RepositoryForm: NextPageWithLayout = () => {
               </FormControl>
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
                 <Button type="submit" variant="contained" color="primary">
-                  {isEditMode ? 'Salvar Alterações' : 'Criar Repositório'}
+                  {isEditMode ? t('edit.save') : t('register.create')}
                 </Button>
               </Box>
             </Box>
