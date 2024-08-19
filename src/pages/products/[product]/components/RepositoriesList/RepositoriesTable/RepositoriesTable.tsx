@@ -16,6 +16,7 @@ import ConfirmationModal from '@components/ConfirmationModal';
 import { FaGithub, FaGitlab, FaBitbucket, FaAws, FaCodeBranch } from 'react-icons/fa';
 import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import TsqmiBadge from '@pages/products/[product]/repositories/[repository]/components/TsqmiBadge';
+import { useTranslation } from 'react-i18next';
 import { useQuery } from '../../../repositories/hooks/useQuery';
 
 interface Props {
@@ -92,9 +93,9 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
         if (result.type === 'success') {
           const updatedRepositoryList = repositoryList?.filter((repo) => repo.id !== repositoryToDelete.id);
           setRepositoryList(updatedRepositoryList);
-          toast.success('Repositório excluído com sucesso!');
+          toast.success(t('delete.toast-sucess'));
         } else {
-          toast.error('Erro ao excluir o repositório.');
+          toast.error(t('delete.toast-error'));
         }
       } catch (error) {
         console.error('Error deleting repository:', error instanceof Error ? error.message : error);
@@ -122,6 +123,8 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
     }
   }, [repositoryList]);
 
+  const { t } = useTranslation('repositories');
+
   return (
     <TableContainer>
       <Table>
@@ -131,7 +134,7 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
             <TableCell align="right" style={{ paddingBottom: '35px' }}>
               <SearchButton
                 onInput={(e) => handleRepositoriesFilter(e.target.value)}
-                label="Insira o nome do repositório"
+                label={t('input-placeholder')}
               />
             </TableCell>
             <TableCell style={{ paddingBottom: '35px' }} />
