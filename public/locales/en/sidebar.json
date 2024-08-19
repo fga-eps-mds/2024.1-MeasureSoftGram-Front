@@ -1,4 +1,18 @@
 {
+  "sidebar-options": {
+    "overview": {
+      "text": "Overview",
+      "tooltip": "Product Overview"
+    },
+    "repos": {
+      "text": "Repositories",
+      "tooltip": "Product Repositories"
+    },
+    "release": {
+      "text": "Releases",
+      "tooltip": "Releases from each repository"
+    }
+  },
   "tooltip": {
     "user-menu": "User menu",
     "organization-selection": "Organization Selection",
