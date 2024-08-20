@@ -38,7 +38,7 @@ export default function ReleaseValuesDisplay({ planned, accomplised, normDiff }:
 
   }, [planned, accomplised])
 
-  const renderPaper = (value: number) => (
+  const renderPaper = (value: string) => (
     <Paper elevation={2} sx={{
       height: 40,
       width: 40,
@@ -60,7 +60,7 @@ export default function ReleaseValuesDisplay({ planned, accomplised, normDiff }:
       <Grid item xs={10}>
         <Stack direction='row' spacing={spacing} display='flex' justifyContent='center'>
           {characteristics.map(characteristic => (
-            renderPaper(characteristic.value)
+            renderPaper(characteristic.value.toFixed(2))
           ))}
         </Stack>
       </Grid>
@@ -77,7 +77,7 @@ export default function ReleaseValuesDisplay({ planned, accomplised, normDiff }:
       <Grid item xs={10}>
         <Stack direction='row' spacing={spacing} display='flex' justifyContent='center'>
           {values.map(value => (
-            renderPaper(value)
+            renderPaper(value.toFixed(2))
           ))}
         </Stack>
       </Grid>
@@ -97,7 +97,7 @@ export default function ReleaseValuesDisplay({ planned, accomplised, normDiff }:
         </Grid>
         <Grid item xs={8} alignItems='center' display='flex'>
           <Stack direction='row' spacing={spacing} sx={{ ml: normDiffMarginLeft }}>
-            {renderPaper(normDiff)}
+            {renderPaper(normDiff.toFixed(2))}
           </Stack>
         </Grid>
       </Grid>) : null
