@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import OptionsHeader from '../OptionsHeader';
 import '@testing-library/jest-dom';
+import { useTranslation } from 'react-i18next';
 
 
 describe('OptionsHeader', () => {
@@ -27,7 +28,8 @@ describe('OptionsHeader', () => {
         setIsHistoricOpen={setIsHistoricOpen}
       />
     );
-    const historicButton = getByText('Histórico');
+
+    const historicButton = getByText(t('history'));
     fireEvent.click(historicButton);
     expect(setIsHistoricOpen).toHaveBeenCalledWith(true);
   });

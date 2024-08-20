@@ -60,7 +60,7 @@ Object {
                     for="search-bar"
                     id="search-bar-label"
                   >
-                    Insira o nome do repositório
+                    input-placeholder
                   </label>
                   <div
                     class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -81,7 +81,7 @@ Object {
                         class="css-yjsfm1"
                       >
                         <span>
-                          Insira o nome do repositório
+                          input-placeholder
                         </span>
                       </legend>
                     </fieldset>
@@ -246,7 +246,7 @@ Object {
                   for="search-bar"
                   id="search-bar-label"
                 >
-                  Insira o nome do repositório
+                  input-placeholder
                 </label>
                 <div
                   class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -267,7 +267,7 @@ Object {
                       class="css-yjsfm1"
                     >
                       <span>
-                        Insira o nome do repositório
+                        input-placeholder
                       </span>
                     </legend>
                   </fieldset>

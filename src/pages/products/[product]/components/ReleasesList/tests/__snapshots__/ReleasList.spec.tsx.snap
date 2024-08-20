@@ -61,7 +61,7 @@ exports[`<ReleasesList /> renders without crashing 1`] = `
             tabindex="0"
             type="button"
           >
-            VER MAIS...
+            release.more
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />

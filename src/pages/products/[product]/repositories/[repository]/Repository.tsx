@@ -40,6 +40,9 @@ const Repository: NextPageWithLayout = () => {
   const { t } = useTranslation('repositories');
 
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const historicoRepositorio = t('repository.history');
+  const subCaracteristicaRepo = t('repository.sub-characteristic');
+  const repoMeasure = t('repository.measure');
 
   return (
     <Box display="flex" width="100%" flexDirection="row" marginTop="40px" marginBottom="24px">
@@ -67,10 +70,10 @@ const Repository: NextPageWithLayout = () => {
                   <LineAxisIcon key="tab1-1" sx={{ fontSize: '21px' }} />
                 ]}
                 tabPanelItems={[
-                  <GraphicChart key="tab1-0-0" title={t('repository.history')} type="msg" value="characteristics" />,
+                  <GraphicChart key="tab1-0-0" title={historicoRepositorio} type="msg" value="characteristics" />,
                   <GraphicChart
                     key="tab1-1-1"
-                    title={t('repository.history')}
+                    title={t(historicoRepositorio)}
                     type="line"
                     value="characteristics"
                     addHistoricalTSQMI
@@ -106,7 +109,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <LatestValueTable
                     key="tab2-0-2"
-                    title={t('repository.history')}
+                    title={historicoRepositorio}
                     value="characteristics"
                   />
                 ]}
@@ -115,7 +118,7 @@ const Repository: NextPageWithLayout = () => {
           }
 
           <OptionsHeader
-            title={t('repository.sub-characteristic')}
+            title={subCaracteristicaRepo}
             isHistoricOpen={isHistoricSubCharacteristicOpen}
             setIsHistoricOpen={setIsHistoricSubCharacteristicOpen}
           />
@@ -128,7 +131,7 @@ const Repository: NextPageWithLayout = () => {
                   <LineAxisIcon key="tab1-0" sx={{ fontSize: '21px' }} />
                 ]}
                 tabPanelItems={[
-                  <GraphicChart key="tab1-0-0" title={t('repository.sub-characteristic')} type="line" value="subcharacteristics" />
+                  <GraphicChart key="tab1-0-0" title={subCaracteristicaRepo} type="line" value="subcharacteristics" />
                 ]}
               />
               :
@@ -160,7 +163,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <LatestValueTable
                     key="tab2-0-2"
-                    title={t('repository.sub-characteristic')}
+                    title={subCaracteristicaRepo}
                     value="subcharacteristics"
                   />
                 ]}
@@ -169,7 +172,7 @@ const Repository: NextPageWithLayout = () => {
           }
 
           <OptionsHeader
-            title={t('repository.measure')}
+            title={repoMeasure}
             isHistoricOpen={isHistoricMeasureOpen}
             setIsHistoricOpen={setIsHistoricMeasureOpen}
           />
@@ -182,7 +185,7 @@ const Repository: NextPageWithLayout = () => {
                   <LineAxisIcon key="tab1-0" sx={{ fontSize: '21px' }} />,
                 ]}
                 tabPanelItems={[
-                  <GraphicChart key="tab1-0-0" title={t('repository.measure')} type="line" value="measures" />
+                  <GraphicChart key="tab1-0-0" title={repoMeasure} type="line" value="measures" />
                 ]}
 
               />
@@ -216,7 +219,7 @@ const Repository: NextPageWithLayout = () => {
                   />,
                   <LatestValueTable
                     key="tab2-0-2"
-                    title={t('repository.measure')}
+                    title={repoMeasure}
                     value="measures"
                   />
                 ]}

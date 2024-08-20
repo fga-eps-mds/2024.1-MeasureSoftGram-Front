@@ -85,7 +85,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           <h2
             style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
           >
-            Características
+            repository.characteristic
           </h2>
           <div
             class="MuiBox-root css-1vr4rvm"
@@ -96,7 +96,7 @@ exports[`<Repository /> Should render correctly 1`] = `
               tabindex="0"
               type="button"
             >
-              Histórico
+              history
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -106,7 +106,7 @@ exports[`<Repository /> Should render correctly 1`] = `
               tabindex="0"
               type="button"
             >
-              Cenário Atual
+              current-scenario
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -230,7 +230,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           <h2
             style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
           >
-            Sub-Características
+            repository.sub-characteristic
           </h2>
           <div
             class="MuiBox-root css-1vr4rvm"
@@ -241,7 +241,7 @@ exports[`<Repository /> Should render correctly 1`] = `
               tabindex="0"
               type="button"
             >
-              Histórico
+              history
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -251,7 +251,7 @@ exports[`<Repository /> Should render correctly 1`] = `
               tabindex="0"
               type="button"
             >
-              Cenário Atual
+              current-scenario
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -322,7 +322,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           <h2
             style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
           >
-            Medidas
+            repository.measure
           </h2>
           <div
             class="MuiBox-root css-1vr4rvm"
@@ -333,7 +333,7 @@ exports[`<Repository /> Should render correctly 1`] = `
               tabindex="0"
               type="button"
             >
-              Histórico
+              history
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -343,7 +343,7 @@ exports[`<Repository /> Should render correctly 1`] = `
               tabindex="0"
               type="button"
             >
-              Cenário Atual
+              current-scenario
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -414,7 +414,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           <h2
             style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
           >
-            Histórico de medidas
+            repository.measure-history
           </h2>
         </div>
         <div
@@ -467,7 +467,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           <h2
             style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
           >
-            Histórico de métricas
+            repository.measure-history
           </h2>
         </div>
         <span
