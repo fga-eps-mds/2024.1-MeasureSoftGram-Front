@@ -12,7 +12,7 @@ export default function Equalizer({ planned, isChart = false }: EqualizerProps) 
   const [spacing, setSpacing] = useState(0);
 
   useEffect(() => {
-    const SPACING_BY_CHARACTERISTICS_LENGTH = [0, 0, 41, 20.5, 12.2, 7, 4.2, 1.6, 0]
+    const SPACING_BY_CHARACTERISTICS_LENGTH = [0, 0, 45, 22.5, 12.2, 6.3, 2.6, 0, -2]
 
     const characteristicsLength = planned.length;
     setSpacing(isChart ? SPACING_BY_CHARACTERISTICS_LENGTH[characteristicsLength] : 0)

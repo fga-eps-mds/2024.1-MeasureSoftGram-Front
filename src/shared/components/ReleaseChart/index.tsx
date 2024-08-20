@@ -1,6 +1,7 @@
 import { AccomplishedRepository, Characteristic } from '@customTypes/product';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Card, Divider, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useTranslation } from "react-i18next";
 import Equalizer from '@components/Equalizer';
 import CustomLineChart from '@components/CustomLineChart/ReleaseChart';
 import ReleaseValuesDisplay from '@components/ReleaseValuesDisplay';
@@ -13,6 +14,7 @@ export interface ReleaseChartProps {
 }
 
 export default function ReleaseChart({ repository, planned, accomplised, normDiff }: ReleaseChartProps) {
+  const { t } = useTranslation('release');
 
   return (
     <Box>
@@ -32,7 +34,7 @@ export default function ReleaseChart({ repository, planned, accomplised, normDif
         <Accordion disableGutters square sx={{ backgroundColor: 'rgba(0, 0, 0, .01)' }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography p={1} ml={1}>
-              Visualizar valores
+              {t('view-values')}
             </Typography>
           </AccordionSummary>
 

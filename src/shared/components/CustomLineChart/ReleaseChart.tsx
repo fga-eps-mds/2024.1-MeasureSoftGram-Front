@@ -2,6 +2,7 @@ import { LineChart } from '@mui/x-charts';
 import { Characteristic } from '@customTypes/product';
 import { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
+import { useTranslation } from "react-i18next";
 
 export interface CustomLineChartProps {
   planned: Characteristic[];
@@ -10,6 +11,8 @@ export interface CustomLineChartProps {
 }
 
 export default function CustomLineChart({ planned, accomplised, hasArea = false }: CustomLineChartProps) {
+  const { t } = useTranslation('release');
+
   const [labelsChart, setLabelsChart] = useState<string[]>([]);
   const [plannedChart, setPlannedChart] = useState<number[]>([]);
   const [accomplishedChart, setAccomplishedChart] = useState<number[]>([]);
@@ -22,9 +25,9 @@ export default function CustomLineChart({ planned, accomplised, hasArea = false 
   }
 
   const series: any[] = [
-    { data: plannedChart, label: 'Planejado', color: colors.planned, connectNulls: true, area: hasArea },
-    { data: accomplishedChart, label: 'Realizado', color: colors.accomplished, connectNulls: true, area: hasArea },
-    { data: diffChart, label: 'Diff', color: colors.diff, connectNulls: true, area: hasArea }
+    { data: plannedChart, label: t('planned'), color: colors.planned, connectNulls: true, area: hasArea },
+    { data: accomplishedChart, label: t('accomplised'), color: colors.accomplished, connectNulls: true, area: hasArea },
+    { data: diffChart, label: t('diff'), color: colors.diff, connectNulls: true, area: hasArea }
   ]
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function CustomLineChart({ planned, accomplised, hasArea = false 
 
         accomplishedAux.push(accomplishedCharacteristic.value)
         diffAux.push(accomplishedCharacteristic.diff)
-        labelsAux.push(characteristic.name)
+        labelsAux.push(t(`characteristics.${characteristic.name}`))
         plannedAux.push(characteristic.value)
 
         addEmptyValueToChart(index += 1, labelsAux, plannedAux, accomplishedAux, diffAux);

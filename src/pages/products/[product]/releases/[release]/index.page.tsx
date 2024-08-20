@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import getLayout from '@components/Layout';
 import { productQuery } from '@services/product';
 import { AccomplishedRepository, Characteristic, IReleases } from '@customTypes/product';
-import { Box } from '@mui/system';
-import { Card, Container, Grid, Skeleton, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Card, Container, Grid, Skeleton, Tab, Tabs, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useTranslation } from "react-i18next";
 import { formatDate } from '@utils/formatDate';
-import ReleaseChart from '../../../../../shared/components/ReleaseChart';
-import messages from './messages';
 import Head from 'next/head';
+import ReleaseChart from '@components/ReleaseChart';
 
 const Release: any = () => {
   const router = useRouter();
   const routerParams: any = router.query;
+  const { t } = useTranslation('release');
 
   const [accomplisedResults, setAccomplisedResults] = useState<AccomplishedRepository[]>([]);
   const [planned, setPlanned] = useState<Characteristic[]>([]);
@@ -105,13 +105,13 @@ const Release: any = () => {
           {release && <Box>
             <Box display="flex" alignItems="center" gap="1rem">
               <Typography fontSize="32px" fontWeight="400">
-                {messages.release}
+                {t('title')}
               </Typography>
               <Typography data-testid='release-name' fontSize="32px" fontWeight="500" color="#33568E">
                 {release?.release_name}
               </Typography>
             </Box>
-            {messages.releaseInterval}
+            {t('release-interval')}
             <Typography data-testid='data-release' fontSize="14px" fontWeight="300">
               {formatDate(release.start_at)} - {formatDate(release.end_at)}
             </Typography>
