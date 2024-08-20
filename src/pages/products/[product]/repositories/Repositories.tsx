@@ -2,28 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { Box, Container, Typography, IconButton, Popover, Button , Modal} from '@mui/material';
+import { Box, Container, Typography, IconButton, Popover, Button, Modal } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { FaGithub, FaCodeBranch } from 'react-icons/fa';
+
+
 
 import { NextPageWithLayout } from '@pages/_app.next';
 import getLayout from '@components/Layout';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
 import RepositoriesTable from '../components/RepositoriesList/RepositoriesTable';
-
-
-const styleModal = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { GithubRepositoriesModal } from './[repository]/components/GithubRepositoriesModal';
 
 
 const Repositories: NextPageWithLayout = () => {
@@ -101,23 +91,9 @@ const Repositories: NextPageWithLayout = () => {
                   justifyItems: 'center'
                 }}>
                 <Button onClick={handleOpenModal} style={{ width: '150px', justifyContent: 'space-around' }}><FaGithub size="1.5em" /> Github</Button>
-                <Modal
-                  open={openModal}
-                  onClose={handleCloseModal}
-                >
-                  <Box sx={styleModal}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                      Escolha um repostório para importar
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      Repositório 1
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      Repositório n
-                    </Typography>
-                  </Box>
-                </Modal>
+
                 <Button style={{ width: '150px', justifyContent: 'space-around' }} onClick={handleAddIconClick}> <FaCodeBranch size="1.5em" /> Criar</Button>
+                <GithubRepositoriesModal open={openModal} handleCloseModal={handleCloseModal}/>
               </div>
 
             </Popover>
