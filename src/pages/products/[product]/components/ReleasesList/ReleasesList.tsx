@@ -44,7 +44,7 @@ function ReleasesList() {
 
           <ReleasesTable releaseList={releaseList?.slice(0, 1) ?? []} />
           <Box display="flex" flexDirection="column" mt="10px" alignItems="center">
-            <Button onClick={() => pushToReleasesPath()} variant="text">
+            <Button data-testid="ver-mais-release" onClick={() => pushToReleasesPath()} variant="text">
               {t('release.more')}
             </Button>
           </Box>

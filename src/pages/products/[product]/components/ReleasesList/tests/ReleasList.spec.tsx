@@ -82,8 +82,8 @@ describe('<ReleasesList />', () => {
   });
 
   it('call pushToReleasesPath when click on button', () => {
-    const { getByRole } = render(<ReleasesList />);
-    const button = getByRole('button', { name: 'VER MAIS...' });
+    const { getByTestId } = render(<ReleasesList />);
+    const button = getByTestId('ver-mais-release');
     fireEvent.click(button);
     expect(useRouter().push).toBeCalledWith('/products/1-1-MeasureSoftGram/releases')
   });
