@@ -1,0 +1,15 @@
+{
+  "pageTitle": "Releases",
+  "heading": "Releases",
+  "startDateLabel": "Release Start Date",
+  "startDateTooltip": "When selecting a date, all releases with start dates exactly the same and later than the selected one are shown",
+  "endDateLabel": "Release End Date",
+  "endDateTooltip": "When selecting a date, all releases with end dates exactly the same and earlier than the selected one are shown",
+  "searchButtonLabel": "Search releases",
+  "searchPlaceholder": "Enter release name",
+  "table": {
+    "name": "Name",
+    "startDate": "Release Start Date",
+    "endDate": "Release End Date"
+  }
+}

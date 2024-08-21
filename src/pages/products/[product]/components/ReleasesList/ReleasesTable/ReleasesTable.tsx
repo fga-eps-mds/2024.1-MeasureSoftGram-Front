@@ -7,6 +7,7 @@ import { useProductContext } from '@contexts/ProductProvider';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { IReleases } from '@customTypes/product';
 import { formatDate } from '@utils/formatDate';
+import { useTranslation } from 'react-i18next';
 
 interface ReleasesTableProps {
   releaseList: IReleases[];
@@ -21,14 +22,16 @@ function ReleasesTable({ releaseList }: ReleasesTableProps) {
     void router.push(`/products/${currentOrganization?.id}-${currentProduct?.id}-${currentProduct?.name}/releases/${path}`);
   };
 
+  const { t } = useTranslation('releases');
+
   return (
     <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Nome</TableCell>
-            <TableCell>Início da release</TableCell>
-            <TableCell>Fim da release</TableCell>
+            <TableCell>{t('table.name')}</TableCell>
+            <TableCell>{t('table.startDate')}</TableCell>
+            <TableCell>{t('table.endDate')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
