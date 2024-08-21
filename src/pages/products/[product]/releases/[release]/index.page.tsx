@@ -48,7 +48,7 @@ const Release: any = () => {
     setSelectedValue(newValue);
   };
 
-  const renderEqualizerAndChart = () => {
+  const renderContent = () => {
     return (
       <Container>
         <Grid container mt={0.1} spacing={4}>
@@ -118,7 +118,7 @@ const Release: any = () => {
           </Box>}
         </Box>
         {
-          isLoading ? renderSkeleton() : renderEqualizerAndChart()
+          isLoading ? renderSkeleton() : renderContent()
         }
       </Container>
     </>

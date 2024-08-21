@@ -9,6 +9,7 @@
     "title": "Normalized difference",
     "tooltip": "Vector transformation between the planned release and the actual release. This transformation represents the quantitative difference between the planned quality requirements and the observed outcomes after development."
   },
+  "plannedAndAccomplishedSizesAreDifferentWarning": "The number of planned metrics should match the number of accomplised metrics",
   "characteristics": {
     "functional_suitability": "Functional Suitability",
     "performance_efficiency": "Performance Efficiency",

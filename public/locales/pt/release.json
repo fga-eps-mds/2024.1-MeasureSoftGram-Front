@@ -9,6 +9,7 @@
     "title": "Diferença normalizada",
     "tooltip": "Transformação vetorial entre a release planejada e a release realizada. Esta transformação representa a diferença quantitativa entre os requisitos de qualidade planejados e os os resultados observados após o desenvolvimento."
   },
+  "plannedAndAccomplishedSizesAreDifferentWarning": "A quantidade de métricas planejadas deve ser igual à quantidade de métricas realizadas",
   "characteristics": {
     "functional_suitability": "Adequação Funcional",
     "performance_efficiency": "Eficiência de desempenho",
