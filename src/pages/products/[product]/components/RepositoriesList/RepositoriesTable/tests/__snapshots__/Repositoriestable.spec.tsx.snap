@@ -127,6 +127,7 @@ Object {
                     </svg>
                   </span>
                   <span
+                    data-testid="repo-name"
                     style="margin-left: 10px;"
                   >
                     2022-1-MeasureSoftGram-Core
@@ -313,6 +314,7 @@ Object {
                   </svg>
                 </span>
                 <span
+                  data-testid="repo-name"
                   style="margin-left: 10px;"
                 >
                   2022-1-MeasureSoftGram-Core

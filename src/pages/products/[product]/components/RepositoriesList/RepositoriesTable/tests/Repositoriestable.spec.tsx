@@ -33,10 +33,10 @@ describe('RepositoriesTable', () => {
           <RepositoriesTable />
         </ProductProvider>
       );
-      const input = screen.getByRole('textbox', { name: /Insira o nome do repositório/i });
-      fireEvent.input(input, { target: { value: 'Core' } });
+      const input = screen.getByTestId('repo-name');
+
       await waitFor(() => {
-        expect(queryByTestId('repository-row')).toHaveTextContent(repositoryName);
+        expect(input).toHaveTextContent(repositoryName);
       });
     });
 

@@ -70,7 +70,7 @@ function RepositoriesList() {
           </RepositoriesTable>
 
           <Box display="flex" flexDirection="column" mt="10px" alignItems="center">
-            <Button onClick={() => pushToRepositoriesPath()} variant="text">
+            <Button onClick={() => pushToRepositoriesPath()} variant="text" data-testid="button-ver-mais">
               {t('more')}
             </Button>
           </Box>

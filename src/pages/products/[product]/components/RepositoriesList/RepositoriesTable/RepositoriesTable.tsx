@@ -133,8 +133,10 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
             <TableCell style={{ paddingBottom: '35px' }}>Nome</TableCell>
             <TableCell align="right" style={{ paddingBottom: '35px' }}>
               <SearchButton
+                data-testid="search-input"
                 onInput={(e) => handleRepositoriesFilter(e.target.value)}
                 label={t('input-placeholder')}
+              // label="Busque pelo repositorio"
               />
             </TableCell>
             <TableCell style={{ paddingBottom: '35px' }} />
@@ -156,7 +158,7 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
                       {platformIcons[repo.platform] ? platformIcons[repo.platform]() : platformIcons.outros()}
                     </HoverIcon>
                   )}
-                  <span style={{ marginLeft: 10 }}>{repo.name}</span>
+                  <span data-testid="repo-name" style={{ marginLeft: 10 }}>{repo.name}</span>
                 </Box>
               </TableCell>
               <TableCell>

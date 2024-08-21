@@ -236,6 +236,7 @@ const RepositoryForm: NextPageWithLayout = () => {
               />
               <TextField
                 name="name"
+                data-testid="repo-name-input"
                 label={t('edit.name')}
                 variant="outlined"
                 value={repositoryData.name}

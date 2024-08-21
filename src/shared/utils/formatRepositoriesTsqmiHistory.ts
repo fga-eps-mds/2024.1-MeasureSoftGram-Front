@@ -1,13 +1,10 @@
 import { RepositoriesTsqmiHistory } from '@customTypes/product';
-import { useTranslation } from 'react-i18next';
 import convertToCsv from './convertToCsv';
 
 const formatTwoDecimalPlaces = (value: number) => Math.round(value * 100) / 100;
 
 const formatRepositoriesTsqmiHistory = (history: RepositoriesTsqmiHistory) => {
   const legendData: string[] = [];
-
-  const { t } = useTranslation('overview');
 
   const series = history.results.map((item) => {
     legendData.push(item.name);
@@ -38,7 +35,7 @@ const formatRepositoriesTsqmiHistory = (history: RepositoriesTsqmiHistory) => {
 
   return {
     title: {
-      text: t('chart-title')
+      text: 'Comportamento observado do produto'
     },
     tooltip: {
       trigger: 'axis'
