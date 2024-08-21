@@ -35,12 +35,14 @@ function OptionsHeader({ title, isHistoricOpen, setIsHistoricOpen }: Props) {
         <Button
           onClick={() => setIsHistoricOpen(true)}
           variant={isHistoricOpen ? 'contained' : 'outlined'}
+          data-testid="history-button"
         >
           {t('history')}
         </Button>
         <Button
           onClick={() => setIsHistoricOpen(false)}
           variant={!isHistoricOpen ? 'contained' : 'outlined'}
+          data-testid="button-current-scenario"
         >
           {t('current-scenario')}
         </Button>
