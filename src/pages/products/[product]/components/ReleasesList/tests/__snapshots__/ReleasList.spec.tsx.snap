@@ -32,19 +32,19 @@ exports[`<ReleasesList /> renders without crashing 1`] = `
                   class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                   scope="col"
                 >
-                  Nome
+                  table.name
                 </th>
                 <th
                   class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                   scope="col"
                 >
-                  Início da release
+                  table.startDate
                 </th>
                 <th
                   class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                   scope="col"
                 >
-                  Fim da release
+                  table.endDate
                 </th>
               </tr>
             </thead>

@@ -17,7 +17,7 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
           <h4
             class="MuiTypography-root MuiTypography-h4 css-1f3qdbj-MuiTypography-root"
           >
-            Releases
+            heading
           </h4>
         </div>
       </div>
@@ -35,10 +35,10 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-3lak7q-MuiTypography-root"
           >
-            Início da release
+            startDateLabel
           </p>
           <div
-            aria-label="Ao selecionar uma data, são apresentadas todas as releases com datas iniciais exatamente iguais e posteriores às da selecionada"
+            aria-label="startDateTooltip"
             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
             data-mui-internal-clone-element="true"
           >
@@ -77,10 +77,10 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-3lak7q-MuiTypography-root"
           >
-            Fim da release
+            endDateLabel
           </p>
           <div
-            aria-label="Ao selecionar uma data, são apresentadas todas as releases com datas finais exatamente iguais e anteriores às da selecionada"
+            aria-label="endDateTooltip"
             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
             data-mui-internal-clone-element="true"
           >
@@ -147,7 +147,7 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
               for="search-bar"
               id="search-bar-label"
             >
-              Buscar releases
+              searchButtonLabel
             </label>
             <div
               class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -156,7 +156,7 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
                 id="search-bar"
-                placeholder="Insira o nome da release"
+                placeholder="searchPlaceholder"
                 type="text"
                 value=""
               />
@@ -168,7 +168,7 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
                   class="css-yjsfm1"
                 >
                   <span>
-                    Buscar releases
+                    searchButtonLabel
                   </span>
                 </legend>
               </fieldset>
@@ -192,19 +192,19 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
               >
-                Nome
+                table.name
               </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
               >
-                Início da release
+                table.startDate
               </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
               >
-                Fim da release
+                table.endDate
               </th>
             </tr>
           </thead>
