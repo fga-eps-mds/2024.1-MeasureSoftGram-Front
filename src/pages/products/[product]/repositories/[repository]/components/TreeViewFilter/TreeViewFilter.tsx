@@ -11,6 +11,7 @@ import SearchButton from '@components/SearchButton/SearchButton';
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 
+import { useTranslation } from 'react-i18next';
 import * as Styled from './styles';
 
 interface Node {
@@ -204,7 +205,7 @@ export default function TreeViewFilter() {
         <Box display={show ? "auto" : "none"}>
           <Box width="100%" position="sticky" top={0} zIndex={4}>
             <Box display="flex" flexDirection="row" alignItems="center" paddingBottom="6px" paddingTop="10px">
-              <SearchButton onInput={(e) => handleSearch(e.target.value)} label={t('search')} />
+              <SearchButton onInput={(e) => handleSearch(e.target?.value)} label={t('search')} />
             </Box>
             <Divider sx={{ width: '100%', mt: '5px', border: '1px solid rgba(0, 0, 0, 0.20)' }} />
           </Box>

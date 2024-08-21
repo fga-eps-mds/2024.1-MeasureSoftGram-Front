@@ -1,12 +1,12 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import Router, { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import { RepositoryProvider } from '@contexts/RepositoryProvider';
 import { OrganizationProvider } from '@contexts/OrganizationProvider';
 import { ProductProvider } from '@contexts/ProductProvider';
 import { SideMenuProvider } from '@contexts/SidebarProvider/SideMenuProvider';
-import SideList from '../SideList';
 import { Product } from '@customTypes/product';
+import SideList from '../SideList';
 
 interface Props {
   children: ReactNode;
@@ -24,8 +24,8 @@ const AllTheProviders = ({ children }: Props) => (
 
 describe('SideMenuItem', () => {
   const products: Product[] = [
-    {id: 'prodtest', name: 'prodname', description: 'proddesc', github_url: 'https://test.github.com', created_at: '2022-01-01', updated_at: '2022-01-02'},
-    {id: 'prodtest2', name: 'prodname2', description: 'proddesc2', github_url: 'https://test.github.com/proj2', created_at: '2022-02-01', updated_at: '2022-02-02'}
+    { id: 'prodtest', name: 'prodname', description: 'proddesc', github_url: 'https://test.github.com', created_at: '2022-01-01', updated_at: '2022-01-02' },
+    { id: 'prodtest2', name: 'prodname2', description: 'proddesc2', github_url: 'https://test.github.com/proj2', created_at: '2022-02-01', updated_at: '2022-02-02' }
   ];
 
   jest.mock('next/router', () => ({
@@ -36,7 +36,7 @@ describe('SideMenuItem', () => {
   it('should render the SideMenuItem component', () => {
     const onClose = jest.fn();
     const onClick = jest.fn();
-    const { container } = render(<SideList values={products} onClose={onClose} onClickItem={onClick} open={true} seeMorePath="path/test"/>, {
+    const { container } = render(<SideList values={products} onClose={onClose} onClickItem={onClick} open seeMorePath="path/test" />, {
       wrapper: AllTheProviders
     });
 
@@ -46,11 +46,11 @@ describe('SideMenuItem', () => {
   it('should fire child events when child is clicked', () => {
     const onClose = jest.fn();
     const onClick = jest.fn();
-    const { getAllByText } = render(<SideList values={products} onClose={onClose} onClickItem={onClick} open={true} seeMorePath="path/test"/>,
+    const { getAllByText } = render(<SideList values={products} onClose={onClose} onClickItem={onClick} open seeMorePath="path/test" />,
       { wrapper: AllTheProviders });
 
     const productsOnList = getAllByText(/prodname2/i);
-    productsOnList .forEach((product) => {fireEvent.click(product);});
+    productsOnList.forEach((product) => { fireEvent.click(product); });
     expect(onClick).toHaveBeenCalled();
     expect(onClose).toHaveBeenCalled();
   });
@@ -61,13 +61,13 @@ describe('SideMenuItem', () => {
 
     const mockRouter = { push: jest.fn() };
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
-    
-    const { getAllByText } = render(<SideList values={products} onClose={onClose} onClickItem={onClick} open={true} seeMorePath="path/test"/>,
+
+    render(<SideList values={products} onClose={onClose} onClickItem={onClick} open seeMorePath="path/test" />,
       { wrapper: AllTheProviders });
 
-    const btnToPage = getAllByText(/VER MAIS.../i);
-    btnToPage.forEach((btn) => {fireEvent.click(btn);});
+    const btnToPage = screen.getAllByTestId('button-more');
+    btnToPage.forEach((btn) => { fireEvent.click(btn); });
     expect(mockRouter.push).toHaveBeenCalledWith('path/test');
   });
 
-  });
+});

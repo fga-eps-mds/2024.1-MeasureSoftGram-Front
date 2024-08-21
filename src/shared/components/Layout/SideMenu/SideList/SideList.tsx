@@ -225,6 +225,7 @@ const SideList = <T extends ItemWithBasicProps>({
                 await router.push(seeMorePath);
               })}
               variant="text"
+              data-testid="button-more"
             >
               {t('release.more')}
             </Button>
