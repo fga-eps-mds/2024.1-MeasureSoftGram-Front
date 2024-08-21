@@ -74,7 +74,7 @@ exports[`<TreeViewFilter /> should render correctly 1`] = `
                 for="search-bar"
                 id="search-bar-label"
               >
-                Pesquisar
+                search
               </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -95,7 +95,7 @@ exports[`<TreeViewFilter /> should render correctly 1`] = `
                     class="css-yjsfm1"
                   >
                     <span>
-                      Pesquisar
+                      search
                     </span>
                   </legend>
                 </fieldset>

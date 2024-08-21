@@ -17,7 +17,7 @@ Object {
             <h4
               class="MuiTypography-root MuiTypography-h4 css-1odv9dh-MuiTypography-root"
             >
-              Repositórios
+              title
             </h4>
             <button
               aria-label="add repository"
@@ -103,7 +103,7 @@ Object {
                         for="search-bar"
                         id="search-bar-label"
                       >
-                        Insira o nome do repositório
+                        input-placeholder
                       </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -124,7 +124,7 @@ Object {
                             class="css-yjsfm1"
                           >
                             <span>
-                              Insira o nome do repositório
+                              input-placeholder
                             </span>
                           </legend>
                         </fieldset>
@@ -160,7 +160,7 @@ Object {
           <h4
             class="MuiTypography-root MuiTypography-h4 css-1odv9dh-MuiTypography-root"
           >
-            Repositórios
+            title
           </h4>
           <button
             aria-label="add repository"
@@ -246,7 +246,7 @@ Object {
                       for="search-bar"
                       id="search-bar-label"
                     >
-                      Insira o nome do repositório
+                      input-placeholder
                     </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -267,7 +267,7 @@ Object {
                           class="css-yjsfm1"
                         >
                           <span>
-                            Insira o nome do repositório
+                            input-placeholder
                           </span>
                         </legend>
                       </fieldset>

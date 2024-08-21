@@ -13,6 +13,7 @@ import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useRequest } from '@hooks/useRequest';
 import { ReleasesPaginated } from '@customTypes/product';
 import SearchButton from '@components/SearchButton';
+import { useTranslation } from 'react-i18next';
 import ReleasesTable from '../components/ReleasesList/ReleasesTable';
 import filterReleaseList from './util/filterReleaseList';
 
@@ -31,10 +32,12 @@ const Releases: NextPageWithLayout = () => {
 
   const filteredReleaseList = useMemo(() => filterReleaseList(releaseList! ?? [], name, startDate, endDate), [releaseList, name, startDate, endDate])
 
+  const { t } = useTranslation('releases');
+
   return isLoading ? (<Skeleton />) :
     <>
       <Head>
-        <title> Releases </title>
+        <title> {t('pageTitle')} </title>
       </Head>
 
       <Container>
@@ -42,7 +45,7 @@ const Releases: NextPageWithLayout = () => {
           <Box display="flex" gap="1rem" marginTop="40px" marginBottom="36px">
             <Box display="flex" alignItems="center">
               <Typography variant="h4" marginRight="10px" color="#33568E" fontWeight="500">
-                Releases
+                {t('heading')}
               </Typography>
             </Box>
           </Box>
@@ -52,9 +55,9 @@ const Releases: NextPageWithLayout = () => {
           <Box display="flex" justifyContent="space-between" marginBottom='30px'>
             <Box>
               <Typography color="#538BA3">
-                Início da release
+                {t('startDateLabel')}
               </Typography>
-              <Tooltip title='Ao selecionar uma data, são apresentadas todas as releases com datas iniciais exatamente iguais e posteriores às da selecionada'>
+              <Tooltip title={t('startDateTooltip')}>
                 <TextField
                   type="date"
                   required
@@ -70,9 +73,9 @@ const Releases: NextPageWithLayout = () => {
 
             <Box>
               <Typography color="#538BA3">
-                Fim da release
+                {t('endDateLabel')}
               </Typography>
-              <Tooltip title='Ao selecionar uma data, são apresentadas todas as releases com datas finais exatamente iguais e anteriores às da selecionada'>
+              <Tooltip title={t('endDateTooltip')}>
                 <TextField
                   type="date"
                   required
@@ -87,8 +90,8 @@ const Releases: NextPageWithLayout = () => {
             </Box>
             <Box marginTop="16px">
               <SearchButton
-                label='Buscar releases'
-                placeHolder='Insira o nome da release'
+                label={t('searchButtonLabel')}
+                placeHolder={t('searchPlaceholder')}
                 onInput={(e) => setName(e.target.value)}
               />
             </Box>

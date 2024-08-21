@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import WarningIcon from '@mui/icons-material/Warning';
+import { useTranslation } from 'react-i18next';
 
 type ConfirmationModalProps = {
   open: boolean;
@@ -25,6 +26,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 }) => {
   const [confirmationName, setConfirmationName] = useState('');
   const [errorText, setErrorText] = useState('');
+  const { t } = useTranslation('repositories');
   const isButtonDisabled = confirmationName !== itemName;
 
   const handleConfirmationNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,13 +58,13 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         <IconButton onClick={onClose} sx={{ position: 'absolute', top: 8, right: 8 }}>
           <CloseIcon />
         </IconButton>
-        <Typography variant="h6">Confirme a Exclusão de '{itemName}'</Typography>
+        <Typography variant="h6"> {`${t('delete.title')} ${itemName}.`}</Typography>
         <Alert
           icon={<WarningIcon />}
           severity="warning"
           sx={{ mt: 2, mb: 3 }}
         >
-          Isso irá deletar permanentemente o item '{itemName}'.
+          {`${t('delete.title')} ${itemName}`}
         </Alert>
         {/* Restante do componente */}
         <input
@@ -82,7 +84,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           disabled={isButtonDisabled}
           sx={{ width: '100%', marginTop: '10px' }}
         >
-          Confirmar Exclusão
+          {t('delete.button')}
         </Button>
       </Box>
     </Modal>

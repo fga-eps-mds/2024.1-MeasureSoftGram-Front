@@ -58,7 +58,7 @@ describe('<Releases />', () => {
 
     const startDate = getByTestId('inicio-release');
     const endDate = getByTestId('fim-release');
-    const searchButton = getByRole('textbox', { name: /Buscar releases/i });
+    const searchButton = getByRole('textbox', { name: /searchButtonLabel/i });
 
     await act(async () => {
       fireEvent.change(startDate, { target: { value: '2021-01-01' } });
