@@ -235,34 +235,7 @@ const Repository: NextPageWithLayout = () => {
             <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>{t('repository.measure-history')}</h2>
           </Box>
 
-          <GraphicChart key="sonargraph-measure" title="Sonar" type="line" value="measures" collectionSource='sonarqube' />
-
-          <GraphicChart
-            key="ghGraph-measure"
-            title="Github"
-            type="line"
-            value="measures"
-            collectionSource='github'
-          />
-
-          <Box
-            display="flex"
-            flexDirection="row"
-            height={60}
-            alignItems="center"
-          >
-            <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>{t('repository.measure-history')}</h2>
-          </Box>
-
-          <GraphicChart key="sonargraph" title="Sonar" type="line" value="metrics" collectionSource='sonarqube' />
-
-          <GraphicChart
-            key="ghGraph"
-            title="Github"
-            type="line"
-            value="metrics"
-            collectionSource='github'
-          />
+          <GraphicChart key="sonargraph" title="Métricas" type="line" value="metrics" />
 
           <Box marginY="12px">
             <LatestValueTable title={t('repository.metrics')} value="metrics" />

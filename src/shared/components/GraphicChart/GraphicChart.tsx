@@ -78,13 +78,13 @@ const GraphicChart = ({
     () =>
       _.range(numLines).map((i) => ({
         ...chartOption[type]({
-          historical: _.filter(sliceHistorical(i), (item) => collectionSource === 'github' || hasKey(item.key)),
+          historical: _.filter(sliceHistorical(i), (item) => hasKey(item.key)),
           title: i === 0 ? title : '',
           isEmpty: isEmpty || error,
           redLimit: currentProduct?.gaugeRedLimit,
           yellowLimit: currentProduct?.gaugeYellowLimit
         }),
-        key: `graphic-chart-${i}`
+        key: `graphic - chart - ${i}`
       })
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
