@@ -56,7 +56,7 @@ const release = {
   goal: 1,
 };
 
-const planned_mock = [
+const plannedMock = [
   {
     name: 'functional_suitability',
     value: 0.5,
@@ -100,16 +100,16 @@ const planned_mock = [
 ]
 
 const mockedResponse = {
-  release: release,
-  planned: planned_mock,
+  release,
+  planned: plannedMock,
   accomplished: [{
     repository_name: 'Repositorio 1',
-    characteristics: planned_mock,
+    characteristics: plannedMock,
     norm_diff: 0.21
   },
   {
     repository_name: 'Repositorio 2',
-    characteristics: planned_mock,
+    characteristics: plannedMock,
     norm_diff: 0.3
   }]
 }

@@ -48,40 +48,38 @@ const Release: any = () => {
     setSelectedValue(newValue);
   };
 
-  const renderContent = () => {
-    return (
-      <Container>
-        <Grid container mt={0.1} spacing={4}>
-          <Grid item xs={2} height={520} >
-            <Card sx={{ height: 'inherit' }} >
-              <Box sx={{ display: 'flex', height: 'inherit' }}>
-                <Tabs
-                  orientation='vertical'
-                  variant='scrollable'
-                  scrollButtons
-                  allowScrollButtonsMobile
-                  value={selectedValue}
-                  onChange={handleSelectionChange}
-                  sx={{ borderRight: 1, borderColor: 'divider', width: '100%' }}
-                >
-                  {accomplisedResults.map((repository: AccomplishedRepository) => (
-                    <Tab
-                      label={repository.repository_name}
-                      data-testid='repository-tab' />
-                  ))}
+  const renderContent = () => (
+    <Container>
+      <Grid container mt={0.1} spacing={4}>
+        <Grid item xs={2} height={520} >
+          <Card sx={{ height: 'inherit' }} >
+            <Box sx={{ display: 'flex', height: 'inherit' }}>
+              <Tabs
+                orientation='vertical'
+                variant='scrollable'
+                scrollButtons
+                allowScrollButtonsMobile
+                value={selectedValue}
+                onChange={handleSelectionChange}
+                sx={{ borderRight: 1, borderColor: 'divider', width: '100%' }}
+              >
+                {accomplisedResults.map((repository: AccomplishedRepository) => (
+                  <Tab
+                    label={repository.repository_name}
+                    data-testid='repository-tab' />
+                ))}
 
-                </Tabs>
-              </Box>
-            </Card>
-          </Grid>
-
-          <Grid item xs={10}>
-            {selectedRepository && <ReleaseChart repository={selectedRepository} planned={planned} accomplised={selectedRepository.characteristics} normDiff={selectedRepository.norm_diff} />}
-          </Grid>
+              </Tabs>
+            </Box>
+          </Card>
         </Grid>
-      </Container>
-    )
-  }
+
+        <Grid item xs={10}>
+          {selectedRepository && <ReleaseChart repository={selectedRepository} planned={planned} accomplised={selectedRepository.characteristics} normDiff={selectedRepository.norm_diff} />}
+        </Grid>
+      </Grid>
+    </Container>
+  )
 
   const renderSkeleton = () => (
     <Container>
