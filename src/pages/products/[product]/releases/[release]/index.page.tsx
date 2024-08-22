@@ -65,7 +65,9 @@ const Release: any = () => {
                   sx={{ borderRight: 1, borderColor: 'divider', width: '100%' }}
                 >
                   {accomplisedResults.map((repository: AccomplishedRepository) => (
-                    <Tab label={repository.repository_name} />
+                    <Tab
+                      label={repository.repository_name}
+                      data-testid='repository-tab' />
                   ))}
 
                 </Tabs>

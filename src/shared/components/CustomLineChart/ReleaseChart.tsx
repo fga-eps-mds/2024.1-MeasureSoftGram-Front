@@ -73,6 +73,7 @@ export default function CustomLineChart({ planned, accomplised, hasArea = false 
         width={900}
         height={400}
         series={series}
+        data-testid='release-chart'
         xAxis={[{
           scaleType: 'point',
           data: labelsChart,

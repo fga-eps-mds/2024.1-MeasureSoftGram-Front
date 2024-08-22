@@ -22,65 +22,8 @@ jest.mock('next/router', () => ({
 
 describe('Release', () => {
   it('renders without crashing', async () => {
-    const startAtDate = '2022-01-01T00:00:00.000Z';
-    const endAtDate = '2022-04-01T00:00:00.000Z';
 
-    const release = {
-      id: 1,
-      created_at: startAtDate,
-      start_at: startAtDate,
-      end_at: endAtDate,
-      release_name: 'release name',
-      description: 'release description',
-      created_by: 1,
-      product: 1,
-      goal: 1,
-    };
-
-    const planned = [
-      {
-        name: "reliability",
-        value: 0.5
-      },
-      {
-        name: "maintainability",
-        value: 0.5
-      }
-    ];
-
-    const accomplished =
-      [
-        {
-          repository_name: "repository name 1",
-          characteristics: [
-            {
-              name: "reliability",
-              value: 0.6
-            }
-          ]
-        },
-        {
-          repository_name: "repository name 2",
-          characteristics: [
-            {
-              name: "reliability",
-              value: 0.6
-            },
-            {
-              name: "maintainability",
-              value: 0.5
-            }
-          ]
-        }
-      ];
-
-    const response = {
-      release,
-      planned,
-      accomplished
-    };
-
-    (productQuery.getReleaseAnalysisDataByReleaseId as jest.Mock).mockResolvedValue({ data: response });
+    (productQuery.getReleaseAnalysisDataByReleaseId as jest.Mock).mockResolvedValue({ data: mockedResponse });
 
     render(<Release />);
 
@@ -88,9 +31,85 @@ describe('Release', () => {
 
     const releaseTitle = await screen.findByText('release name');
     const dataRelease = await screen.findByTestId('data-release');
+    const releaseChart = await screen.findByTestId('release-chart');
+    const repositoryTabs = await screen.findAllByTestId('repository-tab');
+    const equalizerSliders = await screen.findAllByTestId('equalizer-slider');
 
-    expect(dataRelease).toBeInTheDocument();
-    expect(dataRelease).toHaveTextContent('01 de janeiro de 2022 - 01 de abril de 2022')
     expect(releaseTitle).toBeInTheDocument();
+    expect(dataRelease).toHaveTextContent('01 de janeiro de 2022 - 01 de abril de 2022');
+    expect(releaseChart).toBeInTheDocument();
+    expect(repositoryTabs).toHaveLength(2);
+    expect(equalizerSliders).toHaveLength(8);
   });
 });
+
+
+const release = {
+  id: 1,
+  created_at: '2022-01-01T00:00:00.000Z',
+  start_at: '2022-01-01T00:00:00.000Z',
+  end_at: '2022-04-01T00:00:00.000Z',
+  release_name: 'release name',
+  description: 'release description',
+  created_by: 1,
+  product: 1,
+  goal: 1,
+};
+
+const planned_mock = [
+  {
+    name: 'functional_suitability',
+    value: 0.5,
+    diff: 0.1
+  },
+  {
+    name: 'performance_efficiency',
+    value: 0.4,
+    diff: 0.1
+  },
+  {
+    name: 'compatibility',
+    value: 0.7,
+    diff: 0.1
+  },
+  {
+    name: 'interaction_capability',
+    value: 0.9,
+    diff: 0.1
+  },
+  {
+    name: 'reliability',
+    value: 0.2,
+    diff: 0.1
+  },
+  {
+    name: 'security',
+    value: 1,
+    diff: 0.1
+  },
+  {
+    name: 'maintainability',
+    value: 0.5,
+    diff: 0.1
+  },
+  {
+    name: 'flexibility',
+    value: 0.2,
+    diff: 0.1
+  }
+]
+
+const mockedResponse = {
+  release: release,
+  planned: planned_mock,
+  accomplished: [{
+    repository_name: 'Repositorio 1',
+    characteristics: planned_mock,
+    norm_diff: 0.21
+  },
+  {
+    repository_name: 'Repositorio 2',
+    characteristics: planned_mock,
+    norm_diff: 0.3
+  }]
+}

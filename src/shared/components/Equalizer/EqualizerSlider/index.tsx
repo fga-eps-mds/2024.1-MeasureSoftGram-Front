@@ -28,6 +28,7 @@ export default function EqualizerSlider({ characteristic }: EqualizerSliderProps
           min={0}
           max={1}
           valueLabelDisplay="auto"
+          data-testid='equalizer-slider'
         />
       </Grid>
       <Grid item xs={2} display='flex' alignItems="center" justifyContent='center'>
