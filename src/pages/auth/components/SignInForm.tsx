@@ -8,12 +8,17 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  TextField
+  TextField,
+  Typography
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@contexts/Auth';
 
-export const SignInForm = () => {
+interface SignInFormProps {
+  changeAuthState: () => void;
+}
+
+export const SignInForm: React.FC<SignInFormProps> = ({ changeAuthState }) => {
   const {
     register,
     handleSubmit,
@@ -77,6 +82,20 @@ export const SignInForm = () => {
         <Button type="submit" variant="contained">
           Login
         </Button>
+        {/* Footer Content moved here */}
+        <Box sx={{ mt: 2, textAlign: 'center' }}>
+          <Typography variant="body2">
+            Ainda não tem cadastro?{' '}
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: 'primary.main', cursor: 'pointer' }}
+              onClick={changeAuthState}
+            >
+              Crie uma conta agora
+            </Typography>
+          </Typography>
+        </Box>
       </Box>
     </form>
   );

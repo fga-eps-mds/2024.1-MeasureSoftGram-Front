@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Box, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
+import {
+  Box,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  TextField,
+  Typography
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { useForm } from 'react-hook-form';
 import { signUp } from '@services/Auth';
@@ -9,7 +18,8 @@ import { toast } from 'react-toastify';
 interface SignupFormProps {
   changeAuthState: () => void;
 }
-export const SignUpForm = ({ changeAuthState }: SignupFormProps) => {
+
+export const SignUpForm: React.FC<SignupFormProps> = ({ changeAuthState }) => {
   const {
     register,
     handleSubmit,
@@ -22,6 +32,7 @@ export const SignUpForm = ({ changeAuthState }: SignupFormProps) => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
@@ -30,11 +41,12 @@ export const SignUpForm = ({ changeAuthState }: SignupFormProps) => {
     const response = await signUp(data);
     if (response.type === 'success') {
       toast.success('Usuário cadastrado com sucesso!');
-      changeAuthState();
+      changeAuthState(); // Switch to sign-in state after successful sign-up
     } else {
       toast.error(`Erro ao cadastrar usuário: ${response.error.message}`);
     }
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column', gap: '2rem' }}>
@@ -140,6 +152,21 @@ export const SignUpForm = ({ changeAuthState }: SignupFormProps) => {
         <LoadingButton type="submit" variant="contained" color="primary" loading={isSubmitting}>
           Cadastrar
         </LoadingButton>
+
+        {/* Footer Content moved here */}
+        <Box sx={{ mt: 2, textAlign: 'center' }}>
+          <Typography variant="body2">
+            Já possui conta?{' '}
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: 'primary.main', cursor: 'pointer' }}
+              onClick={changeAuthState}
+            >
+              Faça login agora
+            </Typography>
+          </Typography>
+        </Box>
       </Box>
     </form>
   );

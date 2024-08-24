@@ -55,24 +55,10 @@ const Auth: NextPageWithLayout = () => {
           )
         }[authState]
       }
-      footer={
-        {
-          signin: (
-            <AuthFooter
-              text="Ainda não tem cadastro?"
-              link="Crie agora uma conta"
-              changeAuthState={changeAuthState('signup')}
-            />
-          ),
-          signup: (
-            <AuthFooter text="Já possui conta?" link="Faça login agora" changeAuthState={changeAuthState('signin')} />
-          )
-        }[authState]
-      }
     >
       {
         {
-          signin: <SignInForm />,
+          signin: <SignInForm changeAuthState={changeAuthState('signup')} />,
           signup: <SignUpForm changeAuthState={changeAuthState('signin')} />
         }[authState]
       }
