@@ -153,7 +153,6 @@ export const SignUpForm: React.FC<SignupFormProps> = ({ changeAuthState }) => {
           Cadastrar
         </LoadingButton>
 
-        {/* Footer Content moved here */}
         <Box sx={{ mt: 2, textAlign: 'center' }}>
           <Typography variant="body2">
             Já possui conta?{' '}

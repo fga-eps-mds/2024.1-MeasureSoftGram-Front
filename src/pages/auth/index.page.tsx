@@ -25,8 +25,6 @@ const Auth: NextPageWithLayout = () => {
         {
           signin: (
             <AuthHeader
-              title="Login"
-              subTitle="Ou utilize o Email"
               loginButton={
                 <Button
                   fullWidth
@@ -40,17 +38,17 @@ const Auth: NextPageWithLayout = () => {
                   Login com Github
                 </Button>
               }
+              subTitle="OU"
             />
           ),
           signup: (
             <AuthHeader
-              title="Cadastro"
-              subTitle="Ou utilize o Email"
               loginButton={
                 <Button fullWidth variant="outlined" startIcon={<GitHub />}>
                   Cadastro com Github
                 </Button>
               }
+              subTitle="OU"
             />
           )
         }[authState]

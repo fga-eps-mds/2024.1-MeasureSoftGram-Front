@@ -82,7 +82,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({ changeAuthState }) => {
         <Button type="submit" variant="contained">
           Login
         </Button>
-        {/* Footer Content moved here */}
+
         <Box sx={{ mt: 2, textAlign: 'center' }}>
           <Typography variant="body2">
             Ainda não tem cadastro?{' '}
