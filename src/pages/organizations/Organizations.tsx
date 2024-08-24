@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import getLayout from '@components/Layout';
 import { toast } from 'react-toastify';
 import { getAllUsers, User } from '@services/user';
-import { Container, TextField, Button, Typography, Box, List, ListItem, ListItemText, Modal, Backdrop, Fade, Grid, FormControl } from '@mui/material';
+import { TextField, Button, Typography, Box, List, ListItem, ListItemText, Modal, Backdrop, Fade, Grid, FormControl } from '@mui/material';
+import MSGButton from '../../components/idv/buttons/MSGButton';
 import { useOrganizationQuery } from './hooks/useOrganizationQuery';
+import { Title, Container, Wrapper, Description, Form, Header } from './styles';
 
 interface OrganizationsType extends React.FC {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -119,19 +120,17 @@ const Organizations: OrganizationsType = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Head>
-        <title>{isEditMode ? 'Editar Organização' : 'Cadastro de Organização'}</title>
-      </Head>
-      <Typography variant="h4" data-testid="organization-title" gutterBottom>
-        {isEditMode ? 'Editar Organização' : 'Cadastro de Organização'}
-      </Typography>
-      <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
+    <Container>
+      <Header data-testid="organization-title">{isEditMode ? 'EDITAR ORGANIZAÇÃO' : 'ADICIONAR ORGANIZAÇÃO'}</Header>
+      <Wrapper>
+        <Description>
+          Uma organização representa uma entidade de alto nível que mantém múltiplos repositórios de código-fonte. Cada repositório pode ter seu próprio objetivo, mas todos devem estar alinhados com os interesses da organização.
+        </Description>
+        <form onSubmit={handleSubmit}>
+          <Form>
             <TextField
               fullWidth
-              label="Nome"
+              label="Nome da organização"
               variant="outlined"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
@@ -139,54 +138,35 @@ const Organizations: OrganizationsType = () => {
               sx={{ mb: 2 }}
               data-testid="input-nome"
             />
+
             <TextField
               fullWidth
-              label="Descrição"
+              label="Descrição da organização"
               variant="outlined"
               value={descricao}
               onChange={(e) => setDescricao(e.target.value)}
               multiline
-              rows={4}
               sx={{ mb: 2 }}
               data-testid="input-descricao"
             />
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" gutterBottom sx={{ mb: 2 }} data-testid="membros-title">
-              Membros
-            </Typography>
-            <Button variant="contained" color="primary" onClick={handleOpenModal} sx={{ mb: 2 }} data-testid="button-adicionar-membros">
-              Adicionar Membros
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
-                {isEditMode ? 'Salvar' : 'Criar'}
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-      </form>
+            <MSGButton variant='secondary' onClick={handleOpenModal}  >ADICIONAR MEMBROS</MSGButton>
 
+            <MSGButton type='submit' >{isEditMode ? 'SALVAR' : 'CRIAR'}</MSGButton>
+          </Form>
+        </form>
+
+      </Wrapper>
       <Modal
         open={openModal}
         onClose={handleCloseModal}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
         <Fade in={openModal}>
           <Box sx={{ width: 400, p: 3, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, borderRadius: 1 }}>
-            <Typography variant="h6" gutterBottom>
-              Adicionar Membros
-            </Typography>
+            <Title>
+              ADICIONAR MEMBROS
+            </Title>
+            <hr />
             <FormControl fullWidth variant="outlined">
               <List sx={{ maxHeight: '300px', overflowY: 'auto' }}>
                 {Array.isArray(users) && users.length > 0 ? (
@@ -221,7 +201,65 @@ const Organizations: OrganizationsType = () => {
           </Box>
         </Fade>
       </Modal>
-    </Container>
+    </Container >
+
+
+    // <Container maxWidth="md" sx={{ mt: 4 }}>
+    //   <Head>
+    //     <title>{isEditMode ? 'Editar Organização' : 'Cadastro de Organização'}</title>
+    //   </Head>
+    //   <Typography variant="h4" data-testid="organization-title" gutterBottom>
+    //     {isEditMode ? 'Editar Organização' : 'Cadastro de Organização'}
+    //   </Typography>
+    //   <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
+    //     <Grid container spacing={3}>
+    //       <Grid item xs={6}>
+    //         <TextField
+    //           fullWidth
+    //           label="Nome"
+    //           variant="outlined"
+    //           value={nome}
+    //           onChange={(e) => setNome(e.target.value)}
+    //           required
+    //           sx={{ mb: 2 }}
+    //           data-testid="input-nome"
+    //         />
+    //         <TextField
+    //           fullWidth
+    //           label="Descrição"
+    //           variant="outlined"
+    //           value={descricao}
+    //           onChange={(e) => setDescricao(e.target.value)}
+    //           multiline
+    //           rows={4}
+    //           sx={{ mb: 2 }}
+    //           data-testid="input-descricao"
+    //         />
+    //       </Grid>
+    //       <Grid item xs={6}>
+    //         <Typography variant="h6" gutterBottom sx={{ mb: 2 }} data-testid="membros-title">
+    //           Membros
+    //         </Typography>
+    //         <Button variant="contained" color="primary" onClick={handleOpenModal} sx={{ mb: 2 }} data-testid="button-adicionar-membros">
+    //           Adicionar Membros
+    //         </Button>
+    //       </Grid>
+    //       <Grid item xs={12}>
+    //         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    //           <Button
+    //             type="submit"
+    //             variant="contained"
+    //             color="primary"
+    //           >
+    //             {isEditMode ? 'Salvar' : 'Criar'}
+    //           </Button>
+    //         </Box>
+    //       </Grid>
+    //     </Grid>
+    //   </form>
+
+
+    // </Container>
   );
 };
 
