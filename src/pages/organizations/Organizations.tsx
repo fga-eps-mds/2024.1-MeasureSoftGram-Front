@@ -4,7 +4,7 @@ import getLayout from '@components/Layout';
 import { toast } from 'react-toastify';
 import { getAllUsers, User } from '@services/user';
 import { TextField, Button, Typography, Box, List, ListItem, ListItemText, Modal, Backdrop, Fade, Grid, FormControl } from '@mui/material';
-import MSGButton from 'src/components/idv/buttons/MSGButton';
+import MSGButton from '../../components/idv/buttons/MSGButton';
 import { useOrganizationQuery } from './hooks/useOrganizationQuery';
 import { Title, Container, Wrapper, Description, Form, Header } from './styles';
 
@@ -121,7 +121,7 @@ const Organizations: OrganizationsType = () => {
 
   return (
     <Container>
-      <Header>{isEditMode ? 'EDITAR ORGANIZAÇÃO' : 'ADICIONAR ORGANIZAÇÃO'}</Header>
+      <Header data-testid="organization-title">{isEditMode ? 'EDITAR ORGANIZAÇÃO' : 'ADICIONAR ORGANIZAÇÃO'}</Header>
       <Wrapper>
         <Description>
           Uma organização representa uma entidade de alto nível que mantém múltiplos repositórios de código-fonte. Cada repositório pode ter seu próprio objetivo, mas todos devem estar alinhados com os interesses da organização.
