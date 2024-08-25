@@ -99,7 +99,7 @@ export const SignUpForm: React.FC<SignupFormProps> = ({ changeAuthState }) => {
           error={!!errors?.last_name}
           helperText={errors?.last_name?.message as string}
         />
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" error={!!errors?.password}>
           <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -118,14 +118,24 @@ export const SignUpForm: React.FC<SignupFormProps> = ({ changeAuthState }) => {
             }
             label="Password"
             {...register('password', {
+              required: 'Senha é obrigatória',
               minLength: {
                 value: 6,
                 message: 'Senha precisa ter ao menos 6 dígitos'
+              },
+              pattern: {
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
+                message: 'A senha deve conter ao menos 1 letra maiúscula, 1 número, e ter no mínimo 6 caracteres'
               }
             })}
           />
+          {errors.password && (
+            <Typography variant="body2" color="error">
+              {errors.password.message}
+            </Typography>
+          )}
         </FormControl>
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" error={!!errors?.confirmPassword}>
           <InputLabel htmlFor="outlined-adornment-password">Confirmar senha</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -144,9 +154,15 @@ export const SignUpForm: React.FC<SignupFormProps> = ({ changeAuthState }) => {
             }
             label="Confirmar senha"
             {...register('confirmPassword', {
-              validate: (value) => value === watch('password') || 'auth:signup.messages.passwordMatch'
+              required: 'Confirmação de senha é obrigatória',
+              validate: (value) => value === watch('password') || 'As senhas devem corresponder'
             })}
           />
+          {errors.confirmPassword && (
+            <Typography variant="body2" color="error">
+              {errors.confirmPassword.message}
+            </Typography>
+          )}
         </FormControl>
 
         <LoadingButton type="submit" variant="contained" color="primary" loading={isSubmitting}>
