@@ -7,9 +7,11 @@
   "endDateTooltip": "Ao selecionar uma data, são apresentadas todas as releases com datas finais exatamente iguais e anteriores às da selecionada",
   "searchButtonLabel": "Buscar releases",
   "searchPlaceholder": "Insira o nome da release",
+  "planRelease": "Planejar release",
   "table": {
     "name": "Nome",
-    "startDate": "Início da release",
-    "endDate": "Fim da release"
+    "details": "Ver Detalhes",
+    "startDate": "Início da Release",
+    "endDate": "Fim da Release"
   }
 }
