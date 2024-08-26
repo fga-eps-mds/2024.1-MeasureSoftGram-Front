@@ -14,6 +14,7 @@ import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
 import RepositoriesTable from '../components/RepositoriesList/RepositoriesTable';
 import { GithubRepositoriesModal } from './[repository]/components/GithubRepositoriesModal';
+import { getGithubAuthUrlToRepositoriesPage } from '@services/Auth';
 
 
 const Repositories: NextPageWithLayout = () => {
@@ -28,7 +29,10 @@ const Repositories: NextPageWithLayout = () => {
   };
 
   const [openModal, setOpenModal] = React.useState(false);
-  const handleOpenModal = () => setOpenModal(true);
+  const handleOpenModal = () => {
+    router.push(getGithubAuthUrlToRepositoriesPage(router.asPath), undefined, { shallow: true });
+    setOpenModal(true);
+  }
   const handleCloseModal = () => setOpenModal(false);
 
   const open = Boolean(anchorEl);

@@ -2,7 +2,8 @@ import { Box, Typography, Modal } from '@mui/material';
 import { useState } from 'react';
 import SearchButton from '@components/SearchButton';
 import { Repository } from '@customTypes/repository';
-
+import {useRouter} from 'next/router'
+import { getUserGitHubToken } from '@services/user';
 
 type GithubRepositoriesModalProps = {
   open: boolean
@@ -27,8 +28,13 @@ const styleModal = {
 
 
 export function GithubRepositoriesModal({ handleCloseModal, open }: GithubRepositoriesModalProps) {
+  const router = useRouter();
 
   const [filteredRepositories, setFilteredRepositories] = useState(repositories);
+
+  const code = router?.query?.code as string;
+
+  const accessTokenResult = getUserGitHubToken(code);
 
   function handleRepositoriesFilter(name: string) {
     if (!name) {

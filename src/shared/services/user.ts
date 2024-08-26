@@ -45,3 +45,36 @@ export const getAllUsers = async (): Promise<Result<UserResult>> => {
     return { type: 'error', error };
   }
 };
+
+
+export async function getUserGitHubToken(code: string) {
+  try {
+    return api.get(`/accounts/github-token`,{ params: { code }})
+  } catch (err) {
+    const error = err as AxiosError;
+    return { type: 'error', error };
+  }
+}
+
+export async function getGithubUser(accessToken: string){
+ try {
+    return api.get(`https://api.github.com/user`, {
+      headers: {
+        Authorization:`token ${accessToken}`
+      }
+    })
+  } catch (err) {
+    const error = err as AxiosError;
+    return { type: 'error', error };
+  }
+}
+
+
+export async function getUserRepositories(userName: string){
+ try {
+    return api.get(`https://api.github.com/search/repositories?q=user:${userName}`)
+  } catch (err) {
+    const error = err as AxiosError;
+    return { type: 'error', error };
+  }
+}
