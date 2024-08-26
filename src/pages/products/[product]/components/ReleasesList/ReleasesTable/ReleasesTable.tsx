@@ -1,7 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { TableContainer, Table, TableCell, TableHead, TableRow, TableBody } from '@mui/material';
+import { TableContainer, Table, TableCell, TableHead, TableRow, TableBody, IconButton, Tooltip } from '@mui/material';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 import { useProductContext } from '@contexts/ProductProvider';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
@@ -32,6 +33,7 @@ function ReleasesTable({ releaseList }: ReleasesTableProps) {
             <TableCell>{t('table.name')}</TableCell>
             <TableCell>{t('table.startDate')}</TableCell>
             <TableCell>{t('table.endDate')}</TableCell>
+            <TableCell>{t('table.details')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,6 +48,13 @@ function ReleasesTable({ releaseList }: ReleasesTableProps) {
               <TableCell>{release?.release_name}</TableCell>
               <TableCell>{formatDate(release?.start_at)}</TableCell>
               <TableCell>{formatDate(release?.end_at)}</TableCell>
+              <TableCell>
+                <Tooltip title={t('table.details')}>
+                  <IconButton aria-label="access-release" color="primary">
+                    <QueryStatsIcon />
+                  </IconButton>
+                </Tooltip>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
