@@ -97,7 +97,7 @@ const ProductsCreation: OrganizationsType = () => {
 
   return (
     <Container>
-      <Header>{isEditMode ? 'Editar Produto' : 'Cadastro de Produto'}</Header>
+      <Header>{isEditMode ? 'EDITAR PRODUTO' : 'ADICIONAR PRODUTO'}</Header>
       <Wrapper>
         <Description>
           Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
