@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import getLayout from '@components/Layout';
 import { toast } from 'react-toastify';
-import { Container, TextField, Button, Typography, Box, Grid, MenuItem } from '@mui/material';
+import { TextField, MenuItem } from '@mui/material';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
+import { Botoes, Container, Description, Form, Header, Wrapper } from '@pages/organizations/styles';
+import MSGButton from '../../../components/idv/buttons/MSGButton';
 import { useProductQuery } from '../hooks/useProductQuery';
 
 interface OrganizationsType extends React.FC {
@@ -24,15 +25,22 @@ const ProductsCreation: OrganizationsType = () => {
 
   useEffect(() => {
     const editMode = router.query.id_product;
+    console.log(router);
 
     if (editMode) {
       setIsEditMode(true);
       const fetchProductData = async () => {
-        const result = await getProductById(currentOrganizationId as string, currentProductId as string);
-        if (result.type === 'success') {
-          setName(result.value.name);
-          setDescription(result.value.description || '');
-          setOrganizationId(result.value.organizationId || 0);
+        try {
+          const result = await getProductById(currentOrganizationId as string, currentProductId as string);
+
+          if (result.type === 'success') {
+            setName(result.value.name);
+            setDescription(result.value.description || '');
+            setOrganizationId(result.value.organizationId || 0);
+          }
+        }
+        catch (e) {
+          console.log(e)
         }
       };
       fetchProductData();
@@ -60,42 +68,43 @@ const ProductsCreation: OrganizationsType = () => {
       result = await updateProduct(currentProductId as string, novoProduto);
       if (result.type === 'success') {
         toast.success('Produto atualizado com sucesso!');
-        setTimeout(() => {
-          window.location.reload();
-          window.location.href = '/home';
-        }, 2000);
+        window.location.reload();
+        window.location.href = '/home';
       } else if (result.error.message === nameExist) {
         toast.error(nameExist);
       } else {
         toast.error('Erro ao atualizar o Produto!');
       }
     } else {
-      result = await createProduct(novoProduto);
-      if (result.type === 'success') {
-        toast.success('Produto criado com sucesso!');
-        setTimeout(() => {
+
+      try {
+        result = await createProduct(novoProduto);
+        if (result.type === 'success') {
+          toast.success('Produto criado com sucesso!');
           window.location.reload();
           window.location.href = '/home';
-        }, 2000);
-      } else if (result.error.message === nameExist) {
-        toast.error(nameExist);
-      } else {
-        toast.error('Erro ao criar o Produto!');
+        } else if (result.error.message === nameExist) {
+          toast.error(nameExist);
+        } else {
+          toast.error('Erro ao criar o Produto!');
+        }
+      }
+      catch (e) {
+        console.log(e)
       }
     }
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Head>
-        <title>{isEditMode ? 'Editar Produto' : 'Cadastro de Produto'}</title>
-      </Head>
-      <Typography variant="h4" gutterBottom>
-        {isEditMode ? 'Editar Produto' : 'Cadastro de Produto'}
-      </Typography>
-      <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+    <Container>
+      <Header>{isEditMode ? 'Editar Produto' : 'Cadastro de Produto'}</Header>
+      <Wrapper>
+        <Description>
+          Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
+        </Description>
+
+        <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <Form>
             <TextField
               select
               required
@@ -115,6 +124,7 @@ const ProductsCreation: OrganizationsType = () => {
                 ))
               }
             </TextField>
+
             <TextField
               fullWidth
               label="Nome"
@@ -125,6 +135,7 @@ const ProductsCreation: OrganizationsType = () => {
               sx={{ mb: 2 }}
               data-testid="name-input"
             />
+
             <TextField
               fullWidth
               label="Descrição"
@@ -136,23 +147,16 @@ const ProductsCreation: OrganizationsType = () => {
               sx={{ mb: 2 }}
               data-testid="description-input"
             />
-          </Grid>
-          <Grid item xs={12}>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
-                {isEditMode ? 'Salvar' : 'Criar'}
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-      </form>
+            <Botoes>
+              <MSGButton width="200px" variant='secondary' onClick={() => router.push('/home')}  >VOLTAR</MSGButton>
 
+              <MSGButton width="200px" type='submit' >{isEditMode ? 'SALVAR' : 'CRIAR'}</MSGButton>
+            </Botoes>
 
-    </Container>
+          </Form>
+        </form>
+      </Wrapper>
+    </Container >
   );
 };
 

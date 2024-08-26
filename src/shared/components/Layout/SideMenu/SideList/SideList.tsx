@@ -67,10 +67,9 @@ const SideList = <T extends ItemWithBasicProps>({
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleAddClick = async (path: string) => {
+    console.log('AHAHAHAHAHAAHAHAH')
     onClose();
-    setTimeout(() => {
-      router.push(path);
-    });
+    router.push(path);
   };
 
   const handleActionButtonClick = async (action: () => Promise<void>) => {

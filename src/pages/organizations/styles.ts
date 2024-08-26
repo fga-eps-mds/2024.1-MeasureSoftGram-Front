@@ -8,6 +8,7 @@ export const Container = styled.div`
   border-radius: 5px;
   margin: 0 20%;
   margin-top: 4rem;
+  max-width: 900px;
 `;
 
 export const Header = styled.div`
@@ -53,4 +54,11 @@ export const Form = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+`;
+
+export const Botoes = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: wrap;
 `;
