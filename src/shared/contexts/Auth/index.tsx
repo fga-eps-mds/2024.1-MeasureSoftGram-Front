@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { getUserInfo, signInCredentials, signInGithub, signOut } from '@services/Auth';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
@@ -19,7 +19,7 @@ export const AuthContext = createContext<authContextType>(authContextDefaultValu
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [loading, setLoading] = useState<'loading' | 'loaded'>('loading');
   const router = useRouter();
-
+  const hasExecuted = useRef(false)
   const {
     storedValue: session,
     setValue: setSession,
@@ -72,9 +72,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }, [removeAuthStorage, router, setSession]);
 
   const signInWithGithub = useCallback(
-    async (code: string): Promise<Result<User> | undefined> => {
-      if (token)
-        return
+    async (code: string): Promise<Result<User>> => {
 
       const response = await signInGithub(code);
 
@@ -119,7 +117,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         toast.success('Login realizado com sucesso!');
         await router.push('/home');
         return response;
-      } if (response.type === 'error') {
+      }
+      if (response.type === 'error') {
         toast.error(`Erro ao realizar login: ${response.error.message || 'Erro desconhecido'}`);
         return response;
       }
@@ -131,13 +130,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
 
   useEffect(() => {
-    console.log('Effect called with:', { code: router?.query?.code, provider, token });
-
-    const code = router?.query?.code;
-    if (code && provider === 'github' && !token) {
+    const params = new URLSearchParams(window.location.search)
+    const code = params.get('code')
+    if (code && provider === 'github' && !token && !hasExecuted.current) {
+      hasExecuted.current = true
       signInWithGithub(code as string);
     }
-  }, [provider, router?.query?.code, signInWithGithub]);
+  }, [provider, token, signInWithGithub]);
 
   useEffect(() => {
     setLoading('loading');
