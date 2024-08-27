@@ -11,7 +11,7 @@ Object {
         <div
           class="styles__Header-sc-1s564rw-1 bjPRWa"
         >
-          EDITAR PRODUTO
+          title-edit
         </div>
         <div
           class="styles__Wrapper-sc-1s564rw-3 dZbbdr"
@@ -19,7 +19,7 @@ Object {
           <div
             class="styles__Description-sc-1s564rw-4 fMSgUG"
           >
-            Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
+            description
           </div>
           <form
             sx="[object Object]"
@@ -37,7 +37,7 @@ Object {
                   for=":rc:"
                   id=":rc:-label"
                 >
-                  Organizações
+                  label-input
                   <span
                     aria-hidden="true"
                     class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -93,7 +93,7 @@ Object {
                       class="css-14lo706"
                     >
                       <span>
-                        Organizações
+                        label-input
                          
                         *
                       </span>
@@ -111,7 +111,7 @@ Object {
                   for=":re:"
                   id=":re:-label"
                 >
-                  Nome
+                  name-input
                   <span
                     aria-hidden="true"
                     class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -139,7 +139,7 @@ Object {
                       class="css-yjsfm1"
                     >
                       <span>
-                        Nome
+                        name-input
                          
                         *
                       </span>
@@ -157,7 +157,7 @@ Object {
                   for=":rf:"
                   id=":rf:-label"
                 >
-                  Descrição
+                  description-input
                 </label>
                 <div
                   class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
@@ -184,7 +184,7 @@ Object {
                       class="css-yjsfm1"
                     >
                       <span>
-                        Descrição
+                        description-input
                       </span>
                     </legend>
                   </fieldset>
@@ -199,7 +199,7 @@ Object {
                   tabindex="0"
                   type="button"
                 >
-                  VOLTAR
+                  back
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
@@ -210,7 +210,7 @@ Object {
                   tabindex="0"
                   type="submit"
                 >
-                  SALVAR
+                  save
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
@@ -229,7 +229,7 @@ Object {
       <div
         class="styles__Header-sc-1s564rw-1 bjPRWa"
       >
-        EDITAR PRODUTO
+        title-edit
       </div>
       <div
         class="styles__Wrapper-sc-1s564rw-3 dZbbdr"
@@ -237,7 +237,7 @@ Object {
         <div
           class="styles__Description-sc-1s564rw-4 fMSgUG"
         >
-          Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
+          description
         </div>
         <form
           sx="[object Object]"
@@ -255,7 +255,7 @@ Object {
                 for=":rc:"
                 id=":rc:-label"
               >
-                Organizações
+                label-input
                 <span
                   aria-hidden="true"
                   class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -311,7 +311,7 @@ Object {
                     class="css-14lo706"
                   >
                     <span>
-                      Organizações
+                      label-input
                        
                       *
                     </span>
@@ -329,7 +329,7 @@ Object {
                 for=":re:"
                 id=":re:-label"
               >
-                Nome
+                name-input
                 <span
                   aria-hidden="true"
                   class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -357,7 +357,7 @@ Object {
                     class="css-yjsfm1"
                   >
                     <span>
-                      Nome
+                      name-input
                        
                       *
                     </span>
@@ -375,7 +375,7 @@ Object {
                 for=":rf:"
                 id=":rf:-label"
               >
-                Descrição
+                description-input
               </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
@@ -402,7 +402,7 @@ Object {
                     class="css-yjsfm1"
                   >
                     <span>
-                      Descrição
+                      description-input
                     </span>
                   </legend>
                 </fieldset>
@@ -417,7 +417,7 @@ Object {
                 tabindex="0"
                 type="button"
               >
-                VOLTAR
+                back
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -428,7 +428,7 @@ Object {
                 tabindex="0"
                 type="submit"
               >
-                SALVAR
+                save
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { TextField, MenuItem } from '@mui/material';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { Botoes, Container, Description, Form, Header, Wrapper } from '@pages/organizations/styles';
+import { useTranslation } from 'react-i18next';
 import MSGButton from '../../../components/idv/buttons/MSGButton';
 import { useProductQuery } from '../hooks/useProductQuery';
 
@@ -22,11 +23,10 @@ const ProductsCreation: OrganizationsType = () => {
   const { createProduct, getProductById, updateProduct } = useProductQuery();
   const currentOrganizationId = router.query.id_organization;
   const currentProductId = router.query.id_product;
+  const { t } = useTranslation('product');
 
   useEffect(() => {
     const editMode = router.query.id_product;
-    console.log(router);
-
     if (editMode) {
       setIsEditMode(true);
       const fetchProductData = async () => {
@@ -62,31 +62,31 @@ const ProductsCreation: OrganizationsType = () => {
       novoProduto.organizationId = parseInt(currentOrganizationId[0], 10);
     }
 
-    const nameExist = "Já existe um Produto com este nome."
+    const nameExist = t('toast.name-exists')
 
     if (isEditMode) {
       result = await updateProduct(currentProductId as string, novoProduto);
       if (result.type === 'success') {
-        toast.success('Produto atualizado com sucesso!');
+        toast.success(t('toast.success-edit'));
         window.location.reload();
         window.location.href = '/home';
       } else if (result.error.message === nameExist) {
         toast.error(nameExist);
       } else {
-        toast.error('Erro ao atualizar o Produto!');
+        toast.error(t('toast.error-edit'));
       }
     } else {
 
       try {
         result = await createProduct(novoProduto);
         if (result.type === 'success') {
-          toast.success('Produto criado com sucesso!');
+          toast.success(t('toast.sucess'));
           window.location.reload();
           window.location.href = '/home';
         } else if (result.error.message === nameExist) {
           toast.error(nameExist);
         } else {
-          toast.error('Erro ao criar o Produto!');
+          toast.error(t('toast.error-create'));
         }
       }
       catch (e) {
@@ -97,10 +97,10 @@ const ProductsCreation: OrganizationsType = () => {
 
   return (
     <Container>
-      <Header>{isEditMode ? 'EDITAR PRODUTO' : 'ADICIONAR PRODUTO'}</Header>
+      <Header>{isEditMode ? t('title-edit') : t('title-create')}</Header>
       <Wrapper>
         <Description>
-          Os produtos são softwares que pertencem à alguma organização e que possuem algum cliente. Por conta de sua natureza, um mesmo produto pode possuir vários repositórios associados à ele, o que permite uma implementação continua em mais de uma frente de trabalho.
+          {t('description')}
         </Description>
 
         <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -109,7 +109,7 @@ const ProductsCreation: OrganizationsType = () => {
               select
               required
               fullWidth
-              label="Organizações"
+              label={t('label-input')}
               variant="outlined"
               value={organizationId || currentOrganizationId}
               onChange={(e) => setOrganizationId(+e.target.value)}
@@ -127,7 +127,7 @@ const ProductsCreation: OrganizationsType = () => {
 
             <TextField
               fullWidth
-              label="Nome"
+              label={t('name-input')}
               variant="outlined"
               value={nome}
               onChange={(e) => setName(e.target.value)}
@@ -138,7 +138,7 @@ const ProductsCreation: OrganizationsType = () => {
 
             <TextField
               fullWidth
-              label="Descrição"
+              label={t('description-input')}
               variant="outlined"
               value={descricao}
               onChange={(e) => setDescription(e.target.value)}
@@ -148,11 +148,10 @@ const ProductsCreation: OrganizationsType = () => {
               data-testid="description-input"
             />
             <Botoes>
-              <MSGButton width="200px" variant='secondary' onClick={() => router.push('/home')}  >VOLTAR</MSGButton>
+              <MSGButton width="200px" variant='secondary' onClick={() => router.push('/home')}  >{t('back')}</MSGButton>
 
-              <MSGButton width="200px" type='submit' >{isEditMode ? 'SALVAR' : 'CRIAR'}</MSGButton>
+              <MSGButton width="200px" type='submit' >{isEditMode ? t('save') : t('create')}</MSGButton>
             </Botoes>
-
           </Form>
         </form>
       </Wrapper>
