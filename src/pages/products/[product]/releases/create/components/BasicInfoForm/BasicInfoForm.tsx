@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Checkbox, Container, FormControlLabel, hexToRgb, Stack, TextField, Tooltip, Typography } from '@mui/material';
+import React, { } from 'react';
+import { Accordion, AccordionSummary, Box, Checkbox, FormControlLabel, hexToRgb, TextField, Typography } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { Timeline, TimelineSeparator, TimelineConnector, TimelineDot, TimelineItem, TimelineContent, timelineItemClasses } from '@mui/lab';
-import { Characteristic } from '@customTypes/preConfig';
+import { PreConfigData } from '@customTypes/preConfig';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
-import { ConfigPageData } from '../../ReleaseCreation';
 
 interface BasicInfoFormProps {
   register: any;
@@ -13,18 +12,19 @@ interface BasicInfoFormProps {
   trigger: any;
   followLastConfig: boolean;
   setFollowLastConfig: any;
-  configPageData: ConfigPageData;
+  configPageData: PreConfigData;
 }
 
 export default function BasicInfoForm({ configPageData, trigger, register, errors, followLastConfig, setFollowLastConfig, watch }: BasicInfoFormProps) {
   const renderCurrentConfig = () => (
     <Accordion defaultExpanded
+      square={true}
       sx={{
         boxShadow: 'inherit',
         border: 0.5,
         backgroundColor: "transparent",
         borderColor: "#00000040",
-        borderRadius: 1,
+        borderRadius: 3,
         marginTop: 2
       }}>
       <AccordionSummary expandIcon={<ExpandMore />}>
@@ -40,7 +40,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
           marginTop: 0
         }}
       >
-        {configPageData?.characteristicData?.map((characteristic, index) => (
+        {configPageData?.characteristics?.map((characteristic, index) => (
           <Accordion
             sx={{
               boxShadow: 'inherit',
@@ -104,12 +104,11 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                               Medida: {measure.key}
                             </Typography>
                             <Typography>Peso: {measure.weight}</Typography>
-                            {measure.min_threshold && measure.max_threshold && (
-                              <Typography>
-                                min = {measure.min_threshold} | max = {measure.max_threshold}
-                              </Typography>
-                            )}
-                            <Timeline
+                            <Typography>
+                              min = {measure.min_threshold} | max = {measure.max_threshold}
+                            </Typography>
+
+                            {/* <Timeline
                               key={"3"}
                               sx={{
                                 [`& .${timelineItemClasses.root}:before`]: {
@@ -133,7 +132,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                                   </TimelineContent>
                                 </TimelineItem>
                               ))}
-                            </Timeline>
+                            </Timeline> */}
                           </TimelineContent>
                         </TimelineItem>
                       ))}
@@ -163,7 +162,6 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
       inputProps={{
         'data-testid': 'apelido-release'
       }}
-      onBlur={async () => await trigger('name')}
       fullWidth
     />
     <TextField

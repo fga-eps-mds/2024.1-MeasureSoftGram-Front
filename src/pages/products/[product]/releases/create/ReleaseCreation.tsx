@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { Box, Breadcrumbs, Button, Link } from '@mui/material';
 import * as Styles from './styles';
-import { Changes, PreConfigEntitiesRelationship } from '@customTypes/product';
+import { Changes } from '@customTypes/product';
 import { useForm } from 'react-hook-form';
 import { format, addDays } from 'date-fns';
 import { useRouter } from 'next/router';
 import getLayout from '@components/Layout';
-import { useProductCurrentPreConfig } from '@hooks/useProductCurrentPreConfig';
 import BasicInfoForm from './components/BasicInfoForm/BasicInfoForm';
 import ModelConfigForm from './components/ModelConfigForm/ModelConfigForm';
-import { Characteristic } from '@customTypes/preConfig';
+import { PreConfigData } from '@customTypes/preConfig';
 import ReferenceValuesForm from './components/ReferenceValuesForm/ReferenceValuesForm';
 import CharacteristicsBalanceForm from './components/CharacteristicsBalanceForm/CharacteristicsBalanceForm';
 import api from '@services/api';
@@ -21,37 +20,19 @@ interface ReleaseInfoForm {
   description: string;
   startDate: string;
   endDate: string;
-  characteristics: string[];
+  goal: number;
   changes: Changes[];
-}
-
-export interface ConfigPageData {
-  characteristicCheckbox: string[];
-  setCharacteristicCheckbox: (characteristicCheckbox: string[]) => void;
-  subcharacterCheckbox: string[];
-  setSubcharacterCheckbox: (subcharacterCheckbox: string[]) => void;
-  measureCheckbox: string[];
-  setMeasureCheckbox: (measureCheckbox: string[]) => void;
-  characteristicData: Characteristic[];
-  setCharacteristicValuesValid: (value: boolean) => void;
 }
 
 function ReleaseInfo() {
   const [organizationId, setOrganizationId] = useState<string>("");
   const [productId, setProductId] = useState<string>("");
   const [activeStep, setActiveStep] = useState(0);
-  const [changeRefValue, setChangeRefValue] = useState<boolean>(true);
+  const [changeRefValue, setChangeRefValue] = useState<boolean>(false);
   const [followLastConfig, setFollowLastConfig] = useState<boolean>(false);
-  const [configPageData, setConfigPageData] = useState<ConfigPageData>(() => ({
-    characteristicCheckbox: [],
-    setCharacteristicCheckbox: (checkboxes: string[]) => { },
-    subcharacterCheckbox: [],
-    setSubcharacterCheckbox: (checkboxes: string[]) => { },
-    measureCheckbox: [],
-    setMeasureCheckbox: (checkboxes: string[]) => { },
-    characteristicData: [],
-    setCharacteristicValuesValid: (value: boolean) => { },
-  }));
+  const [defaultPageData, setConfigDefaultPageData] = useState<PreConfigData>();
+  const [configPageData, setConfigPageData] = useState<PreConfigData>();
+  const [lastConfigPageData, setLastConfigPageData] = useState<PreConfigData>();
 
   const router = useRouter();
   const routerParams: any = router.query;
@@ -62,14 +43,11 @@ function ReleaseInfo() {
       endDate: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
       startDate: format(new Date(), 'yyyy-MM-dd'),
       changes: [],
-      characteristics: [],
+      goal: 0,
       name: '',
       description: '',
     }
   });
-
-  useEffect(() => {
-  }, []);
 
   useEffect(() => {
     if (router.isReady) {
@@ -81,8 +59,14 @@ function ReleaseInfo() {
 
       const getPreConfig = async () => {
         try {
-          const preConfigResult = await productQuery.getProductCurrentPreConfig(organization, product);
-          console.log(preConfigResult.data)
+          const currentPreConfigResult = await productQuery.getProductCurrentPreConfig(organization, product);
+          const defaultPreConfigResult = await productQuery.getProductDefaultPreConfig(organization, product);
+          const entitiesRelationship = await productQuery.getPreConfigEntitiesRelationship(organization, product);
+          const currentReleaseGoal = await productQuery.getCurrentReleaseGoal(organization, product);
+
+          setLastConfigPageData(formatConfig(updateWithDefault(currentPreConfigResult.data.data, defaultPreConfigResult.data)));
+          setConfigPageData(formatConfig(defaultPreConfigResult.data));
+          setConfigDefaultPageData(formatConfig(defaultPreConfigResult.data));
         } catch (error) {
 
         }
@@ -91,6 +75,69 @@ function ReleaseInfo() {
       getPreConfig();
     };
   }, [router.isReady]);
+
+  function updateWithDefault(current: PreConfigData, defaultData: PreConfigData): PreConfigData {
+    const findOrCreate = <T extends { key: string }>(array: T[], key: string, defaultEntry: T): T => {
+      const entry = array.find(item => item.key === key);
+      return entry ? entry : { ...defaultEntry, key, weight: 0 };
+    };
+
+    const updatedCharacteristics = defaultData.characteristics.map(defaultChar => {
+      const currentChar = findOrCreate(current.characteristics, defaultChar.key, defaultChar);
+
+      const updatedSubcharacteristics = defaultChar.subcharacteristics.map(defaultSub => {
+        const currentSub = findOrCreate(currentChar.subcharacteristics, defaultSub.key, defaultSub);
+
+        const updatedMeasures = defaultSub.measures.map(defaultMeasure => {
+          return findOrCreate(currentSub.measures, defaultMeasure.key, defaultMeasure);
+        });
+
+        return {
+          ...currentSub,
+          measures: updatedMeasures
+        };
+      });
+
+      return {
+        ...currentChar,
+        subcharacteristics: updatedSubcharacteristics
+      };
+    });
+
+    return {
+      ...current,
+      characteristics: updatedCharacteristics
+    };
+  };
+
+  function formatConfig(data: PreConfigData): PreConfigData {
+    data.characteristics.forEach(characteristic => {
+      if (characteristic.weight > 0) {
+        characteristic.active = true;
+      }
+      characteristic.subcharacteristics.forEach(subcharacteristic => {
+        if (subcharacteristic.weight > 0 && characteristic.active) {
+          subcharacteristic.active = true;
+        }
+        subcharacteristic.measures.forEach(measure => {
+          if (measure.weight > 0 && subcharacteristic.active) {
+            measure.active = true;
+          }
+        });
+      });
+    });
+
+    return data;
+  }
+
+  function handleSetFollowLastConfig(value: boolean) {
+    if (value)
+      setConfigPageData(lastConfigPageData!);
+    else
+      setConfigPageData(defaultPageData!);
+
+    setFollowLastConfig(value)
+  }
 
   async function checkBasicValues() {
     if (Object.keys(errors).length != 0)
@@ -107,13 +154,13 @@ function ReleaseInfo() {
   function renderStep(): React.ReactNode {
     switch (activeStep) {
       case 0:
-        return <BasicInfoForm configPageData={configPageData} trigger={trigger} register={register} errors={errors} watch={watch} followLastConfig={followLastConfig} setFollowLastConfig={setFollowLastConfig} />
+        return <BasicInfoForm configPageData={configPageData!} trigger={trigger} register={register} errors={errors} watch={watch} followLastConfig={followLastConfig} setFollowLastConfig={handleSetFollowLastConfig} />
       case 1:
-        return <ModelConfigForm configPageData={configPageData} register={register} errors={errors}></ModelConfigForm>
+        return <ModelConfigForm changeRefValue={changeRefValue} setChangeRefValue={setChangeRefValue} configPageData={configPageData!} setConfigPageData={setConfigPageData}></ModelConfigForm>
       case 2:
-        return <ReferenceValuesForm configPageData={configPageData} register={register} errors={errors}></ReferenceValuesForm>
+        return <ReferenceValuesForm configPageData={configPageData!} setConfigPageData={setConfigPageData}></ReferenceValuesForm>
       case 3:
-        return <CharacteristicsBalanceForm configPageData={configPageData} register={register} errors={errors} dinamicBalance={followLastConfig} setDinamicBalance={setFollowLastConfig}></CharacteristicsBalanceForm>
+        return <CharacteristicsBalanceForm configPageData={configPageData!} register={register} errors={errors} dinamicBalance={followLastConfig} setDinamicBalance={setFollowLastConfig}></CharacteristicsBalanceForm>
     }
   }
 
@@ -124,16 +171,62 @@ function ReleaseInfo() {
       setActiveStep(activeStep - 1);
   }
 
-  async function nextButtonClick(data: any): Promise<void> {
-    if (activeStep == 0) {
-      await checkBasicValues();
+  const isSumEqualTo100 = (items: { weight: number; active?: boolean }[]) => {
+    return items
+      .filter(item => item.active)
+      .reduce((sum, item) => sum + item.weight, 0) === 100;
+  };
+
+  function isConfigDataWeightValid(): boolean {
+    const isCharacteristicsValid = isSumEqualTo100(configPageData!.characteristics);
+
+    if (!isCharacteristicsValid) {
+      //showModalError();
+      return false;
     }
-    else if (activeStep == 1 && !changeRefValue)
-      setActiveStep(activeStep + 2);
-    else if (activeStep < 3)
-      setActiveStep(activeStep + 1);
-    else
-      handleSubmit(checkBasicValues)
+
+    const isSubcharacteristicsValid = configPageData!.characteristics
+      .filter(characteristic => characteristic.active)
+      .every(characteristic => isSumEqualTo100(characteristic.subcharacteristics));
+
+    if (!isSubcharacteristicsValid) {
+      //showModalError();
+      return false;
+    }
+
+    const isMeasuresValid = configPageData!.characteristics
+      .filter(characteristic => characteristic.active)
+      .every(characteristic =>
+        characteristic.subcharacteristics
+          .filter(subcharacteristic => subcharacteristic.active)
+          .every(subcharacteristic => isSumEqualTo100(subcharacteristic.measures))
+      );
+
+    if (!isMeasuresValid) {
+      //showModalError();
+      return false;
+    }
+
+    return true;
+  }
+
+  async function nextButtonClick(data: any): Promise<void> {
+    switch (activeStep) {
+      case 0:
+        await checkBasicValues();
+        break;
+      case 1:
+        if (!isConfigDataWeightValid()) break;
+
+        if (!changeRefValue) setActiveStep(activeStep + 2);
+        else setActiveStep(activeStep + 1);
+        break;
+      case 2:
+        setActiveStep(activeStep + 1);
+        break;
+      case 3:
+        handleSubmit(checkBasicValues)
+    }
   }
 
   function renderBreadcrumb(label: string, step: number): any {

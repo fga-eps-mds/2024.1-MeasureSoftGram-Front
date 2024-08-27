@@ -1,4 +1,4 @@
-import { FormControlLabel, Checkbox, Slider, TextField, InputAdornment, Grid, Box, Typography, Tooltip } from "@mui/material";
+import { TextField, Grid, Box, Typography, Tooltip } from "@mui/material";
 
 interface MinMaxInputInputProps {
   label: string;
@@ -12,7 +12,7 @@ interface MinMaxInputInputProps {
 }
 
 export default function MinMaxInput({ label, minInputValue, maxInputValue, setMinInputValue, setMaxInputValue, minThreshold, maxThreshold, tooltip }: MinMaxInputInputProps) {
-  return <Grid container sx={{ paddingX: 2 }} gap={1} marginBottom='10px'>
+  return <Grid container sx={{ paddingX: 2, minWidth: "600px" }} gap={1} marginBottom='10px'>
     <Grid item md={7} display="flex" alignItems="center">
       <Box sx={{ width: '100%' }}>
         <Typography>{label}</Typography>
@@ -23,20 +23,34 @@ export default function MinMaxInput({ label, minInputValue, maxInputValue, setMi
     </Grid>
     <Grid item md={2} display="flex" alignItems="center">
       <TextField
+        sx={{ minWidth: "80px" }}
         type="number"
         variant="outlined"
         label="Min"
         value={minInputValue}
         onChange={setMinInputValue}
+        fullWidth
+        InputProps={{
+          inputProps: {
+            max: maxInputValue, min: minThreshold
+          }
+        }}
       />
     </Grid>
     <Grid item md={2} display="flex" alignItems="center">
       <TextField
+        sx={{ minWidth: "80px" }}
         type="number"
         variant="outlined"
         label="Max"
         value={maxInputValue}
         onChange={setMaxInputValue}
+        fullWidth
+        InputProps={{
+          inputProps: {
+            max: maxInputValue, min: minThreshold
+          }
+        }}
       />
     </Grid>
   </Grid>

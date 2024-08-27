@@ -1,14 +1,14 @@
 import React, { } from 'react';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
-import { ConfigPageData } from '../../ReleaseCreation';
 import { FormControlLabel, Switch } from '@mui/material';
+import { PreConfigData } from '@customTypes/preConfig';
 
 interface CharacteristicsBalanceFormProps {
   register: any;
   errors: any;
   dinamicBalance: boolean;
   setDinamicBalance: any;
-  configPageData: ConfigPageData;
+  configPageData: PreConfigData;
 }
 
 export default function CharacteristicsBalanceForm({ configPageData, register, errors, dinamicBalance, setDinamicBalance }: CharacteristicsBalanceFormProps) {

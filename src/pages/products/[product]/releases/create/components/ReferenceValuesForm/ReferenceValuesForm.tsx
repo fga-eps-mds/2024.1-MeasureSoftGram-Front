@@ -1,33 +1,71 @@
 import React, { useState } from 'react';
-import { Accordion, AccordionSummary, Box, Checkbox, FormControlLabel, Grid, hexToRgb, InputAdornment, Slider, Switch, TextField, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, Typography } from '@mui/material';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
 import { ExpandMore } from '@mui/icons-material';
-import CheckboxSliderInput from '../CheckboxSliderInput/CheckboxSliderInput';
-import { ConfigPageData } from '../../ReleaseCreation';
 import MinMaxInput from '../MinMaxInput/MinMaxInput';
+import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@customTypes/preConfig';
 
 interface ReferenceValuesFormProps {
-  configPageData: ConfigPageData;
-  register: any;
-  errors: any;
+  configPageData: PreConfigData;
+  setConfigPageData: any;
 }
 
-export default function ReferenceValuesForm({ configPageData, register, errors }: ReferenceValuesFormProps) {
-  const [test, setTest] = useState(0);
-  const [testCheck, setTestCheck] = useState(false);
+export default function ReferenceValuesForm({ configPageData, setConfigPageData }: ReferenceValuesFormProps) {
+  function handleMeasureChange(event: React.ChangeEvent<HTMLInputElement>,
+    characteristicKey: string, subcharacteristicKey: string, measureKey: string, threshold: string) {
+    const { name, value, checked } = event.target;
+    const newValue = Number(value);
 
-  const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTest(Number(event.target.value));
-  }
+    setConfigPageData((prevData: { characteristics: any[]; }) => {
+      const currentWeightSum = prevData.characteristics
+        .find((characteristic: { key: string; }) => characteristic.key === characteristicKey)
+        ?.subcharacteristics
+        .find((subcharacteristic: { key: string; }) => subcharacteristic.key === subcharacteristicKey)
+        ?.measures.reduce((sum: any, measure: { key: string; weight: any; }) => {
+          if (measure.key === measureKey) {
+            return sum;
+          }
+          return sum + measure.weight;
+        }, 0) || 0;
 
-  const handleCheckboxChange = (checkboxValue: boolean) => {
-    setTestCheck(!checkboxValue);
-  }
+      if (currentWeightSum + newValue > 100) {
+        return prevData;
+      }
+
+      return {
+        ...prevData,
+        characteristics: prevData.characteristics.map((characteristic: Characteristic) =>
+          characteristic.key === characteristicKey
+            ? {
+              ...characteristic,
+              subcharacteristics: characteristic.subcharacteristics.map((subcharacteristic: Subcharacteristic) =>
+                subcharacteristic.key === subcharacteristicKey
+                  ? {
+                    ...subcharacteristic,
+                    measures: subcharacteristic.measures.map((measure: Measure) =>
+                      measure.key === measureKey
+                        ? {
+                          ...measure,
+                          min_threshold: threshold === "min" ? newValue : measure.min_threshold,
+                          max_threshold: threshold === "max" ? newValue : measure.max_threshold,
+                        }
+                        : measure
+                    ),
+                  }
+                  : subcharacteristic
+              ),
+            }
+            : characteristic
+        ),
+      };
+    });
+  };
 
   return (
     <>
       <SectionTooltip text='Definir Valores de Referência' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
       <Accordion
+        defaultExpanded
         key="MedidasAccordion"
         sx={{
           boxShadow: 'inherit',
@@ -41,7 +79,7 @@ export default function ReferenceValuesForm({ configPageData, register, errors }
           <Typography>Valores de Referência</Typography>
         </AccordionSummary>
         {
-          configPageData?.characteristicData?.map((characteristic, index) => (
+          configPageData?.characteristics?.filter(characteristics => characteristics.active === true).map((characteristic, index) => (
             <Accordion
               key={`SubCarAccordion-${index}`}
               sx={{
@@ -57,7 +95,7 @@ export default function ReferenceValuesForm({ configPageData, register, errors }
                 <Typography>{characteristic.key}</Typography>
               </AccordionSummary>
               {
-                characteristic.subcharacteristics?.map((subcharacteristic, indexSub) => (
+                characteristic.subcharacteristics?.filter(subcharacteristics => subcharacteristics.active === true).map((subcharacteristic, indexSub) => (
                   <Accordion
                     key={`MetricSubCarAccordion-${index}-${indexSub}`}
                     sx={{
@@ -73,17 +111,19 @@ export default function ReferenceValuesForm({ configPageData, register, errors }
                       <Typography>{subcharacteristic.key}</Typography>
                     </AccordionSummary>
                     {
-                      subcharacteristic.measures?.map((measure, indexMe) => (
+                      subcharacteristic.measures?.filter(measures => measures.active === true).map((measure, indexMe) => (
                         <MinMaxInput
                           key={`metric-${index}-${indexSub}-${indexMe}`}
                           label={measure.key}
-                          minInputValue={test}
-                          maxInputValue={test}
-                          setMinInputValue={handleFieldChange}
-                          setMaxInputValue={handleFieldChange}
+                          minInputValue={measure.min_threshold}
+                          maxInputValue={measure.max_threshold}
+                          setMinInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
+                            handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key, "min")}
+                          setMaxInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
+                            handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key, "max")}
                           minThreshold={measure.min_threshold!}
                           maxThreshold={measure.max_threshold!}
-                          tooltip="Teste"
+                          tooltip=""
                         />
                       ))
                     }

@@ -57,6 +57,10 @@ export interface CurrentPreConfig {
   };
 }
 
+export interface DefaultPreConfig {
+  characteristics: Array<PreConfigCharacteristics>;
+}
+
 export interface PreConfigEntitiesRelationship extends DefaultAttr {
   subcharacteristics: Array<PreConfigSubCharacteristics>;
 }
