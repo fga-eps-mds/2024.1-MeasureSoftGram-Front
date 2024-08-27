@@ -72,7 +72,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }, [removeAuthStorage, router, setSession]);
 
   const signInWithGithub = useCallback(
-    async (code: string): Promise<Result<User>> => {
+    async (code: string): Promise<Result<User> | undefined> => {
+      if (token)
+        return
+
       const response = await signInGithub(code);
 
       if (response.type === 'success' && response?.value?.key) {
@@ -128,6 +131,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
 
   useEffect(() => {
+    console.log('Effect called with:', { code: router?.query?.code, provider, token });
+
     const code = router?.query?.code;
     if (code && provider === 'github' && !token) {
       signInWithGithub(code as string);
