@@ -117,7 +117,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         await router.push('/home');
         return response;
       } if (response.type === 'error') {
-        toast.error(`Erro ao realizar login: ${response.error.message || 'Erro desconhecido'}`);
+        console.log(response.error.message)
+        toast.error(`Erro ao realizar login: ${response.error.message === 'Request failed with status code 400' ? 'Erro nas credenciais' : response.error.message || 'Erro desconhecido'}`);
         return response;
       }
 
