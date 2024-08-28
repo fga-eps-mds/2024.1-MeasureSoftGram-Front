@@ -20,6 +20,15 @@ import { getGithubAuthUrlToRepositoriesPage } from '@services/Auth';
 const Repositories: NextPageWithLayout = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+
+    if(code) {
+      setOpenModal(true);
+      params.delete('code')
+    }
+  }, [])
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -29,9 +38,8 @@ const Repositories: NextPageWithLayout = () => {
   };
 
   const [openModal, setOpenModal] = React.useState(false);
-  const handleOpenModal = () => {
+  const handleGithubClick = () => {
     router.push(getGithubAuthUrlToRepositoriesPage(router.asPath), undefined, { shallow: true });
-    setOpenModal(true);
   }
   const handleCloseModal = () => setOpenModal(false);
 
@@ -94,7 +102,7 @@ const Repositories: NextPageWithLayout = () => {
                   flexDirection: 'column',
                   justifyItems: 'center'
                 }}>
-                <Button onClick={handleOpenModal} style={{ width: '150px', justifyContent: 'space-around' }}><FaGithub size="1.5em" /> Github</Button>
+                <Button onClick={handleGithubClick} style={{ width: '150px', justifyContent: 'space-around' }}><FaGithub size="1.5em" /> Github</Button>
 
                 <Button style={{ width: '150px', justifyContent: 'space-around' }} onClick={handleAddIconClick}> <FaCodeBranch size="1.5em" /> Criar</Button>
                 <GithubRepositoriesModal open={openModal} handleCloseModal={handleCloseModal}/>

@@ -26,7 +26,6 @@ const styleModal = {
 };
 
 
-
 export function GithubRepositoriesModal({ handleCloseModal, open }: GithubRepositoriesModalProps) {
   const router = useRouter();
 
@@ -36,6 +35,7 @@ export function GithubRepositoriesModal({ handleCloseModal, open }: GithubReposi
 
   const accessTokenResult = getUserGitHubToken(code);
 
+  console.log(accessTokenResult)
   function handleRepositoriesFilter(name: string) {
     if (!name) {
       setFilteredRepositories(repositories);
