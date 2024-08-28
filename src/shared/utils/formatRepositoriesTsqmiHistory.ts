@@ -3,7 +3,7 @@ import convertToCsv from './convertToCsv';
 
 const formatTwoDecimalPlaces = (value: number) => Math.round(value * 100) / 100;
 
-const formatRepositoriesTsqmiHistory = (history: RepositoriesTsqmiHistory) => {
+const formatRepositoriesTsqmiHistory = (history: RepositoriesTsqmiHistory, csvFilters: any) => {
   const legendData: string[] = [];
 
   const series = history.results.map((item) => {
@@ -20,7 +20,7 @@ const formatRepositoriesTsqmiHistory = (history: RepositoriesTsqmiHistory) => {
 
   const handleExportCsv = () => {
     if (results) {
-      const csvContent = convertToCsv(results);
+      const csvContent = convertToCsv(results, csvFilters);
 
       const blob = new Blob([csvContent], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);

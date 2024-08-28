@@ -223,3 +223,8 @@ export interface IReleasesWithGoalAndAccomplished {
   planned: Characteristic[];
   accomplished?: AccomplishedRepository[];
 }
+
+export interface HistoryDateRange {
+  startDate: number | null;
+  endDate: number | null;
+}
