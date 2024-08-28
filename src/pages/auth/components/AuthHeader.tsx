@@ -6,8 +6,8 @@ import myImage from '../../../../public/images/svg/logo.svg';
 export const AuthHeader = memo(
   ({ loginButton, subTitle }: { loginButton: ReactElement, subTitle: string }) => (
     <Box display="flex" flexDirection="column" gap="1rem">
-      <Box>
-        <Image src={myImage} alt="Logo Measure" />
+      <Box sx={{ width: '50px', height: '50px', margin: 'auto', marginBottom: '50px' }}>
+        <Image src={myImage} alt="Logo Measure" style={{ width: '100%', height: 'auto' }} />
       </Box>
 
       <Box display="flex" marginBottom="1rem" justifyContent="center">
