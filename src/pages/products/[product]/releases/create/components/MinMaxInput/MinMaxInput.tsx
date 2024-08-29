@@ -1,4 +1,5 @@
 import { TextField, Grid, Box, Typography, Tooltip } from "@mui/material";
+import { useEffect } from "react";
 
 interface MinMaxInputInputProps {
   label: string;
@@ -48,7 +49,7 @@ export default function MinMaxInput({ label, minInputValue, maxInputValue, setMi
         fullWidth
         InputProps={{
           inputProps: {
-            max: maxInputValue, min: minThreshold
+            max: maxThreshold, min: minInputValue
           }
         }}
       />

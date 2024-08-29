@@ -12,7 +12,6 @@ import {
 import { PreConfigData, PreConfigRoot } from '@customTypes/preConfig';
 
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { NewCreateReleaseData } from '@modules/createRelease/context/useCreateRelease';
 import api from './api';
 
 export interface ProductFormData {
@@ -110,7 +109,7 @@ class ProductQuery {
     return api.post(url, data);
   }
 
-  async createProductRelease(organizationId: string, productId: string, data: NewCreateReleaseData) {
+  async createProductRelease(organizationId: string, productId: string, data: any) {
     const url = `organizations/${organizationId}/products/${productId}/create/release/`;
     return api.post(url, data);
   }

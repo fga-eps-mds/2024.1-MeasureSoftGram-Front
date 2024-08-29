@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import { Accordion, AccordionSummary, Typography } from '@mui/material';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
 import { ExpandMore } from '@mui/icons-material';
@@ -7,31 +7,18 @@ import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@cust
 
 interface ReferenceValuesFormProps {
   configPageData: PreConfigData;
+  defaultPageData: PreConfigData;
   setConfigPageData: any;
 }
 
-export default function ReferenceValuesForm({ configPageData, setConfigPageData }: ReferenceValuesFormProps) {
+export default function ReferenceValuesForm({ configPageData, defaultPageData, setConfigPageData }: ReferenceValuesFormProps) {
   function handleMeasureChange(event: React.ChangeEvent<HTMLInputElement>,
     characteristicKey: string, subcharacteristicKey: string, measureKey: string, threshold: string) {
     const { name, value, checked } = event.target;
     const newValue = Number(value);
 
+
     setConfigPageData((prevData: { characteristics: any[]; }) => {
-      const currentWeightSum = prevData.characteristics
-        .find((characteristic: { key: string; }) => characteristic.key === characteristicKey)
-        ?.subcharacteristics
-        .find((subcharacteristic: { key: string; }) => subcharacteristic.key === subcharacteristicKey)
-        ?.measures.reduce((sum: any, measure: { key: string; weight: any; }) => {
-          if (measure.key === measureKey) {
-            return sum;
-          }
-          return sum + measure.weight;
-        }, 0) || 0;
-
-      if (currentWeightSum + newValue > 100) {
-        return prevData;
-      }
-
       return {
         ...prevData,
         characteristics: prevData.characteristics.map((characteristic: Characteristic) =>
@@ -121,8 +108,8 @@ export default function ReferenceValuesForm({ configPageData, setConfigPageData 
                             handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key, "min")}
                           setMaxInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
                             handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key, "max")}
-                          minThreshold={measure.min_threshold!}
-                          maxThreshold={measure.max_threshold!}
+                          minThreshold={defaultPageData.characteristics[index].subcharacteristics[indexSub].measures[indexMe].min_threshold!}
+                          maxThreshold={defaultPageData.characteristics[index].subcharacteristics[indexSub].measures[indexMe].max_threshold!}
                           tooltip=""
                         />
                       ))

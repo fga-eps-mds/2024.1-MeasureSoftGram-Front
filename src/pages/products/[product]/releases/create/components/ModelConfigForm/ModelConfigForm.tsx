@@ -9,26 +9,28 @@ interface ModelConfigFormProps {
   configPageData: PreConfigData;
   setConfigPageData: any;
   changeRefValue: boolean;
-  setChangeRefValue: React.Dispatch<React.SetStateAction<boolean>>;
+  setChangeRefValue: any;
 }
 
 export default function ModelConfigForm({ configPageData, setConfigPageData, changeRefValue, setChangeRefValue }: ModelConfigFormProps) {
-  function handleCharacteristicChange(event: React.ChangeEvent<HTMLInputElement>, characteristicKey: string) {
-    const { name, value, checked, type } = event.target;
-    const newWeight = type === 'checkbox' ? 0 : Number(value);
+  function handleCharacteristicChange(event: React.ChangeEvent<HTMLInputElement>, inputValue: number, characteristicKey: string) {
+    const { checked, type } = event.target;
+    var newWeight = type === 'checkbox' ?
+      0 : type === 'number'
+        ? Number(event.target.value) : Number(inputValue);
+
+    const currentWeightSum = configPageData.characteristics.reduce((sum: any, characteristic: { key: string; weight: any; }) => {
+      if (characteristic.key === characteristicKey) {
+        return sum;
+      }
+      return sum + characteristic.weight;
+    }, 0);
+
+    if (currentWeightSum + newWeight > 100) {
+      newWeight = 100 - currentWeightSum;
+    }
 
     setConfigPageData((prevData: { characteristics: Characteristic[]; }) => {
-      const currentWeightSum = prevData.characteristics.reduce((sum: any, characteristic: { key: string; weight: any; }) => {
-        if (characteristic.key === characteristicKey) {
-          return sum;
-        }
-        return sum + characteristic.weight;
-      }, 0);
-
-      if (currentWeightSum + newWeight > 100) {
-        return prevData;
-      }
-
       return {
         ...prevData,
         characteristics: prevData.characteristics.map((characteristic: Characteristic) =>
@@ -44,25 +46,27 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
     });
   };
 
-  function handleSubcharacteristicChange(event: React.ChangeEvent<HTMLInputElement>,
+  function handleSubcharacteristicChange(event: React.ChangeEvent<HTMLInputElement>, inputValue: number,
     characteristicKey: string, subcharacteristicKey: string) {
-    const { name, value, checked, type } = event.target;
-    const newWeight = type === 'checkbox' ? 0 : Number(value);
+    const { checked, type } = event.target;
+    var newWeight = type === 'checkbox' ?
+      0 : type === 'number'
+        ? Number(event.target.value) : Number(inputValue);
+
+    const currentWeightSum = configPageData.characteristics
+      .find((characteristic: Characteristic) => characteristic.key === characteristicKey)
+      ?.subcharacteristics.reduce((sum: any, subcharacteristic: Subcharacteristic) => {
+        if (subcharacteristic.key === subcharacteristicKey) {
+          return sum;
+        }
+        return sum + subcharacteristic.weight;
+      }, 0) || 0;
+
+    if (currentWeightSum + newWeight > 100) {
+      newWeight = 100 - currentWeightSum;
+    }
 
     setConfigPageData((prevData: { characteristics: Characteristic[]; }) => {
-      const currentWeightSum = prevData.characteristics
-        .find((characteristic: Characteristic) => characteristic.key === characteristicKey)
-        ?.subcharacteristics.reduce((sum: any, subcharacteristic: Subcharacteristic) => {
-          if (subcharacteristic.key === subcharacteristicKey) {
-            return sum;
-          }
-          return sum + subcharacteristic.weight;
-        }, 0) || 0;
-
-      if (currentWeightSum + newWeight > 100) {
-        return prevData;
-      }
-
       return {
         ...prevData,
         characteristics: prevData.characteristics.map((characteristic: Characteristic) =>
@@ -85,27 +89,29 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
     });
   };
 
-  function handleMeasureChange(event: React.ChangeEvent<HTMLInputElement>,
+  function handleMeasureChange(event: React.ChangeEvent<HTMLInputElement>, inputValue: number,
     characteristicKey: string, subcharacteristicKey: string, measureKey: string) {
-    const { name, value, checked, type } = event.target;
-    const newWeight = type === 'checkbox' ? 0 : Number(value);
+    const { checked, type } = event.target;
+    var newWeight = type === 'checkbox' ?
+      0 : type === 'number'
+        ? Number(event.target.value) : Number(inputValue);
+
+    const currentWeightSum = configPageData.characteristics
+      .find((characteristic: Characteristic) => characteristic.key === characteristicKey)
+      ?.subcharacteristics
+      .find((subcharacteristic: Subcharacteristic) => subcharacteristic.key === subcharacteristicKey)
+      ?.measures.reduce((sum: any, measure: Measure) => {
+        if (measure.key === measureKey) {
+          return sum;
+        }
+        return sum + measure.weight;
+      }, 0) || 0;
+
+    if (currentWeightSum + newWeight > 100) {
+      newWeight = 100 - currentWeightSum;
+    }
 
     setConfigPageData((prevData: { characteristics: Characteristic[]; }) => {
-      const currentWeightSum = prevData.characteristics
-        .find((characteristic: Characteristic) => characteristic.key === characteristicKey)
-        ?.subcharacteristics
-        .find((subcharacteristic: Subcharacteristic) => subcharacteristic.key === subcharacteristicKey)
-        ?.measures.reduce((sum: any, measure: Measure) => {
-          if (measure.key === measureKey) {
-            return sum;
-          }
-          return sum + measure.weight;
-        }, 0) || 0;
-
-      if (currentWeightSum + newWeight > 100) {
-        return prevData;
-      }
-
       return {
         ...prevData,
         characteristics: prevData.characteristics.map((characteristic: Characteristic) =>
@@ -137,7 +143,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
 
   return (
     <>
-      <SectionTooltip text='Definir Características e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip id='characteristicSection' text='Definir Características e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
       <Accordion
         key="CarAccordion"
         square={true}
@@ -158,15 +164,14 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
               key={`characteristic-${index}`}
               label={characteristic.key}
               inputValue={characteristic.weight}
-              setInputValue={(event: React.ChangeEvent<HTMLInputElement>) => handleCharacteristicChange(event, characteristic.key)}
+              setInputValue={handleCharacteristicChange}
               checkboxValue={characteristic.active}
-              setCheckboxValue={(event: React.ChangeEvent<HTMLInputElement>) => handleCharacteristicChange(event, characteristic.key)}
             />
           ))
         }
       </Accordion>
 
-      <SectionTooltip text='Definir Sub-Características e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip id='subcharacteristicSection' text='Definir Sub-Características e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
       <Accordion
         key="SubAccordion"
         square={true}
@@ -185,6 +190,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
           configPageData?.characteristics?.filter(characteristic => characteristic.active === true)
             .map((characteristic, index) => (
               <Accordion
+                id={`SubCarAccordion-${characteristic.key}`}
                 key={`SubCarAccordion-${index}`}
                 square={true}
                 sx={{
@@ -204,12 +210,10 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
                     <CheckboxSliderInput
                       key={`subcharacteristics-${index}-${indexSub}`}
                       label={subcharacteristic.key}
+                      secLabel={characteristic.key}
                       inputValue={subcharacteristic.weight}
-                      setInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        handleSubcharacteristicChange(event, characteristic.key, subcharacteristic.key)}
+                      setInputValue={handleSubcharacteristicChange}
                       checkboxValue={subcharacteristic.active}
-                      setCheckboxValue={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        handleSubcharacteristicChange(event, characteristic.key, subcharacteristic.key)}
                     />
                   ))
                 }
@@ -218,7 +222,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
         }
       </Accordion>
 
-      <SectionTooltip text='Definir Medidas e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip id='medidasSection' text='Definir Medidas e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
       <FormControlLabel
         sx={{
           marginLeft: 0
@@ -266,7 +270,8 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
                   characteristic.subcharacteristics?.filter(subcharacteristics => subcharacteristics.active === true)
                     .map((subcharacteristic, indexSub) => (
                       <Accordion
-                        key={`MetricSubCarAccordion-${index}-${indexSub}`}
+                        id={`MetricSubCarAccordion-${subcharacteristic.key}`}
+                        key={`MetricSubCarAccordion-${subcharacteristic.key}`}
                         square={true}
                         sx={{
                           boxShadow: 'inherit',
@@ -285,12 +290,11 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
                             <CheckboxSliderInput
                               key={`metric-${index}-${indexSub}-${indexMe}`}
                               label={measure.key}
+                              secLabel={subcharacteristic.key}
+                              terLabel={characteristic.key}
                               inputValue={measure.weight}
-                              setInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
-                                handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key)}
+                              setInputValue={handleMeasureChange}
                               checkboxValue={measure.active}
-                              setCheckboxValue={(event: React.ChangeEvent<HTMLInputElement>) =>
-                                handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key)}
                             />
                           ))
                         }

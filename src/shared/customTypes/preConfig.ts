@@ -23,6 +23,7 @@ export interface Characteristic {
   key: string;
   weight: number;
   subcharacteristics: Subcharacteristic[];
+  goal: number;
   active?: boolean
 }
 
