@@ -24,7 +24,7 @@ function SideMenuWrapper({ menuItems, footer }: Props) {
   return (
     <Styles.Wrapper>
       <Link href="/home">
-        <Styles.Logo src={IMAGE_SOURCE} height={30} />
+        <Styles.Logo src={IMAGE_SOURCE} height={45} />
       </Link>
       <OrganizationButton />
       <ProductsSelector />
