@@ -1,5 +1,5 @@
-import convertToCsv from './convertToCsv';
 import { RepositoriesTsqmiHistory } from '@customTypes/product';
+import convertToCsv from './convertToCsv';
 
 const formatTwoDecimalPlaces = (value: number) => Math.round(value * 100) / 100;
 
@@ -16,7 +16,7 @@ const formatRepositoriesTsqmiHistory = (history: RepositoriesTsqmiHistory) => {
       animationDuration: 1200
     };
   });
-  const results = history.results;
+  const { results } = history;
 
   const handleExportCsv = () => {
     if (results) {

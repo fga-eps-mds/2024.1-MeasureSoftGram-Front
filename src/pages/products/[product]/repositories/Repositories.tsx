@@ -12,6 +12,7 @@ import { NextPageWithLayout } from '@pages/_app.next';
 import getLayout from '@components/Layout';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
+import { useTranslation } from 'react-i18next';
 import RepositoriesTable from '../components/RepositoriesList/RepositoriesTable';
 import { GithubRepositoriesModal } from './[repository]/components/GithubRepositoriesModal';
 import { getGithubAuthUrlToRepositoriesPage } from '@services/Auth';
@@ -49,6 +50,7 @@ const Repositories: NextPageWithLayout = () => {
   const router = useRouter();
   const { currentOrganization } = useOrganizationContext();
   const { currentProduct } = useProductContext();
+  const { t } = useTranslation('repositories')
 
   const handleAddIconClick = () => {
     if (currentOrganization?.id && currentProduct?.id) {
@@ -62,14 +64,14 @@ const Repositories: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Repositórios</title>
+        <title>{t('title')}</title>
       </Head>
 
       <Container>
         <Box display="flex" flexDirection="column">
           <Box display="flex" alignItems="center" marginTop="40px" marginBottom="36px">
             <Typography variant="h4" color="#33568E" fontWeight="500">
-              Repositórios
+              {t('title')}
             </Typography>
             <IconButton
               aria-describedby={id}

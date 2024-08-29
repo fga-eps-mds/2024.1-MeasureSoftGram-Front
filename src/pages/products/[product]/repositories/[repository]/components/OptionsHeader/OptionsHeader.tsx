@@ -1,6 +1,7 @@
 import { Box, Button } from '@mui/material';
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   title: string;
@@ -9,6 +10,9 @@ interface Props {
 }
 
 function OptionsHeader({ title, isHistoricOpen, setIsHistoricOpen }: Props) {
+
+  const { t } = useTranslation('repositories')
+
   return (
     <Box
       display="flex"
@@ -31,14 +35,16 @@ function OptionsHeader({ title, isHistoricOpen, setIsHistoricOpen }: Props) {
         <Button
           onClick={() => setIsHistoricOpen(true)}
           variant={isHistoricOpen ? 'contained' : 'outlined'}
+          data-testid="history-button"
         >
-          Histórico
+          {t('history')}
         </Button>
         <Button
           onClick={() => setIsHistoricOpen(false)}
           variant={!isHistoricOpen ? 'contained' : 'outlined'}
+          data-testid="button-current-scenario"
         >
-          Cenário Atual
+          {t('current-scenario')}
         </Button>
       </Box>
     </Box >

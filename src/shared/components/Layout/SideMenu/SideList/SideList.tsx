@@ -21,10 +21,11 @@ import WarningIcon from '@mui/icons-material/Warning';
 import { FiArrowLeft, FiPlus } from 'react-icons/fi';
 import LetterAvatar from '@components/LetterAvatar';
 import { useRouter } from 'next/router';
-import { useOrganizationQuery } from '../../../../../pages/organizations/hooks/useOrganizationQuery';
 import { toast } from 'react-toastify';
 import { useProductQuery } from '@pages/products/hooks/useProductQuery';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
+import { useTranslation } from 'react-i18next';
+import { useOrganizationQuery } from '../../../../../pages/organizations/hooks/useOrganizationQuery';
 
 type ItemWithBasicProps = {
   id: number;
@@ -66,10 +67,9 @@ const SideList = <T extends ItemWithBasicProps>({
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleAddClick = async (path: string) => {
+    console.log('AHAHAHAHAHAAHAHAH')
     onClose();
-    setTimeout(() => {
-      router.push(path);
-    });
+    router.push(path);
   };
 
   const handleActionButtonClick = async (action: () => Promise<void>) => {
@@ -146,6 +146,8 @@ const SideList = <T extends ItemWithBasicProps>({
     }
   };
 
+  const { t } = useTranslation('sidebar');
+
   return (
     <>
       <Drawer anchor="left" open={open} onClose={onClose}>
@@ -161,7 +163,7 @@ const SideList = <T extends ItemWithBasicProps>({
               startIcon={<FiPlus />}
               onClick={() => handleAddClick(itemType === "organization" ? `/organizations/` : `/products/create/?id_organization=${organizationId}`)}
             >
-              {itemType === "organization" ? "Adicionar Organização" : "Adicionar Produto"}
+              {itemType === "organization" ? t('organization.add-organization') : t('product.add-product')}
             </Button>
           </Box>
           <List>
@@ -222,8 +224,9 @@ const SideList = <T extends ItemWithBasicProps>({
                 await router.push(seeMorePath);
               })}
               variant="text"
+              data-testid="button-more"
             >
-              VER MAIS...
+              {t('release.more')}
             </Button>
           </List>
         </Box>
@@ -255,17 +258,17 @@ const SideList = <T extends ItemWithBasicProps>({
                   <CloseIcon />
                 </IconButton>
               </Box>
-              <h3>Confirmar exclusão</h3>
+              <h3>{t('delete.title')}</h3>
               <Alert
                 icon={<WarningIcon />}
                 severity="warning"
                 sx={{ margin: '10px 0' }}
               >
-                Coisas inesperadas podem acontecer se você não ler isso!
+                {t('delete.alert')}
               </Alert>
               <Box sx={{ width: '100%' }}>
                 <Typography variant="body2" sx={{ textAlign: 'justify' }}>
-                  Isso irá deletar permanentemente {itemType === 'organization' ? "a organização" : "o produto"} '{itemToDelete?.name}'{itemType === 'organization' ? ", assim como seus produtos e todos os membros associados." : "."}
+                  {itemType === 'organization' ? `${t('delete.organization-text')} ${itemToDelete?.name}${t('delete.organization-text2')}` : `${t('delete.product-text')}${itemToDelete?.name}`}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="center" mt={2}>
@@ -275,7 +278,7 @@ const SideList = <T extends ItemWithBasicProps>({
                   onClick={() => setConfirmationStep(1)}
                   sx={{ width: '100%' }}
                 >
-                  Eu li e entendo os efeitos
+                  {t('delete.button')}
                 </Button>
               </Box>
             </>

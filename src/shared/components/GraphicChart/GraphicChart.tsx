@@ -78,13 +78,13 @@ const GraphicChart = ({
     () =>
       _.range(numLines).map((i) => ({
         ...chartOption[type]({
-          historical: _.filter(sliceHistorical(i), (item) => collectionSource === 'github' || hasKey(item.key)),
+          historical: _.filter(sliceHistorical(i), (item) => hasKey(item.key)),
           title: i === 0 ? title : '',
           isEmpty: isEmpty || error,
           redLimit: currentProduct?.gaugeRedLimit,
           yellowLimit: currentProduct?.gaugeYellowLimit
         }),
-        key: `graphic-chart-${i}`
+        key: `graphic - chart - ${i}`
       })
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,7 +93,7 @@ const GraphicChart = ({
 
   const filteredChartsOptions = chartsOption.filter((option, index) => {
     if (type === 'gauge') {
-      return (index <= 1) ? true : false;
+      return (index <= 1);
     }
     return true;
   });
@@ -112,17 +112,13 @@ const GraphicChart = ({
           width="100%"
           height={chartBoxHeight}
         >
-          {(type !== 'gauge') || (type === 'gauge' && showCharts) ?
-            chartsOption.map((option) => (
-              <>
-                <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
-              </>
+          {(type !== 'gauge') || (type === 'gauge' && showCharts) && (typeof window !== 'undefined') ?
+            (typeof window !== 'undefined') && chartsOption.map((option) => (
+              <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
             ))
             :
-            filteredChartsOptions.map((option) => (
-              <>
-                <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
-              </>
+            (typeof window !== 'undefined') && filteredChartsOptions.map((option) => (
+              <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
             ))
           }
 
