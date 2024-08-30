@@ -94,15 +94,6 @@ const Products: NextPageWithLayout = () => {
 
       <Container maxWidth="lg" style={{ width: '100%' }}>
         <Box display="flex" flexDirection="column">
-          <Typography
-            variant="h4"
-            color="#000000cc"
-            fontWeight="semibold"
-            marginTop="30px"
-            data-testid="organization-title"
-          >
-            Organizações
-          </Typography>
 
           <Box
             data-testid="organization-box"
@@ -141,27 +132,7 @@ const Products: NextPageWithLayout = () => {
                 scrollbarWidth: 'thin',
               }}
             >
-              {organizationList?.map((organization) => (
-                <Button
-                  key={organization.id}
-                  style={{
-                    minWidth: '280px',
-                    height: '80px',
-                    marginRight: '1rem',
-                  }}
-                  size="large"
-                  variant={
-                    organization.id === currentOrganization?.id
-                      ? 'contained'
-                      : 'outlined'
-                  }
-                  id={organization.id}
-                  name={organization.name}
-                  onClick={() => handleSelectedOrganization(organization)}
-                >
-                  {organization.name}
-                </Button>
-              ))}
+
             </Box>
           </Box>
 
