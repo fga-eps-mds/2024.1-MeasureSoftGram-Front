@@ -1,9 +1,6 @@
 import { Box, Typography, Modal } from '@mui/material';
 import { useState } from 'react';
 import SearchButton from '@components/SearchButton';
-import { Repository } from '@customTypes/repository';
-import {useRouter} from 'next/router'
-import { getUserGitHubToken } from '@services/user';
 
 type GithubRepositoriesModalProps = {
   open: boolean
@@ -27,15 +24,14 @@ const styleModal = {
 
 
 export function GithubRepositoriesModal({ handleCloseModal, open }: GithubRepositoriesModalProps) {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [filteredRepositories, setFilteredRepositories] = useState(repositories);
 
-  const code = router?.query?.code as string;
+  // const code = router?.query?.code as string;
 
-  const accessTokenResult = getUserGitHubToken(code);
+  // const accessTokenResult = getUserGitHubToken(code);
 
-  console.log(accessTokenResult)
   function handleRepositoriesFilter(name: string) {
     if (!name) {
       setFilteredRepositories(repositories);
@@ -63,12 +59,10 @@ export function GithubRepositoriesModal({ handleCloseModal, open }: GithubReposi
         onInput={(e) => handleRepositoriesFilter(e.target.value)}
         label="Insira o nome do repositório"
       />
-      <ul style={{background: 'grey', overflow: 'scroll',}}>
-        {filteredRepositories.map((repository) => {
-          return <Typography id="modal-modal-description" style={{ borderWidth: 2, borderColor: 'black', width: 500 , height: 100}} key={repository.id} sx={{ mt: 2 }}>
-            {repository.name}
-          </Typography>
-        })}
+      <ul style={{ background: 'grey', overflow: 'scroll', }}>
+        {filteredRepositories.map((repository) => <Typography id="modal-modal-description" style={{ borderWidth: 2, borderColor: 'black', width: 500, height: 100 }} key={repository.id} sx={{ mt: 2 }}>
+          {repository.name}
+        </Typography>)}
       </ul>
     </Box>
   </Modal>

@@ -13,23 +13,23 @@ import getLayout from '@components/Layout';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
 import { useTranslation } from 'react-i18next';
+import { getGithubAuthUrlToRepositoriesPage } from '@services/Auth';
 import RepositoriesTable from '../components/RepositoriesList/RepositoriesTable';
 import { GithubRepositoriesModal } from './[repository]/components/GithubRepositoriesModal';
-import { getGithubAuthUrlToRepositoriesPage } from '@services/Auth';
 
 
 const Repositories: NextPageWithLayout = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [openModal, setOpenModal] = React.useState(() => !!code);
 
+  const router = useRouter()
+  const code = router.query.code as string
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-
-    if(code) {
+    if (code) {
       setOpenModal(true);
-      params.delete('code')
     }
-  }, [])
+  }, [code])
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -38,16 +38,15 @@ const Repositories: NextPageWithLayout = () => {
     setAnchorEl(null);
   };
 
-  const [openModal, setOpenModal] = React.useState(false);
   const handleGithubClick = () => {
-    router.push(getGithubAuthUrlToRepositoriesPage(router.asPath), undefined, { shallow: true });
+    router.push(getGithubAuthUrlToRepositoriesPage(router.asPath), undefined);
   }
+
   const handleCloseModal = () => setOpenModal(false);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  const router = useRouter();
   const { currentOrganization } = useOrganizationContext();
   const { currentProduct } = useProductContext();
   const { t } = useTranslation('repositories')
@@ -107,10 +106,11 @@ const Repositories: NextPageWithLayout = () => {
                 <Button onClick={handleGithubClick} style={{ width: '150px', justifyContent: 'space-around' }}><FaGithub size="1.5em" /> Github</Button>
 
                 <Button style={{ width: '150px', justifyContent: 'space-around' }} onClick={handleAddIconClick}> <FaCodeBranch size="1.5em" /> Criar</Button>
-                <GithubRepositoriesModal open={openModal} handleCloseModal={handleCloseModal}/>
+
               </div>
 
             </Popover>
+            <GithubRepositoriesModal handleCloseModal={handleCloseModal} open={openModal} />
           </Box>
         </Box >
         <Box
