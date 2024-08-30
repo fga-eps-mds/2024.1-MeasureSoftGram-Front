@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
   IconButton,
+  Link,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { NextPageWithLayout } from '@pages/_app.next';
@@ -19,16 +20,20 @@ import useRequireAuth from '@hooks/useRequireAuth';
 import SearchButton from '@components/SearchButton';
 import Skeleton from './components/Skeleton';
 import { useQuery } from './hooks/useQuery';
+import ScrollableList from './components/ScrollableList/index';
+import { Organization } from '@customTypes/organization';
 
 
 const Products: NextPageWithLayout = () => {
   useQuery();
   useRequireAuth();
 
-  const {
+  let {
     organizationList,
     currentOrganization,
     setCurrentOrganizations,
+    fetchOrganizations,
+    isLoading: isLoadingOrganizations
   } = useOrganizationContext();
   const { productsList } = useProductContext();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(
@@ -42,8 +47,13 @@ const Products: NextPageWithLayout = () => {
     if (productsList !== undefined) setFilteredProducts(productsList);
   }, [productsList]);
 
-  const handleSelectedOrganization = (organizationId: string) => {
 
+  useEffect(() => {
+    fetchOrganizations(true)
+  }, []);
+
+  const handleSelectedOrganization = (organization: Organization) => {
+    const organizationId = organization.id
     if (currentOrganization?.id === organizationId) {
       setCurrentOrganizations([]);
     } else if (organizationList?.length) {
@@ -147,7 +157,7 @@ const Products: NextPageWithLayout = () => {
                   }
                   id={organization.id}
                   name={organization.name}
-                  onClick={() => handleSelectedOrganization(organization.id)}
+                  onClick={() => handleSelectedOrganization(organization)}
                 >
                   {organization.name}
                 </Button>
@@ -155,20 +165,56 @@ const Products: NextPageWithLayout = () => {
             </Box>
           </Box>
 
+
           {currentOrganization && (
             <Box
               display="flex"
-              flexDirection="column"
+              flexDirection="row"
               marginTop="20px"
-              padding="36px"
               style={{
-                backgroundColor: 'white',
                 border: '1px solid #113d4c',
                 borderRadius: '10px',
                 boxSizing: 'border-box',
               }}
             >
-              <Box
+
+
+              {isLoadingOrganizations ? <Box
+                style={{
+                  padding: "36px",
+                  backgroundColor: '#F4F5F6',
+                  borderRadius: '10px',
+                  boxSizing: 'border-box',
+                }}> <Skeleton /> </Box> : <Box
+                  style={{
+                    padding: "36px",
+                    backgroundColor: '#F4F5F6',
+                    borderRadius: '10px',
+                    boxSizing: 'border-box',
+                  }}>
+                <Link href="/organizations">
+                  <Button
+                    style={{
+                      minWidth: '40px',
+                      height: '45px',
+
+                    }}
+                    size="medium"
+                    variant={
+                      'contained'
+                    }
+                  >
+                    Adicionar Organização
+                  </Button>
+                </Link>
+
+
+                <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
+
+              </Box>}
+
+
+              {/* <Box
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
@@ -189,8 +235,8 @@ const Products: NextPageWithLayout = () => {
                 >
                   <AddIcon style={{ color: 'white' }} />
                 </IconButton>
-              </Box>
-              <Box
+              </Box> */}
+              {/* <Box
                 display="flex"
                 gap="1rem"
                 flexDirection="row"
@@ -214,8 +260,8 @@ const Products: NextPageWithLayout = () => {
                     label="Insira o nome do produto"
                   />
                 </Grid>
-              </Box>
-
+              </Box> */}
+              {/*
               <Box
                 display="flex"
                 flexWrap="wrap"
@@ -234,7 +280,7 @@ const Products: NextPageWithLayout = () => {
                     }}
                   />
                 ))}
-              </Box>
+              </Box> */}
             </Box>
           )}
         </Box>
