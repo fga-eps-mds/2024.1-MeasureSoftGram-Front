@@ -1,5 +1,4 @@
 import { ReleaseGoal } from '@customTypes/product';
-import { responsivePropType } from '@mui/system';
 import { productQuery } from '..';
 import api from '../api';
 

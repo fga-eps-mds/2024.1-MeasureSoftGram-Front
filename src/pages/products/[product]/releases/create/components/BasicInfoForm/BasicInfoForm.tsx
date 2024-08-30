@@ -4,12 +4,14 @@ import { ExpandMore } from '@mui/icons-material';
 import { Timeline, TimelineSeparator, TimelineConnector, TimelineDot, TimelineItem, TimelineContent, timelineItemClasses } from '@mui/lab';
 import { PreConfigData } from '@customTypes/preConfig';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
+import { FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch } from 'react-hook-form';
+import { ReleaseInfoForm } from '../../ReleaseCreation';
 
 interface BasicInfoFormProps {
-  register: any;
-  errors: any;
-  watch: any;
-  trigger: any;
+  register: UseFormRegister<ReleaseInfoForm>;
+  errors: FieldErrors<ReleaseInfoForm>;
+  watch: UseFormWatch<ReleaseInfoForm>;
+  trigger: UseFormTrigger<ReleaseInfoForm>;
   followLastConfig: boolean;
   setFollowLastConfig: any;
   configPageData: PreConfigData;
@@ -154,9 +156,9 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
       required
       style={{ marginBottom: '24px' }}
       autoFocus={true}
-      error={!!errors?.name}
-      helperText={errors?.name?.message}
-      {...register('name', {
+      error={!!errors?.release_name}
+      helperText={errors?.release_name?.message}
+      {...register('release_name', {
         required: 'Nome da Release é obrigatório',
       })}
       inputProps={{
@@ -186,14 +188,14 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
         required
         type="date"
         style={{ marginRight: '16px' }}
-        error={!!errors?.startDate}
-        helperText={errors?.startDate?.message}
-        {...register('startDate', {
+        error={!!errors?.start_at}
+        helperText={errors?.start_at?.message}
+        {...register('start_at', {
           required: 'Data de Inicio da Release é obrigatório',
         })}
         inputProps={{
           'data-testid': 'inicio-release',
-          max: watch("endDate")
+          max: watch("end_at")
         }}
         sx={{ flex: 1 }}
       />
@@ -202,14 +204,14 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
         required
         type="date"
         style={{ marginBottom: '24px' }}
-        error={!!errors?.endDate}
-        helperText={errors?.endDate?.message}
-        {...register('endDate', {
+        error={!!errors?.end_at}
+        helperText={errors?.end_at?.message}
+        {...register('end_at', {
           required: 'Data de Fim da Release é obrigatório',
         })}
         inputProps={{
           'data-testid': 'fim-release',
-          min: watch("startDate")
+          min: watch("start_at")
         }}
         sx={{ flex: 1 }}
       />

@@ -2,12 +2,12 @@
 import {
   PreConfigEntitiesRelationship,
   MeasuresHistory,
-  ReleaseGoal,
   RepositoriesTsqmiHistory,
   EntitiesMetrics,
   LatestValues,
   Product,
-  RepositoriesLatestTsqmi
+  RepositoriesLatestTsqmi,
+  ReleaseGoal
 } from '@customTypes/product';
 import { PreConfigData, PreConfigRoot } from '@customTypes/preConfig';
 

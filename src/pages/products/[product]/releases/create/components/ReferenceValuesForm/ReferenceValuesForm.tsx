@@ -54,12 +54,13 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
       <Accordion
         defaultExpanded
         key="MedidasAccordion"
+        square={true}
         sx={{
           boxShadow: 'inherit',
           border: 0.5,
           backgroundColor: "transparent",
           borderColor: "#00000040",
-          borderRadius: 1,
+          borderRadius: 3,
           marginTop: 2
         }}>
         <AccordionSummary expandIcon={<ExpandMore />}>
@@ -69,12 +70,13 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
           configPageData?.characteristics?.filter(characteristics => characteristics.active === true).map((characteristic, index) => (
             <Accordion
               key={`SubCarAccordion-${index}`}
+              square={true}
               sx={{
                 boxShadow: 'inherit',
                 border: 0.5,
                 backgroundColor: "transparent",
                 borderColor: "#00000040",
-                borderRadius: 1,
+                borderRadius: 3,
                 marginX: '1rem !important',
                 marginBottom: '1rem !important',
               }}>
@@ -85,12 +87,13 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
                 characteristic.subcharacteristics?.filter(subcharacteristics => subcharacteristics.active === true).map((subcharacteristic, indexSub) => (
                   <Accordion
                     key={`MetricSubCarAccordion-${index}-${indexSub}`}
+                    square={true}
                     sx={{
                       boxShadow: 'inherit',
                       border: 0.5,
                       backgroundColor: "transparent",
                       borderColor: "#00000040",
-                      borderRadius: 1,
+                      borderRadius: 3,
                       marginX: '1rem !important',
                       marginBottom: '1rem !important',
                     }}>

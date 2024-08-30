@@ -1,41 +1,37 @@
 import React, { useEffect, useState } from 'react';
 
-import { Alert, Box, Breadcrumbs, Button, IconButton, Link, Modal, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Button, Link } from '@mui/material';
 import * as Styles from './styles';
-import { Changes, PreConfigEntitiesRelationship } from '@customTypes/product';
+import { Change, PreConfigEntitiesRelationship, ReleaseGoal } from '@customTypes/product';
 import { useForm } from 'react-hook-form';
 import { format, addDays } from 'date-fns';
 import { useRouter } from 'next/router';
 import getLayout from '@components/Layout';
 import BasicInfoForm from './components/BasicInfoForm/BasicInfoForm';
 import ModelConfigForm from './components/ModelConfigForm/ModelConfigForm';
-import { PreConfigData } from '@customTypes/preConfig';
+import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@customTypes/preConfig';
 import ReferenceValuesForm from './components/ReferenceValuesForm/ReferenceValuesForm';
 import CharacteristicsBalanceForm from './components/CharacteristicsBalanceForm/CharacteristicsBalanceForm';
 import api from '@services/api';
 import { productQuery } from '@services/product';
-import ConfirmationModal from '@components/ConfirmationModal';
 import { balanceMatrixService } from '@services/balanceMatrix';
 import { enqueueSnackbar, SnackbarProvider } from '@components/snackbar';
-import { t } from 'i18next';
-import CloseIcon from '@mui/icons-material/Close';
-import WarningIcon from '@mui/icons-material/Warning';
+import WarningModal from '@components/WarningModal/WarningModal';
 
-interface ReleaseInfoForm {
-  name: string;
+export interface ReleaseInfoForm {
+  release_name: string;
   description: string;
-  startDate: string;
-  endDate: string;
+  start_at: string;
+  end_at: string;
   goal: number;
-  changes: Changes[];
 }
 
 function ReleaseInfo() {
   const [organizationId, setOrganizationId] = useState<string>("");
   const [productId, setProductId] = useState<string>("");
+  const [productName, setProductName] = useState<string>("");
   const [activeStep, setActiveStep] = useState(0);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [modalText, setModalText] = useState("");
   const [changeRefValue, setChangeRefValue] = useState<boolean>(false);
   const [followLastConfig, setFollowLastConfig] = useState<boolean>(false);
   const [dinamicBalance, setDinamicBalance] = useState<boolean>(false);
@@ -52,11 +48,10 @@ function ReleaseInfo() {
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch, trigger } = useForm<ReleaseInfoForm>({
     mode: "all",
     defaultValues: {
-      endDate: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
-      startDate: format(new Date(), 'yyyy-MM-dd'),
-      changes: [],
+      end_at: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
+      start_at: format(new Date(), 'yyyy-MM-dd'),
       goal: 0,
-      name: '',
+      release_name: '',
       description: '',
     }
   });
@@ -64,36 +59,38 @@ function ReleaseInfo() {
   useEffect(() => {
     if (router.isReady) {
       const organization = routerParams.product.split('-')[0];
-      const product = routerParams.product.split('-')[1];
+      const productIdentifier = routerParams.product.split('-')[1];
+      const productTitle = routerParams.product.split('-')[2];
 
       setOrganizationId(organization);
-      setProductId(product);
+      setProductId(productIdentifier);
+      setProductName(productTitle);
 
       const getPreConfig = async () => {
         try {
-          const currentReleaseGoal = await productQuery.getCurrentReleaseGoal(organization, product);
+          const currentReleaseGoal = await productQuery.getCurrentReleaseGoal(organization, productIdentifier);
           setReleaseGoal(currentReleaseGoal.data);
 
-          const entitiesRelationship = await productQuery.getPreConfigEntitiesRelationship(organization, product);
+          const entitiesRelationship = await productQuery.getPreConfigEntitiesRelationship(organization, productIdentifier);
           setPreConfigEntitiesRelationship(entitiesRelationship.data);
 
-          const defaultPreConfigResult = await productQuery.getProductDefaultPreConfig(organization, product);
+          const defaultPreConfigResult = await productQuery.getProductDefaultPreConfig(organization, productIdentifier);
           setConfigPageData(formatConfig(defaultPreConfigResult.data, currentReleaseGoal));
           setConfigDefaultPageData(formatConfig(defaultPreConfigResult.data, currentReleaseGoal));
 
-          const currentPreConfigResult = await productQuery.getProductCurrentPreConfig(organization, product);
+          const currentPreConfigResult = await productQuery.getProductCurrentPreConfig(organization, productIdentifier);
           setLastConfigPageData(formatConfig(mergeWithDefault(currentPreConfigResult.data.data, defaultPreConfigResult.data), currentReleaseGoal));
 
           const balance = await balanceMatrixService.getBalanceMatrix();
           setCharacteristicRelations(balance.data.result);
         } catch (error) {
-          console.log(error)
+          enqueueSnackbar(`Não foi possível acessar os dados de planejamento de release`, { autoHideDuration: 10000, variant: 'error' })
         }
       }
 
       getPreConfig();
     };
-  }, [router.isReady]);
+  }, [router.isReady, routerParams.product]);
 
   function mergeWithDefault(current: PreConfigData, defaultData: PreConfigData): PreConfigData {
     const findOrCreate = <T extends { key: string }>(array: T[], key: string, defaultEntry: T): T => {
@@ -164,7 +161,7 @@ function ReleaseInfo() {
       return;
 
     try {
-      await api.get(`/organizations/${organizationId}/products/${productId}/create/release/is-valid/?nome=${getValues("name")}&dt-inicial=${getValues("startDate")}&dt-final=${getValues("endDate")}`)
+      await api.get(`/organizations/${organizationId}/products/${productId}/create/release/is-valid/?nome=${getValues("release_name")}&dt-inicial=${getValues("start_at")}&dt-final=${getValues("end_at")}`)
       setActiveStep(activeStep + 1);
     } catch (error: any) {
       enqueueSnackbar(`${error.response.data.detail}`, { autoHideDuration: 10000, variant: 'error' })
@@ -174,8 +171,10 @@ function ReleaseInfo() {
   function handleChangeRefValue(value: boolean) {
     if (value)
       setShowConfirmationModal(value);
+    else
 
-    setChangeRefValue(value)
+
+      setChangeRefValue(value)
   }
 
   function handleChangeDinamicBalance(value: boolean) {
@@ -274,8 +273,81 @@ function ReleaseInfo() {
         setActiveStep(activeStep + 1);
         break;
       case 3:
-        handleSubmit(checkBasicValues)
+        submitRelease();
     }
+  }
+
+  async function submitRelease() {
+    const goalChanges = generateChanges();
+    const release = getValues();
+    const finalConfig = cleanConfigData();
+
+    try {
+      await productQuery.postPreConfig(organizationId, productId, { name: productName, data: finalConfig });
+      const productGoalResult = await productQuery.createProductGoal(organizationId, productId, goalChanges);
+
+      release.goal = productGoalResult.data.id;
+
+      await productQuery.createProductRelease(organizationId, productId, release);
+
+      router.push(`/products/${router.query.product}/releases/`);
+      enqueueSnackbar(`Release Criada`, { autoHideDuration: 10000, variant: 'success' });
+    } catch (error: any) {
+      enqueueSnackbar(`${error.response.data.message}`, { autoHideDuration: 10000, variant: 'error' });
+    }
+
+  }
+
+  function generateChanges(): ReleaseGoal {
+    const changes: Change[] = [];
+
+    configPageData!.characteristics.forEach((characteristic: Characteristic) => {
+      if (characteristic.active) {
+        const referenceGoal = releaseGoal.data[characteristic.key] ?? 0;
+        if (referenceGoal !== characteristic.goal) {
+          const delta = characteristic.goal - referenceGoal;
+          changes.push({
+            characteristic_key: characteristic.key,
+            delta: delta,
+          });
+        }
+      }
+    });
+
+    return { changes: changes, allow_dynamic: dinamicBalance };
+  }
+
+  function cleanConfigData() {
+    return {
+      ...configPageData,
+      characteristics: configPageData!.characteristics
+        .filter((characteristic: Characteristic) => characteristic.active)
+        .map((characteristic: Characteristic) => ({
+          ...removeProperties(characteristic),
+          subcharacteristics: characteristic.subcharacteristics
+            .filter((sub: Subcharacteristic) => sub.active)
+            .map((sub: Subcharacteristic) => ({
+              ...removeProperties(sub),
+              measures: sub.measures
+                .filter((measure: Measure) => measure.active)
+                .map((measure: Measure) => removeProperties(measure))
+            }))
+        }))
+    };
+  }
+
+  function removeProperties(obj: any) {
+    const { goal, active, ...rest } = obj;
+    return rest;
+  }
+
+  function handleModalBtnClick() {
+    if (activeStep == 1)
+      handleChangeRefValue(true);
+    else
+      handleChangeDinamicBalance(true)
+
+    setShowConfirmationModal(false)
   }
 
   function renderBreadcrumb(label: string, step: number): any {
@@ -338,60 +410,9 @@ function ReleaseInfo() {
           </Box>
         </Styles.Body >
       </SnackbarProvider>
-      <Modal
-        open={showConfirmationModal}
-        onClose={() => setShowConfirmationModal(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 400,
-          bgcolor: 'background.paper',
-          boxShadow: 24,
-          p: 2,
-          paddingTop: 1
-        }}>
-          <>
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <h3>Atenção</h3>
-              <IconButton onClick={() => setShowConfirmationModal(false)}>
-                <CloseIcon />
-              </IconButton>
-            </Box>
-            <Alert
-              icon={<WarningIcon />}
-              severity="warning"
-              sx={{ margin: '10px 0' }}
-            >
-              {activeStep == 1 ? "Os valores de referência afetam como algumas medidas são calculadas. Alguns deles não podem ser modificados." : "O balanceamento das metas funciona com base em uma matriz de relacionamento entre as características de qualidade (link). Ao permitir o balanceamento dinâmico, o sistema faz com que essas relações sejam ignoradas, dessa forma, alguns objetivos definidos podem ser inalcançáveis."}
-            </Alert>
-            <Box sx={{ width: '100%' }}>
-            </Box>
-            <Box display="flex" justifyContent="center" mt={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  if (activeStep == 1)
-                    handleChangeRefValue(true);
-                  else
-                    handleChangeDinamicBalance(true)
-
-                  setShowConfirmationModal(false)
-                }}
-                sx={{ width: '100%' }}
-              >
-                Continuar
-              </Button>
-            </Box>
-          </>
-
-        </Box>
-      </Modal>
+      <WarningModal
+        setIsModalOpen={setShowConfirmationModal} text={activeStep == 1 ? "Os valores de referência afetam como algumas medidas são calculadas. Alguns deles não podem ser modificados." : "O balanceamento das metas funciona com base em uma matriz de relacionamento entre as características de qualidade. Ao permitir o balanceamento dinâmico, o sistema faz com que essas relações sejam ignoradas, dessa forma, alguns objetivos definidos podem ser inalcançáveis."}
+        btnText='Continuar' isModalOpen={showConfirmationModal} handleBtnClick={handleModalBtnClick} />
     </>
   );
 }
