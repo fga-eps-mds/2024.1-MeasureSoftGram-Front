@@ -29,7 +29,7 @@ Object {
                 type="checkbox"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -53,7 +53,7 @@ Object {
                 type="checkbox"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -86,18 +86,18 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
             >
               <span
-                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
                 data-testid="CONFIG_SLIDER_TEST_ID"
               >
                 <span
-                  class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                  class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                  class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                   style="left: 0%; width: 50%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                   data-index="0"
                   style="left: 50%;"
                 >
@@ -125,7 +125,7 @@ Object {
                 data-testid="CONFIG_INPUT_TEST_ID"
               >
                 <div
-                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
                 >
                   <input
                     aria-invalid="false"
@@ -165,18 +165,18 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
             >
               <span
-                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
                 data-testid="CONFIG_SLIDER_TEST_ID"
               >
                 <span
-                  class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                  class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                  class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                   style="left: 0%; width: 50%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                   data-index="0"
                   style="left: 50%;"
                 >
@@ -204,7 +204,7 @@ Object {
                 data-testid="CONFIG_INPUT_TEST_ID"
               >
                 <div
-                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
                 >
                   <input
                     aria-invalid="false"
@@ -255,7 +255,7 @@ Object {
               type="checkbox"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -279,7 +279,7 @@ Object {
               type="checkbox"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -312,18 +312,18 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
           >
             <span
-              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
               data-testid="CONFIG_SLIDER_TEST_ID"
             >
               <span
-                class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
               />
               <span
-                class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                 style="left: 0%; width: 50%;"
               />
               <span
-                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                 data-index="0"
                 style="left: 50%;"
               >
@@ -351,7 +351,7 @@ Object {
               data-testid="CONFIG_INPUT_TEST_ID"
             >
               <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
               >
                 <input
                   aria-invalid="false"
@@ -391,18 +391,18 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
           >
             <span
-              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
               data-testid="CONFIG_SLIDER_TEST_ID"
             >
               <span
-                class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
               />
               <span
-                class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                 style="left: 0%; width: 50%;"
               />
               <span
-                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                 data-index="0"
                 style="left: 50%;"
               >
@@ -430,7 +430,7 @@ Object {
               data-testid="CONFIG_INPUT_TEST_ID"
             >
               <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
               >
                 <input
                   aria-invalid="false"
@@ -581,7 +581,7 @@ Object {
                 type="checkbox"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -605,7 +605,7 @@ Object {
                 type="checkbox"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -628,7 +628,7 @@ Object {
                 type="checkbox"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-cjtmh9-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-cjtmh9-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -661,18 +661,18 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
             >
               <span
-                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
                 data-testid="CONFIG_SLIDER_TEST_ID"
               >
                 <span
-                  class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                  class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                  class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                   style="left: 0%; width: 33%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                   data-index="0"
                   style="left: 33%;"
                 >
@@ -700,7 +700,7 @@ Object {
                 data-testid="CONFIG_INPUT_TEST_ID"
               >
                 <div
-                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
                 >
                   <input
                     aria-invalid="false"
@@ -740,18 +740,18 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
             >
               <span
-                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
                 data-testid="CONFIG_SLIDER_TEST_ID"
               >
                 <span
-                  class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                  class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                  class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                   style="left: 0%; width: 33%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                   data-index="0"
                   style="left: 33%;"
                 >
@@ -779,7 +779,7 @@ Object {
                 data-testid="CONFIG_INPUT_TEST_ID"
               >
                 <div
-                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
                 >
                   <input
                     aria-invalid="false"
@@ -873,7 +873,7 @@ Object {
               type="checkbox"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -897,7 +897,7 @@ Object {
               type="checkbox"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -920,7 +920,7 @@ Object {
               type="checkbox"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-cjtmh9-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-cjtmh9-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -953,18 +953,18 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
           >
             <span
-              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
               data-testid="CONFIG_SLIDER_TEST_ID"
             >
               <span
-                class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
               />
               <span
-                class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                 style="left: 0%; width: 33%;"
               />
               <span
-                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                 data-index="0"
                 style="left: 33%;"
               >
@@ -992,7 +992,7 @@ Object {
               data-testid="CONFIG_INPUT_TEST_ID"
             >
               <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
               >
                 <input
                   aria-invalid="false"
@@ -1032,18 +1032,18 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
           >
             <span
-              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
               data-testid="CONFIG_SLIDER_TEST_ID"
             >
               <span
-                class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
               />
               <span
-                class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                 style="left: 0%; width: 33%;"
               />
               <span
-                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                 data-index="0"
                 style="left: 33%;"
               >
@@ -1071,7 +1071,7 @@ Object {
               data-testid="CONFIG_INPUT_TEST_ID"
             >
               <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
               >
                 <input
                   aria-invalid="false"
@@ -1222,7 +1222,7 @@ Object {
                 type="checkbox"
               />
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -1255,18 +1255,18 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
             >
               <span
-                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
                 data-testid="CONFIG_SLIDER_TEST_ID"
               >
                 <span
-                  class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                  class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                  class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                   style="left: 0%; width: 100%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                   data-index="0"
                   style="left: 100%;"
                 >
@@ -1294,7 +1294,7 @@ Object {
                 data-testid="CONFIG_INPUT_TEST_ID"
               >
                 <div
-                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                  class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
                 >
                   <input
                     aria-invalid="false"
@@ -1388,7 +1388,7 @@ Object {
               type="checkbox"
             />
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1cfee4v-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1cfee4v-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -1421,18 +1421,18 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-9 css-trcag1-MuiGrid-root"
           >
             <span
-              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-pt81qq-MuiSlider-root"
+              class="MuiSlider-root MuiSlider-colorPrimary MuiSlider-sizeMedium css-2v1yib-MuiSlider-root"
               data-testid="CONFIG_SLIDER_TEST_ID"
             >
               <span
-                class="MuiSlider-rail css-14pt78w-MuiSlider-rail"
+                class="MuiSlider-rail css-7o8aqz-MuiSlider-rail"
               />
               <span
-                class="MuiSlider-track css-1gv0vcd-MuiSlider-track"
+                class="MuiSlider-track css-ttgsjq-MuiSlider-track"
                 style="left: 0%; width: 100%;"
               />
               <span
-                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-eg0mwd-MuiSlider-thumb"
+                class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-cp2j25-MuiSlider-thumb"
                 data-index="0"
                 style="left: 100%;"
               >
@@ -1460,7 +1460,7 @@ Object {
               data-testid="CONFIG_INPUT_TEST_ID"
             >
               <div
-                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v4u5dn-MuiInputBase-root-MuiInput-root"
+                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1eed5fa-MuiInputBase-root-MuiInput-root"
               >
                 <input
                   aria-invalid="false"

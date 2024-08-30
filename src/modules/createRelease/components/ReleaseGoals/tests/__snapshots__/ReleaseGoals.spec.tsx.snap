@@ -135,18 +135,18 @@ Object {
                 class="MuiBox-root css-vycneo"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-y50uh2-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-1q6cf6c-MuiSlider-root"
                   data-testid="single-slider"
                 >
                   <span
-                    class="MuiSlider-rail css-qx5f9e-MuiSlider-rail"
+                    class="MuiSlider-rail css-143w5et-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-ada0pd-MuiSlider-track"
+                    class="MuiSlider-track css-1o9ukd5-MuiSlider-track"
                     style="bottom: 0%; height: 50%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-y35fuw-MuiSlider-thumb"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-1rud8qr-MuiSlider-thumb"
                     data-index="0"
                     style="bottom: 50%;"
                   >
@@ -181,18 +181,18 @@ Object {
                 class="MuiBox-root css-vycneo"
               >
                 <span
-                  class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-y50uh2-MuiSlider-root"
+                  class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-1q6cf6c-MuiSlider-root"
                   data-testid="single-slider"
                 >
                   <span
-                    class="MuiSlider-rail css-qx5f9e-MuiSlider-rail"
+                    class="MuiSlider-rail css-143w5et-MuiSlider-rail"
                   />
                   <span
-                    class="MuiSlider-track css-ada0pd-MuiSlider-track"
+                    class="MuiSlider-track css-1o9ukd5-MuiSlider-track"
                     style="bottom: 0%; height: 50%;"
                   />
                   <span
-                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-y35fuw-MuiSlider-thumb"
+                    class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-1rud8qr-MuiSlider-thumb"
                     data-index="0"
                     style="bottom: 50%;"
                   >
@@ -376,18 +376,18 @@ Object {
               class="MuiBox-root css-vycneo"
             >
               <span
-                class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-y50uh2-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-1q6cf6c-MuiSlider-root"
                 data-testid="single-slider"
               >
                 <span
-                  class="MuiSlider-rail css-qx5f9e-MuiSlider-rail"
+                  class="MuiSlider-rail css-143w5et-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-ada0pd-MuiSlider-track"
+                  class="MuiSlider-track css-1o9ukd5-MuiSlider-track"
                   style="bottom: 0%; height: 50%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-y35fuw-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-1rud8qr-MuiSlider-thumb"
                   data-index="0"
                   style="bottom: 50%;"
                 >
@@ -422,18 +422,18 @@ Object {
               class="MuiBox-root css-vycneo"
             >
               <span
-                class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-y50uh2-MuiSlider-root"
+                class="MuiSlider-root MuiSlider-vertical MuiSlider-colorPrimary MuiSlider-sizeMedium css-1q6cf6c-MuiSlider-root"
                 data-testid="single-slider"
               >
                 <span
-                  class="MuiSlider-rail css-qx5f9e-MuiSlider-rail"
+                  class="MuiSlider-rail css-143w5et-MuiSlider-rail"
                 />
                 <span
-                  class="MuiSlider-track css-ada0pd-MuiSlider-track"
+                  class="MuiSlider-track css-1o9ukd5-MuiSlider-track"
                   style="bottom: 0%; height: 50%;"
                 />
                 <span
-                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-y35fuw-MuiSlider-thumb"
+                  class="MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-1rud8qr-MuiSlider-thumb"
                   data-index="0"
                   style="bottom: 50%;"
                 >
