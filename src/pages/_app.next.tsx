@@ -93,6 +93,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     };
   }, [errorOccurred, loading]);
 
+  const { t } = useTranslation();
+
   return (
     <AuthProvider>
       <OrganizationProvider>
@@ -159,7 +161,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                           `,
                         }}
                       >
-                        Carregando...
+                        {t('loading')}
                       </h3>
                     </div>
                   </Box>
@@ -199,8 +201,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                           color: '#FF0000',
                         }}
                       >
-                        <div>Erro de Timeout</div>
-                        <div>Tente recarregar a página novamente.</div>
+                        <div>{t('timeout')}</div>
+                        <div>{t('try-again')}</div>
                       </h3>
                       <h3
                         style={{
@@ -210,7 +212,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                           marginTop: '1px',
                         }}
                       >
-                        <div>(Clique na tela para fechar.)</div>
+                        <div>({t('close')})</div>
                       </h3>
                     </div>
                   </Box>

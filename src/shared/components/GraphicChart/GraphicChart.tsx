@@ -93,7 +93,7 @@ const GraphicChart = ({
 
   const filteredChartsOptions = chartsOption.filter((option, index) => {
     if (type === 'gauge') {
-      return (index <= 1) ? true : false;
+      return (index <= 1);
     }
     return true;
   });
@@ -112,17 +112,13 @@ const GraphicChart = ({
           width="100%"
           height={chartBoxHeight}
         >
-          {(type !== 'gauge') || (type === 'gauge' && showCharts) ?
-            chartsOption.map((option) => (
-              <>
-                <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
-              </>
+          {(type !== 'gauge') || (type === 'gauge' && showCharts) && (typeof window !== 'undefined') ?
+            (typeof window !== 'undefined') && chartsOption.map((option) => (
+              <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
             ))
             :
-            filteredChartsOptions.map((option) => (
-              <>
-                <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
-              </>
+            (typeof window !== 'undefined') && filteredChartsOptions.map((option) => (
+              <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
             ))
           }
 
