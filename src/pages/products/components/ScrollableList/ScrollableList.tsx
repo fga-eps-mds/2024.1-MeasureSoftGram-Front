@@ -2,8 +2,15 @@ import React, { useRef, useState } from 'react';
 import { List, ListItem, IconButton, Box } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { Organization } from '@customTypes/organization';
 
-const ScrollableList = () => {
+
+interface ScrollableListProps {
+  organizationList: Organization[];
+  onSelect: (organization: Organization) => void;
+}
+
+const ScrollableList: React.FC<ScrollableListProps> = ({ organizationList, onSelect }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -21,7 +28,10 @@ const ScrollableList = () => {
 
   const handleItemClick = (index: number) => {
     setSelectedIndex(index);
+    onSelect(organizationList[index]);
   };
+
+  console.log({ organizationList })
 
   return (
     <Box sx={{ width: 200, maxHeight: 350, overflow: 'hidden', position: 'relative' }}>
@@ -33,9 +43,9 @@ const ScrollableList = () => {
 
       <Box ref={listRef} sx={{ maxHeight: 250, overflowY: 'auto', mt: 1, mb: 1 }}>
         <List>
-          {Array.from({ length: 20 }, (_, index) => (
+          {organizationList.map((organization, index) => (
             <ListItem
-              key={index}
+              key={organization.id}
               onClick={() => handleItemClick(index)}
               sx={{
                 display: 'flex',
@@ -43,10 +53,10 @@ const ScrollableList = () => {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 color: selectedIndex === index ? '#2B4D6F' : 'inherit',
-                '&:hover': { backgroundColor: '#f0f0f0' }
+                '&:hover': { backgroundColor: '#F4F5F6' }
               }}
             >
-              Item {index + 1}
+              {organization.name}
             </ListItem>
           ))}
         </List>
