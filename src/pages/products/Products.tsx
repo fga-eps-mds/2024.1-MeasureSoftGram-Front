@@ -166,55 +166,54 @@ const Products: NextPageWithLayout = () => {
           </Box>
 
 
-          {currentOrganization && (
-            <Box
-              display="flex"
-              flexDirection="row"
-              marginTop="20px"
+          <Box
+            display="flex"
+            flexDirection="row"
+            marginTop="20px"
+            style={{
+              border: '1px solid #113d4c',
+              borderRadius: '10px',
+              boxSizing: 'border-box',
+            }}
+          >
+
+
+            {isLoadingOrganizations ? <Box
               style={{
-                border: '1px solid #113d4c',
+                padding: "36px",
+                backgroundColor: '#F4F5F6',
                 borderRadius: '10px',
                 boxSizing: 'border-box',
-              }}
-            >
-
-
-              {isLoadingOrganizations ? <Box
+              }}> <Skeleton /> </Box> : <Box
                 style={{
                   padding: "36px",
                   backgroundColor: '#F4F5F6',
                   borderRadius: '10px',
                   boxSizing: 'border-box',
-                }}> <Skeleton /> </Box> : <Box
+                }}>
+              <Link href="/organizations">
+                <Button
                   style={{
-                    padding: "36px",
-                    backgroundColor: '#F4F5F6',
-                    borderRadius: '10px',
-                    boxSizing: 'border-box',
-                  }}>
-                <Link href="/organizations">
-                  <Button
-                    style={{
-                      minWidth: '40px',
-                      height: '45px',
+                    minWidth: '40px',
+                    height: '45px',
 
-                    }}
-                    size="medium"
-                    variant={
-                      'contained'
-                    }
-                  >
-                    Adicionar Organização
-                  </Button>
-                </Link>
+                  }}
+                  size="medium"
+                  variant={
+                    'contained'
+                  }
+                >
+                  Adicionar Organização
+                </Button>
+              </Link>
 
 
-                <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
+              <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
 
-              </Box>}
+            </Box>}
 
 
-              {/* <Box
+            {/* <Box
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
@@ -236,7 +235,7 @@ const Products: NextPageWithLayout = () => {
                   <AddIcon style={{ color: 'white' }} />
                 </IconButton>
               </Box> */}
-              {/* <Box
+            {/* <Box
                 display="flex"
                 gap="1rem"
                 flexDirection="row"
@@ -261,7 +260,7 @@ const Products: NextPageWithLayout = () => {
                   />
                 </Grid>
               </Box> */}
-              {/*
+            {/*
               <Box
                 display="flex"
                 flexWrap="wrap"
@@ -281,8 +280,7 @@ const Products: NextPageWithLayout = () => {
                   />
                 ))}
               </Box> */}
-            </Box>
-          )}
+          </Box>
         </Box>
       </Container>
     </>
