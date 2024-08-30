@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="styles__Container-sc-1s564rw-0 dKskcL"
+        class="styles__Container-sc-1s564rw-0 buDuic"
       >
         <div
           class="styles__Header-sc-1s564rw-1 bjPRWa"
           data-testid="organization-title"
         >
-          ADICIONAR ORGANIZAÇÃO
+          title-create
         </div>
         <div
           class="styles__Wrapper-sc-1s564rw-3 dZbbdr"
@@ -20,7 +20,7 @@ Object {
           <div
             class="styles__Description-sc-1s564rw-4 fMSgUG"
           >
-            Uma organização representa uma entidade de alto nível que mantém múltiplos repositórios de código-fonte. Cada repositório pode ter seu próprio objetivo, mas todos devem estar alinhados com os interesses da organização.
+            description
           </div>
           <form>
             <div
@@ -36,7 +36,7 @@ Object {
                   for=":r2:"
                   id=":r2:-label"
                 >
-                  Nome da organização
+                  input-name
                   <span
                     aria-hidden="true"
                     class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -64,7 +64,7 @@ Object {
                       class="css-yjsfm1"
                     >
                       <span>
-                        Nome da organização
+                        input-name
                          
                         *
                       </span>
@@ -82,7 +82,7 @@ Object {
                   for=":r3:"
                   id=":r3:-label"
                 >
-                  Descrição da organização
+                  input-description
                 </label>
                 <div
                   class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
@@ -108,28 +108,28 @@ Object {
                       class="css-yjsfm1"
                     >
                       <span>
-                        Descrição da organização
+                        input-description
                       </span>
                     </legend>
                   </fieldset>
                 </div>
               </div>
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
-                ADICIONAR MEMBROS
+                add-members
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-sghohy-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-sghohy-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                CRIAR
+                create
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -142,13 +142,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="styles__Container-sc-1s564rw-0 dKskcL"
+      class="styles__Container-sc-1s564rw-0 buDuic"
     >
       <div
         class="styles__Header-sc-1s564rw-1 bjPRWa"
         data-testid="organization-title"
       >
-        ADICIONAR ORGANIZAÇÃO
+        title-create
       </div>
       <div
         class="styles__Wrapper-sc-1s564rw-3 dZbbdr"
@@ -156,7 +156,7 @@ Object {
         <div
           class="styles__Description-sc-1s564rw-4 fMSgUG"
         >
-          Uma organização representa uma entidade de alto nível que mantém múltiplos repositórios de código-fonte. Cada repositório pode ter seu próprio objetivo, mas todos devem estar alinhados com os interesses da organização.
+          description
         </div>
         <form>
           <div
@@ -172,7 +172,7 @@ Object {
                 for=":r2:"
                 id=":r2:-label"
               >
-                Nome da organização
+                input-name
                 <span
                   aria-hidden="true"
                   class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -200,7 +200,7 @@ Object {
                     class="css-yjsfm1"
                   >
                     <span>
-                      Nome da organização
+                      input-name
                        
                       *
                     </span>
@@ -218,7 +218,7 @@ Object {
                 for=":r3:"
                 id=":r3:-label"
               >
-                Descrição da organização
+                input-description
               </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root"
@@ -244,28 +244,28 @@ Object {
                     class="css-yjsfm1"
                   >
                     <span>
-                      Descrição da organização
+                      input-description
                     </span>
                   </legend>
                 </fieldset>
               </div>
             </div>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
-              ADICIONAR MEMBROS
+              add-members
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-sghohy-MuiButtonBase-root-MuiButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-sghohy-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              CRIAR
+              create
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
