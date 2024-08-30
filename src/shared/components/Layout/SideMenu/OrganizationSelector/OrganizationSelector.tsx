@@ -33,7 +33,7 @@ function OrganizationSelector() {
   return (
     <>
       <SideMenuItem
-        startIcon={<LetterAvatar name={currentOrganization?.name ?? '?'} icon={<BsFillBuildingFill />} />}
+        startIcon={<LetterAvatar name={currentOrganization?.name ?? '?'} icon={<BsFillBuildingFill color="#000000" />} />}
         text={currentOrganization?.name ?? 'Selecione a Organização'}
         endIcon={<FiRepeat />}
         tooltip={t("tooltip.organization-selection")}

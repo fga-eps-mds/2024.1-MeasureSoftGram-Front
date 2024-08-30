@@ -11,7 +11,7 @@ import * as Styles from './styles';
 import OrganizationButton from '../OrganizationSelector';
 import ProductsSelector from '../ProductsSelector';
 
-const IMAGE_SOURCE = '/images/svg/logo.svg';
+const IMAGE_SOURCE = '/images/svg/logo_white.svg';
 
 interface Props {
   menuItems?: React.ReactNode;
@@ -24,16 +24,16 @@ function SideMenuWrapper({ menuItems, footer }: Props) {
   return (
     <Styles.Wrapper>
       <Link href="/home">
-        <Styles.Logo src={IMAGE_SOURCE} height={45} />
+        <Styles.Logo src={IMAGE_SOURCE} height={50} />
       </Link>
       <OrganizationButton />
       <ProductsSelector />
       <Styles.CollapseButton onClick={toggleCollapse}>
-        {isCollapsed ? <NavigateNextRoundedIcon fontSize="large" /> : <NavigateBeforeRoundedIcon fontSize="large" />}
+        {isCollapsed ? <NavigateNextRoundedIcon fontSize="large" color="#f5f5f5" /> : <NavigateBeforeRoundedIcon fontSize="large" color="#f5f5f5" />}
       </Styles.CollapseButton>
-      <Divider sx={{ width: '100%', my: '10px', border: '1px solid rgba(0, 0, 0, 0.20)' }} />
+      <Divider sx={{ width: '100%', my: '10px', border: '1px solid rgba(0, 0, 0, 0.30)' }} />
       <Styles.ItemContainer>{menuItems}</Styles.ItemContainer>
-      <Divider sx={{ width: '100%', my: '2px', border: '1px solid rgba(0, 0, 0, 0.20)' }} />
+      <Divider sx={{ width: '100%', my: '2px', border: '1px solid rgba(0, 0, 0, 0.30)' }} />
       {footer}
     </Styles.Wrapper>
   );

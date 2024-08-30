@@ -29,7 +29,7 @@ function ProductSelector() {
   return (
     <>
       <SideMenuItem
-        startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox />} />}
+        startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox color="#000000" />} />}
         text={currentProduct?.name ?? t("product.placeholder")}
         endIcon={<FiRepeat />}
         tooltip={t("tooltip.product-selection")}
