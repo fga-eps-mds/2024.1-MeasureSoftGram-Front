@@ -30,19 +30,22 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ organizationList, onSel
     onSelect(organizationList[index]);
   };
 
-  console.log({ organizationList });
-
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
         <IconButton onClick={handleScrollUp}>
-          <ArrowUpwardIcon />
+          <ArrowUpwardIcon style={{ fontSize: '1.8em' }} />
         </IconButton>
       </Box>
-
       <Box
         ref={listRef}
-        sx={{ overflowY: 'auto', flexGrow: 1, mt: 1, mb: 1, display: 'flex', justifyContent: 'center' }}
+        sx={{
+          overflowY: 'auto',
+          flexGrow: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         <List>
           {organizationList.map((organization, index) => (
@@ -66,7 +69,7 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ organizationList, onSel
 
       <Box sx={{ display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
         <IconButton onClick={handleScrollDown}>
-          <ArrowDownwardIcon />
+          <ArrowDownwardIcon style={{ fontSize: '1.8em' }} />
         </IconButton>
       </Box>
     </Box>

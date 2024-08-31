@@ -22,7 +22,6 @@ import Skeleton from './components/Skeleton';
 import { useQuery } from './hooks/useQuery';
 import ScrollableList from './components/ScrollableList/index';
 import { Organization } from '@customTypes/organization';
-import { height } from '@mui/system';
 
 
 const Products: NextPageWithLayout = () => {
@@ -160,7 +159,7 @@ const Products: NextPageWithLayout = () => {
 
               <Box
                 style={{
-                  padding: "36px",
+                  padding: "20px",
                   backgroundColor: '#F4F5F6',
                   borderRadius: '10px',
                   boxSizing: 'border-box',
@@ -181,8 +180,13 @@ const Products: NextPageWithLayout = () => {
                   </Button>
                 </Link>
 
-
-                <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
+                <Box
+                  paddingTop='2em'
+                  paddingBottom='2em'
+                  height={'100%'}
+                >
+                  <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
+                </Box>
 
               </Box>
 
