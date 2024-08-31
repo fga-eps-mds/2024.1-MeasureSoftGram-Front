@@ -18,12 +18,12 @@ import getLayout from '@components/Layout';
 import CardNavigation from '@components/CardNavigation';
 import { Product } from '@customTypes/product';
 import useRequireAuth from '@hooks/useRequireAuth';
-import Skeleton from './components/Skeleton';
-import { useQuery } from './hooks/useQuery';
-import ScrollableList from './components/ScrollableList/index';
 import { Organization } from '@customTypes/organization';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useTranslation } from 'react-i18next';
+import Skeleton from './components/Skeleton';
+import { useQuery } from './hooks/useQuery';
+import ScrollableList from './components/ScrollableList/index';
 
 const Products: NextPageWithLayout = () => {
   const { t: tp } = useTranslation('product');
@@ -32,7 +32,7 @@ const Products: NextPageWithLayout = () => {
   useQuery();
   useRequireAuth();
 
-  let {
+  const {
     organizationList,
     currentOrganization,
     setCurrentOrganizations,
@@ -62,7 +62,7 @@ const Products: NextPageWithLayout = () => {
       setCurrentOrganizations([]);
     } else if (organizationList?.length) {
       const selectedOrganization = organizationList.find(
-        (organization) => organization.id === organizationId
+        (org) => org.id === organizationId
       );
       if (selectedOrganization) {
         setCurrentOrganizations([selectedOrganization]);
@@ -89,7 +89,7 @@ const Products: NextPageWithLayout = () => {
       </Container>
     );
   }
-
+  const boxSizing = 'border-box'
   return (
     <>
       <Head>
@@ -98,7 +98,7 @@ const Products: NextPageWithLayout = () => {
 
       <Container maxWidth="lg" style={{ width: '100%' }}>
         <Box display="flex" flexDirection="column"
-          height={'60%'}
+          height="60%"
         >
 
           <Box
@@ -121,7 +121,7 @@ const Products: NextPageWithLayout = () => {
                 gap: '1rem',
                 padding: '0',
                 marginLeft: '-36px',
-                boxSizing: 'border-box',
+                boxSizing,
               }}
               sx={{
                 '&::-webkit-scrollbar': {
@@ -137,16 +137,14 @@ const Products: NextPageWithLayout = () => {
                 scrollbarColor: '#b0b0b0 #f0f0f0',
                 scrollbarWidth: 'thin',
               }}
-            >
-
-            </Box>
+            />
           </Box>
 
           {isLoadingOrganizations ? <Box
             style={{
               border: '1px solid #113d4c',
               borderRadius: '10px',
-              boxSizing: 'border-box',
+              boxSizing,
             }}> <Skeleton /> </Box> :
 
             <Box
@@ -156,10 +154,10 @@ const Products: NextPageWithLayout = () => {
               style={{
                 border: '1px solid #113d4c',
                 borderRadius: '10px',
-                boxSizing: 'border-box',
+                boxSizing,
               }}
-              height={'73vh'}
-              justifyContent={'space-between'}
+              height="73vh"
+              justifyContent="space-between"
             >
 
               <Box
@@ -167,7 +165,7 @@ const Products: NextPageWithLayout = () => {
                   padding: "20px",
                   backgroundColor: '#F4F5F6',
                   borderRadius: '10px',
-                  boxSizing: 'border-box',
+                  boxSizing,
                 }}>
                 <Link href="/organizations">
                   <Button
@@ -177,9 +175,7 @@ const Products: NextPageWithLayout = () => {
 
                     }}
                     size="medium"
-                    variant={
-                      'contained'
-                    }
+                    variant="contained"
                   >
                     {to('title-create')}
                   </Button>
@@ -188,9 +184,9 @@ const Products: NextPageWithLayout = () => {
                 <Box
                   paddingTop='2em'
                   paddingBottom='2em'
-                  height={'100%'}
+                  height="100%"
                 >
-                  <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
+                  <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization} />
                 </Box>
 
               </Box>
@@ -199,8 +195,8 @@ const Products: NextPageWithLayout = () => {
                 width="70%"
                 margin="20px"
                 sx={{ overflow: 'auto' }}
-                paddingRight={'1em'}
-                position={'relative'}
+                paddingRight="1em"
+                position="relative"
               >
 
                 <Box
@@ -218,9 +214,7 @@ const Products: NextPageWithLayout = () => {
 
                       }}
                       size="large"
-                      variant={
-                        'contained'
-                      }
+                      variant="contained"
                     >
                       {tp('title-create')}
                     </Button>
@@ -242,7 +236,7 @@ const Products: NextPageWithLayout = () => {
                   marginTop="20px"
                   justifyContent="space-around"
                   width="100%"
-                  alignContent={'center'}
+                  alignContent="center"
                 >
                   {filteredProducts?.map((product) => (
                     <Box
@@ -269,10 +263,10 @@ const Products: NextPageWithLayout = () => {
                       padding={2}
                       borderRadius={2}
                       width="fit-content"
-                      marginTop={'15%'}
+                      marginTop="15%"
                     >
                       <WarningIcon sx={{ color: '#e08c14', marginRight: 1 }} />
-                      <Typography color={'black'}>{tp('not-found')}</Typography>
+                      <Typography color="black">{tp('not-found')}</Typography>
                     </Box>
                   }
                 </Box>
