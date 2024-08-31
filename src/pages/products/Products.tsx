@@ -22,7 +22,7 @@ import Skeleton from './components/Skeleton';
 import { useQuery } from './hooks/useQuery';
 import ScrollableList from './components/ScrollableList/index';
 import { Organization } from '@customTypes/organization';
-
+import WarningIcon from '@mui/icons-material/Warning';
 
 const Products: NextPageWithLayout = () => {
   useQuery();
@@ -155,6 +155,7 @@ const Products: NextPageWithLayout = () => {
                 boxSizing: 'border-box',
               }}
               height={'73vh'}
+              justifyContent={'space-between'}
             >
 
               <Box
@@ -238,6 +239,7 @@ const Products: NextPageWithLayout = () => {
                   marginTop="20px"
                   justifyContent="space-around"
                   width="100%"
+                  alignContent={'center'}
                   sx={{
                     maxHeight: '100%',  // Constrain the max height to the parent container
                     overflow: 'auto'   // Enables scrolling for the child content
@@ -257,6 +259,23 @@ const Products: NextPageWithLayout = () => {
                     </Box>
 
                   ))}
+                  {
+                    filteredProducts?.length === 0 &&
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      bgcolor="rgba(223, 142, 22, 0.22)"
+                      color="#DF8E16"
+                      padding={2}
+                      borderRadius={2}
+                      width="fit-content"
+                      marginTop={'15%'}
+                    >
+                      <WarningIcon sx={{ color: '#e08c14', marginRight: 1 }} />
+                      <Typography color={'black'}>Nenhum produto encontrado.</Typography>
+                    </Box>
+                  }
                 </Box>
               </Box>
             </Box>
