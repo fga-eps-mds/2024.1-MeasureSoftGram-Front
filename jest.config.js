@@ -18,7 +18,7 @@ module.exports = {
     ...aliases,
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Mock de arquivos de estilo
     '\\.svg$': '<rootDir>/__mocks__/svgMock.js', // Mock de arquivos SVG
-    '^next/image$': '<rootDir>/__mocks__/next/image.js' // Mock do next/image
+    '^next/image$': '<rootDir>/__mocks__/next/ImageMock.js' // Mock do next/image
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   setupFiles: ['<rootDir>/tests/jestSetup.ts'],

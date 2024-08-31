@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Image = (props) => {
+const ImageMock = (props) => {
   return <img {...props} alt={props.alt || ''} />;
 };
 
-export default Image;
+export default ImageMock;
