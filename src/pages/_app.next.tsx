@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { RotatingLines } from 'react-loader-spinner';
 import { Modal, Box } from '@mui/material';
 import { appWithI18Next, useSyncLanguage } from 'ni18n';
+import { useTranslation } from 'react-i18next';
 import { ni18nConfig } from "../../n18n.config";
 
 export type NextPageWithLayout = NextPage & {
@@ -33,7 +34,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const disableBreadcrumb = Component.disableBreadcrumb ?? false;
 
   const locale: any =
-    typeof window !== 'undefined' && window.localStorage.getItem('locale_lang');
+    typeof window !== 'undefined' && window.localStorage.getItem('locale_lang')
 
   useSyncLanguage(locale);
 
@@ -42,10 +43,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   useEffect(() => {
     let timeoutId;
-    let errorTimeoutId;
 
     const handleRouteChange = () => {
-      clearTimeout(timeoutId);
+      console.log(`App is changing to`);
       setModalOpen(false);
 
       // Set timeout for 2 seconds before showing the loading animation
@@ -56,8 +56,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     };
 
     const handleRouteComplete = () => {
+      console.log('you have finished going to the new page');
       clearTimeout(timeoutId);
-      clearTimeout(errorTimeoutId);
 
       setLoading(false);
       setModalOpen(false);
@@ -66,8 +66,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
     const nextNavigationHandler = (url) => {
       if (errorOccurred) {
-        router.events.emit('routeChangeError');
-        throw "Abort route change by user's confirmation.";
+        router.events.emit('routeChangeError')
+        // eslint-disable-next-line no-throw-literal
+        throw "Abort route change by user's confirmation."
       }
     };
 
@@ -75,23 +76,42 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     router.events.on('routeChangeComplete', handleRouteComplete);
     router.events.on('beforeHistoryChange', nextNavigationHandler);
 
-    // Show error after a timeout only if still loading
-    if (loading) {
-      errorTimeoutId = setTimeout(() => {
-        setShowError(true);
-        setErrorOccurred(true);
-        setModalOpen(false);
-        setLoading(false);
-      }, 20000);
-    }
-
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
       router.events.off('routeChangeComplete', handleRouteComplete);
       clearTimeout(timeoutId);
-      clearTimeout(errorTimeoutId);
     };
-  }, [errorOccurred, loading]);
+  }, [errorOccurred]);
+
+  // Ensure the modal doesn't open if the loading is faster than the delay
+  useEffect(() => {
+    if (loading) {
+      const timeoutId = setTimeout(() => {
+        setModalOpen(true);
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    const errorTimeoutId = setTimeout(() => {
+      if (loading) {
+        // Show error modal only if still loading after 10 seconds
+        setShowError(true);
+        setErrorOccurred(true);
+        setModalOpen(false);
+        setLoading(false);
+      }
+    }, 20000);
+
+    return () => clearTimeout(errorTimeoutId);
+  }, [loading]);
+
+  const closeModal = () => {
+    setShowError(false);
+    setErrorOccurred(false);
+  }
 
   const { t } = useTranslation();
 
@@ -169,7 +189,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
                 <Modal
                   open={showError}
-                  onClose={() => setShowError(false)}
+                  onClose={closeModal}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                 >
