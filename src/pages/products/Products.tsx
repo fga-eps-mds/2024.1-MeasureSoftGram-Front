@@ -23,8 +23,12 @@ import { useQuery } from './hooks/useQuery';
 import ScrollableList from './components/ScrollableList/index';
 import { Organization } from '@customTypes/organization';
 import WarningIcon from '@mui/icons-material/Warning';
+import { useTranslation } from 'react-i18next';
 
 const Products: NextPageWithLayout = () => {
+  const { t: tp } = useTranslation('product');
+  const { t: to } = useTranslation('organization');
+
   useQuery();
   useRequireAuth();
 
@@ -89,7 +93,7 @@ const Products: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Site do MeasureSoftGram</title>
+        <title> {tp('title')} </title>
       </Head>
 
       <Container maxWidth="lg" style={{ width: '100%' }}>
@@ -177,7 +181,7 @@ const Products: NextPageWithLayout = () => {
                       'contained'
                     }
                   >
-                    Adicionar Organização
+                    {to('title-create')}
                   </Button>
                 </Link>
 
@@ -218,14 +222,14 @@ const Products: NextPageWithLayout = () => {
                         'contained'
                       }
                     >
-                      Adicionar Produto
+                      {tp('title-create')}
                     </Button>
                   </Link>
                 </Box>
 
                 <TextField
                   fullWidth
-                  label="Buscar Produto"
+                  label={tp('search')}
                   variant="outlined"
                   onChange={(e) => handleProductFilter(e.target.value)}
                   sx={{ mb: 2 }}
@@ -241,8 +245,8 @@ const Products: NextPageWithLayout = () => {
                   width="100%"
                   alignContent={'center'}
                   sx={{
-                    maxHeight: '100%',  // Constrain the max height to the parent container
-                    overflow: 'auto'   // Enables scrolling for the child content
+                    maxHeight: '100%',
+                    overflow: 'auto'
                   }}
                 >
                   {filteredProducts?.map((product) => (
@@ -273,7 +277,7 @@ const Products: NextPageWithLayout = () => {
                       marginTop={'15%'}
                     >
                       <WarningIcon sx={{ color: '#e08c14', marginRight: 1 }} />
-                      <Typography color={'black'}>Nenhum produto encontrado.</Typography>
+                      <Typography color={'black'}>{tp('not-found')}</Typography>
                     </Box>
                   }
                 </Box>
