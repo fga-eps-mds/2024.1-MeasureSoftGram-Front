@@ -239,15 +239,10 @@ const Products: NextPageWithLayout = () => {
                 <Box
                   display="flex"
                   flexDirection="column"
-                  flexWrap="wrap"
                   marginTop="20px"
                   justifyContent="space-around"
                   width="100%"
                   alignContent={'center'}
-                  sx={{
-                    maxHeight: '100%',
-                    overflow: 'auto'
-                  }}
                 >
                   {filteredProducts?.map((product) => (
                     <Box
