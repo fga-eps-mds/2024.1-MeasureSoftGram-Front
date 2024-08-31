@@ -264,6 +264,7 @@ const Products: NextPageWithLayout = () => {
                       borderRadius={2}
                       width="fit-content"
                       marginTop="15%"
+                      alignSelf={"center"}
                     >
                       <WarningIcon sx={{ color: '#e08c14', marginRight: 1 }} />
                       <Typography color="black">{tp('not-found')}</Typography>
