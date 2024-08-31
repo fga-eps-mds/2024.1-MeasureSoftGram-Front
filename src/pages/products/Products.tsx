@@ -186,22 +186,35 @@ const Products: NextPageWithLayout = () => {
               </Box>
 
 
-              <Box>
-                <Link href="/products/create">
-                  <Button
-                    style={{
-                      minWidth: '40px',
-                      height: '45px',
+              <Box
+                width="70%"
+                margin="20px"
 
-                    }}
-                    size="medium"
-                    variant={
-                      'contained'
-                    }
-                  >
-                    Adicionar Produto
-                  </Button>
-                </Link>
+              >
+
+                <Box
+                  width="100%"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="end"
+                  marginBottom='20px'
+                >
+                  <Link href="/products/create">
+                    <Button
+                      style={{
+                        minWidth: '40px',
+                        height: '45px',
+
+                      }}
+                      size="large"
+                      variant={
+                        'contained'
+                      }
+                    >
+                      Adicionar Produto
+                    </Button>
+                  </Link>
+                </Box>
 
                 <TextField
                   fullWidth
@@ -218,14 +231,23 @@ const Products: NextPageWithLayout = () => {
                   flexWrap="wrap"
                   marginTop="20px"
                   justifyContent="space-around"
+                  width="100%"
                 >
                   {filteredProducts?.map((product) => (
-                    <CardNavigation
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      url={`/products/${currentOrganization?.id}-${product?.id}-${product?.name}`}
-                    />
+                    <Box
+                      width="100%"
+                      height="100%"
+                      paddingBottom="2em"
+                    >
+                      <CardNavigation
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        description={product.description}
+                        url={`/products/${currentOrganization?.id}-${product?.id}-${product?.name}`}
+                      />
+                    </Box>
+
                   ))}
                 </Box>
               </Box>
