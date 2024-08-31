@@ -4,7 +4,6 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Organization } from '@customTypes/organization';
 
-
 interface ScrollableListProps {
   organizationList: Organization[];
   onSelect: (organization: Organization) => void;
@@ -31,17 +30,20 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ organizationList, onSel
     onSelect(organizationList[index]);
   };
 
-  console.log({ organizationList })
+  console.log({ organizationList });
 
   return (
-    <Box sx={{ width: 200, maxHeight: 350, overflow: 'hidden', position: 'relative' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
         <IconButton onClick={handleScrollUp}>
           <ArrowUpwardIcon />
         </IconButton>
       </Box>
 
-      <Box ref={listRef} sx={{ maxHeight: 250, overflowY: 'auto', mt: 1, mb: 1 }}>
+      <Box
+        ref={listRef}
+        sx={{ overflowY: 'auto', flexGrow: 1, mt: 1, mb: 1, display: 'flex', justifyContent: 'center' }}
+      >
         <List>
           {organizationList.map((organization, index) => (
             <ListItem
@@ -53,7 +55,7 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ organizationList, onSel
                 justifyContent: 'center',
                 cursor: 'pointer',
                 color: selectedIndex === index ? '#2B4D6F' : 'inherit',
-                '&:hover': { backgroundColor: '#F4F5F6' }
+                '&:hover': { backgroundColor: '#F4F5F6' },
               }}
             >
               {organization.name}
@@ -62,7 +64,7 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ organizationList, onSel
         </List>
       </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
         <IconButton onClick={handleScrollDown}>
           <ArrowDownwardIcon />
         </IconButton>

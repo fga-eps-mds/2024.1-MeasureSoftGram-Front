@@ -18,11 +18,11 @@ import getLayout from '@components/Layout';
 import CardNavigation from '@components/CardNavigation';
 import { Product } from '@customTypes/product';
 import useRequireAuth from '@hooks/useRequireAuth';
-import SearchButton from '@components/SearchButton';
 import Skeleton from './components/Skeleton';
 import { useQuery } from './hooks/useQuery';
 import ScrollableList from './components/ScrollableList/index';
 import { Organization } from '@customTypes/organization';
+import { height } from '@mui/system';
 
 
 const Products: NextPageWithLayout = () => {
@@ -94,7 +94,9 @@ const Products: NextPageWithLayout = () => {
       </Head>
 
       <Container maxWidth="lg" style={{ width: '100%' }}>
-        <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="column"
+          height={'60%'}
+        >
 
           <Box
             data-testid="organization-box"
@@ -137,8 +139,6 @@ const Products: NextPageWithLayout = () => {
             </Box>
           </Box>
 
-
-
           {isLoadingOrganizations ? <Box
             style={{
               border: '1px solid #113d4c',
@@ -155,6 +155,7 @@ const Products: NextPageWithLayout = () => {
                 borderRadius: '10px',
                 boxSizing: 'border-box',
               }}
+              height={'73vh'}
             >
 
               <Box
@@ -185,11 +186,12 @@ const Products: NextPageWithLayout = () => {
 
               </Box>
 
-
               <Box
                 width="70%"
                 margin="20px"
-
+                sx={{ overflow: 'auto' }}
+                paddingRight={'1em'}
+                position={'relative'}
               >
 
                 <Box
@@ -232,11 +234,13 @@ const Products: NextPageWithLayout = () => {
                   marginTop="20px"
                   justifyContent="space-around"
                   width="100%"
+                  sx={{
+                    maxHeight: '100%',  // Constrain the max height to the parent container
+                    overflow: 'auto'   // Enables scrolling for the child content
+                  }}
                 >
                   {filteredProducts?.map((product) => (
                     <Box
-                      width="100%"
-                      height="100%"
                       paddingBottom="2em"
                     >
                       <CardNavigation
@@ -255,7 +259,7 @@ const Products: NextPageWithLayout = () => {
 
           }
         </Box>
-      </Container>
+      </Container >
     </>
   );
 };
