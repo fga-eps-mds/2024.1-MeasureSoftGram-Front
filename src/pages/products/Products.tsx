@@ -8,6 +8,7 @@ import {
   Typography,
   IconButton,
   Link,
+  TextField,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { NextPageWithLayout } from '@pages/_app.next';
@@ -137,121 +138,100 @@ const Products: NextPageWithLayout = () => {
           </Box>
 
 
-          <Box
-            display="flex"
-            flexDirection="row"
-            marginTop="20px"
+
+          {isLoadingOrganizations ? <Box
             style={{
               border: '1px solid #113d4c',
               borderRadius: '10px',
               boxSizing: 'border-box',
-            }}
-          >
+            }}> <Skeleton /> </Box> :
 
-
-            {isLoadingOrganizations ? <Box
+            <Box
+              display="flex"
+              flexDirection="row"
+              marginTop="20px"
               style={{
-                padding: "36px",
-                backgroundColor: '#F4F5F6',
+                border: '1px solid #113d4c',
                 borderRadius: '10px',
                 boxSizing: 'border-box',
-              }}> <Skeleton /> </Box> : <Box
+              }}
+            >
+
+              <Box
                 style={{
                   padding: "36px",
                   backgroundColor: '#F4F5F6',
                   borderRadius: '10px',
                   boxSizing: 'border-box',
                 }}>
-              <Link href="/organizations">
-                <Button
-                  style={{
-                    minWidth: '40px',
-                    height: '45px',
-
-                  }}
-                  size="medium"
-                  variant={
-                    'contained'
-                  }
-                >
-                  Adicionar Organização
-                </Button>
-              </Link>
-
-
-              <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
-
-            </Box>}
-
-
-            {/* <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                marginBottom="20px"
-              >
-                <Typography variant="h5">
-                  Organização Atual: {currentOrganization.name}
-                </Typography>
-                <IconButton
-                  color="primary"
-                  aria-label="add product"
-                  style={{
-                    backgroundColor: '#33568E',
-                    borderRadius: '50%',
-                    width: '36px',
-                    height: '36px',
-                  }}
-                >
-                  <AddIcon style={{ color: 'white' }} />
-                </IconButton>
-              </Box> */}
-            {/* <Box
-                display="flex"
-                gap="1rem"
-                flexDirection="row"
-                alignItems="center"
-                marginBottom="20px"
-              >
-                <Typography
-                  variant="h5"
-                  color="#626264cc"
-                  fontWeight="semibold"
-                >
-                  Produtos
-                </Typography>
-                <Grid container justifyContent="flex-end" marginRight="20px">
-                  <SearchButton
-                    onInput={(e) =>
-                      handleProductFilter(
-                        (e.target as HTMLInputElement).value
-                      )
-                    }
-                    label="Insira o nome do produto"
-                  />
-                </Grid>
-              </Box> */}
-            {/*
-              <Box
-                display="flex"
-                flexWrap="wrap"
-                marginTop="20px"
-                justifyContent="space-around"
-              >
-                {filteredProducts?.map((product) => (
-                  <CardNavigation
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    url={`/products/${currentOrganization?.id}-${product?.id}-${product?.name}`}
+                <Link href="/organizations">
+                  <Button
                     style={{
-                      paddingRight: '20px',
-                      paddingBottom: '20px',
+                      minWidth: '40px',
+                      height: '45px',
+
                     }}
-                  />
-                ))}
-              </Box> */}
-          </Box>
+                    size="medium"
+                    variant={
+                      'contained'
+                    }
+                  >
+                    Adicionar Organização
+                  </Button>
+                </Link>
+
+
+                <ScrollableList organizationList={organizationList} onSelect={handleSelectedOrganization}></ScrollableList>
+
+              </Box>
+
+
+              <Box>
+                <Link href="/products/create">
+                  <Button
+                    style={{
+                      minWidth: '40px',
+                      height: '45px',
+
+                    }}
+                    size="medium"
+                    variant={
+                      'contained'
+                    }
+                  >
+                    Adicionar Produto
+                  </Button>
+                </Link>
+
+                <TextField
+                  fullWidth
+                  label="Buscar Produto"
+                  variant="outlined"
+                  onChange={(e) => handleProductFilter(e.target.value)}
+                  sx={{ mb: 2 }}
+                  data-testid="search-input"
+                />
+
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  flexWrap="wrap"
+                  marginTop="20px"
+                  justifyContent="space-around"
+                >
+                  {filteredProducts?.map((product) => (
+                    <CardNavigation
+                      key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      url={`/products/${currentOrganization?.id}-${product?.id}-${product?.name}`}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            </Box>
+
+          }
         </Box>
       </Container>
     </>
