@@ -1,5 +1,4 @@
 import { TextField, Grid, Box, Typography, Tooltip } from "@mui/material";
-import { useEffect } from "react";
 
 interface MinMaxInputInputProps {
   label: string;

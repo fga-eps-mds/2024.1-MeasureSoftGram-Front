@@ -3,6 +3,8 @@ import Head from 'next/head';
 
 import { Box, Container, Pagination, Skeleton, Stack, TextField, Typography, Tooltip, Button, Grid } from '@mui/material';
 import AddchartIcon from '@mui/icons-material/Addchart';
+import { useTranslation } from 'react-i18next';
+import router from 'next/router';
 
 import { NextPageWithLayout } from '@pages/_app.next';
 
@@ -14,10 +16,8 @@ import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useRequest } from '@hooks/useRequest';
 import { ReleasesPaginated } from '@customTypes/product';
 import SearchButton from '@components/SearchButton';
-import { useTranslation } from 'react-i18next';
 import ReleasesTable from '../components/ReleasesList/ReleasesTable';
 import filterReleaseList from './util/filterReleaseList';
-import router from 'next/router';
 
 const RELEASES_PER_PAGE = 10;
 

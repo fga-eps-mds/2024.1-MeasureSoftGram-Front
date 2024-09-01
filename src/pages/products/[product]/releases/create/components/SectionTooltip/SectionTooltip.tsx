@@ -12,7 +12,7 @@ export default function SectionTooltip({ text, tooltip, id }: SectionTooltipProp
   return <h2 id={id} style={{ color: '#538BA3', fontWeight: '500', display: "flex", alignItems: "center" }}>
     {text}
     <Tooltip sx={{ marginLeft: 1 }} title={tooltip}>
-      <InfoIcon></InfoIcon>
+      <InfoIcon />
     </Tooltip>
   </h2>
 }

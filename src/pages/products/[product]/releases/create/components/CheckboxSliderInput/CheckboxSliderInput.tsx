@@ -1,5 +1,5 @@
 import { StyledSlider } from "@components/Equalizer/EqualizerSlider/styles";
-import { FormControlLabel, Checkbox, Slider, TextField, InputAdornment, Grid, Typography } from "@mui/material";
+import { FormControlLabel, Checkbox, TextField, InputAdornment, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 interface CheckboxSliderInputProps {

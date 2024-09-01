@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
-import { Box, Breadcrumbs, Button, Link } from '@mui/material';
-import * as Styles from './styles';
-import { Change, PreConfigEntitiesRelationship, ReleaseGoal } from '@customTypes/product';
+import { Box, Breadcrumbs, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { format, addDays } from 'date-fns';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { Change, PreConfigEntitiesRelationship, ReleaseGoal } from '@customTypes/product';
 import getLayout from '@components/Layout';
-import BasicInfoForm from './components/BasicInfoForm/BasicInfoForm';
-import ModelConfigForm from './components/ModelConfigForm/ModelConfigForm';
-import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@customTypes/preConfig';
-import ReferenceValuesForm from './components/ReferenceValuesForm/ReferenceValuesForm';
-import CharacteristicsBalanceForm from './components/CharacteristicsBalanceForm/CharacteristicsBalanceForm';
+import WarningModal from '@components/WarningModal/WarningModal';
+import { Characteristic, Measure, PreConfigData, ReleaseInfoForm, Subcharacteristic } from '@customTypes/preConfig';
 import api from '@services/api';
 import { productQuery } from '@services/product';
 import { balanceMatrixService } from '@services/balanceMatrix';
 import { enqueueSnackbar, SnackbarProvider } from '@components/snackbar';
-import WarningModal from '@components/WarningModal/WarningModal';
-import { useTranslation } from 'react-i18next';
-import { AxiosResponse } from 'axios';
-
-export interface ReleaseInfoForm {
-  release_name: string;
-  description: string;
-  start_at: string;
-  end_at: string;
-  goal: number;
-}
+import * as Styles from './styles';
+import BasicInfoForm from './components/BasicInfoForm/BasicInfoForm';
+import ModelConfigForm from './components/ModelConfigForm/ModelConfigForm';
+import ReferenceValuesForm from './components/ReferenceValuesForm/ReferenceValuesForm';
+import CharacteristicsBalanceForm from './components/CharacteristicsBalanceForm/CharacteristicsBalanceForm';
 
 function ReleaseInfo() {
   const [organizationId, setOrganizationId] = useState<string>("");
@@ -49,7 +40,7 @@ function ReleaseInfo() {
 
   const { t } = useTranslation('plan_release');
 
-  const { register, handleSubmit, formState: { errors }, getValues, setValue, watch, trigger } = useForm<ReleaseInfoForm>({
+  const { register, handleSubmit, formState: { errors }, getValues, watch, trigger } = useForm<ReleaseInfoForm>({
     mode: "all",
     defaultValues: {
       end_at: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
@@ -85,11 +76,11 @@ function ReleaseInfo() {
         } catch (error) {
           const data: Record<string, number> = {};
 
-          entitiesRelationship?.data.forEach(element => {
+          entitiesRelationship?.data.forEach((element: { key: string | number; }) => {
             data[element.key] = 50;
           });
 
-          currentReleaseGoal = { id: 0, data: data, allow_dynamic: false };
+          currentReleaseGoal = { id: 0, data, allow_dynamic: false };
           setReleaseGoal(currentReleaseGoal);
 
           await getPreConfigs(organization, productIdentifier, currentReleaseGoal)
@@ -120,7 +111,7 @@ function ReleaseInfo() {
   function mergeWithDefault(current: PreConfigData, defaultData: PreConfigData): PreConfigData {
     const findOrCreate = <T extends { key: string }>(array: T[], key: string, defaultEntry: T): T => {
       const entry = array.find(item => item.key === key);
-      return entry ? entry : { ...defaultEntry, key, weight: 0, active: false };
+      return entry ?? { ...defaultEntry, key, weight: 0, active: false };
     };
 
     const updatedCharacteristics = defaultData.characteristics.map(defaultChar => {
@@ -129,9 +120,7 @@ function ReleaseInfo() {
       const updatedSubcharacteristics = defaultChar.subcharacteristics.map(defaultSub => {
         const currentSub = findOrCreate(currentChar.subcharacteristics, defaultSub.key, defaultSub);
 
-        const updatedMeasures = defaultSub.measures.map(defaultMeasure => {
-          return findOrCreate(currentSub.measures, defaultMeasure.key, defaultMeasure);
-        });
+        const updatedMeasures = defaultSub.measures.map(defaultMeasure => findOrCreate(currentSub.measures, defaultMeasure.key, defaultMeasure));
 
         return {
           ...currentSub,
@@ -152,17 +141,21 @@ function ReleaseInfo() {
   };
 
   function formatConfig(data: PreConfigData, currentReleaseGoal: any): PreConfigData {
-    data.characteristics.forEach(characteristic => {
+    data.characteristics.forEach((characteristic: Characteristic) => {
+      // eslint-disable-next-line no-param-reassign
       characteristic.goal = currentReleaseGoal.data[characteristic.key] ?? 0;
       if (characteristic.weight > 0) {
+        // eslint-disable-next-line no-param-reassign
         characteristic.active = true;
       }
-      characteristic.subcharacteristics.forEach(subcharacteristic => {
+      characteristic.subcharacteristics.forEach((subcharacteristic: Subcharacteristic) => {
         if (subcharacteristic.weight > 0 && characteristic.active) {
+          // eslint-disable-next-line no-param-reassign
           subcharacteristic.active = true;
         }
-        subcharacteristic.measures.forEach(measure => {
+        subcharacteristic.measures.forEach((measure: Measure) => {
           if (measure.weight > 0 && subcharacteristic.active) {
+            // eslint-disable-next-line no-param-reassign
             measure.active = true;
           }
         });
@@ -182,7 +175,7 @@ function ReleaseInfo() {
   }
 
   async function checkBasicValues() {
-    if (Object.keys(errors).length != 0)
+    if (Object.keys(errors).length !== 0)
       return;
 
     try {
@@ -209,28 +202,30 @@ function ReleaseInfo() {
 
   function renderStep(): React.ReactNode {
     switch (activeStep) {
-      case 0:
+      case 0:// eslint-disable-next-line react/jsx-no-bind
         return <BasicInfoForm configPageData={configPageData!} trigger={trigger} register={register} errors={errors} watch={watch} followLastConfig={followLastConfig} setFollowLastConfig={handleSetFollowLastConfig} />
-      case 1:
-        return <ModelConfigForm changeRefValue={changeRefValue} setChangeRefValue={handleChangeRefValue} configPageData={configPageData!} setConfigPageData={setConfigPageData}></ModelConfigForm>
-      case 2:
-        return <ReferenceValuesForm configPageData={configPageData!} defaultPageData={defaultPageData!} setConfigPageData={setConfigPageData}></ReferenceValuesForm>
-      case 3:
-        return <CharacteristicsBalanceForm characteristicRelations={balanceMatrix} configPageData={configPageData!} setConfigPageData={setConfigPageData} dinamicBalance={dinamicBalance} setDinamicBalance={handleChangeDinamicBalance}></CharacteristicsBalanceForm>
+      case 1:// eslint-disable-next-line react/jsx-no-bind
+        return <ModelConfigForm changeRefValue={changeRefValue} setChangeRefValue={handleChangeRefValue} configPageData={configPageData!} setConfigPageData={setConfigPageData} />
+      case 2:// eslint-disable-next-line react/jsx-no-bind
+        return <ReferenceValuesForm configPageData={configPageData!} defaultPageData={defaultPageData!} setConfigPageData={setConfigPageData} />
+      case 3:// eslint-disable-next-line react/jsx-no-bind
+        return <CharacteristicsBalanceForm characteristicRelations={balanceMatrix} configPageData={configPageData!} setConfigPageData={setConfigPageData} dinamicBalance={dinamicBalance} setDinamicBalance={handleChangeDinamicBalance} />
+      default:
+        break
     }
   }
 
   function handlePreviousButtonClick(): void {
-    if (activeStep == 3 && !changeRefValue)
+    if (activeStep === 3 && !changeRefValue)
       setActiveStep(activeStep - 2);
     else if (activeStep > 0)
       setActiveStep(activeStep - 1);
   }
 
   function findItemWithSumNotEqualTo100(items: { key: string; weight: number; active?: boolean }[]) {
-    return items.filter(item => item.active).reduce((sum, item) => {
-      return sum + item.weight;
-    }, 0) !== 100
+    return items.filter(item => item.active).reduce((sum, item) =>
+      sum + item.weight
+      , 0) !== 100
       ? items.find(item => item.active)?.key
       : null;
   }
@@ -296,6 +291,9 @@ function ReleaseInfo() {
         break;
       case 3:
         submitRelease();
+        break;
+      default:
+        break;
     }
   }
 
@@ -407,7 +405,7 @@ function ReleaseInfo() {
   }
 
   function handleModalBtnClick() {
-    if (activeStep == 1)
+    if (activeStep === 1)
       handleChangeRefValue(true);
     else
       handleChangeDinamicBalance(true)
@@ -416,21 +414,21 @@ function ReleaseInfo() {
   }
 
   function renderBreadcrumb(label: string, step: number): any {
-    if (step == 2 && !changeRefValue) return
+    if (step === 2 && !changeRefValue) return
 
-    return <Link
+    return <Button
       key={step}
       sx={{
         cursor: 'pointer',
         textDecoration: 'none',
         color: activeStep === step ? "text.primary" : "text.secondary",
         fontWeight: activeStep === step ? '800' : 'normal',
-        pointerEvents: activeStep == 0 ? "none" : "auto"
+        pointerEvents: activeStep === 0 ? "none" : "auto"
       }}
-      onClick={() => activeStep == 0 ? {} : setActiveStep(step)}
+      onClick={() => activeStep === 0 ? {} : setActiveStep(step)}
     >
       {label}
-    </Link>
+    </Button>
   }
 
   return (
@@ -459,11 +457,11 @@ function ReleaseInfo() {
                 sx={{
                   display: 'grid',
                   columnGap: 2,
-                  gridTemplateColumns: activeStep != 0 ? 'repeat(2, 1fr)' : "none",
+                  gridTemplateColumns: activeStep !== 0 ? 'repeat(2, 1fr)' : "none",
                   marginTop: 2
                 }}
               >
-                {activeStep != 0 &&
+                {activeStep !== 0 &&
                   <Button onClick={() => handlePreviousButtonClick()} variant="outlined">
                     Voltar
                   </Button>
@@ -477,8 +475,13 @@ function ReleaseInfo() {
         </Styles.Body >
       </SnackbarProvider>
       <WarningModal
-        setIsModalOpen={setShowConfirmationModal} text={activeStep == 1 ? t('alertRefValue') : t('alertDinamicBalance')}
-        btnText={t('continue')} isModalOpen={showConfirmationModal} handleBtnClick={handleModalBtnClick} />
+        // eslint-disable-next-line react/jsx-no-bind
+        setIsModalOpen={setShowConfirmationModal}
+        text={activeStep === 1 ? t('alertRefValue') : t('alertDinamicBalance')}
+        btnText={t('continue')}
+        isModalOpen={showConfirmationModal}
+        // eslint-disable-next-line react/jsx-no-bind
+        handleBtnClick={handleModalBtnClick} />
     </>
   );
 }

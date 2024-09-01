@@ -2,11 +2,10 @@ import React, { } from 'react';
 import { Accordion, AccordionSummary, Box, Checkbox, FormControlLabel, hexToRgb, TextField, Typography } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { Timeline, TimelineSeparator, TimelineConnector, TimelineDot, TimelineItem, TimelineContent, timelineItemClasses } from '@mui/lab';
-import { PreConfigData } from '@customTypes/preConfig';
-import SectionTooltip from '../SectionTooltip/SectionTooltip';
-import { FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch } from 'react-hook-form';
-import { ReleaseInfoForm } from '../../ReleaseCreation';
 import { useTranslation } from 'react-i18next';
+import { FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch } from 'react-hook-form';
+import { PreConfigData, ReleaseInfoForm } from '@customTypes/preConfig';
+import SectionTooltip from '../SectionTooltip/SectionTooltip';
 
 interface BasicInfoFormProps {
   register: UseFormRegister<ReleaseInfoForm>;
@@ -18,12 +17,12 @@ interface BasicInfoFormProps {
   configPageData: PreConfigData;
 }
 
-export default function BasicInfoForm({ configPageData, trigger, register, errors, followLastConfig, setFollowLastConfig, watch }: BasicInfoFormProps) {
+export default function BasicInfoForm({ configPageData, register, errors, followLastConfig, setFollowLastConfig, watch }: BasicInfoFormProps) {
   const { t } = useTranslation('plan_release');
 
   const renderCurrentConfig = () => (
     <Accordion defaultExpanded
-      square={true}
+      square
       sx={{
         boxShadow: 'inherit',
         border: 0.5,
@@ -36,7 +35,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
         <Typography>{t('generalCharacteristics')}</Typography>
       </AccordionSummary>
       <Timeline
-        key={"0"}
+        key="0"
         sx={{
           [`& .${timelineItemClasses.root}:before`]: {
             flex: 0,
@@ -45,29 +44,29 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
           marginTop: 0
         }}
       >
-        {configPageData?.characteristics?.map((characteristic, index) => (
+        {configPageData?.characteristics?.map((characteristic) => (
           <Accordion
             sx={{
               boxShadow: 'inherit',
               backgroundColor: "transparent",
             }}
-            key={`ac-characteristic-${index}`}>
+            key={`ac-characteristic-${characteristic.key}`}>
             <AccordionSummary expandIcon={<ExpandMore />}>
-              <TimelineItem key={`characteristic-${index}`}>
+              <TimelineItem key={`characteristic-${characteristic.key}`}>
                 <TimelineSeparator>
                   <TimelineDot color="secondary" />
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent>
-                  <Typography variant="h6" component="span" color={"primary"}>
-                    {t('characteristic')}: {t("characteristics." + characteristic.key)}
+                  <Typography variant="h6" component="span" color="primary">
+                    {t('characteristic')}: {t(`characteristics.${characteristic.key}`)}
                   </Typography>
                   <Typography>{t('weight')}: {characteristic.weight}</Typography>
                 </TimelineContent>
               </TimelineItem>
             </AccordionSummary>
             <Timeline
-              key={"1"}
+              key="1"
               sx={{
                 [`& .${timelineItemClasses.root}:before`]: {
                   flex: 0,
@@ -77,19 +76,19 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                 marginTop: 0
               }}
             >
-              {characteristic.subcharacteristics?.map((subcharacteristic, indexSub) => (
-                <TimelineItem key={`subcharacteristic-${index}-${indexSub}`}>
+              {characteristic.subcharacteristics?.map((subcharacteristic) => (
+                <TimelineItem key={`subcharacteristic-${characteristic.key}-${subcharacteristic.key}`}>
                   <TimelineSeparator>
                     <TimelineDot color="secondary" />
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent>
                     <Typography variant="h6" component="span" color={hexToRgb("#2484A5")}>
-                      {t('subCharacteristic')}: {t("subCharacteristics." + subcharacteristic.key)}
+                      {t('subCharacteristic')}: {t(`subCharacteristics.${subcharacteristic.key}`)}
                     </Typography>
                     <Typography>{t('weight')}: {subcharacteristic.weight}</Typography>
                     <Timeline
-                      key={"2"}
+                      key="2"
                       sx={{
                         [`& .${timelineItemClasses.root}:before`]: {
                           flex: 0,
@@ -98,15 +97,15 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                         marginTop: 0
                       }}
                     >
-                      {subcharacteristic.measures?.map((measure, indexMe) => (
-                        <TimelineItem key={`measure-${index}-${indexSub}-${indexMe}`}>
+                      {subcharacteristic.measures?.map((measure) => (
+                        <TimelineItem key={`measure-${characteristic.key}-${subcharacteristic.key}-${measure.key}`}>
                           <TimelineSeparator>
                             <TimelineDot color="secondary" />
                             <TimelineConnector />
                           </TimelineSeparator>
                           <TimelineContent>
                             <Typography variant="h6" component="span" color={hexToRgb("#5D698E")}>
-                              {t('measure')}: {t("measures." + measure.key)}
+                              {t('measure')}: {t(`measures.${measure.key}`)}
                             </Typography>
                             <Typography>{t('weight')}: {measure.weight}</Typography>
                             <Typography>
@@ -124,7 +123,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                               }}
                             >
                               {measure.metrics?.map((metric, indexMet) => (
-                                <TimelineItem key={`metric-${index}-${indexSub}-${indexMe}-${indexMet}`}>
+                                <TimelineItem key={`metric-${measure.key}-${subcharacteristic.key}-${characteristic.key}-${indexMet}`}>
                                   <TimelineSeparator>
                                     <TimelineDot color="secondary" />
                                     <TimelineConnector />
@@ -153,12 +152,12 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
   )
 
   return <>
-    <SectionTooltip text={t('basicConfig')} tooltip={t('basicConfigTooltip')}></SectionTooltip>
+    <SectionTooltip text={t('basicConfig')} tooltip={t('basicConfigTooltip')} />
     <TextField
       label={t('releaseName')}
       required
       style={{ marginBottom: '24px' }}
-      autoFocus={true}
+      autoFocus
       error={!!errors?.release_name}
       helperText={errors?.release_name?.message}
       {...register('release_name', {

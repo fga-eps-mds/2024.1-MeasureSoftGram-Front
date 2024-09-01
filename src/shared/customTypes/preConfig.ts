@@ -38,4 +38,12 @@ export interface PreConfigRoot {
   data: PreConfigData;
 }
 
+export interface ReleaseInfoForm {
+  release_name: string;
+  description: string;
+  start_at: string;
+  end_at: string;
+  goal: number;
+}
+
 export type PreConfigAttribute = Measure | Subcharacteristic | Characteristic;
