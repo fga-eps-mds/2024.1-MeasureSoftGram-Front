@@ -61,6 +61,7 @@ export default function CharacteristicsBalanceForm({ configPageData, setConfigPa
             <Grid container key={`GridCharacteristicsBalance-${characteristic.key}`} gap={2} direction="column" width={120}>
               <Grid item key={`GridStyledSlider-${characteristic.key}`} xs={9} display='flex' justifyContent='center'>
                 <StyledSlider
+                  data-testid={`characteristic-${characteristic.key}`}
                   sx={{ minHeight: "15rem" }}
                   key={`characteristic-${characteristic.key}`}
                   value={characteristic.goal}
@@ -79,7 +80,6 @@ export default function CharacteristicsBalanceForm({ configPageData, setConfigPa
               </Grid>
             </Grid>
           ))}
-      {/* <CustomLineChart planned={char} accomplised={char} /> */}
     </Box>
 
   </>

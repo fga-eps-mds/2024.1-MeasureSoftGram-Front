@@ -47,6 +47,7 @@ export default function CheckboxSliderInput({ label, labelKey = label, secLabel,
       </Grid>
       <Grid item md={4} display="flex" alignItems="center">
         <StyledSlider
+          data-testid={`slider-${labelKey}`}
           sx={{ minWidth: "150px" }}
           value={numericValue}
           disabled={!checkboxValue}
