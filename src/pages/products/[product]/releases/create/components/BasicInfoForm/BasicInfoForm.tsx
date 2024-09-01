@@ -6,6 +6,7 @@ import { PreConfigData } from '@customTypes/preConfig';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
 import { FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch } from 'react-hook-form';
 import { ReleaseInfoForm } from '../../ReleaseCreation';
+import { useTranslation } from 'react-i18next';
 
 interface BasicInfoFormProps {
   register: UseFormRegister<ReleaseInfoForm>;
@@ -18,6 +19,8 @@ interface BasicInfoFormProps {
 }
 
 export default function BasicInfoForm({ configPageData, trigger, register, errors, followLastConfig, setFollowLastConfig, watch }: BasicInfoFormProps) {
+  const { t } = useTranslation('plan_release');
+
   const renderCurrentConfig = () => (
     <Accordion defaultExpanded
       square={true}
@@ -30,7 +33,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
         marginTop: 2
       }}>
       <AccordionSummary expandIcon={<ExpandMore />}>
-        <Typography>Visão Geral da Configuração</Typography>
+        <Typography>{t('generalCharacteristics')}</Typography>
       </AccordionSummary>
       <Timeline
         key={"0"}
@@ -57,9 +60,9 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                 </TimelineSeparator>
                 <TimelineContent>
                   <Typography variant="h6" component="span" color={"primary"}>
-                    Característica: {characteristic.key}
+                    {t('characteristic')}: {t("characteristics." + characteristic.key)}
                   </Typography>
-                  <Typography>Peso: {characteristic.weight}</Typography>
+                  <Typography>{t('weight')}: {characteristic.weight}</Typography>
                 </TimelineContent>
               </TimelineItem>
             </AccordionSummary>
@@ -82,9 +85,9 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                   </TimelineSeparator>
                   <TimelineContent>
                     <Typography variant="h6" component="span" color={hexToRgb("#2484A5")}>
-                      Subcaracterística: {subcharacteristic.key}
+                      {t('subCharacteristic')}: {t("subCharacteristics." + subcharacteristic.key)}
                     </Typography>
-                    <Typography>Peso: {subcharacteristic.weight}</Typography>
+                    <Typography>{t('weight')}: {subcharacteristic.weight}</Typography>
                     <Timeline
                       key={"2"}
                       sx={{
@@ -103,9 +106,9 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
                           </TimelineSeparator>
                           <TimelineContent>
                             <Typography variant="h6" component="span" color={hexToRgb("#5D698E")}>
-                              Medida: {measure.key}
+                              {t('measure')}: {t("measures." + measure.key)}
                             </Typography>
-                            <Typography>Peso: {measure.weight}</Typography>
+                            <Typography>{t('weight')}: {measure.weight}</Typography>
                             <Typography>
                               min = {measure.min_threshold} | max = {measure.max_threshold}
                             </Typography>
@@ -150,16 +153,16 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
   )
 
   return <>
-    <SectionTooltip text='Configurações Básicas' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+    <SectionTooltip text={t('basicConfig')} tooltip={t('basicConfigTooltip')}></SectionTooltip>
     <TextField
-      label="Nome da Release"
+      label={t('releaseName')}
       required
       style={{ marginBottom: '24px' }}
       autoFocus={true}
       error={!!errors?.release_name}
       helperText={errors?.release_name?.message}
       {...register('release_name', {
-        required: 'Nome da Release é obrigatório',
+        required: t('releaseNameError'),
       })}
       inputProps={{
         'data-testid': 'apelido-release'
@@ -167,7 +170,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
       fullWidth
     />
     <TextField
-      label="Descrição da Release"
+      label={t('releaseDesc')}
       style={{ marginBottom: '24px' }}
       error={!!errors?.description}
       helperText={errors?.description?.message}
@@ -184,14 +187,14 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
     />
     <Box display="flex">
       <TextField
-        label="Data de Inicio da Release"
+        label={t('releaseIniDate')}
         required
         type="date"
         style={{ marginRight: '16px' }}
         error={!!errors?.start_at}
         helperText={errors?.start_at?.message}
         {...register('start_at', {
-          required: 'Data de Inicio da Release é obrigatório',
+          required: t('releaseIniDateError'),
         })}
         inputProps={{
           'data-testid': 'inicio-release',
@@ -200,14 +203,14 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
         sx={{ flex: 1 }}
       />
       <TextField
-        label="Data de Fim da Release"
+        label={t('releaseFinDate')}
         required
         type="date"
         style={{ marginBottom: '24px' }}
         error={!!errors?.end_at}
         helperText={errors?.end_at?.message}
         {...register('end_at', {
-          required: 'Data de Fim da Release é obrigatório',
+          required: t('releaseFinDateError'),
         })}
         inputProps={{
           'data-testid': 'fim-release',
@@ -219,7 +222,7 @@ export default function BasicInfoForm({ configPageData, trigger, register, error
     <FormControlLabel control={<Checkbox
       onClick={() => setFollowLastConfig(!followLastConfig)}
       checked={followLastConfig ?? false}
-    />} label="Seguir Última Configuração" />
+    />} label={t('followLastConfig')} />
     {renderCurrentConfig()}
   </>
 }

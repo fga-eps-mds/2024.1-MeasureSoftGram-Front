@@ -4,6 +4,8 @@ import SectionTooltip from '../SectionTooltip/SectionTooltip';
 import { ExpandMore } from '@mui/icons-material';
 import MinMaxInput from '../MinMaxInput/MinMaxInput';
 import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@customTypes/preConfig';
+import { useTranslation } from 'react-i18next';
+
 
 interface ReferenceValuesFormProps {
   configPageData: PreConfigData;
@@ -12,11 +14,12 @@ interface ReferenceValuesFormProps {
 }
 
 export default function ReferenceValuesForm({ configPageData, defaultPageData, setConfigPageData }: ReferenceValuesFormProps) {
+  const { t } = useTranslation('plan_release');
+
   function handleMeasureChange(event: React.ChangeEvent<HTMLInputElement>,
     characteristicKey: string, subcharacteristicKey: string, measureKey: string, threshold: string) {
     const { name, value, checked } = event.target;
     const newValue = Number(value);
-
 
     setConfigPageData((prevData: { characteristics: any[]; }) => {
       return {
@@ -50,7 +53,7 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
 
   return (
     <>
-      <SectionTooltip text='Definir Valores de Referência' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip text={t("defineRefValues")} tooltip={t("defineRefValuesTooltip")} ></SectionTooltip>
       <Accordion
         defaultExpanded
         key="MedidasAccordion"
@@ -64,7 +67,7 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
           marginTop: 2
         }}>
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>Valores de Referência</Typography>
+          <Typography>{t("refValues")}</Typography>
         </AccordionSummary>
         {
           configPageData?.characteristics?.filter(characteristics => characteristics.active === true).map((characteristic, index) => (
@@ -81,7 +84,7 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
                 marginBottom: '1rem !important',
               }}>
               <AccordionSummary expandIcon={<ExpandMore />}>
-                <Typography>{characteristic.key}</Typography>
+                <Typography>{t("characteristics." + characteristic.key)}</Typography>
               </AccordionSummary>
               {
                 characteristic.subcharacteristics?.filter(subcharacteristics => subcharacteristics.active === true).map((subcharacteristic, indexSub) => (
@@ -98,21 +101,33 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
                       marginBottom: '1rem !important',
                     }}>
                     <AccordionSummary expandIcon={<ExpandMore />}>
-                      <Typography>{subcharacteristic.key}</Typography>
+                      <Typography>{t("subCharacteristics." + subcharacteristic.key)}</Typography>
                     </AccordionSummary>
                     {
                       subcharacteristic.measures?.filter(measures => measures.active === true).map((measure, indexMe) => (
                         <MinMaxInput
                           key={`metric-${index}-${indexSub}-${indexMe}`}
-                          label={measure.key}
+                          label={t("measures." + measure.key)}
                           minInputValue={measure.min_threshold}
                           maxInputValue={measure.max_threshold}
                           setMinInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
                             handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key, "min")}
                           setMaxInputValue={(event: React.ChangeEvent<HTMLInputElement>) =>
                             handleMeasureChange(event, characteristic.key, subcharacteristic.key, measure.key, "max")}
-                          minThreshold={defaultPageData.characteristics[index].subcharacteristics[indexSub].measures[indexMe].min_threshold!}
-                          maxThreshold={defaultPageData.characteristics[index].subcharacteristics[indexSub].measures[indexMe].max_threshold!}
+                          minThreshold={defaultPageData.characteristics
+                            .find(c => c.key === characteristic.key)
+                            ?.subcharacteristics
+                            .find(sc => sc.key === subcharacteristic.key)
+                            ?.measures
+                            .find(m => m.key === measure.key)
+                            ?.min_threshold!}
+                          maxThreshold={defaultPageData.characteristics
+                            .find(c => c.key === characteristic.key)
+                            ?.subcharacteristics
+                            .find(sc => sc.key === subcharacteristic.key)
+                            ?.measures
+                            .find(m => m.key === measure.key)
+                            ?.max_threshold!}
                           tooltip=""
                         />
                       ))

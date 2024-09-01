@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 interface CheckboxSliderInputProps {
   label: string;
+  labelKey?: string;
   inputValue: any;
   checkboxValue: any;
   setInputValue: any;
@@ -13,7 +14,7 @@ interface CheckboxSliderInputProps {
   minValue?: number;
 }
 
-export default function CheckboxSliderInput({ label, secLabel, terLabel, inputValue, setInputValue, checkboxValue, maxValue = 100, minValue = 0 }: CheckboxSliderInputProps) {
+export default function CheckboxSliderInput({ label, labelKey = label, secLabel, terLabel, inputValue, setInputValue, checkboxValue, maxValue = 100, minValue = 0 }: CheckboxSliderInputProps) {
   const [numericValue, setNumericValue] = useState<number>(0);
 
   useEffect(() => {
@@ -22,11 +23,11 @@ export default function CheckboxSliderInput({ label, secLabel, terLabel, inputVa
 
   function handleValueChange(event: any, newNumber: number) {
     if (terLabel)
-      setInputValue(event, newNumber, terLabel, secLabel, label)
+      setInputValue(event, newNumber, terLabel, secLabel, labelKey)
     else if (secLabel)
-      setInputValue(event, newNumber, secLabel, label)
+      setInputValue(event, newNumber, secLabel, labelKey)
     else
-      setInputValue(event, newNumber, label)
+      setInputValue(event, newNumber, labelKey)
 
     setNumericValue(inputValue);
   }

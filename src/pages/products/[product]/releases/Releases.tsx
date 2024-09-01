@@ -68,6 +68,7 @@ const Releases: NextPageWithLayout = () => {
                 </Typography>
                 <SearchButton
                   placeHolder={t('searchPlaceholder')}
+                  aria-label={t('searchButtonLabel')}
                   onInput={(e) => setName(e.target.value)}
                 />
               </Box>

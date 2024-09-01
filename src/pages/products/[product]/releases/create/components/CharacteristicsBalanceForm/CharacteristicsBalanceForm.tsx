@@ -3,8 +3,7 @@ import SectionTooltip from '../SectionTooltip/SectionTooltip';
 import { Box, FormControlLabel, Grid, Switch, Typography } from '@mui/material';
 import { Characteristic, PreConfigData } from '@customTypes/preConfig';
 import { StyledSlider } from '@components/Equalizer/EqualizerSlider/styles';
-import { t } from 'i18next';
-import { border } from '@mui/system';
+import { useTranslation } from 'react-i18next';
 
 interface CharacteristicsBalanceFormProps {
   dinamicBalance: boolean;
@@ -15,6 +14,8 @@ interface CharacteristicsBalanceFormProps {
 }
 
 export default function CharacteristicsBalanceForm({ configPageData, setConfigPageData, dinamicBalance, setDinamicBalance, characteristicRelations }: CharacteristicsBalanceFormProps) {
+  const { t } = useTranslation('plan_release');
+
   function handleCharacteristicChange(event: any, characteristicKey: string) {
     const { value } = event.target;
     const newGoal = Number(value);
@@ -41,7 +42,7 @@ export default function CharacteristicsBalanceForm({ configPageData, setConfigPa
   }
 
   return <>
-    <SectionTooltip text='Balancear Meta de Qualidade' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+    <SectionTooltip text={t("balanceGoal")} tooltip={t("balanceGoalTooltip")}></SectionTooltip>
     <FormControlLabel
       sx={{
         marginLeft: 0
@@ -50,7 +51,7 @@ export default function CharacteristicsBalanceForm({ configPageData, setConfigPa
         checked={dinamicBalance}
         onChange={() => setDinamicBalance(!dinamicBalance)}
         color="primary" />}
-      label="Permitir o balanceamento dinâmico"
+      label={t("allowBalanceGoal")}
       labelPlacement="start"
     />
     <Box sx={{ border: 1, borderRadius: 3, padding: 8 }} display='flex' justifyContent='center' alignItems='center' mb={2} height={"20rem"}>
@@ -73,7 +74,7 @@ export default function CharacteristicsBalanceForm({ configPageData, setConfigPa
                   key={`characteristicTypography-${index}`}
                   fontSize="14px"
                   align="center">
-                  {characteristic.key}
+                  {t("characteristics." + characteristic.key)}
                 </Typography>
               </Grid>
             </Grid>

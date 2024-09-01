@@ -17,6 +17,8 @@ import { productQuery } from '@services/product';
 import { balanceMatrixService } from '@services/balanceMatrix';
 import { enqueueSnackbar, SnackbarProvider } from '@components/snackbar';
 import WarningModal from '@components/WarningModal/WarningModal';
+import { useTranslation } from 'react-i18next';
+import { AxiosResponse } from 'axios';
 
 export interface ReleaseInfoForm {
   release_name: string;
@@ -38,12 +40,14 @@ function ReleaseInfo() {
   const [defaultPageData, setConfigDefaultPageData] = useState<PreConfigData>();
   const [lastConfigPageData, setLastConfigPageData] = useState<PreConfigData>();
   const [configPageData, setConfigPageData] = useState<PreConfigData>();
-  const [characteristicRelations, setCharacteristicRelations] = useState<any>();
+  const [balanceMatrix, setBalanceMatrix] = useState<any>();
   const [preConfigEntitiesRelationship, setPreConfigEntitiesRelationship] = useState<PreConfigEntitiesRelationship[]>();
   const [releaseGoal, setReleaseGoal] = useState<any>();
 
   const router = useRouter();
   const routerParams: any = router.query;
+
+  const { t } = useTranslation('plan_release');
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch, trigger } = useForm<ReleaseInfoForm>({
     mode: "all",
@@ -67,30 +71,51 @@ function ReleaseInfo() {
       setProductName(productTitle);
 
       const getPreConfig = async () => {
-        try {
-          const currentReleaseGoal = await productQuery.getCurrentReleaseGoal(organization, productIdentifier);
-          setReleaseGoal(currentReleaseGoal.data);
+        let currentReleaseGoal: any;
+        let entitiesRelationship;
 
-          const entitiesRelationship = await productQuery.getPreConfigEntitiesRelationship(organization, productIdentifier);
+        try {
+          entitiesRelationship = await productQuery.getPreConfigEntitiesRelationship(organization, productIdentifier);
           setPreConfigEntitiesRelationship(entitiesRelationship.data);
 
-          const defaultPreConfigResult = await productQuery.getProductDefaultPreConfig(organization, productIdentifier);
-          setConfigPageData(formatConfig(defaultPreConfigResult.data, currentReleaseGoal));
-          setConfigDefaultPageData(formatConfig(defaultPreConfigResult.data, currentReleaseGoal));
+          currentReleaseGoal = await productQuery.getCurrentReleaseGoal(organization, productIdentifier);
+          setReleaseGoal(currentReleaseGoal.data);
 
-          const currentPreConfigResult = await productQuery.getProductCurrentPreConfig(organization, productIdentifier);
-          setLastConfigPageData(formatConfig(mergeWithDefault(currentPreConfigResult.data.data, defaultPreConfigResult.data), currentReleaseGoal));
-
-          const balance = await balanceMatrixService.getBalanceMatrix();
-          setCharacteristicRelations(balance.data.result);
+          await getPreConfigs(organization, productIdentifier, currentReleaseGoal.data)
         } catch (error) {
-          enqueueSnackbar(`Não foi possível acessar os dados de planejamento de release`, { autoHideDuration: 10000, variant: 'error' })
+          const data: Record<string, number> = {};
+
+          entitiesRelationship?.data.forEach(element => {
+            data[element.key] = 50;
+          });
+
+          currentReleaseGoal = { id: 0, data: data, allow_dynamic: false };
+          setReleaseGoal(currentReleaseGoal);
+
+          await getPreConfigs(organization, productIdentifier, currentReleaseGoal)
         }
       }
 
       getPreConfig();
     };
   }, [router.isReady, routerParams.product]);
+
+
+  async function getPreConfigs(organization: string, productIdentifier: string, currentReleaseGoal: any) {
+    try {
+      const defaultPreConfigResult = await productQuery.getProductDefaultPreConfig(organization, productIdentifier);
+      setConfigPageData(formatConfig(defaultPreConfigResult.data, currentReleaseGoal));
+      setConfigDefaultPageData(formatConfig(defaultPreConfigResult.data, currentReleaseGoal));
+
+      const currentPreConfigResult = await productQuery.getProductCurrentPreConfig(organization, productIdentifier);
+      setLastConfigPageData(formatConfig(mergeWithDefault(currentPreConfigResult.data.data, defaultPreConfigResult.data), currentReleaseGoal));
+
+      const balance = await balanceMatrixService.getBalanceMatrix();
+      setBalanceMatrix(balance.data.result);
+    } catch (error) {
+      enqueueSnackbar(t('getPreConfigError'), { autoHideDuration: 10000, variant: 'error' })
+    }
+  }
 
   function mergeWithDefault(current: PreConfigData, defaultData: PreConfigData): PreConfigData {
     const findOrCreate = <T extends { key: string }>(array: T[], key: string, defaultEntry: T): T => {
@@ -128,7 +153,7 @@ function ReleaseInfo() {
 
   function formatConfig(data: PreConfigData, currentReleaseGoal: any): PreConfigData {
     data.characteristics.forEach(characteristic => {
-      characteristic.goal = currentReleaseGoal.data.data[characteristic.key] ?? 0;
+      characteristic.goal = currentReleaseGoal.data[characteristic.key] ?? 0;
       if (characteristic.weight > 0) {
         characteristic.active = true;
       }
@@ -171,10 +196,8 @@ function ReleaseInfo() {
   function handleChangeRefValue(value: boolean) {
     if (value)
       setShowConfirmationModal(value);
-    else
 
-
-      setChangeRefValue(value)
+    setChangeRefValue(value)
   }
 
   function handleChangeDinamicBalance(value: boolean) {
@@ -193,7 +216,7 @@ function ReleaseInfo() {
       case 2:
         return <ReferenceValuesForm configPageData={configPageData!} defaultPageData={defaultPageData!} setConfigPageData={setConfigPageData}></ReferenceValuesForm>
       case 3:
-        return <CharacteristicsBalanceForm characteristicRelations={characteristicRelations} configPageData={configPageData!} setConfigPageData={setConfigPageData} dinamicBalance={dinamicBalance} setDinamicBalance={handleChangeDinamicBalance}></CharacteristicsBalanceForm>
+        return <CharacteristicsBalanceForm characteristicRelations={balanceMatrix} configPageData={configPageData!} setConfigPageData={setConfigPageData} dinamicBalance={dinamicBalance} setDinamicBalance={handleChangeDinamicBalance}></CharacteristicsBalanceForm>
     }
   }
 
@@ -216,7 +239,7 @@ function ReleaseInfo() {
     const invalidCharacteristics = findItemWithSumNotEqualTo100(configPageData!.characteristics);
 
     if (invalidCharacteristics && invalidCharacteristics?.length > 0) {
-      enqueueSnackbar(`A soma dos pesos das características deve ser igual a 100`, { autoHideDuration: 10000, variant: 'error' })
+      enqueueSnackbar(t('invalidCharacteristicsError'), { autoHideDuration: 10000, variant: 'error' })
       document.getElementById("characteristicSection")?.scrollIntoView({ behavior: "smooth" });
       return false;
     }
@@ -225,14 +248,13 @@ function ReleaseInfo() {
       .filter(characteristic => characteristic.active)
       .map(characteristic => {
         const invalidKey = findItemWithSumNotEqualTo100(characteristic.subcharacteristics);
-        return invalidKey ? characteristic.key : null; // Retorna o nome da característica se inválido
+        return invalidKey ? characteristic.key : null;
       })
       .filter(key => key !== null);
 
 
     if (invalidSubcharacteristics && invalidSubcharacteristics?.length > 0) {
-      console.log(invalidSubcharacteristics[0])
-      enqueueSnackbar(`A soma dos pesos das sub-características deve ser igual a 100`, { autoHideDuration: 10000, variant: 'error' })
+      enqueueSnackbar(t("invalidSubcharacteristicsError"), { autoHideDuration: 10000, variant: 'error' })
       document.getElementById(`SubCarAccordion-${invalidSubcharacteristics[0]}`)?.scrollIntoView({ behavior: "smooth" });
       return false;
     }
@@ -250,7 +272,7 @@ function ReleaseInfo() {
       .filter(key => key !== null);
 
     if (invalidMeasures && invalidMeasures?.length > 0) {
-      enqueueSnackbar(`A soma dos pesos das medidas deve ser igual a 100`, { autoHideDuration: 10000, variant: 'error' })
+      enqueueSnackbar(t('invalidMeasuresError'), { autoHideDuration: 10000, variant: 'error' })
       document.getElementById(`MetricSubCarAccordion-${invalidMeasures[0]}`)?.scrollIntoView({ behavior: "smooth" });
       return false;
     }
@@ -284,6 +306,7 @@ function ReleaseInfo() {
 
     try {
       await productQuery.postPreConfig(organizationId, productId, { name: productName, data: finalConfig });
+
       const productGoalResult = await productQuery.createProductGoal(organizationId, productId, goalChanges);
 
       release.goal = productGoalResult.data.id;
@@ -291,7 +314,7 @@ function ReleaseInfo() {
       await productQuery.createProductRelease(organizationId, productId, release);
 
       router.push(`/products/${router.query.product}/releases/`);
-      enqueueSnackbar(`Release Criada`, { autoHideDuration: 10000, variant: 'success' });
+      enqueueSnackbar(t('releaseCreated'), { autoHideDuration: 6000, variant: 'success' });
     } catch (error: any) {
       enqueueSnackbar(`${error.response.data.message}`, { autoHideDuration: 10000, variant: 'error' });
     }
@@ -299,23 +322,65 @@ function ReleaseInfo() {
   }
 
   function generateChanges(): ReleaseGoal {
+    // Criação do array de mudanças com a tipagem explícita
     const changes: Change[] = [];
 
-    configPageData!.characteristics.forEach((characteristic: Characteristic) => {
-      if (characteristic.active) {
+    configPageData?.characteristics
+      .filter((characteristic: Characteristic) => characteristic.active)
+      .forEach((characteristic: Characteristic) => {
         const referenceGoal = releaseGoal.data[characteristic.key] ?? 0;
-        if (referenceGoal !== characteristic.goal) {
-          const delta = characteristic.goal - referenceGoal;
-          changes.push({
-            characteristic_key: characteristic.key,
-            delta: delta,
-          });
-        }
-      }
-    });
+        let delta: number;
 
-    return { changes: changes, allow_dynamic: dinamicBalance };
+        if (dinamicBalance) {
+          delta = 50 - characteristic.goal;
+        } else {
+          const relatedPositiveKeys = balanceMatrix[characteristic.key]?.['+'] || [];
+          const isAlreadyChanged = relatedPositiveKeys.some((relatedKey: string) =>
+            changes.some(change => change.characteristic_key === relatedKey)
+          );
+
+          if (isAlreadyChanged || referenceGoal === characteristic.goal) {
+            return;
+          }
+
+          delta = characteristic.goal - referenceGoal;
+        }
+
+        changes.push({
+          characteristic_key: characteristic.key,
+          delta,
+        });
+      });
+
+    return { changes, allow_dynamic: dinamicBalance };
   }
+
+  // function generateChanges(): ReleaseGoal {
+  //   // Criação do array de mudanças com a tipagem explícita
+  //   const changes: Change[] = configPageData?.characteristics
+  //     .filter((characteristic: Characteristic) => characteristic.active)
+  //     .map((characteristic: Characteristic) => {
+  //       const referenceGoal = releaseGoal.data[characteristic.key] ?? 0;
+  //       let delta: number;
+
+  //       // Calcula delta com base no tipo de balanceamento
+  //       if (dinamicBalance) {
+  //         delta = 50 - characteristic.goal;
+  //       } else if (referenceGoal !== characteristic.goal) {
+  //         delta = characteristic.goal - referenceGoal;
+  //       } else {
+  //         return null; // Retorna null se não houver alteração
+  //       }
+
+  //       return {
+  //         characteristic_key: characteristic.key,
+  //         delta,
+  //       };
+  //     })
+  //     .filter(change => change !== null) as Change[]; // Remove os valores null
+
+  //   return { changes, allow_dynamic: dinamicBalance };
+  // }
 
   function cleanConfigData() {
     return {
@@ -360,8 +425,9 @@ function ReleaseInfo() {
         textDecoration: 'none',
         color: activeStep === step ? "text.primary" : "text.secondary",
         fontWeight: activeStep === step ? '800' : 'normal',
+        pointerEvents: activeStep == 0 ? "none" : "auto"
       }}
-      onClick={() => setActiveStep(step)}
+      onClick={() => activeStep == 0 ? {} : setActiveStep(step)}
     >
       {label}
     </Link>
@@ -371,16 +437,16 @@ function ReleaseInfo() {
     <>
       <SnackbarProvider>
         <Styles.Header>
-          <h1 style={{ color: '#33568E', fontWeight: '500' }}>Planejamento de Release</h1>
+          <h1 style={{ color: '#33568E', fontWeight: '500' }}>{t('planRelease')}</h1>
           <Breadcrumbs
             separator={<Box component="span" sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'text.disabled' }} />}
             sx={{ fontSize: '14px' }}
           >
             {[
-              { label: 'Criar Release', step: 0 },
-              { label: 'Definir configuração do modelo', step: 1 },
-              { label: 'Alterar valores de referência', step: 2 },
-              { label: 'Balancear características', step: 3 },
+              { label: t('createRelease'), step: 0 },
+              { label: t('defineConfiguration'), step: 1 },
+              { label: t('changeRefValue'), step: 2 },
+              { label: t('balanceCharacteristics'), step: 3 },
             ].map(({ label, step }) => renderBreadcrumb(label, step))}
           </Breadcrumbs>
         </Styles.Header>
@@ -403,7 +469,7 @@ function ReleaseInfo() {
                   </Button>
                 }
                 <Button type="submit" variant="contained">
-                  {activeStep < 3 ? "Avançar" : "Finalizar"}
+                  {activeStep < 3 ? t('next') : t('end')}
                 </Button>
               </Box>
             </form>
@@ -411,8 +477,8 @@ function ReleaseInfo() {
         </Styles.Body >
       </SnackbarProvider>
       <WarningModal
-        setIsModalOpen={setShowConfirmationModal} text={activeStep == 1 ? "Os valores de referência afetam como algumas medidas são calculadas. Alguns deles não podem ser modificados." : "O balanceamento das metas funciona com base em uma matriz de relacionamento entre as características de qualidade. Ao permitir o balanceamento dinâmico, o sistema faz com que essas relações sejam ignoradas, dessa forma, alguns objetivos definidos podem ser inalcançáveis."}
-        btnText='Continuar' isModalOpen={showConfirmationModal} handleBtnClick={handleModalBtnClick} />
+        setIsModalOpen={setShowConfirmationModal} text={activeStep == 1 ? t('alertRefValue') : t('alertDinamicBalance')}
+        btnText={t('continue')} isModalOpen={showConfirmationModal} handleBtnClick={handleModalBtnClick} />
     </>
   );
 }

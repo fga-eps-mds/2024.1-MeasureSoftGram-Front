@@ -4,6 +4,7 @@ import SectionTooltip from '../SectionTooltip/SectionTooltip';
 import { ExpandMore } from '@mui/icons-material';
 import CheckboxSliderInput from '../CheckboxSliderInput/CheckboxSliderInput';
 import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@customTypes/preConfig';
+import { useTranslation } from 'react-i18next';
 
 interface ModelConfigFormProps {
   configPageData: PreConfigData;
@@ -13,6 +14,8 @@ interface ModelConfigFormProps {
 }
 
 export default function ModelConfigForm({ configPageData, setConfigPageData, changeRefValue, setChangeRefValue }: ModelConfigFormProps) {
+  const { t } = useTranslation('plan_release');
+
   function handleCharacteristicChange(event: React.ChangeEvent<HTMLInputElement>, inputValue: number, characteristicKey: string) {
     const { checked, type } = event.target;
     var newWeight = type === 'checkbox' ?
@@ -143,7 +146,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
 
   return (
     <>
-      <SectionTooltip id='characteristicSection' text='Definir Características e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip id='characteristicSection' text={t('defineCharacteristics')} tooltip={t('defineCharacteristicsTooltip')}></SectionTooltip>
       <Accordion
         key="CarAccordion"
         square={true}
@@ -156,13 +159,14 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
           marginTop: 2
         }}>
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>Caracteristicas</Typography>
+          <Typography>{t('characteristic')}</Typography>
         </AccordionSummary>
         {
           configPageData?.characteristics?.map((characteristic, index) => (
             <CheckboxSliderInput
               key={`characteristic-${index}`}
-              label={characteristic.key}
+              label={t("characteristics." + characteristic.key)}
+              labelKey={characteristic.key}
               inputValue={characteristic.weight}
               setInputValue={handleCharacteristicChange}
               checkboxValue={characteristic.active}
@@ -171,7 +175,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
         }
       </Accordion>
 
-      <SectionTooltip id='subcharacteristicSection' text='Definir Sub-Características e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip id='subcharacteristicSection' text={t('defineSubCharacteristics')} tooltip={t('defineSubCharacteristicsTooltip')}></SectionTooltip>
       <Accordion
         key="SubAccordion"
         square={true}
@@ -184,7 +188,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
           marginTop: 2
         }}>
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>Sub-Características</Typography>
+          <Typography>{t('subCharacteristic')}</Typography>
         </AccordionSummary>
         {
           configPageData?.characteristics?.filter(characteristic => characteristic.active === true)
@@ -203,13 +207,14 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
                   marginBottom: '1rem !important',
                 }}>
                 <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography>{characteristic.key}</Typography>
+                  <Typography>{t("characteristics." + characteristic.key)}</Typography>
                 </AccordionSummary>
                 {
                   characteristic.subcharacteristics?.map((subcharacteristic, indexSub) => (
                     <CheckboxSliderInput
                       key={`subcharacteristics-${index}-${indexSub}`}
-                      label={subcharacteristic.key}
+                      label={t("subCharacteristics." + subcharacteristic.key)}
+                      labelKey={subcharacteristic.key}
                       secLabel={characteristic.key}
                       inputValue={subcharacteristic.weight}
                       setInputValue={handleSubcharacteristicChange}
@@ -222,7 +227,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
         }
       </Accordion>
 
-      <SectionTooltip id='medidasSection' text='Definir Medidas e Pesos Utilizados' tooltip='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore'></SectionTooltip>
+      <SectionTooltip id='medidasSection' text={t("defineMeasures")} tooltip={t("defineMeasuresTooltip")}></SectionTooltip>
       <FormControlLabel
         sx={{
           marginLeft: 0
@@ -231,7 +236,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
           checked={changeRefValue}
           onChange={() => setChangeRefValue(!changeRefValue)}
           color="primary" />}
-        label="Modificar valores de referência"
+        label={t("changeRefValues")}
         labelPlacement="start"
       />
       <Accordion
@@ -246,7 +251,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
           marginTop: 2
         }}>
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>Medidas</Typography>
+          <Typography>{t("measure")}</Typography>
         </AccordionSummary>
         {
           configPageData?.characteristics?.filter(characteristic => characteristic.active === true)
@@ -264,7 +269,7 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
                   marginBottom: '1rem !important',
                 }}>
                 <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography>{characteristic.key}</Typography>
+                  <Typography>{t("characteristics." + characteristic.key)}</Typography>
                 </AccordionSummary>
                 {
                   characteristic.subcharacteristics?.filter(subcharacteristics => subcharacteristics.active === true)
@@ -283,13 +288,14 @@ export default function ModelConfigForm({ configPageData, setConfigPageData, cha
                           marginBottom: '1rem !important',
                         }}>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                          <Typography>{subcharacteristic.key}</Typography>
+                          <Typography>{t("subCharacteristics." + subcharacteristic.key)}</Typography>
                         </AccordionSummary>
                         {
                           subcharacteristic.measures?.map((measure, indexMe) => (
                             <CheckboxSliderInput
                               key={`metric-${index}-${indexSub}-${indexMe}`}
-                              label={measure.key}
+                              label={t("measures." + measure.key)}
+                              labelKey={measure.key}
                               secLabel={subcharacteristic.key}
                               terLabel={characteristic.key}
                               inputValue={measure.weight}

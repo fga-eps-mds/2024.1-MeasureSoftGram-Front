@@ -12,6 +12,7 @@ const SearchButton = ({ onInput, label, placeHolder }: SearchProps) => (
   <>
     <TextField
       id="search-bar"
+      aria-label={label ?? 'search-bar-label'}
       className="text"
       onInput={onInput}
       label={label}
