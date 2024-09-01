@@ -9,7 +9,6 @@ import { Change, PreConfigEntitiesRelationship, ReleaseGoal } from '@customTypes
 import getLayout from '@components/Layout';
 import WarningModal from '@components/WarningModal/WarningModal';
 import { Characteristic, Measure, PreConfigData, ReleaseInfoForm, Subcharacteristic } from '@customTypes/preConfig';
-import api from '@services/api';
 import { productQuery } from '@services/product';
 import { balanceMatrixService } from '@services/balanceMatrix';
 import { enqueueSnackbar, SnackbarProvider } from '@components/snackbar';
@@ -179,10 +178,10 @@ function ReleaseInfo() {
       return;
 
     try {
-      await api.get(`/organizations/${organizationId}/products/${productId}/create/release/is-valid/?nome=${getValues("release_name")}&dt-inicial=${getValues("start_at")}&dt-final=${getValues("end_at")}`)
+      await productQuery.getIsReleaseValid(organizationId, productId, getValues());
       setActiveStep(activeStep + 1);
     } catch (error: any) {
-      enqueueSnackbar(`${error.response.data.detail}`, { autoHideDuration: 10000, variant: 'error' })
+      enqueueSnackbar(`${error?.response?.data?.detail}`, { autoHideDuration: 10000, variant: 'error' })
     }
   };
 
@@ -435,7 +434,7 @@ function ReleaseInfo() {
     <>
       <SnackbarProvider>
         <Styles.Header>
-          <h1 style={{ color: '#33568E', fontWeight: '500' }}>{t('planRelease')}</h1>
+          <h1 style={{ color: '#33568E', fontWeight: '500', textAlign: "left" }}>{t('planRelease')}</h1>
           <Breadcrumbs
             separator={<Box component="span" sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'text.disabled' }} />}
             sx={{ fontSize: '14px' }}
@@ -452,7 +451,6 @@ function ReleaseInfo() {
           <Box>
             <form onSubmit={handleSubmit(handleNextButtonClick)}>
               {renderStep()}
-
               <Box
                 sx={{
                   display: 'grid',

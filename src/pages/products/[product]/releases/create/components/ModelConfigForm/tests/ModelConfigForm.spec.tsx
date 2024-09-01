@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import ModelConfigForm from './../ModelConfigForm';
 import { PreConfigData } from '@customTypes/preConfig';
+import ModelConfigForm from '../ModelConfigForm';
 
 // Mock para o hook useTranslation
 jest.mock('react-i18next', () => ({

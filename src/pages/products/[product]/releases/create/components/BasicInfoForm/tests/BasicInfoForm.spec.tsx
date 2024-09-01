@@ -14,7 +14,6 @@ jest.mock('react-i18next', () => ({
 
 jest.mock('react-hook-form', () => ({
   ...jest.requireActual('react-hook-form'),
-  Controller: () => <></>,
   useForm: () => ({
     control: () => ({}),
     register: () => ({}),
@@ -62,6 +61,7 @@ describe('BasicInfoForm', () => {
     const methods = useForm<ReleaseInfoForm>({
       mode: "all",
       defaultValues: {
+        // eslint-disable-next-line sonarjs/no-duplicate-string
         end_at: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
         start_at: format(new Date(), 'yyyy-MM-dd'),
         goal: 0,

@@ -9,7 +9,7 @@ import {
   RepositoriesLatestTsqmi,
   ReleaseGoal
 } from '@customTypes/product';
-import { PreConfigData, PreConfigRoot } from '@customTypes/preConfig';
+import { PreConfigData, PreConfigRoot, ReleaseInfoForm } from '@customTypes/preConfig';
 
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import api from './api';
@@ -179,6 +179,11 @@ class ProductQuery {
       const error = err as AxiosError;
       return { type: 'error', error };
     }
+  }
+
+  async getIsReleaseValid(organizationId: string, productId: string, form: ReleaseInfoForm) {
+    const url = `organizations/${organizationId}/products/${productId}/create/release/is-valid/?nome=${form.release_name}&dt-inicial=${form.start_at}&dt-final=${form.end_at}`;
+    return api.get<any>(url);
   }
 }
 

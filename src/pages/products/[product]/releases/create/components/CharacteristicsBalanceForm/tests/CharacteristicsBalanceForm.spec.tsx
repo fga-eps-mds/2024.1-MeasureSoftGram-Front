@@ -100,7 +100,6 @@ describe('CharacteristicsBalanceForm', () => {
 
   it('should call handleCharacteristicChange when the slider value is changed', () => {
     renderCharacteristicsBalanceForm();
-    const { t } = useTranslation('plan_release');
 
     const reliabilitySlider = screen.getByTestId('characteristic-reliability').querySelector("input") as HTMLInputElement;
 
@@ -112,7 +111,6 @@ describe('CharacteristicsBalanceForm', () => {
 
   it('should update related characteristics when dinamicBalance is false', () => {
     renderCharacteristicsBalanceForm(false);
-    const { t } = useTranslation('plan_release');
 
     const reliabilitySlider = screen.getByTestId('characteristic-reliability').querySelector("input") as HTMLInputElement;
 
