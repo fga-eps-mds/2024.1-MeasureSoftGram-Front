@@ -423,6 +423,7 @@ function ReleaseCreation() {
         textDecoration: 'none',
         color: activeStep === step ? "text.primary" : "text.secondary",
         fontWeight: activeStep === step ? '800' : 'normal',
+        textTransform: 'none',
         pointerEvents: activeStep === 0 ? "none" : "auto"
       }}
       onClick={() => activeStep === 0 ? {} : setActiveStep(step)}

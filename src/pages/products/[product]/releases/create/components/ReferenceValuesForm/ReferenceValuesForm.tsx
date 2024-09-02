@@ -3,6 +3,7 @@ import { Accordion, AccordionSummary, Typography } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { Characteristic, Measure, PreConfigData, Subcharacteristic } from '@customTypes/preConfig';
+import thresholdInfo from '@utils/getThresholdInfo';
 import MinMaxInput from '../MinMaxInput/MinMaxInput';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
 
@@ -15,6 +16,7 @@ interface ReferenceValuesFormProps {
 
 export default function ReferenceValuesForm({ configPageData, defaultPageData, setConfigPageData }: ReferenceValuesFormProps) {
   const { t } = useTranslation('plan_release');
+  const thresholdData = thresholdInfo;
 
   function updateMeasureThreshold(
     measure: Measure,
@@ -155,6 +157,8 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
                             ?.measures
                             .find(m => m.key === measure.key)
                             ?.max_threshold!}
+                          minFixed={thresholdData.find(m => m.key === measure.key)?.minFixed}
+                          maxFixed={thresholdData.find(m => m.key === measure.key)?.maxFixed}
                           tooltip=""
                         />
                       ))
