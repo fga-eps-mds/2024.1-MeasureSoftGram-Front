@@ -1,13 +1,14 @@
 import { RepositoriesTsqmiHistory } from '@customTypes/product';
 import convertToCsv, { CSVFilter } from './convertToCsv';
-import React from 'react';
+import React, { ComponentRef } from 'react';
+import EChartsReact from 'echarts-for-react';
 
 const formatTwoDecimalPlaces = (value: number) => Math.round(value * 100) / 100;
 
 interface Props {
   history: RepositoriesTsqmiHistory;
   csvFilters: CSVFilter;
-  ref?: React.MutableRefObject<null>;
+  ref?: React.MutableRefObject<ComponentRef<typeof EChartsReact>>;
 }
 
 const formatRepositoriesTsqmiHistory = ({history, csvFilters, ref}: Props) => {

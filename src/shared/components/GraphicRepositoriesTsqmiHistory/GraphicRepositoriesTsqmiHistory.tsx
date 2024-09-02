@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { ComponentRef, useRef } from 'react';
 
 import formatRepositoriesTsqmiHistory from '@utils/formatRepositoriesTsqmiHistory';
 import { RepositoriesTsqmiHistory } from '@customTypes/product';
@@ -17,7 +17,7 @@ const GraphicRepositoriesTsqmiHistory = ({ history }: Props) => {
     return null;
   }
 
-  const echartsRef = useRef(null);
+  const echartsRef = useRef<ComponentRef<typeof ReactEcharts>>(null);
 
   const dateRange: HistoryDateRange = {
     startDate: null,
