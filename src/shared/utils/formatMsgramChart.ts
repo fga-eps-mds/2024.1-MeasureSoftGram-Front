@@ -47,7 +47,11 @@ const formatMsgramChart = ({ historical, title, isEmpty = false }: Props) => {
     type: 'value',
     gridIndex: i,
     splitNumber: 1,
+    axisLabel: {
+      show: false
+    },
     splitLine: {
+      show: false,
       lineStyle: {
         width: 2
       }
