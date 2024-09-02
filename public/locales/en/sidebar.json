@@ -27,6 +27,7 @@
     "add-product": "Add product"
   },
   "organization": {
+    "placeholder":"Select Organization",
     "add-organization": "Add organization"
   },
   "release": {

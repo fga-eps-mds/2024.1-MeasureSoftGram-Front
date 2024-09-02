@@ -27,6 +27,7 @@
     "add-product": "Adicionar Produto"
   },
   "organization": {
+    "placeholder":"Selecione a organização",
     "add-organization": "Adicionar organização"
   },
   "release": {

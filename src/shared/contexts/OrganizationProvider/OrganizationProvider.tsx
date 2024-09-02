@@ -27,11 +27,16 @@ export function OrganizationProvider({ children }: Props) {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchOrganizations = async () => {
+    console.log('teste1');
+    console.log('session is: ', session);
     if (!session) return;
     setIsLoading(true);
     try {
+      console.log('teste2');
       const result = await organizationQuery.getAllOrganization();
+      console.log('teste3');
       if (result.type === 'success') {
+        console.log('teste4');
         const organizations = result.value.map(org => ({
           id: org.id ?? '',
           name: org.name,
@@ -40,33 +45,46 @@ export function OrganizationProvider({ children }: Props) {
           products: org.products ?? [],
           key: org.key ?? ''
         }));
+        console.log('teste5');
         setOrganizationList(organizations);
+        console.log('teste6');
       } else {
         toast.error("Erro ao carregar organizações.");
       }
     } catch (error) {
+      console.log('teste7');
       console.error("Failed to fetch organizations:", error);
       toast.error("Erro ao carregar organizações. Por favor, tente novamente.");
     } finally {
+      console.log('teste8');
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
+    console.log('teste9');
     fetchOrganizations();
   }, []);
 
   useEffect(() => {
+    console.log('teste10');
     if (organizationList.length > 0 && currentOrganizations.length === 0) {
+      console.log('teste11');
       setCurrentOrganizations([organizationList[0]]);
     }
+    console.log('teste12');
   }, [organizationList, currentOrganizations]);
 
   useEffect(() => {
+    console.log('teste13');
     if (currentOrganizations.length > 0) {
+      console.log('teste14');
       setCurrentOrganization(currentOrganizations[0]);
+      console.log('teste15');
     } else {
+      console.log('teste16');
       setCurrentOrganization(null);
+      console.log('teste17');
     }
   }, [currentOrganizations]);
 
@@ -81,6 +99,7 @@ export function OrganizationProvider({ children }: Props) {
     };
   }, [currentOrganization, currentOrganizations, organizationList, isLoading]);
 
+  console.log('teste18');
   return <OrganizationContext.Provider value={value}>{children}</OrganizationContext.Provider>;
 }
 
