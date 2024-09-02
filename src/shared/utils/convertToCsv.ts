@@ -5,7 +5,7 @@ function hasValidDate(dateRange: HistoryDateRange, time: number) {
   return time >= dateRange.startDate && time <= dateRange.endDate;
 }
 
-type CSVFilter = {
+export type CSVFilter = {
   dateRange?: HistoryDateRange;
 };
 

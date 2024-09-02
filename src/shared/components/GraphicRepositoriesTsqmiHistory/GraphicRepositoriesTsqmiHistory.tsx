@@ -6,9 +6,10 @@ import { RepositoriesTsqmiHistory } from '@customTypes/product';
 import ReactEcharts from 'echarts-for-react';
 import * as Styles from './styles';
 import { HistoryDateRange } from '@customTypes/product';
+import { CSVFilter } from '@utils/convertToCsv';
 
 interface Props {
-  history: RepositoriesTsqmiHistory | undefined;
+  history?: RepositoriesTsqmiHistory;
 }
 
 const GraphicRepositoriesTsqmiHistory = ({ history }: Props) => {
@@ -23,29 +24,19 @@ const GraphicRepositoriesTsqmiHistory = ({ history }: Props) => {
     endDate: null
   };
 
-  const onEvents = {
-    datazoom: () => {
-      if (echartsRef.current) {
-        const chart = echartsRef.current.getEchartsInstance();
-        const { startValue, endValue } = chart.getOption().dataZoom[0];
-        if (startValue && endValue) {
-          dateRange.startDate = startValue;
-          dateRange.endDate = endValue;
-        }
-      }
-    }
-  };
+  const csvFilters: CSVFilter = {
+    dateRange: dateRange
+  }
 
-
-  const formatedOptions = formatRepositoriesTsqmiHistory(history, { dateRange });
+  const formatedOptions = formatRepositoriesTsqmiHistory({ history, csvFilters, ref: echartsRef });
 
   return (
     <>
       <Styles.GraphicContainer>
         <ReactEcharts
           ref={echartsRef}
-          onEvents={onEvents}
-          option={formatedOptions} style={{ height: '450px', width: '100%' }} />
+          onEvents={formatedOptions.onEvents}
+          option={formatedOptions.options} style={{ height: '450px', width: '100%' }} />
       </Styles.GraphicContainer>
     </>
   );
