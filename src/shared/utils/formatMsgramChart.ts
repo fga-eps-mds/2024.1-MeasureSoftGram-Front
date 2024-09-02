@@ -1,7 +1,7 @@
-import convertToCsv from './convertToCsv';
 import { Historical } from '@customTypes/repository';
 import { format } from 'date-fns';
 import _ from 'lodash';
+import convertToCsv from './convertToCsv';
 
 interface Props {
   historical: Historical[];
@@ -12,7 +12,8 @@ interface Props {
 const formatMsgramChart = ({ historical, title, isEmpty = false }: Props) => {
   const legendData = _.map(historical, 'name');
   const historicalData = _.map(historical, 'history');
-  const xAxisData = _.uniq(historicalData.flat(1).map((h) => format(new Date(h.created_at), 'dd/MM/yyyy HH:mm')));
+  const dates = _.uniq(historicalData.flat(1).map((h) => format(new Date(h.created_at), 'dd/MM/yyyy HH:mm')));
+  const xAxisData = dates.flatMap((date) => [date, '                ']);
 
   const numberOfGraphs = legendData?.length ?? 0;
 
@@ -102,7 +103,7 @@ const formatMsgramChart = ({ historical, title, isEmpty = false }: Props) => {
     },
     tooltip: {
       show: !isEmpty,
-      trigger: 'axis'
+      trigger: 'item'
     },
     toolbox: {
       feature: {
