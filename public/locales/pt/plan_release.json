@@ -9,6 +9,7 @@
   "defineConfiguration": "Definir configuração do modelo",
   "changeRefValue": "Alterar valores de referência",
   "balanceCharacteristics": "Balancear características",
+  "back": "Voltar",
   "next": "Avançar",
   "end": "Finalizar",
   "alertRefValue": "Os valores de referência afetam como algumas medidas são calculadas. Alguns deles não podem ser modificados.",

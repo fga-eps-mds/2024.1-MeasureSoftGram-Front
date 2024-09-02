@@ -11,14 +11,14 @@ import WarningModal from '@components/WarningModal/WarningModal';
 import { Characteristic, Measure, PreConfigData, ReleaseInfoForm, Subcharacteristic } from '@customTypes/preConfig';
 import { productQuery } from '@services/product';
 import { balanceMatrixService } from '@services/balanceMatrix';
-import { enqueueSnackbar, SnackbarProvider } from '@components/snackbar';
+import { SnackbarProvider, useSnackbar } from '@components/snackbar';
 import * as Styles from './styles';
 import BasicInfoForm from './components/BasicInfoForm/BasicInfoForm';
 import ModelConfigForm from './components/ModelConfigForm/ModelConfigForm';
 import ReferenceValuesForm from './components/ReferenceValuesForm/ReferenceValuesForm';
 import CharacteristicsBalanceForm from './components/CharacteristicsBalanceForm/CharacteristicsBalanceForm';
 
-function ReleaseInfo() {
+function ReleaseCreation() {
   const [organizationId, setOrganizationId] = useState<string>("");
   const [productId, setProductId] = useState<string>("");
   const [productName, setProductName] = useState<string>("");
@@ -33,6 +33,7 @@ function ReleaseInfo() {
   const [balanceMatrix, setBalanceMatrix] = useState<any>();
   const [preConfigEntitiesRelationship, setPreConfigEntitiesRelationship] = useState<PreConfigEntitiesRelationship[]>();
   const [releaseGoal, setReleaseGoal] = useState<any>();
+  const { enqueueSnackbar } = useSnackbar()
 
   const router = useRouter();
   const routerParams: any = router.query;
@@ -310,10 +311,10 @@ function ReleaseInfo() {
 
       await productQuery.createProductRelease(organizationId, productId, release);
 
-      router.push(`/products/${router.query.product}/releases/`);
       enqueueSnackbar(t('releaseCreated'), { autoHideDuration: 6000, variant: 'success' });
+      router.push(`/products/${router.query.product}/releases/`);
     } catch (error: any) {
-      enqueueSnackbar(`${error.response.data.message}`, { autoHideDuration: 10000, variant: 'error' });
+      enqueueSnackbar(`${error.response?.data?.message ?? error}`, { autoHideDuration: 10000, variant: 'error' });
     }
 
   }
@@ -432,46 +433,44 @@ function ReleaseInfo() {
 
   return (
     <>
-      <SnackbarProvider>
-        <Styles.Header>
-          <h1 style={{ color: '#33568E', fontWeight: '500', textAlign: "left" }}>{t('planRelease')}</h1>
-          <Breadcrumbs
-            separator={<Box component="span" sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'text.disabled' }} />}
-            sx={{ fontSize: '14px' }}
-          >
-            {[
-              { label: t('createRelease'), step: 0 },
-              { label: t('defineConfiguration'), step: 1 },
-              { label: t('changeRefValue'), step: 2 },
-              { label: t('balanceCharacteristics'), step: 3 },
-            ].map(({ label, step }) => renderBreadcrumb(label, step))}
-          </Breadcrumbs>
-        </Styles.Header>
-        <Styles.Body>
-          <Box>
-            <form onSubmit={handleSubmit(handleNextButtonClick)}>
-              {renderStep()}
-              <Box
-                sx={{
-                  display: 'grid',
-                  columnGap: 2,
-                  gridTemplateColumns: activeStep !== 0 ? 'repeat(2, 1fr)' : "none",
-                  marginTop: 2
-                }}
-              >
-                {activeStep !== 0 &&
-                  <Button onClick={() => handlePreviousButtonClick()} variant="outlined">
-                    Voltar
-                  </Button>
-                }
-                <Button type="submit" variant="contained">
-                  {activeStep < 3 ? t('next') : t('end')}
+      <Styles.Header>
+        <h1 style={{ color: '#33568E', fontWeight: '500', textAlign: "left" }}>{t('planRelease')}</h1>
+        <Breadcrumbs
+          separator={<Box component="span" sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'text.disabled' }} />}
+          sx={{ fontSize: '14px' }}
+        >
+          {[
+            { label: t('createRelease'), step: 0 },
+            { label: t('defineConfiguration'), step: 1 },
+            { label: t('changeRefValue'), step: 2 },
+            { label: t('balanceCharacteristics'), step: 3 },
+          ].map(({ label, step }) => renderBreadcrumb(label, step))}
+        </Breadcrumbs>
+      </Styles.Header>
+      <Styles.Body>
+        <Box>
+          <form onSubmit={handleSubmit(handleNextButtonClick)}>
+            {renderStep()}
+            <Box
+              sx={{
+                display: 'grid',
+                columnGap: 2,
+                gridTemplateColumns: activeStep !== 0 ? 'repeat(2, 1fr)' : "none",
+                marginTop: 2
+              }}
+            >
+              {activeStep !== 0 &&
+                <Button onClick={() => handlePreviousButtonClick()} variant="outlined">
+                  {t('back')}
                 </Button>
-              </Box>
-            </form>
-          </Box>
-        </Styles.Body >
-      </SnackbarProvider>
+              }
+              <Button type="submit" variant="contained">
+                {activeStep < 3 ? t('next') : t('end')}
+              </Button>
+            </Box>
+          </form>
+        </Box>
+      </Styles.Body >
       <WarningModal
         // eslint-disable-next-line react/jsx-no-bind
         setIsModalOpen={setShowConfirmationModal}
@@ -484,6 +483,6 @@ function ReleaseInfo() {
   );
 }
 
-ReleaseInfo.getLayout = getLayout;
+ReleaseCreation.getLayout = getLayout;
 
-export default ReleaseInfo;
+export default ReleaseCreation;

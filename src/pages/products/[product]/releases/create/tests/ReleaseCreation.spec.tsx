@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
 import { balanceMatrixService } from '@services/balanceMatrix';
 import { useTranslation } from 'react-i18next';
 import { productQuery } from '@services/product';
 import { useRouter } from 'next/router';
-import ReleaseInfo from '../ReleaseCreation';
+import ReleaseCreation from '../ReleaseCreation';
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
@@ -345,22 +345,39 @@ describe('ReleaseInfo Component', () => {
       },
     });
 
-    (productQuery.getPreConfigEntitiesRelationship as jest.Mock).mockResolvedValue({
+    (productQuery.createProductRelease as jest.Mock).mockResolvedValue({
+      data: {},
+    });
+
+    (productQuery.getIsReleaseValid as jest.Mock).mockResolvedValue({
       data: { "message": "Parametros válidos para criação de Release" },
+    });
+
+    (productQuery.postPreConfig as jest.Mock).mockResolvedValue({
+      data: {},
+    });
+
+    (productQuery.createProductGoal as jest.Mock).mockResolvedValue({
+      data: { id: 1 },
     });
   });
 
-  it('should render the component correctly', () => {
-    render(<ReleaseInfo />);
+  it('should render the component correctly', async () => {
+    await act(async () => {
+      render(<ReleaseCreation />);
+    });
     const { t } = useTranslation('plan_release');
     expect(screen.getByText(t('planRelease'))).toBeInTheDocument();
   });
 
-  it('should navigate through steps correctly', async () => {
-    render(<ReleaseInfo />);
+  it('should navigate through steps', async () => {
+    await act(async () => {
+      render(<ReleaseCreation />);
+    });
 
     const { t } = useTranslation('plan_release');
 
+    // eslint-disable-next-line sonarjs/no-duplicate-string
     const releaseIntput = screen.getByTestId('apelido-release') as HTMLInputElement;
 
     fireEvent.change(releaseIntput, { target: { value: 'release 1' } });
@@ -371,4 +388,385 @@ describe('ReleaseInfo Component', () => {
     expect(screen.getByText(t('basicConfig'))).toBeInTheDocument();
   });
 
+  it('should test the useEffect error path', async () => {
+    (productQuery.getCurrentReleaseGoal as jest.Mock).mockRejectedValue(new Error('Erro ao buscar a configuração atual do produto'));
+
+    await act(async () => {
+      render(<ReleaseCreation />);
+    });
+
+    const { t } = useTranslation('plan_release');
+    expect(screen.getByText(t('planRelease'))).toBeInTheDocument();
+  });
+
+  it('should navigate through steps correctly', async () => {
+    (productQuery.getProductDefaultPreConfig as jest.Mock).mockResolvedValue({
+      data: {
+        "characteristics": [
+          {
+            "key": "reliability",
+            "weight": 34,
+            "subcharacteristics": [
+              {
+                "key": "testing_status",
+                "weight": 50,
+                "measures": [
+                  {
+                    "key": "passed_tests",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 1
+                  },
+                  {
+                    "key": "test_builds",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 300000
+                  },
+                  {
+                    "key": "test_coverage",
+                    "weight": 34,
+                    "min_threshold": 60,
+                    "max_threshold": 100
+                  }
+                ]
+              },
+              {
+                "key": "maturity",
+                "weight": 50,
+                "measures": [
+                  {
+                    "key": "ci_feedback_time",
+                    "weight": 100,
+                    "min_threshold": 1,
+                    "max_threshold": 900
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "maintainability",
+            "weight": 33,
+            "subcharacteristics": [
+              {
+                "key": "modifiability",
+                "weight": 100,
+                "measures": [
+                  {
+                    "key": "non_complex_file_density",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 10
+                  },
+                  {
+                    "key": "commented_file_density",
+                    "weight": 33,
+                    "min_threshold": 10,
+                    "max_threshold": 30
+                  },
+                  {
+                    "key": "duplication_absense",
+                    "weight": 34,
+                    "min_threshold": 0,
+                    "max_threshold": 5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "functional_suitability",
+            "weight": 33,
+            "subcharacteristics": [
+              {
+                "key": "functional_completeness",
+                "weight": 100,
+                "measures": [
+                  {
+                    "key": "team_throughput",
+                    "weight": 100,
+                    "min_threshold": 45,
+                    "max_threshold": 100
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+    });
+
+    await act(async () => {
+      render(<ReleaseCreation />);
+    });
+
+    const { t } = useTranslation('plan_release');
+
+    // eslint-disable-next-line sonarjs/no-duplicate-string
+    const releaseNameInput = screen.getByTestId('apelido-release') as HTMLInputElement;
+    // eslint-disable-next-line sonarjs/no-duplicate-string
+    fireEvent.change(releaseNameInput, { target: { value: "Nome Teste" } });
+
+    const checkbox = screen.getByLabelText(t('followLastConfig')) as HTMLInputElement;
+    fireEvent.click(checkbox);
+
+    const nextButton = screen.getByText(/Next/i);
+    fireEvent.click(nextButton);
+
+    await waitFor(async () => {
+      expect(screen.getByText(t('defineCharacteristics'))).toBeInTheDocument();
+      await waitFor(async () => {
+        fireEvent.click(nextButton);
+        await waitFor(async () => {
+          expect(screen.getByText(t("balanceGoal"))).toBeInTheDocument();
+        });
+      });
+    });
+  });
+
+  it('should create release', async () => {
+    (productQuery.getProductDefaultPreConfig as jest.Mock).mockResolvedValue({
+      data: {
+        "characteristics": [
+          {
+            "key": "reliability",
+            "weight": 34,
+            "subcharacteristics": [
+              {
+                "key": "testing_status",
+                "weight": 50,
+                "measures": [
+                  {
+                    "key": "passed_tests",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 1
+                  },
+                  {
+                    "key": "test_builds",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 300000
+                  },
+                  {
+                    "key": "test_coverage",
+                    "weight": 34,
+                    "min_threshold": 60,
+                    "max_threshold": 100
+                  }
+                ]
+              },
+              {
+                "key": "maturity",
+                "weight": 50,
+                "measures": [
+                  {
+                    "key": "ci_feedback_time",
+                    "weight": 100,
+                    "min_threshold": 1,
+                    "max_threshold": 900
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "maintainability",
+            "weight": 33,
+            "subcharacteristics": [
+              {
+                "key": "modifiability",
+                "weight": 100,
+                "measures": [
+                  {
+                    "key": "non_complex_file_density",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 10
+                  },
+                  {
+                    "key": "commented_file_density",
+                    "weight": 33,
+                    "min_threshold": 10,
+                    "max_threshold": 30
+                  },
+                  {
+                    "key": "duplication_absense",
+                    "weight": 34,
+                    "min_threshold": 0,
+                    "max_threshold": 5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "functional_suitability",
+            "weight": 33,
+            "subcharacteristics": [
+              {
+                "key": "functional_completeness",
+                "weight": 100,
+                "measures": [
+                  {
+                    "key": "team_throughput",
+                    "weight": 100,
+                    "min_threshold": 45,
+                    "max_threshold": 100
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+    });
+
+    await act(async () => {
+      render(
+        <ReleaseCreation />);
+    });
+
+    const { t } = useTranslation('plan_release');
+
+    const releaseNameInput = screen.getByTestId('apelido-release') as HTMLInputElement;
+
+    fireEvent.change(releaseNameInput, { target: { value: "Nome Teste" } });
+
+    const checkbox = screen.getByLabelText(t('followLastConfig')) as HTMLInputElement;
+    fireEvent.click(checkbox);
+
+    const nextButton = screen.getByText(/Next/i);
+
+    await waitFor(async () => {
+      fireEvent.click(nextButton);
+      await waitFor(async () => {
+        fireEvent.click(nextButton);
+        await waitFor(async () => {
+          fireEvent.click(nextButton);
+          expect(screen.getByText(t("balanceGoal"))).toBeInTheDocument();
+        });
+      });
+    });
+  });
+
+  it('should test error characteristic weight', async () => {
+    (productQuery.getProductDefaultPreConfig as jest.Mock).mockResolvedValue({
+      data: {
+        "characteristics": [
+          {
+            "key": "reliability",
+            "weight": 2,
+            "subcharacteristics": [
+              {
+                "key": "testing_status",
+                "weight": 50,
+                "measures": [
+                  {
+                    "key": "passed_tests",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 1
+                  },
+                  {
+                    "key": "test_builds",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 300000
+                  },
+                  {
+                    "key": "test_coverage",
+                    "weight": 34,
+                    "min_threshold": 60,
+                    "max_threshold": 100
+                  }
+                ]
+              },
+              {
+                "key": "maturity",
+                "weight": 50,
+                "measures": [
+                  {
+                    "key": "ci_feedback_time",
+                    "weight": 100,
+                    "min_threshold": 1,
+                    "max_threshold": 900
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "maintainability",
+            "weight": 33,
+            "subcharacteristics": [
+              {
+                "key": "modifiability",
+                "weight": 100,
+                "measures": [
+                  {
+                    "key": "non_complex_file_density",
+                    "weight": 33,
+                    "min_threshold": 0,
+                    "max_threshold": 10
+                  },
+                  {
+                    "key": "commented_file_density",
+                    "weight": 33,
+                    "min_threshold": 10,
+                    "max_threshold": 30
+                  },
+                  {
+                    "key": "duplication_absense",
+                    "weight": 34,
+                    "min_threshold": 0,
+                    "max_threshold": 5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "functional_suitability",
+            "weight": 33,
+            "subcharacteristics": [
+              {
+                "key": "functional_completeness",
+                "weight": 100,
+                "measures": [
+                  {
+                    "key": "team_throughput",
+                    "weight": 100,
+                    "min_threshold": 45,
+                    "max_threshold": 100
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+    });
+
+    await act(async () => {
+      render(<ReleaseCreation />);
+    });
+
+    const { t } = useTranslation('plan_release');
+
+    const releaseNameInput = screen.getByTestId('apelido-release') as HTMLInputElement;
+
+    fireEvent.change(releaseNameInput, { target: { value: "Nome Teste" } });
+
+    const nextButton = screen.getByText(/Next/i);
+    fireEvent.click(nextButton);
+
+    await waitFor(async () => {
+      fireEvent.click(nextButton);
+      await waitFor(() => {
+        expect(screen.getByText(t('defineCharacteristics'))).toBeInTheDocument();
+      });
+    });
+  });
 });
