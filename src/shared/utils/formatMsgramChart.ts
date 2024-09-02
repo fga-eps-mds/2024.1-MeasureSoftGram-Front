@@ -62,11 +62,14 @@ const formatMsgramChart = ({ historical, title, isEmpty = false }: Props) => {
     show: !isEmpty,
     name: h.name,
     type: 'line',
-    data: h.history.map(({ value }) => ({
-      value: value.toFixed(3)
-    })),
+    data: h.history.flatMap(({ value }, index) => {
+      const formattedValue = { value: [index * 2, value.toFixed(3)] };
+      const zeroPoint = { value: [index * 2 + 1, 0], symbol: 'none' };
+      return index < h.history.length - 1 ? [formattedValue, zeroPoint] : [formattedValue];
+    }),
     xAxisIndex: i,
-    yAxisIndex: i
+    yAxisIndex: i,
+    showSymbol: true
   }));
 
   const dataZoom = [
