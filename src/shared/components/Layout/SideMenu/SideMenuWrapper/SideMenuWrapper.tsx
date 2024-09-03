@@ -8,9 +8,8 @@ import Divider from '@mui/material/Divider';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
 import * as Styles from './styles';
 
-import OrganizationButton from '../OrganizationSelector';
+import OrganizationSelector from '../OrganizationSelector';
 import ProductsSelector from '../ProductsSelector';
-import Translation from '@components/Translation/Translation';
 
 const IMAGE_SOURCE = '/images/svg/logo_white.svg';
 
@@ -27,8 +26,7 @@ function SideMenuWrapper({ menuItems, footer }: Props) {
       <Link href="/home">
         <Styles.Logo src={IMAGE_SOURCE} height={50} />
       </Link>
-      {/* <Translation /> */}
-      <OrganizationButton />
+      <OrganizationSelector />
       <ProductsSelector />
       <Styles.CollapseButton onClick={toggleCollapse}>
         {isCollapsed ? <NavigateNextRoundedIcon fontSize="large" color="#f5f5f5" /> : <NavigateBeforeRoundedIcon fontSize="large" color="#f5f5f5" />}

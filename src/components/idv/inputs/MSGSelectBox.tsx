@@ -46,7 +46,18 @@ const MSGSelectBox: React.FC<MSGSelectProps> = ({
 
   return (
     <FormControl sx={{ m: 1, width, margin: '10px 2px' }}>
-      <InputLabel id="demo-simple-select-autowidth-label">{label}</InputLabel>
+      <InputLabel
+        id="demo-simple-select-autowidth-label"
+        sx={{
+          color: 'black',
+          textShadow: `
+            2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+            1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff
+          `,
+        }}
+      >
+        {label}
+      </InputLabel>
       <MSGSelectStyle
         labelId="demo-simple-select-autowidth-label"
         id="demo-simple-select-autowidth"
@@ -56,7 +67,7 @@ const MSGSelectBox: React.FC<MSGSelectProps> = ({
         disabled={disabled}
         className={`${className}`}
       >
-        {options ? options.map((option) => (
+        {options.length ? options.map((option) => (
           <MenuItem key={option.id} value={option}>
             {option.name}
           </MenuItem>

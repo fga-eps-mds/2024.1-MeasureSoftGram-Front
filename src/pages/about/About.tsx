@@ -97,7 +97,7 @@ const About: NextPageWithLayout = () => {
             rowGap="1rem"
             alignItems="flex-start"
             width="26%"
-            padding="1rem"
+            padding="4rem 1rem 1rem 1rem"
             position="sticky"
             top="0"
             maxHeight="72vh"

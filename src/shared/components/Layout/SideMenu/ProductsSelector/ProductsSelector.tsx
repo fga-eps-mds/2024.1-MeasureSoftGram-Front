@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import SideMenuItem from '../SideMenuItem';
 import MSGSelectBox from 'src/components/idv/inputs';
 import { Product } from '@customTypes/product';
+import { useQuery } from '../../../../../pages/products/hooks/useQuery';
 
 function ProductSelector() {
   const { currentOrganization } = useOrganizationContext();
@@ -16,19 +17,13 @@ function ProductSelector() {
   const { toggleCollapse, isCollapsed } = useSideMenuContext();
   const router = useRouter();
 
+  useQuery();
+
   const onChange = (value: Product) => {
-    console.log(value);
     setCurrentProduct(value);
     toggleCollapse();
     void router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
   };
-
-  useEffect(() => {
-  }, [currentOrganization]);
-
-  useEffect(() => {
-    if (productsList !== undefined) updateProductList(productsList);
-  }, [productsList]);
 
   const { t } = useTranslation('sidebar');
 

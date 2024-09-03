@@ -30,7 +30,7 @@ function OrganizationSelector() {
       {!isCollapsed ?
         <MSGSelectBox
           label={t('organization.placeholder')}
-          width="100%"
+          width="99%"
           options={organizationList ?? []}
           onChange={(e) => onChange(e.target.value)}
           value={currentOrganization}
