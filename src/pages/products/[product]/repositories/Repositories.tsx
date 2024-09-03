@@ -19,11 +19,13 @@ import { GithubRepositoriesModal } from './[repository]/components/GithubReposit
 
 
 const Repositories: NextPageWithLayout = () => {
+  const router = useRouter()
+
+  const code = router.query.code as string
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
   const [openModal, setOpenModal] = React.useState(() => !!code);
 
-  const router = useRouter()
-  const code = router.query.code as string
   useEffect(() => {
     if (code) {
       setOpenModal(true);

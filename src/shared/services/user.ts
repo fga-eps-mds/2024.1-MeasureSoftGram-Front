@@ -26,7 +26,7 @@ export const getAllUsers = async (): Promise<Result<UserResult>> => {
     const tokenResult = await getAccessToken();
 
     if (tokenResult.type === 'error' || !tokenResult.value.key) {
-      console.error("Erro ao obter o token de acesso");
+      console.error('Erro ao obter o token de acesso');
       return { type: 'error', error: new Error('Token de acesso não encontrado.') as AxiosError };
     }
 
@@ -41,38 +41,50 @@ export const getAllUsers = async (): Promise<Result<UserResult>> => {
     return { type: 'success', value: response.data };
   } catch (err) {
     const error = err as AxiosError;
-    console.error("Erro ao chamar a API:", error, error.response, error.message);
+    console.error('Erro ao chamar a API:', error, error.response, error.message);
     return { type: 'error', error };
   }
 };
 
+export type Repo = {
+  id: number
+  name: string
+  html_url: string
+  description: string
+}
 
-export async function getUserGitHubToken(code: string) {
+type GetUserRepoResponse = {
+  total_count: number
+  items: Repo[]
+}
+
+export async function getUserRepos(code: string): Promise<Result<GetUserRepoResponse>> {
   try {
-    return api.get(`/accounts/github-token`,{ params: { code }})
+
+    const response = await api.get('/accounts/user-repos', {params: {code}})
+    return { type: 'success', value: response.data };
   } catch (err) {
     const error = err as AxiosError;
     return { type: 'error', error };
   }
 }
 
-export async function getGithubUser(accessToken: string){
- try {
+export async function getGithubUser(accessToken: string) {
+  try {
     return api.get(`https://api.github.com/user`, {
       headers: {
-        Authorization:`token ${accessToken}`
+        Authorization: `token ${accessToken}`
       }
-    })
+    });
   } catch (err) {
     const error = err as AxiosError;
     return { type: 'error', error };
   }
 }
 
-
-export async function getUserRepositories(userName: string){
- try {
-    return api.get(`https://api.github.com/search/repositories?q=user:${userName}`)
+export async function getUserRepositories(userName: string) {
+  try {
+    return api.get(`https://api.github.com/search/repositories?q=user:${userName}`);
   } catch (err) {
     const error = err as AxiosError;
     return { type: 'error', error };
