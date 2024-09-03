@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiBox } from 'react-icons/fi';
 import LetterAvatar from '@components/LetterAvatar';
 import { useProductContext } from '@contexts/ProductProvider';
@@ -6,21 +6,29 @@ import { useRouter } from 'next/router';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
 import { useTranslation } from 'react-i18next';
-import SideList from '../SideList';
 import SideMenuItem from '../SideMenuItem';
 import MSGSelectBox from 'src/components/idv/inputs';
+import { Product } from '@customTypes/product';
 
 function ProductSelector() {
   const { currentOrganization } = useOrganizationContext();
-  const { currentProduct, setCurrentProduct, productsList } = useProductContext();
+  const { currentProduct, setCurrentProduct, productsList, updateProductList } = useProductContext();
   const { toggleCollapse, isCollapsed } = useSideMenuContext();
   const router = useRouter();
 
-  const onChange = (e: any) => {
-    setCurrentProduct(e.target.value);
+  const onChange = (value: Product) => {
+    console.log(value);
+    setCurrentProduct(value);
     toggleCollapse();
-    // void router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
+    void router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
   };
+
+  useEffect(() => {
+  }, [currentOrganization]);
+
+  useEffect(() => {
+    if (productsList !== undefined) updateProductList(productsList);
+  }, [productsList]);
 
   const { t } = useTranslation('sidebar');
 
@@ -29,9 +37,9 @@ function ProductSelector() {
       {!isCollapsed ?
         <MSGSelectBox
           label={t('product.placeholder')}
-          width="100%"
+          width="99%"
           options={productsList}
-          onChange={onChange}
+          onChange={(e) => onChange(e.target.value)}
           value={currentProduct}
         /> :
         <SideMenuItem

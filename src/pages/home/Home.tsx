@@ -47,7 +47,7 @@ const Home: NextPageWithLayout = () => {
             <MSGButton variant="secondary" width="35%" onClick={() => router.push('/about')}>
               {t('button.about')}
             </MSGButton>
-            <MSGButton width="35%" onClick={() => router.push('/about')}>
+            <MSGButton width="35%" onClick={() => router.push('/products')}>
               {t('button.start')}
             </MSGButton>
           </Box>

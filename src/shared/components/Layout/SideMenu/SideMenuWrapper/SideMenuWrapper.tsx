@@ -10,6 +10,7 @@ import * as Styles from './styles';
 
 import OrganizationButton from '../OrganizationSelector';
 import ProductsSelector from '../ProductsSelector';
+import Translation from '@components/Translation/Translation';
 
 const IMAGE_SOURCE = '/images/svg/logo_white.svg';
 
@@ -26,6 +27,7 @@ function SideMenuWrapper({ menuItems, footer }: Props) {
       <Link href="/home">
         <Styles.Logo src={IMAGE_SOURCE} height={50} />
       </Link>
+      {/* <Translation /> */}
       <OrganizationButton />
       <ProductsSelector />
       <Styles.CollapseButton onClick={toggleCollapse}>

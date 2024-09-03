@@ -6,26 +6,22 @@ import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
 import { Organization } from '@customTypes/organization';
 import { useTranslation } from 'react-i18next';
 import SideMenuItem from '../SideMenuItem';
-import SideList from '../SideList';
 import MSGSelectBox from 'src/components/idv/inputs/MSGSelectBox';
 
 function OrganizationSelector() {
   const { organizationList, setCurrentOrganizations, currentOrganization, fetchOrganizations } = useOrganizationContext();
   const { isCollapsed, toggleCollapse } = useSideMenuContext();
 
-  const onChange = (e: any) => {
-    setCurrentOrganizations([e.target.value]);
-    console.log("Toggling collapse state from:", isCollapsed);
+  const onChange = (value: Organization) => {
+    setCurrentOrganizations([value]);
     toggleCollapse();
   };
 
   useEffect(() => {
-    console.log('useeffect');
-    if (!isCollapsed && !organizationList.length) {
-      console.log('fetch');
-      fetchOrganizations();
+    if (!organizationList.length) {
+      fetchOrganizations(true);
     }
-  }, [isCollapsed, fetchOrganizations, organizationList]);
+  }, [fetchOrganizations, organizationList]);
 
   const { t } = useTranslation('sidebar');
 
@@ -36,7 +32,7 @@ function OrganizationSelector() {
           label={t('organization.placeholder')}
           width="100%"
           options={organizationList ?? []}
-          onChange={onChange}
+          onChange={(e) => onChange(e.target.value)}
           value={currentOrganization}
         /> :
         <SideMenuItem

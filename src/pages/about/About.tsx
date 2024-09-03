@@ -8,7 +8,7 @@ import Head from "next/head";
 
 import { InfoData } from "@customTypes/home";
 
-import { Container, Box, Typography, Button } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 
 import useRequireAuth from "@hooks/useRequireAuth";
 
@@ -21,7 +21,7 @@ import ListNavCard from "./components/ListNavCard/ListNavCard";
 
 const About: NextPageWithLayout = () => {
   useRequireAuth();
-  const { t, i18n } = useTranslation('about');
+  const { t } = useTranslation('about');
 
   const cardsData: Array<InfoData> = [
     {
@@ -31,13 +31,11 @@ const About: NextPageWithLayout = () => {
           imageSrc: "/images/png/structure.png",
           title: t('organization.title'),
           description: t('organization.description'),
-          routeTo: 'products'
         },
         {
           imageSrc: "/images/png/development.png",
           title: t('product.title'),
           description: t('product.description'),
-          routeTo: 'products/create'
         }
       ]
     },
@@ -81,19 +79,6 @@ const About: NextPageWithLayout = () => {
   const navListData: Array<string> = cardsData.map(cardData => cardData.id);
 
   // eslint-disable-next-line no-shadow
-  const changeLanguage = (i18n: any, language: string) => {
-    window.localStorage.setItem('locale_lang', language)
-    i18n.changeLanguage(language)
-  }
-
-  const languages = [
-    { code: 'en', translateKey: 'en' },
-    { code: 'pt', translateKey: 'pt' },
-  ]
-
-  function getImageSrc(key: string) {
-    return `/images/png/${key}.png`
-  }
 
   return (
     <>
@@ -120,20 +105,6 @@ const About: NextPageWithLayout = () => {
             <Box display="flex">
               <Typography variant="h4" style={{ color: "#33568E", fontWeight: "bold" }}>
                 {t('sub-title')}
-
-                <div>
-                  {languages.map((language) => (
-                    <Button
-                      type='button'
-                      data-id={`${language.code}-button`}
-                      className={i18n.language === language.code ? 'active' : undefined}
-                      onClick={() => changeLanguage(i18n, language.code)}
-                      key={language.code}
-                    >
-                      <Image src={getImageSrc(t(language.translateKey))} alt="flag" height={30} width={30} />
-                    </Button>
-                  ))}
-                </div>
               </Typography>
             </Box>
             <Box>

@@ -1,6 +1,7 @@
 // components/MSGSelect.tsx
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 interface MSGSelectProps {
@@ -39,25 +40,32 @@ const MSGSelectBox: React.FC<MSGSelectProps> = ({
   disabled = false,
   className = '',
   width,
-}) => (
-  <FormControl sx={{ m: 1, width, margin: '10px 2px' }}>
-    <InputLabel id="demo-simple-select-autowidth-label">{label}</InputLabel>
-    <MSGSelectStyle
-      labelId="demo-simple-select-autowidth-label"
-      id="demo-simple-select-autowidth"
-      label={label}
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      className={`${className}`}
-    >
-      {options.map((option) => (
-        <MenuItem key={option.id} value={option}>
-          {option.name}
-        </MenuItem>
-      ))}
-    </MSGSelectStyle>
-  </FormControl>
-);
+}) => {
+
+  const { t } = useTranslation('translation');
+
+  return (
+    <FormControl sx={{ m: 1, width, margin: '10px 2px' }}>
+      <InputLabel id="demo-simple-select-autowidth-label">{label}</InputLabel>
+      <MSGSelectStyle
+        labelId="demo-simple-select-autowidth-label"
+        id="demo-simple-select-autowidth"
+        label={label}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        className={`${className}`}
+      >
+        {options ? options.map((option) => (
+          <MenuItem key={option.id} value={option}>
+            {option.name}
+          </MenuItem>
+        )) : <MenuItem disabled>
+          {t('select.no-options')}
+        </MenuItem>}
+      </MSGSelectStyle>
+    </FormControl>
+  );
+};
 
 export default MSGSelectBox;
