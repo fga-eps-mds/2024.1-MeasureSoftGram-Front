@@ -32,7 +32,9 @@ const Home: NextPageWithLayout = () => {
           gap="12.5rem"
         >
           <Box display="flex" flexDirection="row" alignItems="center" justifyContent="center">
-            <Image src={IMAGE_SOURCE} alt="logo" height={250} width={250} />
+            <Box sx={{ minWidth: '250px', maxWidth: '250px' }}>
+              <Image src={IMAGE_SOURCE} alt="logo" height={250} width={250} />
+            </Box>
             <Box display="flex" flexDirection="column" alignItems="center" paddingLeft="1rem">
               <Typography style={{ color: "#5E5E5E", fontWeight: "bold", fontSize: "90px", letterSpacing: "2px" }}>
                 {t('home-title')}

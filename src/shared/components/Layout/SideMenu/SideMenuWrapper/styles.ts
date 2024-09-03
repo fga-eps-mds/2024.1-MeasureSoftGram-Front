@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   padding: 0 4px;
 
+  align-items: center;
   border-right: 0.1px solid rgba(0,0,0,0.5);
   background-color: #2B4D6F;
   position: sticky;
@@ -22,7 +23,7 @@ export const ItemContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 export const CollapseButton = styled.div`
@@ -56,5 +57,5 @@ export const Logo = styled.img`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 0 20px 12px;
+  margin: 20px 5px;
 `;

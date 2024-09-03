@@ -32,7 +32,7 @@ function ProductSelector() {
       {!isCollapsed ?
         <MSGSelectBox
           label={t('product.placeholder')}
-          width="99%"
+          width="98%"
           options={productsList}
           onChange={(e) => onChange(e.target.value)}
           value={currentProduct}

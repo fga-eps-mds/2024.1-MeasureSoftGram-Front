@@ -34,7 +34,7 @@ function SideMenuItem({ startIcon, text, endIcon, tooltip, disable, onClick, sel
           <Styles.IconContainer>{startIcon}</Styles.IconContainer>
           {!isCollapsed && (
             <>
-              <Box sx={{ width: '100%', marginLeft: '10px', fontSize: '18px' }}>{text}</Box>
+              <Box sx={{ width: '100%', marginLeft: '10px', fontSize: '16px' }}>{text}</Box>
               {endIcon && <Box sx={{ padding: '4px 10px 0 0' }}>{endIcon}</Box>}
             </>
           )}
