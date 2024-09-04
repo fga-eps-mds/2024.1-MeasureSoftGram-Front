@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  background-color: #113d4cff;
+  background-color: #2B4D6Fff;
   color: white;
   width: 100%;
   border-radius: 5px 5px 0 0;

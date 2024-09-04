@@ -134,7 +134,7 @@ const Products: NextPageWithLayout = () => {
 
           {isLoadingOrganizations ? <Box
             style={{
-              border: '1px solid #113d4c',
+              border: '1px solid #2B4D6F',
               borderRadius: '10px',
               boxSizing,
             }}> <Skeleton /> </Box> :
@@ -144,7 +144,7 @@ const Products: NextPageWithLayout = () => {
               flexDirection="row"
               marginTop="20px"
               style={{
-                border: '1px solid #113d4c',
+                border: '1px solid #2B4D6F',
                 borderRadius: '10px',
                 boxSizing,
               }}

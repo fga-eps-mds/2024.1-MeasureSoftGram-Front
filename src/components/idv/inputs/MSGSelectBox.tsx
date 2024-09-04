@@ -17,7 +17,7 @@ interface MSGSelectProps {
 
 const MSGSelectStyle = styled(Select)<MSGSelectProps>(() => ({
   height: '50px',
-  borderColor: '#113D4C',
+  borderColor: '#2B4D6F',
   borderRadius: '5px',
   fontFamily: ['Roboto'].join(','),
   fontWeight: 500,
@@ -27,7 +27,7 @@ const MSGSelectStyle = styled(Select)<MSGSelectProps>(() => ({
   '&:hover': {
     backgroundColor: 'lightgray',
     color: 'black',
-    borderColor: '#113D4C',
+    borderColor: '#2B4D6F',
     boxShadow: 'none',
   },
 }));

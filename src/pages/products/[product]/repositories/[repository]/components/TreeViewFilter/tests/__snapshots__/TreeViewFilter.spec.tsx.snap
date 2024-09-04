@@ -79,7 +79,7 @@ exports[`<TreeViewFilter /> should render correctly 1`] = `
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                     data-testid="SearchIcon"
                     focusable="false"
-                    style="fill: #113d4c;"
+                    style="fill: #2B4D6F;"
                     viewBox="0 0 24 24"
                   >
                     <path

@@ -46,7 +46,7 @@ Object {
         </div>
         <div
           class="MuiBox-root css-1k9wtw"
-          style="background-color: white; border: 1px solid #113d4c80; border-radius: 10px;"
+          style="background-color: white; border: 1px solid #2B4D6F80; border-radius: 10px;"
         >
           <div
             class="MuiTableContainer-root css-rorn0c-MuiTableContainer-root"
@@ -108,7 +108,7 @@ Object {
                             class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                             data-testid="SearchIcon"
                             focusable="false"
-                            style="fill: #113d4c;"
+                            style="fill: #2B4D6F;"
                             viewBox="0 0 24 24"
                           >
                             <path
@@ -189,7 +189,7 @@ Object {
       </div>
       <div
         class="MuiBox-root css-1k9wtw"
-        style="background-color: white; border: 1px solid #113d4c80; border-radius: 10px;"
+        style="background-color: white; border: 1px solid #2B4D6F80; border-radius: 10px;"
       >
         <div
           class="MuiTableContainer-root css-rorn0c-MuiTableContainer-root"
@@ -251,7 +251,7 @@ Object {
                           class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                           data-testid="SearchIcon"
                           focusable="false"
-                          style="fill: #113d4c;"
+                          style="fill: #2B4D6F;"
                           viewBox="0 0 24 24"
                         >
                           <path

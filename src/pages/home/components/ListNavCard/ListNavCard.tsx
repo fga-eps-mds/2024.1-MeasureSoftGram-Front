@@ -29,7 +29,7 @@ const ListNavCard: React.FC<Props> = ({ navListData }) => {
             display: "flex",
             width: "100%",
             backgroundColor: "transparent",
-            '.button-text': { color: selected === data ? "#113D4C" : "#000" },
+            '.button-text': { color: selected === data ? "#2B4D6F" : "#000" },
           }}
         >
           <Box display="flex" justifyContent="flex-start" alignContent="center" alignItems="center">
