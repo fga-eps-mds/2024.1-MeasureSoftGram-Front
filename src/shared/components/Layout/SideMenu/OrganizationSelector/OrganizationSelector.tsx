@@ -13,7 +13,14 @@ function OrganizationSelector() {
   const { isCollapsed, toggleCollapse } = useSideMenuContext();
 
   const onChange = (value: Organization) => {
-    setCurrentOrganizations([value]);
+    if (organizationList) {
+      const selectedOrganization = organizationList.find(organization => organization.id === value.id);
+      if (selectedOrganization) {
+        setCurrentOrganizations([selectedOrganization]);
+      } else {
+        setCurrentOrganizations([]);
+      }
+    }
   };
 
   useEffect(() => {
@@ -31,8 +38,8 @@ function OrganizationSelector() {
           label={t('organization.placeholder')}
           width="98%"
           options={organizationList ?? []}
-          onChange={(e) => onChange(e.target.value)}
-          value={currentOrganization}
+          onChange={onChange}
+          value={currentOrganization?.id}
         /> :
         <SideMenuItem
           startIcon={<LetterAvatar name={currentOrganization?.name ?? '?'} icon={<BsFillBuildingFill color="#000000" />} />}

@@ -8,13 +8,24 @@ import { repository, Result } from '@services/repository';
 
 export const useQuery = () => {
   const { setRepositoryList } = useRepositoryContext();
-  const { setCurrentProduct } = useProductContext();
+  const { currentProduct, setCurrentProduct } = useProductContext();
   const { query } = useRouter();
 
   const loadRepositories = async (organizationId: string, productId: string) => {
     try {
       const result = await productQuery.getAllRepositories(organizationId, productId);
       setRepositoryList(result.data.results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const loadProduct = async (organizationId: string, productId: string) => {
+    try {
+      const result = await productQuery.getProductById(organizationId, productId);
+      if(!currentProduct || currentProduct?.id !== productId) {
+        setCurrentProduct(result.value);
+      }
     } catch (error) {
       console.error(error);
     }

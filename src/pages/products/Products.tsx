@@ -22,21 +22,18 @@ import { Organization } from '@customTypes/organization';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useTranslation } from 'react-i18next';
 import Skeleton from './components/Skeleton';
-import { useQuery } from './hooks/useQuery';
 import ScrollableList from './components/ScrollableList/index';
 
 const Products: NextPageWithLayout = () => {
   const { t: tp } = useTranslation('product');
   const { t: to } = useTranslation('organization');
 
-  useQuery();
   useRequireAuth();
 
   const {
     organizationList,
     currentOrganization,
     setCurrentOrganizations,
-    fetchOrganizations,
     isLoading: isLoadingOrganizations
   } = useOrganizationContext();
   const { productsList } = useProductContext();
@@ -50,11 +47,6 @@ const Products: NextPageWithLayout = () => {
   useEffect(() => {
     if (productsList !== undefined) setFilteredProducts(productsList);
   }, [productsList]);
-
-
-  useEffect(() => {
-    fetchOrganizations(true)
-  }, []);
 
   const handleSelectedOrganization = (organization: Organization) => {
     const organizationId = organization.id

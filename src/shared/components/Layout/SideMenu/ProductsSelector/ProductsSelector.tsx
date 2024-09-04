@@ -17,22 +17,28 @@ function ProductSelector() {
   const router = useRouter();
 
   const onChange = (value: Product) => {
-    setCurrentProduct(value);
-    router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
+    if (productsList) {
+      const selectedProduct = productsList.find(product => product.id === value.id) || null;
+      setCurrentProduct(selectedProduct);
+      router.push(`/products/${currentOrganization?.id}-${selectedProduct?.id}-${selectedProduct?.name}`);
+    }
   };
+
 
   const { t } = useTranslation('sidebar');
 
   return (
     <>
       {!isCollapsed ?
-        <MSGSelectBox
-          label={t('product.placeholder')}
-          width="98%"
-          options={productsList}
-          onChange={(e) => onChange(e.target.value)}
-          value={currentProduct}
-        /> :
+        currentOrganization && (
+          <MSGSelectBox
+            label={t('product.placeholder')}
+            width="98%"
+            options={productsList}
+            onChange={onChange}
+            value={currentProduct?.id}
+          />
+        ) :
         <SideMenuItem
           startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox color="#000000" />} />}
           text={currentProduct?.name ?? t("product.placeholder")}

@@ -9,7 +9,7 @@ interface MSGSelectProps {
   label?: string;
   options?: Array<any>;
   value?: any;
-  onChange?: (value: any) => void;
+  onChange: (value: any) => void;
   disabled?: boolean;
   className?: string;
   width?: string | number;
@@ -41,7 +41,6 @@ const MSGSelectBox: React.FC<MSGSelectProps> = ({
   className = '',
   width,
 }) => {
-
   const { t } = useTranslation('translation');
 
   return (
@@ -63,12 +62,12 @@ const MSGSelectBox: React.FC<MSGSelectProps> = ({
         id="demo-simple-select-autowidth"
         label={label}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(options.find(option => option.id === e.target.value))}
         disabled={disabled}
         className={`${className}`}
       >
         {options.length ? options.map((option) => (
-          <MenuItem key={option.id} value={option}>
+          <MenuItem key={option.id} value={option.id}>
             {option.name}
           </MenuItem>
         )) : <MenuItem disabled>
