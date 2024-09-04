@@ -1,6 +1,6 @@
-import api from './api';
 import { AxiosError } from 'axios';
 import { getAccessToken } from '@services/Auth';
+import api from './api';
 
 export interface User {
   id: number;

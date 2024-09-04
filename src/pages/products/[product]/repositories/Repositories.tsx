@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { Box, Container, Typography, IconButton, Popover, Button, Modal } from '@mui/material';
+import { Box, Container, Typography, IconButton, Popover, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { FaGithub, FaCodeBranch } from 'react-icons/fa';
 
@@ -20,6 +20,19 @@ import { GithubRepositoriesModal } from './[repository]/components/GithubReposit
 
 const Repositories: NextPageWithLayout = () => {
   const router = useRouter()
+
+  const removeQueryParam = () => {
+    const { asPath } = router;
+    const result = asPath.replace(/\?.*/, "");
+
+    router.replace(
+      { pathname: result, query: '' },
+      undefined,
+      { shallow: true }
+    );
+  };
+
+  console.log(router.asPath)
 
   const code = router.query.code as string
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -44,7 +57,10 @@ const Repositories: NextPageWithLayout = () => {
     router.push(getGithubAuthUrlToRepositoriesPage(router.asPath), undefined);
   }
 
-  const handleCloseModal = () => setOpenModal(false);
+  const handleCloseModal = () => {
+    setOpenModal(false)
+    removeQueryParam()
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -121,7 +137,7 @@ const Repositories: NextPageWithLayout = () => {
           padding="20px"
           style={{ backgroundColor: 'white', border: '1px solid #113d4c80', borderRadius: '10px' }}
         >
-          <RepositoriesTable />
+          <RepositoriesTable key={code} />
         </Box>
       </Container >
     </>

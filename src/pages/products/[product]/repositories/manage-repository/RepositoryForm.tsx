@@ -61,6 +61,7 @@ const RepositoryForm: NextPageWithLayout = () => {
     description: '',
     url: '',
     platform: 'github',
+    imported: false
   });
 
   const platforms = [
@@ -103,7 +104,8 @@ const RepositoryForm: NextPageWithLayout = () => {
               name: result.data.name,
               description: result.data.description || '',
               url: result.data.url || '',
-              platform: result.data.platform
+              platform: result.data.platform,
+              imported: result.data.imported || false
             });
           } else {
             throw new Error(t('error.data'));
@@ -235,6 +237,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                 }}
               />
               <TextField
+                disabled={repositoryData.imported}
                 name="name"
                 data-testid="repo-name-input"
                 label={t('edit.name')}
@@ -246,6 +249,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                 required
               />
               <TextField
+                disabled={repositoryData.imported}
                 name="description"
                 label={t('edit.description')}
                 variant="outlined"
@@ -257,6 +261,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                 rows={4}
               />
               <TextField
+                disabled={repositoryData.imported}
                 name="url"
                 label={t('edit.url')}
                 variant="outlined"
@@ -268,6 +273,7 @@ const RepositoryForm: NextPageWithLayout = () => {
               <FormControl fullWidth margin="normal">
                 <InputLabel id="platform-label">{t('edit.plataform')}</InputLabel>
                 <Select
+                  disabled={repositoryData.imported}
                   labelId="platform-label"
                   id="platform"
                   value={repositoryData.platform}
@@ -281,7 +287,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                   )}
                 >
                   {platforms.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
+                    <MenuItem key={option.value} value={option.value} disabled={repositoryData.imported}>
                       <Box marginRight="10px">{React.cloneElement(option.icon)}</Box>
                       {option.label}
                     </MenuItem>
@@ -289,7 +295,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                 </Select>
               </FormControl>
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
-                <Button type="submit" variant="contained" color="primary">
+                <Button type="submit" variant="contained" color="primary" disabled={repositoryData.imported}>
                   {isEditMode ? t('edit.save') : t('register.create')}
                 </Button>
               </Box>
