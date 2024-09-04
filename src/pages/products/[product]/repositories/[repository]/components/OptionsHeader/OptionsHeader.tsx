@@ -22,7 +22,7 @@ function OptionsHeader({ title, isHistoricOpen, setIsHistoricOpen }: Props) {
       justifyContent="space-between"
       gap="2rem"
     >
-      <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>{title}</h2>
+      <h2 style={{ color: '#2B4D6F', fontWeight: '500', fontSize: '25px' }}>{title}</h2>
       <Box
         style={{
           width: '50%'

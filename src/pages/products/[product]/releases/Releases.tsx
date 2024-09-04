@@ -59,7 +59,7 @@ const Releases: NextPageWithLayout = () => {
           </Grid>
         </Box>
         <Box display="flex" flexDirection="column" padding="20px"
-          style={{ backgroundColor: 'white', border: '1px solid #113d4c80', borderRadius: '10px' }}>
+          style={{ backgroundColor: 'white', border: '1px solid #2B4D6F80', borderRadius: '10px' }}>
           <Grid container display="flex" justifyContent="space-between" marginBottom='30px'>
             <Grid item md={4} display="flex" alignItems="center">
               <Box>

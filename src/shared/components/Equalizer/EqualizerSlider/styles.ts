@@ -2,15 +2,15 @@ import { Slider } from '@mui/material';
 import styled from 'styled-components';
 
 export const StyledSlider = styled(Slider)({
-  color: '#113D4C',
+  color: '#2B4D6F',
   width: 14,
   '& .MuiSlider-track': {
     border: 'none',
     transition: `left 1s ease-in`,
-    backgroundImage: 'linear-gradient(#2DA1C8, #113D4C)'
+    backgroundImage: 'linear-gradient(#2DA1C8, #2B4D6F)'
   },
   '& .MuiSlider-thumb': {
-    color: '#113D4C',
+    color: '#2B4D6F',
     backgroundColor: '#fff',
     height: 20,
     width: 35,
@@ -24,6 +24,6 @@ export const StyledSlider = styled(Slider)({
     }
   },
   '& .MuiSlider-valueLabel': {
-    backgroundColor: '#113D4C'
+    backgroundColor: '#2B4D6F'
   }
 });

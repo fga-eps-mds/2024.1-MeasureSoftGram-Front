@@ -59,7 +59,7 @@ const Repositories: NextPageWithLayout = () => {
           display="flex"
           flexDirection="column"
           padding="20px"
-          style={{ backgroundColor: 'white', border: '1px solid #113d4c80', borderRadius: '10px' }}
+          style={{ backgroundColor: 'white', border: '1px solid #2B4D6F80', borderRadius: '10px' }}
         >
           <RepositoriesTable />
         </Box>

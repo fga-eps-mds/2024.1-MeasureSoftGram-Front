@@ -10,7 +10,7 @@ interface MSGButtonProps {
 
 const MSGButtonStyle = styled(Button)<MSGButtonProps>(() => ({
   height: '50px',
-  borderColor: '#113D4C',
+  borderColor: '#2B4D6F',
   borderRadius: '5px',
   fontFamily: ['Montserrat', 'sans-serif'].join(','),
   fontWeight: 500,

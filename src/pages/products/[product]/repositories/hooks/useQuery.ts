@@ -8,7 +8,7 @@ import { repository, Result } from '@services/repository';
 
 export const useQuery = () => {
   const { setRepositoryList } = useRepositoryContext();
-  const { setCurrentProduct } = useProductContext();
+  const { currentProduct, setCurrentProduct } = useProductContext();
   const { query } = useRouter();
 
   const loadRepositories = async (organizationId: string, productId: string) => {
@@ -23,7 +23,9 @@ export const useQuery = () => {
   const loadProduct = async (organizationId: string, productId: string) => {
     try {
       const result = await productQuery.getProductById(organizationId, productId);
-      setCurrentProduct(result.value);
+      if(!currentProduct || currentProduct?.id !== productId) {
+        setCurrentProduct(result.value);
+      }
     } catch (error) {
       console.error(error);
     }

@@ -22,7 +22,7 @@ const SearchButton = ({ onInput, label, placeHolder }: SearchProps) => (
       InputProps={{
         endAdornment: (
           <InputAdornment position="start">
-            <Search style={{ fill: '#113d4c' }} />
+            <Search style={{ fill: '#2B4D6F' }} />
           </InputAdornment>
         ),
       }}

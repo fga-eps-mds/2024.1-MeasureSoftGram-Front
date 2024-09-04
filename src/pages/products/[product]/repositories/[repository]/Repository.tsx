@@ -232,7 +232,7 @@ const Repository: NextPageWithLayout = () => {
             height={60}
             alignItems="center"
           >
-            <h2 style={{ color: '#113D4C', fontWeight: '500', fontSize: '25px' }}>{t('repository.measure-history')}</h2>
+            <h2 style={{ color: '#2B4D6F', fontWeight: '500', fontSize: '25px' }}>{t('repository.measure-history')}</h2>
           </Box>
 
           <GraphicChart key="sonargraph" title="Métricas" type="line" value="metrics" />
