@@ -28,15 +28,15 @@ const GraphicRepositoriesTsqmiHistory = ({ history }: Props) => {
     dateRange: dateRange
   }
 
-  const formatedOptions = formatRepositoriesTsqmiHistory({ history, csvFilters, ref: echartsRef });
+  const { options, onEvents } = formatRepositoriesTsqmiHistory({ history, csvFilters, ref: echartsRef });
 
   return (
     <>
       <Styles.GraphicContainer>
         <ReactEcharts
           ref={echartsRef}
-          onEvents={formatedOptions.onEvents}
-          option={formatedOptions.options} style={{ height: '450px', width: '100%' }} />
+          onEvents={onEvents}
+          option={options} style={{ height: '450px', width: '100%' }} />
       </Styles.GraphicContainer>
     </>
   );

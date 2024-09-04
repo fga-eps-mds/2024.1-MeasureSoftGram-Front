@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { ComponentRef, useMemo, useRef, useState } from 'react';
 import ReactEcharts from 'echarts-for-react';
 
 import formatCharacteristicsHistory from '@utils/formatCharacteristicsHistory';
@@ -13,6 +13,8 @@ import { useProductConfigFilterContext } from '@contexts/ProductConfigFilterProv
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { useProductContext } from '@contexts/ProductProvider';
+import { CSVFilter } from '@utils/convertToCsv';
+import { HistoryDateRange } from '@customTypes/product';
 
 interface Prop {
   title: string;
@@ -74,6 +76,13 @@ const GraphicChart = ({
     chartStyle = { height: chartBoxHeight };
   }
 
+  const echartsRef = useRef<ComponentRef<typeof ReactEcharts>>(null);
+
+  const dateRange: HistoryDateRange = {
+    startDate: null,
+    endDate: null
+  };
+
   const chartsOption = useMemo(
     () =>
       _.range(numLines).map((i) => ({
@@ -82,7 +91,9 @@ const GraphicChart = ({
           title: i === 0 ? title : '',
           isEmpty: isEmpty || error,
           redLimit: currentProduct?.gaugeRedLimit,
-          yellowLimit: currentProduct?.gaugeYellowLimit
+          yellowLimit: currentProduct?.gaugeYellowLimit,
+          csvFilters: { dateRange },
+          ref: echartsRef
         }),
         key: `graphic - chart - ${i}`
       })
@@ -114,11 +125,17 @@ const GraphicChart = ({
         >
           {(type !== 'gauge') || (type === 'gauge' && showCharts) && (typeof window !== 'undefined') ?
             (typeof window !== 'undefined') && chartsOption.map((option) => (
-              <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
+              <>
+                < ReactEcharts
+                  ref={echartsRef}
+                  onEvents={option?.onEvents}
+                  key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
+              </>
             ))
             :
             (typeof window !== 'undefined') && filteredChartsOptions.map((option) => (
-              <ReactEcharts key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
+              <ReactEcharts
+                key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
             ))
           }
 
