@@ -46,6 +46,12 @@ exports[`<ReleasesList /> renders without crashing 1`] = `
                 >
                   table.endDate
                 </th>
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
+                  scope="col"
+                >
+                  table.details
+                </th>
               </tr>
             </thead>
             <tbody
