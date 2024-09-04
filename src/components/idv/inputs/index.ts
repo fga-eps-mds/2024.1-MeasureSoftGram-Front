@@ -1,3 +1,3 @@
-import MSGSelectBox from '@idvInputs/MSGSelectBox';
+import MSGSelectBox from './MSGSelectBox';
 
 export default MSGSelectBox;

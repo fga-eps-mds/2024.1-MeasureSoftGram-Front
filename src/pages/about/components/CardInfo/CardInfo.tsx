@@ -131,12 +131,6 @@ const CardInfo: React.FC<Props> = ({ cardData }) => {
             >
               {data.description}
             </Typography>
-            <Box
-              display="flex"
-              flexDirection="row"
-              justifyContent="center"
-            >
-            </Box>
           </Box>
         </Box>
 
