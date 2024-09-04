@@ -7,7 +7,7 @@ import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
 import { useTranslation } from 'react-i18next';
 import SideMenuItem from '../SideMenuItem';
-import MSGSelectBox from 'src/components/idv/inputs';
+import MSGSelectBox from '@idvInputs/MSGSelectBox';
 import { Product } from '@customTypes/product';
 
 function ProductSelector() {

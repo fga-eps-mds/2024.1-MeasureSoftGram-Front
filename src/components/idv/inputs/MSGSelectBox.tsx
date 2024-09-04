@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 interface MSGSelectProps {
-  primary?: boolean;
   label?: string;
   options?: Array<any>;
   value?: any;

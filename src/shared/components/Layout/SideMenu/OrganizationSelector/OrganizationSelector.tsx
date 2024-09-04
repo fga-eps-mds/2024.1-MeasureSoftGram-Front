@@ -6,7 +6,7 @@ import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
 import { Organization } from '@customTypes/organization';
 import { useTranslation } from 'react-i18next';
 import SideMenuItem from '../SideMenuItem';
-import MSGSelectBox from 'src/components/idv/inputs/MSGSelectBox';
+import MSGSelectBox from '@idvInputs/MSGSelectBox';
 
 function OrganizationSelector() {
   const { organizationList, setCurrentOrganizations, currentOrganization, fetchOrganizations } = useOrganizationContext();

@@ -1,21 +1,13 @@
 import React from "react";
+import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 import { NextPageWithLayout } from "@pages/_app.next";
-
 import getLayout from "@components/Layout";
-
-import Head from "next/head";
-
 import { InfoData } from "@customTypes/home";
-
 import { Container, Box, Typography } from "@mui/material";
-
 import useRequireAuth from "@hooks/useRequireAuth";
-
-import { useTranslation } from "react-i18next";
-import Image from "next/image";
 import CardInfo from "./components/CardInfo/CardInfo";
-
 import ListNavCard from "./components/ListNavCard/ListNavCard";
 
 
