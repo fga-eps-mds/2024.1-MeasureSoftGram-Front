@@ -1,14 +1,14 @@
 import { RepositoriesTsqmiHistory } from '@customTypes/product';
 import convertToCsv, { CSVFilter } from './convertToCsv';
 import React, { ComponentRef } from 'react';
-import EChartsReact from 'echarts-for-react';
+import ReactEcharts from 'echarts-for-react';
 
 const formatTwoDecimalPlaces = (value: number) => Math.round(value * 100) / 100;
 
 interface Props {
   history: RepositoriesTsqmiHistory;
   csvFilters: CSVFilter;
-  ref?: React.MutableRefObject<ComponentRef<typeof EChartsReact>>;
+  ref: React.MutableRefObject<ComponentRef<typeof ReactEcharts> | null>;
 }
 
 const formatRepositoriesTsqmiHistory = ({history, csvFilters, ref}: Props) => {
@@ -28,9 +28,12 @@ const formatRepositoriesTsqmiHistory = ({history, csvFilters, ref}: Props) => {
 
   const onEvents = {
     datazoom: () => {
-      if (ref && ref.current && csvFilters.dateRange) {
+      if (ref.current && csvFilters.dateRange) {
+        console.log(series);
         const chart = ref.current.getEchartsInstance();
+        // @ts-ignore
         const { startValue, endValue } = chart.getOption().dataZoom[0];
+        console.log(startValue, endValue);
         if (startValue && endValue) {
           csvFilters.dateRange.startDate = startValue;
           csvFilters.dateRange.endDate = endValue;
