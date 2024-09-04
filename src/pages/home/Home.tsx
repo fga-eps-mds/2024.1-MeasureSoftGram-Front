@@ -8,7 +8,7 @@ import { NextPageWithLayout } from "@pages/_app.next";
 import getLayout from "@components/Layout";
 import { Container, Box, Typography } from "@mui/material";
 import useRequireAuth from "@hooks/useRequireAuth";
-import MSGButton from "src/components/idv/buttons";
+import MSGButton from '../../components/idv/buttons/MSGButton';
 
 const IMAGE_SOURCE = '/images/svg/logo.svg';
 
