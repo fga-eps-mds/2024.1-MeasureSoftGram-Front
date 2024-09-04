@@ -70,16 +70,14 @@ export function OrganizationProvider({ children }: Props) {
     }
   }, [currentOrganizations]);
 
-  const value = useMemo(() => {
-    return {
-      currentOrganization,
-      currentOrganizations,
-      setCurrentOrganizations,
-      organizationList,
-      isLoading,
-      fetchOrganizations
-    };
-  }, [currentOrganization, currentOrganizations, organizationList, isLoading]);
+  const value = useMemo(() => ({
+    currentOrganization,
+    currentOrganizations,
+    setCurrentOrganizations,
+    organizationList,
+    isLoading,
+    fetchOrganizations
+  }), [currentOrganization, currentOrganizations, organizationList, isLoading]);
 
   return <OrganizationContext.Provider value={value}>{children}</OrganizationContext.Provider>;
 }

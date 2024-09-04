@@ -1,15 +1,13 @@
 import { useProductContext } from '@contexts/ProductProvider';
 import { useRepositoryContext } from '@contexts/RepositoryProvider';
 import { productQuery } from '@services/product';
-import { getPathId } from '@utils/pathDestructer';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { repository, Result } from '@services/repository';
+import { Repository } from '@customTypes/repository';
 
 export const useQuery = () => {
   const { setRepositoryList } = useRepositoryContext();
   const { setCurrentProduct } = useProductContext();
-  const { query } = useRouter();
 
   const loadRepositories = async (organizationId: string, productId: string) => {
     try {
@@ -17,6 +15,16 @@ export const useQuery = () => {
       setRepositoryList(result.data.results);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const loadRepositoriesNoContext = async (organizationId: string, productId: string): Promise<Repository[]> => {
+    try {
+      const result = await productQuery.getAllRepositories(organizationId, productId);
+      return result.data.results;
+    } catch (error) {
+      console.error(error);
+      return [];
     }
   };
 
@@ -48,26 +56,31 @@ export const useQuery = () => {
       }
       throw new Error('Invalid action or missing repositoryId.');
     } catch (error) {
-      console.error(error);
       return { type: 'error', error: new Error(`Failed to ${action} repository.`) };
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (typeof query?.product === 'string') {
-        try {
-          const [organizationId, productId] = getPathId(query?.product);
-          await loadProduct(organizationId, productId);
-          await loadRepositories(organizationId, productId);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
+  // Comentei esse código para tentar resolver um problema de rechamadas ao /repositories
+  // e a uns flashes na tela.
+  //
+  // useEffect(() => {
+  //   console.log(query);
+  //   const fetchData = async () => {
+  //     if (typeof query?.product === 'string') {
+  //       try {
+  //         const [organizationId, productId] = getPathId(query?.product);
+  //         await loadProduct(organizationId, productId);
+  //         await loadRepositories(organizationId, productId);
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   };
 
-    fetchData().catch((error) => console.error(error));
-  }, [query?.product]);
+  //   console.log('eu ein');
 
-  return { handleRepositoryAction };
+  //   fetchData().catch((error) => console.error(error));
+  // }, [query?.product]);
+
+  return { handleRepositoryAction, loadRepositoriesNoContext };
 };
