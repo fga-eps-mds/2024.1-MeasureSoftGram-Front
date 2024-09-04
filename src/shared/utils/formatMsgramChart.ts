@@ -76,7 +76,7 @@ const formatMsgramChart = ({ historical, title, isEmpty = false }: Props) => {
 
   const handleExportCsv = () => {
     if (historical) {
-      const csvContent = convertToCsv(historical);
+      const csvContent = convertToCsv(historical, {});
 
       const blob = new Blob([csvContent], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
