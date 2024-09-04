@@ -20,15 +20,6 @@ export const useQuery = () => {
     }
   };
 
-  const loadProduct = async (organizationId: string, productId: string) => {
-    try {
-      const result = await productQuery.getProductById(organizationId, productId);
-      setCurrentProduct(result.value);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleRepositoryAction = async (
     action: string,
     organizationId: string,

@@ -30,13 +30,14 @@ export function ProductProvider({ children }: Props) {
   const loadAllProducts = async () => {
     try {
       if (!currentOrganization) {
-        setCurrentProduct(null); // Reset currentProduct to null
         updateProductList([]);
         return;
       }
 
       const result = await productQuery.getAllProducts(currentOrganization.id);
-      updateProductList(result.data.results);
+      if (result.status === 200) {
+        updateProductList(result.data.results);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -44,9 +45,8 @@ export function ProductProvider({ children }: Props) {
 
   useEffect(() => {
     if (currentOrganization) {
-      loadAllProducts();
-    } else {
       setCurrentProduct(null);
+      loadAllProducts();
     }
   }, [currentOrganization]);
 

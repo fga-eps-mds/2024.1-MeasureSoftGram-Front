@@ -29,18 +29,6 @@ function SideMenu() {
 
   const { t } = useTranslation('sidebar')
 
-  let itemType: 'product' | 'organization' | 'unknown' = 'unknown';
-
-  if (currentProduct && currentOrganization) {
-    itemType = 'product';
-  } else if (!currentProduct && currentOrganization) {
-    itemType = 'organization';
-  }
-
-  // if (itemType === 'unknown') {
-  //   console.warn('The itemType is set to unknown. Please handle this case appropriately.');
-  // }
-
   const MenuItems: SideMenuItemType[] = [
     {
       startIcon: <FiBarChart2 fontSize={28} />,
@@ -71,7 +59,6 @@ function SideMenu() {
   return (
     <SideMenuWrapper
       key={`${currentOrganization?.id}-${currentProduct?.id}`}
-      itemType={itemType}
       menuItems={
         currentProduct &&
         MenuItems.map((item) => (
