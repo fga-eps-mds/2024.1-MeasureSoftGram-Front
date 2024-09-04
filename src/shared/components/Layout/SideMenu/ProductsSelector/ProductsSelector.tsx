@@ -9,23 +9,22 @@ import { useTranslation } from 'react-i18next';
 import SideMenuItem from '../SideMenuItem';
 import MSGSelectBox from 'src/components/idv/inputs';
 import { Product } from '@customTypes/product';
-import { useQuery } from '../../../../../pages/products/hooks/useQuery';
+import { useQuery } from '@pages/products/[product]/repositories/hooks/useQuery';
 
 function ProductSelector() {
   const { currentOrganization } = useOrganizationContext();
-  const { currentProduct, setCurrentProduct, productsList, updateProductList } = useProductContext();
+  const { currentProduct, setCurrentProduct, productsList } = useProductContext();
   const { toggleCollapse, isCollapsed } = useSideMenuContext();
   const router = useRouter();
 
-  useQuery();
-
   const onChange = (value: Product) => {
     setCurrentProduct(value);
-    toggleCollapse();
     void router.push(`/products/${currentOrganization?.id}-${value.id}-${value.name}`);
   };
 
   const { t } = useTranslation('sidebar');
+
+  useQuery();
 
   return (
     <>

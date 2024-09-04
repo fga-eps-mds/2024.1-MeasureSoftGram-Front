@@ -51,8 +51,8 @@ const MSGSelectBox: React.FC<MSGSelectProps> = ({
         sx={{
           color: 'black',
           textShadow: `
-            2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
-            1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff
+            2.5px 0 #fff, -2.5px 0 #fff, 0 2.5px #fff, 0 -2.5px #fff,
+            1.5px 1.5px #fff, -1.5px -1.5px #fff, 1.5px -1.5px #fff, -1.5px 1.5px #fff
           `,
         }}
       >

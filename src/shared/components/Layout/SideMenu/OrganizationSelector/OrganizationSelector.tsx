@@ -14,7 +14,6 @@ function OrganizationSelector() {
 
   const onChange = (value: Organization) => {
     setCurrentOrganizations([value]);
-    toggleCollapse();
   };
 
   useEffect(() => {
