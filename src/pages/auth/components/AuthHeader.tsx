@@ -15,7 +15,7 @@ export const AuthHeader = memo(
       </Box>
 
       <Box marginBottom="2rem">
-        <Divider variant="fullWidth" sx={{ ':after': { borderColor: '#113D4C' }, ':before': { borderColor: '#113D4C' } }}>
+        <Divider variant="fullWidth" sx={{ ':after': { borderColor: '#2B4D6F' }, ':before': { borderColor: '#2B4D6F' } }}>
           <Typography sx={{ fontSize: '0.8rem', fontWeight: '300' }}>{subTitle}</Typography>
         </Divider>
       </Box>

@@ -7,7 +7,6 @@ import { Box, Button, Typography, Container } from '@mui/material';
 
 import { RepositoriesTsqmiHistory } from '@customTypes/product';
 
-import CreateRelease from '@modules/createRelease';
 import GraphicRepositoriesTsqmiHistory from '@components/GraphicRepositoriesTsqmiHistory';
 
 import { useProductContext } from '@contexts/ProductProvider';
@@ -73,22 +72,7 @@ const ProductContent: React.FC<Props> = ({ repositoriesTsqmiHistory }) => {
           </Box>
         </Box>
       </Box>
-
-      <Box display="flex" justifyContent="end">
-        <Button onClick={handleOpenCreateRelease} variant="contained">
-          {t('plan-release')}
-        </Button>
-      </Box>
-
       <GraphicRepositoriesTsqmiHistory history={repositoriesTsqmiHistory} />
-
-      <CreateRelease
-        open={openCreateRelease}
-        handleClose={() => setOpenCreateRelease(false)}
-        currentProduct={currentProduct}
-        productId={pathId.productId}
-        organizationId={pathId.organizationId}
-      />
     </Container>
   );
 };

@@ -33,7 +33,7 @@ export function Breadcrumbs() {
         if (pathArray.length === index + 1)
           return (
             <Typography color="text.primary" variant="subtitle1" key={path}>
-              {TRANSLATION[path] || decodeURIComponent(productName)}
+              {TRANSLATION[path]}
             </Typography>
           );
 

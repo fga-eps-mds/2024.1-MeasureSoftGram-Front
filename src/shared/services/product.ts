@@ -1,22 +1,17 @@
 /* eslint-disable class-methods-use-this */
 import {
   PreConfigEntitiesRelationship,
-  CurrentPreConfig,
   MeasuresHistory,
-  ReleaseGoal,
   RepositoriesTsqmiHistory,
   EntitiesMetrics,
   LatestValues,
-  Goal,
   Product,
-  ReleasesPaginated,
-  IReleases,
-  RepositoriesLatestTsqmi
+  RepositoriesLatestTsqmi,
+  ReleaseGoal
 } from '@customTypes/product';
-import { Data } from '@customTypes/preConfig';
+import { PreConfigData, PreConfigRoot, ReleaseInfoForm } from '@customTypes/preConfig';
 
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { NewCreateReleaseData } from '@modules/createRelease/context/useCreateRelease';
 import api from './api';
 
 export interface ProductFormData {
@@ -70,13 +65,18 @@ class ProductQuery {
     return api.get<MeasuresHistory>(url);
   }
 
-  postPreConfig(organizationId: string, productId: string, data: { name: string; data: Data }) {
+  postPreConfig(organizationId: string, productId: string, data: { name: string; data: PreConfigData }) {
     return api.post(`/organizations/${organizationId}/products/${productId}/create/pre-config/`, data);
   }
 
   async getProductCurrentPreConfig(organizationId: string, productId: string) {
     const url = `organizations/${organizationId}/products/${productId}/current/pre-config/`;
-    return api.get<CurrentPreConfig>(url);
+    return api.get<PreConfigRoot>(url);
+  }
+
+  async getProductDefaultPreConfig(organizationId: string, productId: string) {
+    const url = `organizations/${organizationId}/products/${productId}/default/pre-config/`;
+    return api.get<PreConfigData>(url);
   }
 
   async getPreConfigEntitiesRelationship(organizationId: string, projectId: string) {
@@ -109,7 +109,7 @@ class ProductQuery {
     return api.post(url, data);
   }
 
-  async createProductRelease(organizationId: string, productId: string, data: NewCreateReleaseData) {
+  async createProductRelease(organizationId: string, productId: string, data: any) {
     const url = `organizations/${organizationId}/products/${productId}/create/release/`;
     return api.post(url, data);
   }
@@ -179,6 +179,11 @@ class ProductQuery {
       const error = err as AxiosError;
       return { type: 'error', error };
     }
+  }
+
+  async getIsReleaseValid(organizationId: string, productId: string, form: ReleaseInfoForm) {
+    const url = `organizations/${organizationId}/products/${productId}/create/release/is-valid/?nome=${form.release_name}&dt-inicial=${form.start_at}&dt-final=${form.end_at}`;
+    return api.get<any>(url);
   }
 }
 

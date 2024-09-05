@@ -7,6 +7,7 @@ interface RepositoryFormData {
   description?: string;
   url?: string;
   platform: string;
+  imported?: boolean;
 }
 
 interface HistoricalCharacteristicsProps {
@@ -37,7 +38,7 @@ class Repository {
   async createRepository(
     organizationId: string,
     productId: string,
-    data: RepositoryFormData
+    { imported = false, ...data }: RepositoryFormData
   ): Promise<Result<RepositoryFormData>> {
     try {
       const headers: AxiosRequestConfig['headers'] = await this.getAuthHeaders();
@@ -45,9 +46,13 @@ class Repository {
         throw new Error('Access token not found.');
       }
 
-      const response = await api.post(`/organizations/${organizationId}/products/${productId}/repositories/`, data, {
-        headers
-      });
+      const response = await api.post(
+        `/organizations/${organizationId}/products/${productId}/repositories/`,
+        { ...data, imported },
+        {
+          headers
+        }
+      );
       return { type: 'success', value: response?.data };
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -61,7 +66,7 @@ class Repository {
     organizationId: string,
     productId: string,
     repositoryId: string,
-    data: RepositoryFormData
+    { imported = false, ...data }: RepositoryFormData
   ): Promise<Result<RepositoryFormData>> {
     try {
       const headers: AxiosRequestConfig['headers'] = await this.getAuthHeaders();
@@ -71,7 +76,7 @@ class Repository {
 
       const response = await api.put(
         `/organizations/${organizationId}/products/${productId}/repositories/${repositoryId}/`,
-        data,
+        { ...data, imported },
         { headers }
       );
       return { type: 'success', value: response?.data };

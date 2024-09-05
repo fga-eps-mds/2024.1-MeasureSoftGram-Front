@@ -63,7 +63,7 @@ Object {
                 class="MuiBox-root css-8fkoyy"
               >
                 <div
-                  class="MuiDivider-root MuiDivider-fullWidth MuiDivider-withChildren css-nfb2k9-MuiDivider-root"
+                  class="MuiDivider-root MuiDivider-fullWidth MuiDivider-withChildren css-rit6oy-MuiDivider-root"
                   role="separator"
                 >
                   <span
@@ -269,7 +269,7 @@ Object {
               class="MuiBox-root css-8fkoyy"
             >
               <div
-                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-withChildren css-nfb2k9-MuiDivider-root"
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-withChildren css-rit6oy-MuiDivider-root"
                 role="separator"
               >
                 <span

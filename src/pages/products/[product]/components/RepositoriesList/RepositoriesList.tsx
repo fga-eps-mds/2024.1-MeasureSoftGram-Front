@@ -38,7 +38,7 @@ function RepositoriesList() {
               aria-label="add repository"
               style={{
                 backgroundColor: '#538BA3',
-                marginLeft: '12px',
+                marginLeft: '80%',
                 borderRadius: '50%',
                 width: '25px',
                 height: '25px',

@@ -8,5 +8,8 @@
     "timeout": "Erro de Timeout",
     "try-again": "Tente recarregar a página novamente.",
     "close": "Clique na tela para fechar."
+  },
+  "select": {
+    "no-options": "Não há opções disponíveis"
   }
 }
