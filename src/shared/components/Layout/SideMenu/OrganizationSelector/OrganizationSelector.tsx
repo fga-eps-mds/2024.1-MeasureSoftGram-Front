@@ -42,7 +42,7 @@ function OrganizationSelector() {
           value={currentOrganization?.id}
         /> :
         <SideMenuItem
-          startIcon={<LetterAvatar name={currentOrganization?.name ?? '?'} icon={<BsFillBuildingFill color="#000000" />} />}
+          startIcon={<LetterAvatar name={currentOrganization?.name ?? '?'} icon={<BsFillBuildingFill color="#ffffff" />} />}
           text={currentOrganization?.name ?? 'Selecione a Organização'}
           tooltip={t("tooltip.organization-selection")}
           onClick={() => toggleCollapse()}
