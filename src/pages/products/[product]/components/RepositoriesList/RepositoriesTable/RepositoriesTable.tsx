@@ -19,6 +19,7 @@ import TsqmiBadge from '@pages/products/[product]/repositories/[repository]/comp
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@hooks/useQuery';
 import { productQuery } from '@services/product';
+import { getPathId } from '@utils/pathDestructer';
 
 interface Props {
   maxCount?: number;
@@ -48,7 +49,7 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
   const { currentOrganization, } = useOrganizationContext();
   const { repositoriesLatestTsqmi } = useRepositoryContext();
   const router = useRouter();
-  const { handleRepositoryAction } = useQuery();
+  const { handleRepositoryAction, loadProduct } = useQuery();
 
   const [filteredRepositories, setFilteredRepositories] = useState<Repository[]>([]);
   const [repositoryToDelete, setRepositoryToDelete] = useState<Repository | null>(null);
@@ -57,9 +58,13 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-
       try {
-        const result = await productQuery.getAllRepositories(currentOrganization?.id, currentProduct?.id);
+        const [organizationId, productId] = getPathId(router.query?.product as string);
+
+        if (!currentProduct) {
+          await loadProduct(organizationId, productId);
+        }
+        const result = await productQuery.getAllRepositories(organizationId, productId);
         setRepositoryList(result.data.results);
 
       } catch (error) {

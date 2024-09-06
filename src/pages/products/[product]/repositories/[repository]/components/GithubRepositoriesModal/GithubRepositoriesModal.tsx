@@ -6,6 +6,7 @@ import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { getPathId } from '@utils/pathDestructer';
 import { useQuery } from '../../../../../../../shared/hooks/useQuery';
 
 type GithubRepositoriesModalProps = {
@@ -33,8 +34,6 @@ const borderPrimaryStyle = '1px solid #2B4D6F'
 export function GithubRepositoriesModal({ handleCloseModal, open }: GithubRepositoriesModalProps) {
   const router = useRouter();
   const [repos, setRepos] = useState<Repo[]>([])
-  const { currentOrganization } = useOrganizationContext();
-  const { currentProduct } = useProductContext();
   const { t } = useTranslation('repositories');
 
 
@@ -52,12 +51,13 @@ export function GithubRepositoriesModal({ handleCloseModal, open }: GithubReposi
   }
 
   const handleCreateRepository = async (repository: Repo) => {
+    const [organizationId, productId] = getPathId(router.query?.product as string);
 
     try {
       const result = await handleRepositoryAction(
         'create',
-        currentOrganization?.id || '',
-        currentProduct?.id || '',
+        organizationId || '',
+        productId || '',
         undefined,
         {
           name: repository.name,
@@ -70,7 +70,7 @@ export function GithubRepositoriesModal({ handleCloseModal, open }: GithubReposi
 
       if (result.type === 'success') {
         toast.success(t('register.sucess'));
-        router.push(`/products/${currentOrganization?.id}-${currentProduct?.id}-${currentProduct?.name}/repositories`, undefined, { shallow: true });
+        // router.push(`/products/${currentOrganization?.id}-${currentProduct?.id}-${currentProduct?.name}/repositories`, undefined, { shallow: true });
         handleCloseModal()
       }
     } catch (error) {
