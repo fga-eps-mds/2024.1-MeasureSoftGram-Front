@@ -10,12 +10,10 @@ import { productQuery } from '@services/product';
 import { act } from 'react-dom/test-utils';
 import RepositoriesTable from '../RepositoriesTable'; // Replace with your actual path
 
-// Mocking useRouter
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
-// Mocking contexts
 jest.mock('@contexts/ProductProvider', () => ({
   useProductContext: jest.fn(),
 }));
@@ -28,19 +26,16 @@ jest.mock('@contexts/RepositoryProvider', () => ({
   useRepositoryContext: jest.fn(),
 }));
 
-// Mocking custom hooks
 jest.mock('@hooks/useQuery', () => ({
   useQuery: jest.fn(),
 }));
 
-// Mocking services
 jest.mock('@services/product', () => ({
   productQuery: {
     getAllRepositories: jest.fn(),
   },
 }));
 
-// Mocking toast notifications
 jest.mock('react-toastify', () => ({
   toast: {
     success: jest.fn(),
@@ -53,25 +48,28 @@ const repoName = 'Repository 1';
 describe('RepositoriesTable', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    useRouter.mockReturnValue({ push: jest.fn() });
+    useRouter.mockReturnValue({ push: jest.fn(), query: { product: '1-3-2024-measure' } });
     useProductContext.mockReturnValue({ currentProduct: { id: '1', name: 'Product A' } });
     useOrganizationContext.mockReturnValue({ currentOrganization: { id: '1' } });
     useRepositoryContext.mockReturnValue({ repositoriesLatestTsqmi: { results: [] } });
-    useQuery.mockReturnValue({ handleRepositoryAction: jest.fn() });
+    useQuery.mockReturnValue({ handleRepositoryAction: jest.fn(), loadProduct: jest.fn() });
   });
 
   it('renders repository list correctly', async () => {
     const mockRepositories = { data: { results: [{ id: 1, name: repoName, platform: 'github' }] } };
     productQuery.getAllRepositories.mockResolvedValue(mockRepositories);
 
-    const { debug } = render(<RepositoriesTable />)
-    debug();
+    await act(() => {
+      const { debug } = render(<RepositoriesTable />)
+      debug();
+    })
+
     // Wait for the data fetching to complete
     await waitFor(() => {
       expect(screen.getByText(repoName)).toBeInTheDocument();
     });
 
-    expect(productQuery.getAllRepositories).toHaveBeenCalledWith('1', '1'); // Assuming IDs for org and product
+    expect(productQuery.getAllRepositories).toHaveBeenCalledWith('1', '3'); // Assuming IDs for org and product
   });
 
   it('handles search input and filters repositories', async () => {

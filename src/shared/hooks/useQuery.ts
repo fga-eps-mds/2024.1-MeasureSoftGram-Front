@@ -4,6 +4,8 @@ import { productQuery } from '@services/product';
 import { useRouter } from 'next/router';
 import { repository, Result } from '@services/repository';
 import { Repository } from '@customTypes/repository';
+import { useEffect } from 'react';
+import { getPathId } from '@utils/pathDestructer';
 
 export function useQuery() {
   const { setRepositoryList } = useRepositoryContext();
@@ -85,5 +87,5 @@ export function useQuery() {
   //   fetchData().catch((error) => console.error(error));
   // }, [query?.product]);
 
-  return { handleRepositoryAction, loadRepositoriesNoContext };
+  return { handleRepositoryAction, loadRepositoriesNoContext, loadProduct };
 }
