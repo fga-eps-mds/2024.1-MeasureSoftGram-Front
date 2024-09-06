@@ -48,6 +48,8 @@ jest.mock('react-toastify', () => ({
   },
 }));
 
+const repoName = 'Repository 1';
+
 describe('RepositoriesTable', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -59,27 +61,27 @@ describe('RepositoriesTable', () => {
   });
 
   it('renders repository list correctly', async () => {
-    const mockRepositories = { data: { results: [{ id: 1, name: 'Repository 1', platform: 'github' }] } };
+    const mockRepositories = { data: { results: [{ id: 1, name: repoName, platform: 'github' }] } };
     productQuery.getAllRepositories.mockResolvedValue(mockRepositories);
 
     const { debug } = render(<RepositoriesTable />)
     debug();
     // Wait for the data fetching to complete
     await waitFor(() => {
-      expect(screen.getByText('Repository 1')).toBeInTheDocument();
+      expect(screen.getByText(repoName)).toBeInTheDocument();
     });
 
     expect(productQuery.getAllRepositories).toHaveBeenCalledWith('1', '1'); // Assuming IDs for org and product
   });
 
   it('handles search input and filters repositories', async () => {
-    const mockRepositories = { data: { results: [{ id: 1, name: 'Repository 1', platform: 'github' }] } };
+    const mockRepositories = { data: { results: [{ id: 1, name: repoName, platform: 'github' }] } };
     productQuery.getAllRepositories.mockResolvedValue(mockRepositories);
 
     render(<RepositoriesTable />);
 
     await waitFor(() => {
-      expect(screen.getByText('Repository 1')).toBeInTheDocument();
+      expect(screen.getByText(repoName)).toBeInTheDocument();
     });
 
     act(() => {
@@ -87,6 +89,6 @@ describe('RepositoriesTable', () => {
       fireEvent.change(searchInput, { target: { value: 'Repo' } });
     })
 
-    expect(screen.getByText('Repository 1')).toBeInTheDocument();
+    expect(screen.getByText(repoName)).toBeInTheDocument();
   });
 });
