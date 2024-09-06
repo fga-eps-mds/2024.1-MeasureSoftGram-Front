@@ -64,9 +64,9 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
         if (!currentProduct) {
           await loadProduct(organizationId, productId);
         }
+
         const result = await productQuery.getAllRepositories(organizationId, productId);
         setRepositoryList(result.data.results);
-
       } catch (error) {
         console.error(error);
         return [];
