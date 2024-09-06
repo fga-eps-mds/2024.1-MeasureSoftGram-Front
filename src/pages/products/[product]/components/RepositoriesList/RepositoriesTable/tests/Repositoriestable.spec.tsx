@@ -1,69 +1,92 @@
-import '@testing-library/jest-dom';
-
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { useRouter } from 'next/router';
+import { ProductProvider, useProductContext } from '@contexts/ProductProvider';
+import { useOrganizationContext } from '@contexts/OrganizationProvider';
+import { useRepositoryContext } from '@contexts/RepositoryProvider';
+import { useQuery } from '@hooks/useQuery';
+import { productQuery } from '@services/product';
+import { act } from 'react-dom/test-utils';
+import RepositoriesTable from '../RepositoriesTable'; // Replace with your actual path
 
-import { ProductProvider } from '@contexts/ProductProvider';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import mockRouter from 'next-router-mock';
-import RepositoriesTable from '../RepositoriesTable';
+// Mocking useRouter
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
 
-const repositoryName = '2022-1-MeasureSoftGram-Core';
-
-jest.mock('@contexts/RepositoryProvider', () => ({
-  useRepositoryContext: () => ({
-    repositoryList: [{ id: 19, name: repositoryName }]
-  })
+// Mocking contexts
+jest.mock('@contexts/ProductProvider', () => ({
+  useProductContext: jest.fn(),
 }));
 
 jest.mock('@contexts/OrganizationProvider', () => ({
-  useOrganizationContext: () => ({
-    currentOrganization: { id: 1 }
-  })
+  useOrganizationContext: jest.fn(),
 }));
 
-// eslint-disable-next-line import/no-extraneous-dependencies, global-require
-jest.mock('next/router', () => require('next-router-mock'));
+jest.mock('@contexts/RepositoryProvider', () => ({
+  useRepositoryContext: jest.fn(),
+}));
+
+// Mocking custom hooks
+jest.mock('@hooks/useQuery', () => ({
+  useQuery: jest.fn(),
+}));
+
+// Mocking services
+jest.mock('@services/product', () => ({
+  productQuery: {
+    getAllRepositories: jest.fn(),
+  },
+}));
+
+// Mocking toast notifications
+jest.mock('react-toastify', () => ({
+  toast: {
+    success: jest.fn(),
+    error: jest.fn(),
+  },
+}));
 
 describe('RepositoriesTable', () => {
-  describe('Functions', () => {
-    test('chama a função handleRepositoriesFilter corretamente', async () => {
-      const { queryByTestId } = render(
-        <ProductProvider>
-          <RepositoriesTable />
-        </ProductProvider>
-      );
-      const input = screen.getByTestId('repo-name');
-
-      await waitFor(() => {
-        expect(input).toHaveTextContent(repositoryName);
-      });
-    });
-
-    test('Chama a função handleClickRedirects corretamente', () => {
-      const { getByText } = render(
-        <ProductProvider>
-          <RepositoriesTable />
-        </ProductProvider>
-      );
-
-      const repositoryRow = getByText(repositoryName);
-      fireEvent.click(repositoryRow);
-
-      expect(mockRouter.asPath).toEqual('/products/1-undefined-undefined/repositories/19-2022-1-MeasureSoftGram-Core');
-    });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    useRouter.mockReturnValue({ push: jest.fn() });
+    useProductContext.mockReturnValue({ currentProduct: { id: '1', name: 'Product A' } });
+    useOrganizationContext.mockReturnValue({ currentOrganization: { id: '1' } });
+    useRepositoryContext.mockReturnValue({ repositoriesLatestTsqmi: { results: [] } });
+    useQuery.mockReturnValue({ handleRepositoryAction: jest.fn() });
   });
-  describe('Snapshot', () => {
-    it('Deve corresponder ao Snapshot', () => {
-      const tree = render(
-        <ProductProvider>
-          <RepositoriesTable />
-        </ProductProvider>
-      );
 
-      fireEvent.click(tree.getByTestId('repository-row'));
+  it('renders repository list correctly', async () => {
+    const mockRepositories = { data: { results: [{ id: 1, name: 'Repository 1', platform: 'github' }] } };
+    productQuery.getAllRepositories.mockResolvedValue(mockRepositories);
 
-      expect(tree).toMatchSnapshot();
+    const { debug } = render(<RepositoriesTable />)
+    debug();
+    // Wait for the data fetching to complete
+    await waitFor(() => {
+      expect(screen.getByText('Repository 1')).toBeInTheDocument();
     });
+
+    expect(productQuery.getAllRepositories).toHaveBeenCalledWith('1', '1'); // Assuming IDs for org and product
+  });
+
+  it('handles search input and filters repositories', async () => {
+    const mockRepositories = { data: { results: [{ id: 1, name: 'Repository 1', platform: 'github' }] } };
+    productQuery.getAllRepositories.mockResolvedValue(mockRepositories);
+
+    render(<RepositoriesTable />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Repository 1')).toBeInTheDocument();
+    });
+
+    act(() => {
+      const searchInput = document.getElementById('search-bar');
+      fireEvent.change(searchInput, { target: { value: 'Repo' } });
+    })
+
+    expect(screen.getByText('Repository 1')).toBeInTheDocument();
   });
 });

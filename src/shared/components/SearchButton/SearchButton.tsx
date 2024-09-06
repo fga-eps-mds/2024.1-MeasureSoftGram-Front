@@ -9,25 +9,24 @@ interface SearchProps {
 }
 
 const SearchButton = ({ onInput, label, placeHolder }: SearchProps) => (
-  <>
-    <TextField
-      id="search-bar"
-      aria-label={label ?? 'search-bar-label'}
-      className="text"
-      onInput={onInput}
-      label={label}
-      variant="outlined"
-      placeholder={placeHolder ?? 'Buscar...'}
-      size="small"
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="start">
-            <Search style={{ fill: '#2B4D6F' }} />
-          </InputAdornment>
-        ),
-      }}
-    />
-  </>
+  <TextField
+    data-testid="input"
+    id="search-bar"
+    aria-label={label ?? 'search-bar-label'}
+    className="text"
+    onInput={onInput}
+    label={label}
+    variant="outlined"
+    placeholder={placeHolder ?? 'Buscar...'}
+    size="small"
+    InputProps={{
+      endAdornment: (
+        <InputAdornment position="start">
+          <Search style={{ fill: '#2B4D6F' }} />
+        </InputAdornment>
+      ),
+    }}
+  />
 );
 
 export default SearchButton;

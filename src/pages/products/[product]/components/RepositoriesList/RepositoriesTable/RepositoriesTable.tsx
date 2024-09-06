@@ -17,7 +17,8 @@ import { FaGithub, FaGitlab, FaBitbucket, FaAws, FaCodeBranch } from 'react-icon
 import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import TsqmiBadge from '@pages/products/[product]/repositories/[repository]/components/TsqmiBadge';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '../../../repositories/hooks/useQuery';
+import { useQuery } from '@hooks/useQuery';
+import { productQuery } from '@services/product';
 
 interface Props {
   maxCount?: number;
@@ -44,10 +45,10 @@ const platformIcons = {
 
 const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
   const { currentProduct } = useProductContext();
-  const { currentOrganization } = useOrganizationContext();
+  const { currentOrganization, } = useOrganizationContext();
   const { repositoriesLatestTsqmi } = useRepositoryContext();
   const router = useRouter();
-  const { handleRepositoryAction, loadRepositoriesNoContext } = useQuery();
+  const { handleRepositoryAction } = useQuery();
 
   const [filteredRepositories, setFilteredRepositories] = useState<Repository[]>([]);
   const [repositoryToDelete, setRepositoryToDelete] = useState<Repository | null>(null);
@@ -56,11 +57,14 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
+
       try {
-        const result = await loadRepositoriesNoContext(currentOrganization?.id, currentProduct?.id);
-        setRepositoryList(result);
+        const result = await productQuery.getAllRepositories(currentOrganization?.id, currentProduct?.id);
+        setRepositoryList(result.data.results);
+
       } catch (error) {
-        console.log(error)
+        console.error(error);
+        return [];
       }
     };
 
@@ -144,10 +148,8 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
             <TableCell style={{ paddingBottom: '35px' }}>Nome</TableCell>
             <TableCell align="right" style={{ paddingBottom: '35px' }}>
               <SearchButton
-                data-testid="search-input"
                 onInput={(e) => handleRepositoriesFilter(e.target.value)}
                 label={t('input-placeholder')}
-              // label="Busque pelo repositorio"
               />
             </TableCell>
             <TableCell style={{ paddingBottom: '35px' }} />
