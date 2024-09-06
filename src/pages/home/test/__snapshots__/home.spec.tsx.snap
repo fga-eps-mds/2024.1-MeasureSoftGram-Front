@@ -9,465 +9,63 @@ Object {
         class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
       >
         <div
-          class="MuiBox-root css-1xhj18k"
+          class="MuiBox-root css-1em3ed9"
         >
           <div
-            class="MuiBox-root css-bb2sw8"
+            class="MuiBox-root css-1hyoz7m"
           >
             <div
-              class="MuiBox-root css-k008qs"
+              class="MuiBox-root css-7zo0sa"
             >
-              <h4
-                class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                style="color: rgb(51, 86, 142); font-weight: bold;"
-              >
-                sub-title
-                <div>
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
-                    data-id="en-button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <img
-                      alt="flag"
-                      height="30"
-                      src="/images/png/en.png"
-                      width="30"
-                    />
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
-                  </button>
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
-                    data-id="pt-button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <img
-                      alt="flag"
-                      height="30"
-                      src="/images/png/pt.png"
-                      width="30"
-                    />
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
-                  </button>
-                </div>
-              </h4>
+              <img
+                alt="logo"
+                height="250"
+                src="/images/svg/logo.svg"
+                width="250"
+              />
             </div>
             <div
-              class="MuiBox-root css-0"
+              class="MuiBox-root css-1rg00r6"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-                style="font-size: 16px;"
+                style="color: rgb(94, 94, 94); font-weight: bold; font-size: 90px; letter-spacing: 2px;"
+              >
+                home-title
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                style="color: rgb(94, 94, 94); font-size: 18px; font-weight: bold; margin-top: -15px;"
               >
                 description
               </p>
             </div>
-            <div
-              class="MuiBox-root css-1n8etdr"
-            >
-              <nav
-                class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
-              >
-                <div
-                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters Mui-selected MuiListItemButton-root MuiListItemButton-gutters Mui-selected css-llb1ir-MuiButtonBase-root-MuiListItemButton-root"
-                  role="button"
-                  tabindex="0"
-                >
-                  <div
-                    class="MuiBox-root css-sjfhw0"
-                  >
-                    <div
-                      class="MuiBox-root css-1g9x5we"
-                    >
-                      <div
-                        class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                          data-testid="EastOutlinedIcon"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="m15 5-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                    >
-                      organization.id
-                    </p>
-                  </div>
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </div>
-                <div
-                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-yzx94z-MuiButtonBase-root-MuiListItemButton-root"
-                  role="button"
-                  tabindex="0"
-                >
-                  <div
-                    class="MuiBox-root css-sjfhw0"
-                  >
-                    <div
-                      class="MuiBox-root css-1g9x5we"
-                    />
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                    >
-                      repository.id
-                    </p>
-                  </div>
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </div>
-                <div
-                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-yzx94z-MuiButtonBase-root-MuiListItemButton-root"
-                  role="button"
-                  tabindex="0"
-                >
-                  <div
-                    class="MuiBox-root css-sjfhw0"
-                  >
-                    <div
-                      class="MuiBox-root css-1g9x5we"
-                    />
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                    >
-                      pre-config.id
-                    </p>
-                  </div>
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </div>
-                <div
-                  class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-yzx94z-MuiButtonBase-root-MuiListItemButton-root"
-                  role="button"
-                  tabindex="0"
-                >
-                  <div
-                    class="MuiBox-root css-sjfhw0"
-                  >
-                    <div
-                      class="MuiBox-root css-1g9x5we"
-                    />
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                    >
-                      config.id
-                    </p>
-                  </div>
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </div>
-              </nav>
-            </div>
           </div>
           <div
-            class="MuiBox-root css-euotp0"
+            class="MuiBox-root css-1acbi0v"
           >
-            <div
-              class="MuiBox-root css-1mwjrl3"
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+              style="width: 35%;"
+              tabindex="0"
+              type="button"
             >
-              <div
-                class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="organization.id"
-              >
-                <div
-                  class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-                >
-                  <div
-                    class="MuiBox-root css-1glkofm"
-                  >
-                    <div
-                      class="MuiBox-root css-pw8lt9"
-                      id="images"
-                    >
-                      <img
-                        alt="green iguana"
-                        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                        src="/images/png/structure.png"
-                      />
-                    </div>
-                    <div
-                      class="MuiBox-root css-s4ej5b"
-                      id="texts"
-                    >
-                      <div
-                        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                      >
-                        organization.title
-                      </div>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                      >
-                        organization.description
-                      </p>
-                      <div
-                        class="MuiBox-root css-1vp8jwk"
-                      >
-                        <div
-                          class="MuiBox-root css-0"
-                        >
-                          <div
-                            class="MuiBox-root css-pb7e80"
-                          >
-                            <button
-                              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
-                              tabindex="0"
-                              type="button"
-                            >
-                              organization.view-organization
-                              <span
-                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                              />
-                            </button>
-                          </div>
-                          <div
-                            class="MuiBox-root css-t3r43i"
-                          >
-                            <button
-                              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
-                              tabindex="0"
-                              type="button"
-                            >
-                              organization.create-organization
-                              <span
-                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                              />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-                >
-                  <div
-                    class="MuiBox-root css-1glkofm"
-                  >
-                    <div
-                      class="MuiBox-root css-pw8lt9"
-                      id="images"
-                    >
-                      <img
-                        alt="green iguana"
-                        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                        src="/images/png/development.png"
-                      />
-                    </div>
-                    <div
-                      class="MuiBox-root css-s4ej5b"
-                      id="texts"
-                    >
-                      <div
-                        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                      >
-                        product.title
-                      </div>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                      >
-                        product.description
-                      </p>
-                      <div
-                        class="MuiBox-root css-1vp8jwk"
-                      >
-                        <div
-                          class="MuiBox-root css-pb7e80"
-                        >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
-                            tabindex="0"
-                            type="button"
-                          >
-                            product.create-product
-                            <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                            />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="repository.id"
-              >
-                <div
-                  class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-                >
-                  <div
-                    class="MuiBox-root css-1glkofm"
-                  >
-                    <div
-                      class="MuiBox-root css-pw8lt9"
-                      id="images"
-                    >
-                      <img
-                        alt="green iguana"
-                        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                        src="/images/png/folders.png"
-                      />
-                    </div>
-                    <div
-                      class="MuiBox-root css-s4ej5b"
-                      id="texts"
-                    >
-                      <div
-                        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                      >
-                        repository.title
-                      </div>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                      >
-                        repository.description
-                      </p>
-                      <div
-                        class="MuiBox-root css-1vp8jwk"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-                >
-                  <div
-                    class="MuiBox-root css-1glkofm"
-                  >
-                    <div
-                      class="MuiBox-root css-pw8lt9"
-                      id="images"
-                    >
-                      <img
-                        alt="green iguana"
-                        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                        src="/images/png/new-offer.png"
-                      />
-                    </div>
-                    <div
-                      class="MuiBox-root css-s4ej5b"
-                      id="texts"
-                    >
-                      <div
-                        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                      >
-                        release.title
-                      </div>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                      >
-                        release.description
-                      </p>
-                      <div
-                        class="MuiBox-root css-1vp8jwk"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="pre-config.id"
-              >
-                <div
-                  class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-                >
-                  <div
-                    class="MuiBox-root css-1glkofm"
-                  >
-                    <div
-                      class="MuiBox-root css-pw8lt9"
-                      id="images"
-                    >
-                      <img
-                        alt="green iguana"
-                        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                        src="/images/png/setting.png"
-                      />
-                    </div>
-                    <div
-                      class="MuiBox-root css-s4ej5b"
-                      id="texts"
-                    >
-                      <div
-                        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                      >
-                        pre-config.title
-                      </div>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                      >
-                        pre-config.description
-                      </p>
-                      <div
-                        class="MuiBox-root css-1vp8jwk"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-                id="config.id"
-              >
-                <div
-                  class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-                >
-                  <div
-                    class="MuiBox-root css-1glkofm"
-                  >
-                    <div
-                      class="MuiBox-root css-pw8lt9"
-                      id="images"
-                    >
-                      <img
-                        alt="green iguana"
-                        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                        src="/images/png/web-management.png"
-                      />
-                    </div>
-                    <div
-                      class="MuiBox-root css-s4ej5b"
-                      id="texts"
-                    >
-                      <div
-                        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                      >
-                        config.title
-                      </div>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                      >
-                        config.description
-                      </p>
-                      <div
-                        class="MuiBox-root css-1vp8jwk"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              button.about
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-sghohy-MuiButtonBase-root-MuiButton-root"
+              style="width: 35%;"
+              tabindex="0"
+              type="button"
+            >
+              button.start
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -478,465 +76,63 @@ Object {
       class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
     >
       <div
-        class="MuiBox-root css-1xhj18k"
+        class="MuiBox-root css-1em3ed9"
       >
         <div
-          class="MuiBox-root css-bb2sw8"
+          class="MuiBox-root css-1hyoz7m"
         >
           <div
-            class="MuiBox-root css-k008qs"
+            class="MuiBox-root css-7zo0sa"
           >
-            <h4
-              class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-              style="color: rgb(51, 86, 142); font-weight: bold;"
-            >
-              sub-title
-              <div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
-                  data-id="en-button"
-                  tabindex="0"
-                  type="button"
-                >
-                  <img
-                    alt="flag"
-                    height="30"
-                    src="/images/png/en.png"
-                    width="30"
-                  />
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </button>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1e6y48t-MuiButtonBase-root-MuiButton-root"
-                  data-id="pt-button"
-                  tabindex="0"
-                  type="button"
-                >
-                  <img
-                    alt="flag"
-                    height="30"
-                    src="/images/png/pt.png"
-                    width="30"
-                  />
-                  <span
-                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                  />
-                </button>
-              </div>
-            </h4>
+            <img
+              alt="logo"
+              height="250"
+              src="/images/svg/logo.svg"
+              width="250"
+            />
           </div>
           <div
-            class="MuiBox-root css-0"
+            class="MuiBox-root css-1rg00r6"
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-              style="font-size: 16px;"
+              style="color: rgb(94, 94, 94); font-weight: bold; font-size: 90px; letter-spacing: 2px;"
+            >
+              home-title
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              style="color: rgb(94, 94, 94); font-size: 18px; font-weight: bold; margin-top: -15px;"
             >
               description
             </p>
           </div>
-          <div
-            class="MuiBox-root css-1n8etdr"
-          >
-            <nav
-              class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
-            >
-              <div
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters Mui-selected MuiListItemButton-root MuiListItemButton-gutters Mui-selected css-llb1ir-MuiButtonBase-root-MuiListItemButton-root"
-                role="button"
-                tabindex="0"
-              >
-                <div
-                  class="MuiBox-root css-sjfhw0"
-                >
-                  <div
-                    class="MuiBox-root css-1g9x5we"
-                  >
-                    <div
-                      class="MuiListItemIcon-root css-cveggr-MuiListItemIcon-root"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                        data-testid="EastOutlinedIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="m15 5-1.41 1.41L18.17 11H2v2h16.17l-4.59 4.59L15 19l7-7-7-7z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                  >
-                    organization.id
-                  </p>
-                </div>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </div>
-              <div
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-yzx94z-MuiButtonBase-root-MuiListItemButton-root"
-                role="button"
-                tabindex="0"
-              >
-                <div
-                  class="MuiBox-root css-sjfhw0"
-                >
-                  <div
-                    class="MuiBox-root css-1g9x5we"
-                  />
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                  >
-                    repository.id
-                  </p>
-                </div>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </div>
-              <div
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-yzx94z-MuiButtonBase-root-MuiListItemButton-root"
-                role="button"
-                tabindex="0"
-              >
-                <div
-                  class="MuiBox-root css-sjfhw0"
-                >
-                  <div
-                    class="MuiBox-root css-1g9x5we"
-                  />
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                  >
-                    pre-config.id
-                  </p>
-                </div>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </div>
-              <div
-                class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-yzx94z-MuiButtonBase-root-MuiListItemButton-root"
-                role="button"
-                tabindex="0"
-              >
-                <div
-                  class="MuiBox-root css-sjfhw0"
-                >
-                  <div
-                    class="MuiBox-root css-1g9x5we"
-                  />
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 button-text css-1ixorw4-MuiTypography-root"
-                  >
-                    config.id
-                  </p>
-                </div>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </div>
-            </nav>
-          </div>
         </div>
         <div
-          class="MuiBox-root css-euotp0"
+          class="MuiBox-root css-1acbi0v"
         >
-          <div
-            class="MuiBox-root css-1mwjrl3"
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+            style="width: 35%;"
+            tabindex="0"
+            type="button"
           >
-            <div
-              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="organization.id"
-            >
-              <div
-                class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-              >
-                <div
-                  class="MuiBox-root css-1glkofm"
-                >
-                  <div
-                    class="MuiBox-root css-pw8lt9"
-                    id="images"
-                  >
-                    <img
-                      alt="green iguana"
-                      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                      src="/images/png/structure.png"
-                    />
-                  </div>
-                  <div
-                    class="MuiBox-root css-s4ej5b"
-                    id="texts"
-                  >
-                    <div
-                      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                    >
-                      organization.title
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                    >
-                      organization.description
-                    </p>
-                    <div
-                      class="MuiBox-root css-1vp8jwk"
-                    >
-                      <div
-                        class="MuiBox-root css-0"
-                      >
-                        <div
-                          class="MuiBox-root css-pb7e80"
-                        >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
-                            tabindex="0"
-                            type="button"
-                          >
-                            organization.view-organization
-                            <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                            />
-                          </button>
-                        </div>
-                        <div
-                          class="MuiBox-root css-t3r43i"
-                        >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
-                            tabindex="0"
-                            type="button"
-                          >
-                            organization.create-organization
-                            <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                            />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-              >
-                <div
-                  class="MuiBox-root css-1glkofm"
-                >
-                  <div
-                    class="MuiBox-root css-pw8lt9"
-                    id="images"
-                  >
-                    <img
-                      alt="green iguana"
-                      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                      src="/images/png/development.png"
-                    />
-                  </div>
-                  <div
-                    class="MuiBox-root css-s4ej5b"
-                    id="texts"
-                  >
-                    <div
-                      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                    >
-                      product.title
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                    >
-                      product.description
-                    </p>
-                    <div
-                      class="MuiBox-root css-1vp8jwk"
-                    >
-                      <div
-                        class="MuiBox-root css-pb7e80"
-                      >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
-                          tabindex="0"
-                          type="button"
-                        >
-                          product.create-product
-                          <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="repository.id"
-            >
-              <div
-                class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-              >
-                <div
-                  class="MuiBox-root css-1glkofm"
-                >
-                  <div
-                    class="MuiBox-root css-pw8lt9"
-                    id="images"
-                  >
-                    <img
-                      alt="green iguana"
-                      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                      src="/images/png/folders.png"
-                    />
-                  </div>
-                  <div
-                    class="MuiBox-root css-s4ej5b"
-                    id="texts"
-                  >
-                    <div
-                      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                    >
-                      repository.title
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                    >
-                      repository.description
-                    </p>
-                    <div
-                      class="MuiBox-root css-1vp8jwk"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-              >
-                <div
-                  class="MuiBox-root css-1glkofm"
-                >
-                  <div
-                    class="MuiBox-root css-pw8lt9"
-                    id="images"
-                  >
-                    <img
-                      alt="green iguana"
-                      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                      src="/images/png/new-offer.png"
-                    />
-                  </div>
-                  <div
-                    class="MuiBox-root css-s4ej5b"
-                    id="texts"
-                  >
-                    <div
-                      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                    >
-                      release.title
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                    >
-                      release.description
-                    </p>
-                    <div
-                      class="MuiBox-root css-1vp8jwk"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="pre-config.id"
-            >
-              <div
-                class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-              >
-                <div
-                  class="MuiBox-root css-1glkofm"
-                >
-                  <div
-                    class="MuiBox-root css-pw8lt9"
-                    id="images"
-                  >
-                    <img
-                      alt="green iguana"
-                      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                      src="/images/png/setting.png"
-                    />
-                  </div>
-                  <div
-                    class="MuiBox-root css-s4ej5b"
-                    id="texts"
-                  >
-                    <div
-                      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                    >
-                      pre-config.title
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                    >
-                      pre-config.description
-                    </p>
-                    <div
-                      class="MuiBox-root css-1vp8jwk"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-18vk9q-MuiPaper-root-MuiCard-root"
-              id="config.id"
-            >
-              <div
-                class="MuiCardContent-root css-1hpgiqs-MuiCardContent-root"
-              >
-                <div
-                  class="MuiBox-root css-1glkofm"
-                >
-                  <div
-                    class="MuiBox-root css-pw8lt9"
-                    id="images"
-                  >
-                    <img
-                      alt="green iguana"
-                      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-14x8w58-MuiCardMedia-root"
-                      src="/images/png/web-management.png"
-                    />
-                  </div>
-                  <div
-                    class="MuiBox-root css-s4ej5b"
-                    id="texts"
-                  >
-                    <div
-                      class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter MuiTypography-gutterBottom css-1g00ex-MuiTypography-root"
-                    >
-                      config.title
-                    </div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 css-1oetjkv-MuiTypography-root"
-                    >
-                      config.description
-                    </p>
-                    <div
-                      class="MuiBox-root css-1vp8jwk"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            button.about
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-sghohy-MuiButtonBase-root-MuiButton-root"
+            style="width: 35%;"
+            tabindex="0"
+            type="button"
+          >
+            button.start
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
         </div>
       </div>
     </div>

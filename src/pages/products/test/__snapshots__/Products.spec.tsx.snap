@@ -24,9 +24,9 @@ Object {
           </div>
           <div
             class="MuiBox-root css-0"
-            style="border: 1px solid #2B4D6F; border-radius: 10px; box-sizing: border-box;"
+            style="border: 1px solid #2b4d6f; border-radius: 10px; box-sizing: border-box;"
           >
-
+             
             <div
               class="MuiBox-root css-j7qwjs"
             >
@@ -59,7 +59,7 @@ Object {
                 />
               </div>
             </div>
-
+             
           </div>
         </div>
       </div>
@@ -85,9 +85,9 @@ Object {
         </div>
         <div
           class="MuiBox-root css-0"
-          style="border: 1px solid #2B4D6F; border-radius: 10px; box-sizing: border-box;"
+          style="border: 1px solid #2b4d6f; border-radius: 10px; box-sizing: border-box;"
         >
-
+           
           <div
             class="MuiBox-root css-j7qwjs"
           >
@@ -120,7 +120,7 @@ Object {
               />
             </div>
           </div>
-
+           
         </div>
       </div>
     </div>

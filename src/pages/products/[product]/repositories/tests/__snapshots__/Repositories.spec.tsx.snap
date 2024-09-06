@@ -22,7 +22,7 @@ Object {
             <button
               aria-label="add repository"
               class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-1kuq5xv-MuiButtonBase-root-MuiIconButton-root"
-              style="background-color: rgb(51, 86, 142); margin-left: 12px; border-radius: 50%; width: 25px; height: 25px;"
+              style="background-color: rgb(51, 86, 142); margin-left: auto; border-radius: 50%; width: 25px; height: 25px;"
               tabindex="0"
               type="button"
             >
@@ -46,7 +46,7 @@ Object {
         </div>
         <div
           class="MuiBox-root css-1k9wtw"
-          style="background-color: white; border: 1px solid #2B4D6F80; border-radius: 10px;"
+          style="background-color: white; border: 1px solid #2b4d6f80; border-radius: 10px;"
         >
           <div
             class="MuiTableContainer-root css-rorn0c-MuiTableContainer-root"
@@ -75,6 +75,7 @@ Object {
                     <div
                       aria-label="input-placeholder"
                       class="MuiFormControl-root MuiTextField-root text css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+                      data-testid="input"
                     >
                       <label
                         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
@@ -165,7 +166,7 @@ Object {
           <button
             aria-label="add repository"
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-1kuq5xv-MuiButtonBase-root-MuiIconButton-root"
-            style="background-color: rgb(51, 86, 142); margin-left: 12px; border-radius: 50%; width: 25px; height: 25px;"
+            style="background-color: rgb(51, 86, 142); margin-left: auto; border-radius: 50%; width: 25px; height: 25px;"
             tabindex="0"
             type="button"
           >
@@ -189,7 +190,7 @@ Object {
       </div>
       <div
         class="MuiBox-root css-1k9wtw"
-        style="background-color: white; border: 1px solid #2B4D6F80; border-radius: 10px;"
+        style="background-color: white; border: 1px solid #2b4d6f80; border-radius: 10px;"
       >
         <div
           class="MuiTableContainer-root css-rorn0c-MuiTableContainer-root"
@@ -218,6 +219,7 @@ Object {
                   <div
                     aria-label="input-placeholder"
                     class="MuiFormControl-root MuiTextField-root text css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+                    data-testid="input"
                   >
                     <label
                       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
