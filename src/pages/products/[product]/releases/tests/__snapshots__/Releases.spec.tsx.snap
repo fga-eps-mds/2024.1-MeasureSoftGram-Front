@@ -53,7 +53,7 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
     </div>
     <div
       class="MuiBox-root css-1k9wtw"
-      style="background-color: white; border: 1px solid #2B4D6F80; border-radius: 10px;"
+      style="background-color: white; border: 1px solid #2b4d6f80; border-radius: 10px;"
     >
       <div
         class="MuiGrid-root MuiGrid-container css-1gr3jsl-MuiGrid-root"
@@ -72,6 +72,7 @@ exports[`<Releases /> Deve corresponder ao snapshot 1`] = `
             <div
               aria-label="search-bar-label"
               class="MuiFormControl-root MuiTextField-root text css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+              data-testid="input"
             >
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root"

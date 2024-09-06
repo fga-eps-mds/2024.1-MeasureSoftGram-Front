@@ -71,7 +71,7 @@ export async function getUserRepos(code: string): Promise<Result<GetUserRepoResp
 
 export async function getGithubUser(accessToken: string) {
   try {
-    return api.get(`https://api.github.com/user`, {
+    return await api.get(`https://api.github.com/user`, {
       headers: {
         Authorization: `token ${accessToken}`
       }
@@ -84,7 +84,7 @@ export async function getGithubUser(accessToken: string) {
 
 export async function getUserRepositories(userName: string) {
   try {
-    return api.get(`https://api.github.com/search/repositories?q=user:${userName}`);
+    return await api.get(`https://api.github.com/search/repositories?q=user:${userName}`);
   } catch (err) {
     const error = err as AxiosError;
     return { type: 'error', error };

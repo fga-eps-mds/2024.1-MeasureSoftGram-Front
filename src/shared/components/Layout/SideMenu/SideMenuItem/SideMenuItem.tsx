@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Tooltip } from '@mui/material';
 import { useSideMenuContext } from '@contexts/SidebarProvider/SideMenuProvider';
-import { useQuery } from '@pages/products/[product]/repositories/hooks/useQuery';
+import { useQuery } from '@hooks/useQuery';
 import * as Styles from './styles';
 
 export type ContextControl = 'product' | 'organization' | 'repository';

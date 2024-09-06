@@ -4,6 +4,9 @@
   "input-placeholder": "Enter the repository name",
   "history": "History",
   "current-scenario": "Current Scenario",
+  "create": "CREATE",
+  "choose": "Choose a repository to import",
+  "not-found": "No Repository found...",
   "delete": {
     "title": "Confirm deletion of ",
     "alert": "This will permanently delete the item ",

@@ -9,7 +9,7 @@ Object {
         class="styles__Container-sc-1s564rw-0 buDuic"
       >
         <div
-          class="styles__Header-sc-1s564rw-1 bjPRWa"
+          class="styles__Header-sc-1s564rw-1 hmgAuq"
         >
           title-edit
         </div>
@@ -194,7 +194,7 @@ Object {
                 class="styles__Botoes-sc-1s564rw-6 cqefYo"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
                   style="width: 200px;"
                   tabindex="0"
                   type="button"
@@ -205,7 +205,7 @@ Object {
                   />
                 </button>
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-sghohy-MuiButtonBase-root-MuiButton-root"
                   style="width: 200px;"
                   tabindex="0"
                   type="submit"
@@ -227,7 +227,7 @@ Object {
       class="styles__Container-sc-1s564rw-0 buDuic"
     >
       <div
-        class="styles__Header-sc-1s564rw-1 bjPRWa"
+        class="styles__Header-sc-1s564rw-1 hmgAuq"
       >
         title-edit
       </div>
@@ -412,7 +412,7 @@ Object {
               class="styles__Botoes-sc-1s564rw-6 cqefYo"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
                 style="width: 200px;"
                 tabindex="0"
                 type="button"
@@ -423,7 +423,7 @@ Object {
                 />
               </button>
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 fypted css-sghohy-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MSGButton__MSGButtonStyle-sc-ndsa7w-0 llCTqJ css-sghohy-MuiButtonBase-root-MuiButton-root"
                 style="width: 200px;"
                 tabindex="0"
                 type="submit"

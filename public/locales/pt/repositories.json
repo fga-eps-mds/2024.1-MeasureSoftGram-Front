@@ -4,6 +4,9 @@
   "input-placeholder": "Insira o nome do repositório",
   "history": "Histórico",
   "current-scenario": "Cenário Atual",
+  "create": "CRIAR",
+  "choose": "Escolha um repositório para importar",
+  "not-found": "Nenhum Repositório encontrado...",
   "delete": {
     "title": "Confirme a exclusão de ",
     "alert": "Isso irá deletar permanentemente o item ",

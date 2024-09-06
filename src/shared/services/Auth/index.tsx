@@ -72,4 +72,4 @@ export const getGithubAuthUrl = () =>
 
 
 export const getGithubAuthUrlToRepositoriesPage = (pathName: string) =>
-  `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.LOGIN_REDIRECT_URL}${pathName}`;
+  `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.LOGIN_REDIRECT_URL}${pathName}&prompt=select_account`;

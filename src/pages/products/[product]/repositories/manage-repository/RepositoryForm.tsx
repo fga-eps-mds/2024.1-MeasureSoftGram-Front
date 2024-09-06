@@ -22,7 +22,7 @@ import axios, { AxiosError } from 'axios';
 import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import { repository } from '@services/repository';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '../hooks/useQuery';
+import { useQuery } from '../../../../../shared/hooks/useQuery';
 
 interface ApiErrorResponse {
   name?: string[];
