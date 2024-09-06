@@ -56,9 +56,7 @@ export function useRequestValues({
             }
           }
 
-          const data = response.data;
-
-          return data;
+          return response.data;
         })
         .finally(() => {
           setIsLoadingEnd();

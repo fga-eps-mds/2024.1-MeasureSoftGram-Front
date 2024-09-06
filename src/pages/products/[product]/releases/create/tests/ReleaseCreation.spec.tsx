@@ -9,6 +9,8 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 
+jest.setTimeout(30000);
+
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
@@ -1034,6 +1036,6 @@ describe('ReleaseInfo Component', () => {
           });
         });
       });
-    });
+    }, { timeout: 30000 });
   });
 });

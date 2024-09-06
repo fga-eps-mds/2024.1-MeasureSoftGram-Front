@@ -6,7 +6,7 @@ import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { useQuery } from '../../../hooks/useQuery';
+import { useQuery } from '../../../../../../../shared/hooks/useQuery';
 
 type GithubRepositoriesModalProps = {
   open: boolean

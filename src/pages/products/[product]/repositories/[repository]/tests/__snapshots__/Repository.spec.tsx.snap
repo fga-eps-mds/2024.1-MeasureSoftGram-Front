@@ -83,7 +83,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           class="MuiBox-root css-1ntb6q6"
         >
           <h2
-            style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
+            style="color: rgb(43, 77, 111); font-weight: 500; font-size: 25px;"
           >
             repository.characteristic
           </h2>
@@ -230,7 +230,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           class="MuiBox-root css-1ntb6q6"
         >
           <h2
-            style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
+            style="color: rgb(43, 77, 111); font-weight: 500; font-size: 25px;"
           >
             repository.sub-characteristic
           </h2>
@@ -324,7 +324,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           class="MuiBox-root css-1ntb6q6"
         >
           <h2
-            style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
+            style="color: rgb(43, 77, 111); font-weight: 500; font-size: 25px;"
           >
             repository.measure
           </h2>
@@ -418,7 +418,7 @@ exports[`<Repository /> Should render correctly 1`] = `
           class="MuiBox-root css-jzh824"
         >
           <h2
-            style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
+            style="color: rgb(43, 77, 111); font-weight: 500; font-size: 25px;"
           >
             repository.measure-history
           </h2>

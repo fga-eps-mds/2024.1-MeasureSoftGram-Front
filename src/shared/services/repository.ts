@@ -134,13 +134,18 @@ class Repository {
     );
   }
 
-  getLatest(props: HistoricalCharacteristicsProps) {
+  async getLatest(props: HistoricalCharacteristicsProps) {
     const { organizationId, entity, productId, repositoryId } = props;
-    return api.get(
-      `organizations/${organizationId}` +
-        `/products/${productId}/repositories/${repositoryId}` +
-        `/latest-values/${entity}/`
-    );
+
+    try {
+      return await api.get(
+        `organizations/${organizationId}` +
+          `/products/${productId}/repositories/${repositoryId}` +
+          `/latest-values/${entity}/`
+      );
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   getTsqmiBadgeUrl(props: HistoricalCharacteristicsProps) {

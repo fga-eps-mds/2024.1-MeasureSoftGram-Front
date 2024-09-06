@@ -9,7 +9,7 @@ Object {
         class="MuiBox-root css-1ntb6q6"
       >
         <h2
-          style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
+          style="color: rgb(43, 77, 111); font-weight: 500; font-size: 25px;"
         >
           Teste
         </h2>
@@ -48,7 +48,7 @@ Object {
       class="MuiBox-root css-1ntb6q6"
     >
       <h2
-        style="color: rgb(17, 61, 76); font-weight: 500; font-size: 25px;"
+        style="color: rgb(43, 77, 111); font-weight: 500; font-size: 25px;"
       >
         Teste
       </h2>

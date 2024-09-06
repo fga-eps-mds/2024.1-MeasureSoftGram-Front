@@ -17,7 +17,8 @@ import { FaGithub, FaGitlab, FaBitbucket, FaAws, FaCodeBranch } from 'react-icon
 import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import TsqmiBadge from '@pages/products/[product]/repositories/[repository]/components/TsqmiBadge';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '../../../repositories/hooks/useQuery';
+import { useQuery } from '@hooks/useQuery';
+import { productQuery } from '@services/product';
 
 interface Props {
   maxCount?: number;
@@ -44,14 +45,31 @@ const platformIcons = {
 
 const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
   const { currentProduct } = useProductContext();
-  const { currentOrganization } = useOrganizationContext();
-  const { repositoryList, setRepositoryList, repositoriesLatestTsqmi } = useRepositoryContext();
+  const { currentOrganization, } = useOrganizationContext();
+  const { repositoriesLatestTsqmi } = useRepositoryContext();
   const router = useRouter();
   const { handleRepositoryAction } = useQuery();
 
   const [filteredRepositories, setFilteredRepositories] = useState<Repository[]>([]);
   const [repositoryToDelete, setRepositoryToDelete] = useState<Repository | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [repositoryList, setRepositoryList] = useState<Repository[]>([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+
+      try {
+        const result = await productQuery.getAllRepositories(currentOrganization?.id, currentProduct?.id);
+        setRepositoryList(result.data.results);
+
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    };
+
+    fetchData();
+  }, []); // The empty dependency array ensures this effect runs only once after the initial render
 
 
   const handleClickRedirects = (id: string) => {
@@ -59,12 +77,10 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
     void router.push(path);
   };
 
-  const getTsqmiValue = (id: number) => (
-    repositoriesLatestTsqmi?.results.find(result => result.id === id)!.current_tsqmi
-  )
+  const getTsqmiValue = (id: number) => repositoriesLatestTsqmi?.results.find(result => result.id === id)?.current_tsqmi
 
   const getTsqmiUrl = (id: number) => (
-    `${repositoriesLatestTsqmi?.results.find(result => result.id === id)!.url}badge`
+    `${repositoriesLatestTsqmi?.results.find(result => result.id === id)?.url}badge`
   )
 
   function handleRepositoriesFilter(name: string) {
@@ -88,7 +104,7 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
   const confirmDelete = async () => {
     if (repositoryToDelete && currentOrganization && currentProduct) {
       try {
-        const result = await handleRepositoryAction('delete', currentOrganization.id, currentProduct.id, repositoryToDelete.id, null);
+        const result = await handleRepositoryAction('delete', currentOrganization.id, currentProduct.id, String(repositoryToDelete.id), null);
 
         if (result.type === 'success') {
           const updatedRepositoryList = repositoryList?.filter((repo) => repo.id !== repositoryToDelete.id);
@@ -109,7 +125,6 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
     if (repositoryList?.length) {
       setFilteredRepositories((prevState) => {
         const tempRepositoryList = [...repositoryList];
-
 
         const prevString = JSON.stringify(prevState);
         const currentString = JSON.stringify(tempRepositoryList);
@@ -133,10 +148,8 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
             <TableCell style={{ paddingBottom: '35px' }}>Nome</TableCell>
             <TableCell align="right" style={{ paddingBottom: '35px' }}>
               <SearchButton
-                data-testid="search-input"
                 onInput={(e) => handleRepositoriesFilter(e.target.value)}
                 label={t('input-placeholder')}
-              // label="Busque pelo repositorio"
               />
             </TableCell>
             <TableCell style={{ paddingBottom: '35px' }} />
