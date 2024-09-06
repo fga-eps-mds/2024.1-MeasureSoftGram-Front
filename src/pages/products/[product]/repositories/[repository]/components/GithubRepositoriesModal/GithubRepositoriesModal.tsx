@@ -107,7 +107,7 @@ export function GithubRepositoriesModal({ handleCloseModal, open }: GithubReposi
   >
     <Box sx={{ ...styleModal, display: 'flex', flexDirection: 'column', justifyContent: 'between', alignItems: 'center' }} >
       <Typography id="modal-title" variant="h6" component="h2" sx={{ mb: 4, mt: 0, backgroundColor: '#2B4D6F', color: 'white', width: 700, display: 'flex', justifyContent: 'center' }}>
-        Escolha um repositório para importar
+        {t('choose')}
       </Typography>
 
 
@@ -131,7 +131,7 @@ export function GithubRepositoriesModal({ handleCloseModal, open }: GithubReposi
         />
       </div>
       <List style={{ background: 'white', overflowY: 'auto', width: '500px', maxHeight: '375px', margin: 0, padding: 0, borderRight: borderPrimaryStyle }}>
-        {filteredRepositories.length === 0 ? <ListItem style={{ display: 'flex', borderLeft: borderPrimaryStyle, borderBottom: borderPrimaryStyle }}>Nenhum Repositório encontrado...</ListItem> : filteredRepositories.map((repository) => <ListItemButton onClick={() => { handleCreateRepository(repository) }} id="modal-modal-description" style={{ border: borderPrimaryStyle, borderTop: 0, borderRight: 0, height: 52.5, padding: 15, backgroundColor: "#F4F5F6", }} key={repository.id}>
+        {filteredRepositories.length === 0 ? <ListItem style={{ display: 'flex', borderLeft: borderPrimaryStyle, borderBottom: borderPrimaryStyle }}>{t('not-found')}</ListItem> : filteredRepositories.map((repository) => <ListItemButton onClick={() => { handleCreateRepository(repository) }} id="modal-modal-description" style={{ border: borderPrimaryStyle, borderTop: 0, borderRight: 0, height: 52.5, padding: 15, backgroundColor: "#F4F5F6", }} key={repository.id}>
           {repository.name}
         </ListItemButton>)}
       </List>

@@ -32,7 +32,6 @@ const Repositories: NextPageWithLayout = () => {
     );
   };
 
-  console.log(router.asPath)
 
   const code = router.query.code as string
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -123,7 +122,7 @@ const Repositories: NextPageWithLayout = () => {
                 }}>
                 <Button onClick={handleGithubClick} style={{ width: '150px', justifyContent: 'space-around' }}><FaGithub size="1.5em" /> Github</Button>
 
-                <Button style={{ width: '150px', justifyContent: 'space-around' }} onClick={handleAddIconClick}> <FaCodeBranch size="1.5em" /> Criar</Button>
+                <Button style={{ width: '150px', justifyContent: 'space-around' }} onClick={handleAddIconClick}> <FaCodeBranch size="1.5em" /> {t('create')}</Button>
 
               </div>
 
