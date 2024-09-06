@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { repository, Result } from '@services/repository';
 import { Repository } from '@customTypes/repository';
 
-export const useQuery = () => {
+export function useQuery() {
   const { setRepositoryList } = useRepositoryContext();
   const { currentProduct, setCurrentProduct } = useProductContext();
   const { query } = useRouter();
@@ -86,4 +86,4 @@ export const useQuery = () => {
   // }, [query?.product]);
 
   return { handleRepositoryAction, loadRepositoriesNoContext };
-};
+}
