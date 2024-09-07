@@ -1,16 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import Head from 'next/head';
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Box,
-  Container,
-  Typography,
-  TextField,
-  Button,
-} from '@mui/material';
+import { Botoes, Container, Description, Form, Header, Wrapper } from '@pages/organizations/styles';
 import { FaGithub, FaGitlab, FaBitbucket, FaAws, FaCodeBranch } from 'react-icons/fa';
 import { NextPageWithLayout } from '@pages/_app.next';
 import getLayout from '@components/Layout';
@@ -23,6 +12,7 @@ import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import { repository } from '@services/repository';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '../../../../../shared/hooks/useQuery';
+import { TextField, MenuItem, Box } from '@mui/material';
 
 interface ApiErrorResponse {
   name?: string[];
@@ -215,94 +205,35 @@ const RepositoryForm: NextPageWithLayout = () => {
 
   return (
     <>
-      <Head>
-        <title>{isEditMode ? t('edit.title') : t('register.title')}</title>
-      </Head>
       <Container>
-        <Box display="flex" flexDirection="column" alignItems="flex-start" marginTop="40px">
-          <Typography variant="h4">{isEditMode ? t('edit.title') : t('register.title')}</Typography>
-          <form onSubmit={handleSubmit}>
-            <Box width="100%">
+        <Header>{isEditMode ? t('edit.title') : t('register.title')}</Header>
+        <Wrapper>
+          <Description>{t('description')}</Description>
+          <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
+            <Form>
               <TextField
-                name="product"
-                label={t('edit.product')}
-                variant="outlined"
-                value={currentProduct?.name || ''}
-                disabled
-                margin="normal"
-                fullWidth
+                select
                 required
-                InputProps={{
-                  style: { backgroundColor: '#f0f0f0' },
-                }}
-              />
-              <TextField
-                disabled={repositoryData.imported}
-                name="name"
-                data-testid="repo-name-input"
-                label={t('edit.name')}
-                variant="outlined"
-                value={repositoryData.name}
-                onChange={handleInputChange}
-                margin="normal"
                 fullWidth
-                required
-              />
-              <TextField
-                disabled={repositoryData.imported}
-                name="description"
-                label={t('edit.description')}
+                label={t('edit.plataform')}
                 variant="outlined"
-                value={repositoryData.description}
-                onChange={handleInputChange}
-                margin="normal"
-                fullWidth
+                value={repositoryData.platform}
+                onChange={(e) => setRepositoryData({ ...repositoryData, platform: e.target.value as string })}
                 multiline
-                rows={4}
-              />
-              <TextField
-                disabled={repositoryData.imported}
-                name="url"
-                label={t('edit.url')}
-                variant="outlined"
-                value={repositoryData.url}
-                onChange={handleInputChange}
-                margin="normal"
-                fullWidth
-              />
-              <FormControl fullWidth margin="normal">
-                <InputLabel id="platform-label">{t('edit.plataform')}</InputLabel>
-                <Select
-                  disabled={repositoryData.imported}
-                  labelId="platform-label"
-                  id="platform"
-                  value={repositoryData.platform}
-                  label={t('edit.plataform')}
-                  onChange={(e) => setRepositoryData({ ...repositoryData, platform: e.target.value as string })}
-                  renderValue={(value) => (
-                    <Box display="flex" alignItems="center">
-                      <Box marginRight="10px">{platforms.find((p) => p.value === value)?.icon}</Box>
-                      {platforms.find((p) => p.value === value)?.label}
-                    </Box>
-                  )}
-                >
-                  {platforms.map((option) => (
-                    <MenuItem key={option.value} value={option.value} disabled={repositoryData.imported}>
-                      <Box marginRight="10px">{React.cloneElement(option.icon)}</Box>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
-                <Button type="submit" variant="contained" color="primary" disabled={repositoryData.imported}>
-                  {isEditMode ? t('edit.save') : t('register.create')}
-                </Button>
-              </Box>
-            </Box>
+                rows={8}
+                sx={{ mb: 2 }}
+                data-testid="repo-input"
+              >
+                {platforms.map((option) => (
+                  <MenuItem key={option.value} value={option.value} disabled={repositoryData.imported}>
+                    <Box marginRight="10px">{React.cloneElement(option.icon)}</Box>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Form>
           </form>
-          <ToastContainer />
-        </Box>
+        </Wrapper>
       </Container>
     </>
   );
