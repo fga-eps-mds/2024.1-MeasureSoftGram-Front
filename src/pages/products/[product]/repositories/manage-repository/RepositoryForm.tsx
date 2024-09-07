@@ -13,6 +13,8 @@ import { repository } from '@services/repository';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '../../../../../shared/hooks/useQuery';
 import { TextField, MenuItem, Box } from '@mui/material';
+// import MSGButton from '../../../../../components/idv/buttons/MSGButton';
+import MSGButton from 'src/components/idv/buttons/MSGButton';
 
 interface ApiErrorResponse {
   name?: string[];
@@ -284,6 +286,13 @@ const RepositoryForm: NextPageWithLayout = () => {
                   </MenuItem>
                 ))}
               </TextField>
+
+              <Botoes>
+                <MSGButton width="200px" type='submit' disabled={repositoryData.imported}>
+                  {isEditMode ? t('edit.save') : t('register.create')}
+                </MSGButton>
+              </Botoes>
+
             </Form>
           </form>
         </Wrapper>
