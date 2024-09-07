@@ -221,21 +221,61 @@ const RepositoryForm: NextPageWithLayout = () => {
                 data-testid="product-input"
                 disabled
               >
-
               </TextField>
 
               <TextField
+                fullWidth
+                label={t('edit.name')}
+                variant="outlined"
+                value={repositoryData.name}
+                onChange={handleInputChange}
+                required
+                sx={{ mb: 2 }}
+                data-testid="repo-name-input"
+                disabled={repositoryData.imported}
+              >
+              </TextField>
+
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                label={t('edit.description')}
+                variant="outlined"
+                value={repositoryData.description}
+                onChange={handleInputChange}
+                sx={{ mb: 2 }}
+                data-testid="repo-name-input"
+                disabled={repositoryData.imported}
+              >
+              </TextField>
+
+              <TextField
+                fullWidth
+                label={t('edit.url')}
+                variant="outlined"
+                value={repositoryData.url}
+                onChange={handleInputChange}
+                sx={{ mb: 2 }}
+                data-testid="repo-name-input"
+                disabled={repositoryData.imported}
+              >
+              </TextField>
+
+
+              <TextField
+                fullWidth
+                multiline
+                rows={8}
                 select
                 required
-                fullWidth
                 label={t('edit.plataform')}
                 variant="outlined"
                 value={repositoryData.platform}
                 onChange={(e) => setRepositoryData({ ...repositoryData, platform: e.target.value as string })}
-                multiline
-                rows={8}
                 sx={{ mb: 2 }}
                 data-testid="repo-input"
+                disabled={repositoryData.imported}
               >
                 {platforms.map((option) => (
                   <MenuItem key={option.value} value={option.value} disabled={repositoryData.imported}>
