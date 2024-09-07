@@ -212,6 +212,19 @@ const RepositoryForm: NextPageWithLayout = () => {
           <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
             <Form>
               <TextField
+                fullWidth
+                label={t('edit.product')}
+                variant="outlined"
+                value={currentProduct?.name || ''}
+                required
+                sx={{ mb: 2 }}
+                data-testid="product-input"
+                disabled
+              >
+
+              </TextField>
+
+              <TextField
                 select
                 required
                 fullWidth
