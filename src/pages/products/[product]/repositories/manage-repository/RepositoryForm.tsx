@@ -6,15 +6,14 @@ import getLayout from '@components/Layout';
 import { useRouter } from 'next/router';
 import { useOrganizationContext } from '@contexts/OrganizationProvider';
 import { useProductContext } from '@contexts/ProductProvider';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { SiSubversion, SiMercurial, SiMicrosoftazure } from "react-icons/si";
 import { repository } from '@services/repository';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '../../../../../shared/hooks/useQuery';
 import { TextField, MenuItem, Box } from '@mui/material';
+import { useQuery } from '../../../../../shared/hooks/useQuery';
 import MSGButton from '../../../../../components/idv/buttons/MSGButton';
-// import MSGButton from 'src/components/idv/buttons/MSGButton';
 
 interface ApiErrorResponse {
   name?: string[];
@@ -90,7 +89,6 @@ const RepositoryForm: NextPageWithLayout = () => {
         try {
           const result = await repository.getRepository(currentOrganization.id, currentProduct.id, repositoryId);
 
-
           if (result.data) {
             setRepositoryData({
               name: result.data.name,
@@ -102,8 +100,6 @@ const RepositoryForm: NextPageWithLayout = () => {
           } else {
             throw new Error(t('error.data'));
           }
-
-
         } catch (error) {
           console.error('Erro ao buscar dados do repositório:', error);
           toast.error(t('error.error'));
@@ -122,7 +118,6 @@ const RepositoryForm: NextPageWithLayout = () => {
     }
 
     try {
-
       let result;
 
       if (isEditMode && router.query.id) {
@@ -147,7 +142,6 @@ const RepositoryForm: NextPageWithLayout = () => {
         toast.success(isEditMode ? t('edit.sucess') : t('register.sucess'));
         router.push(`/products/${currentOrganization?.id}-${currentProduct?.id}/repositories`);
       } else if (result.type === 'error') {
-
         handleResultError(result.error);
       }
     } catch (error: any) {
@@ -156,8 +150,6 @@ const RepositoryForm: NextPageWithLayout = () => {
   };
 
   function handleResultError(error: AxiosError<ApiErrorResponse>) {
-
-
     let errorMsg = 'Erro ao criar/atualizar repositório.';
     if (error.response) {
       const errorCode = error.response.status;
@@ -184,7 +176,6 @@ const RepositoryForm: NextPageWithLayout = () => {
     setOpenSnackbar(true);
   }
 
-
   function handleCatchError(error: any) {
     let errorMsg = 'Erro desconhecido ao criar repositório.';
     if (axios.isAxiosError(error) && error.response) {
@@ -197,110 +188,96 @@ const RepositoryForm: NextPageWithLayout = () => {
     setOpenSnackbar(true);
   }
 
-
   useEffect(() => {
     if (!currentOrganization?.id || !currentProduct?.id) {
       router.push('/home');
     }
   }, [currentOrganization?.id, currentProduct?.id, router]);
 
-
   return (
-    <>
-      <Container>
-        <Header>{isEditMode ? t('edit.title') : t('register.title')}</Header>
-        <Wrapper>
-          <Description>{t('description')}</Description>
-          <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
-            <Form>
-              <TextField
-                fullWidth
-                label={t('edit.product')}
-                variant="outlined"
-                value={currentProduct?.name || ''}
-                required
-                sx={{ mb: 2 }}
-                data-testid="product-input"
-                disabled
-              >
-              </TextField>
+    <Container>
+      <Header>{isEditMode ? t('edit.title') : t('register.title')}</Header>
+      <Wrapper>
+        <Description>{t('description')}</Description>
+        <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
+          <Form>
+            <TextField
+              fullWidth
+              label={t('edit.product')}
+              variant="outlined"
+              value={currentProduct?.name || ''}
+              required
+              sx={{ mb: 2 }}
+              data-testid="product-input"
+              disabled
+            />
 
-              <TextField
-                fullWidth
-                label={t('edit.name')}
-                variant="outlined"
-                value={repositoryData.name}
-                onChange={handleInputChange}
-                required
-                sx={{ mb: 2 }}
-                data-testid="repo-name-input"
-                disabled={repositoryData.imported}
-              >
-              </TextField>
+            <TextField
+              fullWidth
+              label={t('edit.name')}
+              variant="outlined"
+              value={repositoryData.name}
+              onChange={handleInputChange}
+              required
+              sx={{ mb: 2 }}
+              data-testid="repo-name-input"
+              disabled={repositoryData.imported}
+            />
 
-              <TextField
-                fullWidth
-                multiline
-                rows={4}
-                label={t('edit.description')}
-                variant="outlined"
-                value={repositoryData.description}
-                onChange={handleInputChange}
-                sx={{ mb: 2 }}
-                data-testid="repo-description-input"
-                disabled={repositoryData.imported}
-              >
-              </TextField>
+            <TextField
+              fullWidth
+              multiline
+              rows={4}
+              label={t('edit.description')}
+              variant="outlined"
+              value={repositoryData.description}
+              onChange={handleInputChange}
+              sx={{ mb: 2 }}
+              data-testid="repo-description-input"
+              disabled={repositoryData.imported}
+            />
 
-              <TextField
-                fullWidth
-                label={t('edit.url')}
-                variant="outlined"
-                value={repositoryData.url}
-                onChange={handleInputChange}
-                sx={{ mb: 2 }}
-                data-testid="repo-url-input"
-                disabled={repositoryData.imported}
-              >
-              </TextField>
+            <TextField
+              fullWidth
+              label={t('edit.url')}
+              variant="outlined"
+              value={repositoryData.url}
+              onChange={handleInputChange}
+              sx={{ mb: 2 }}
+              data-testid="repo-url-input"
+              disabled={repositoryData.imported}
+            />
 
+            <TextField
+              fullWidth
+              multiline
+              rows={8}
+              select
+              label={t('edit.platform')}
+              value={repositoryData.platform}
+              onChange={handleInputChange}
+              sx={{ mb: 2 }}
+              data-testid="repo-platform-input"
+            >
+              {platforms.map((platform) => (
+                <MenuItem key={platform.value} value={platform.value}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {platform.icon}
+                    {platform.label}
+                  </Box>
+                </MenuItem>
+              ))}
+            </TextField>
 
-              <TextField
-                fullWidth
-                multiline
-                rows={8}
-                select
-                required
-                label={t('edit.plataform')}
-                variant="outlined"
-                value={repositoryData.platform}
-                onChange={(e) => setRepositoryData({ ...repositoryData, platform: e.target.value as string })}
-                sx={{ mb: 2 }}
-                data-testid="repo-input"
-                disabled={repositoryData.imported}
-              >
-                {platforms.map((option) => (
-                  <MenuItem key={option.value} value={option.value} disabled={repositoryData.imported}>
-                    <Box marginRight="10px">{React.cloneElement(option.icon)}</Box>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-
-              <Botoes>
-                <MSGButton width="200px" type='submit' disabled={repositoryData.imported}>
-                  {isEditMode ? t('edit.save') : t('register.create')}
-                </MSGButton>
-              </Botoes>
-
-            </Form>
-          </form>
-        </Wrapper>
-      </Container>
-    </>
+            <Botoes>
+              <MSGButton type="submit">{isEditMode ? t('edit.submit') : t('register.submit')}</MSGButton>
+            </Botoes>
+          </Form>
+        </form>
+      </Wrapper>
+    </Container>
   );
 };
 
 RepositoryForm.getLayout = getLayout;
-
 export default RepositoryForm;
