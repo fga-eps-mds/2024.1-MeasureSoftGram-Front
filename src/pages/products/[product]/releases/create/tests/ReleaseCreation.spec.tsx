@@ -1193,4 +1193,40 @@ describe('ReleaseInfo Component', () => {
       });
     });
   });
+
+  it('should test release date change', async () => {
+    const mockError = new Error('Erro ao verificar release') as any;
+    mockError.response = {
+      data: {
+        detail: 'Já existe uma release neste período',
+        release: {
+          id: 123,
+        },
+      },
+    };
+
+    // Mock the API call to return a rejected promise with the custom error
+    (productQuery.getIsReleaseValid as jest.Mock).mockRejectedValue(mockError);
+
+    await act(async () => {
+      render(
+        <ReleaseCreation />);
+    });
+
+    const { t } = useTranslation('plan_release');
+
+    const releaseNameInput = screen.getByTestId('apelido-release') as HTMLInputElement;
+
+    fireEvent.change(releaseNameInput, { target: { value: "Nome Teste" } });
+
+    const nextButton = screen.getByText(/Next/i);
+    fireEvent.click(nextButton);
+
+    await waitFor(async () => {
+      fireEvent.click(screen.getByTestId("dismissBtnClick"));
+      await waitFor(async () => {
+        expect(screen.getByText(t("defineConfiguration"))).toBeInTheDocument();
+      });
+    });
+  });
 });
