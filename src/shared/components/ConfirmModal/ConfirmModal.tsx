@@ -60,6 +60,7 @@ export default function ConfirmModal({ isModalOpen, btnConfirmText, btnDismissTe
           <Button
             variant="outlined"
             color="primary"
+            data-testid="dismissBtnClick"
             onClick={() => handleDismissBtnClick()}
             sx={{ width: '100%' }}
           >
@@ -68,6 +69,7 @@ export default function ConfirmModal({ isModalOpen, btnConfirmText, btnDismissTe
           <Button
             variant="contained"
             color="primary"
+            data-testid="confirmBtnClick"
             onClick={() => handleConfirmBtnClick()}
             sx={{ width: '100%' }}
           >
