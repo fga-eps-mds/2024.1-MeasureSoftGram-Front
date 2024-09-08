@@ -16,6 +16,8 @@ type ConfirmationModalProps = {
   onClose: () => void;
   itemName: string;
   onConfirm: () => void;
+  confirmationName: string;
+  setConfirmationName: (name: string) => void;
 };
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
@@ -23,8 +25,9 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   onClose,
   itemName,
   onConfirm,
+  confirmationName,
+  setConfirmationName,
 }) => {
-  const [confirmationName, setConfirmationName] = useState('');
   const [errorText, setErrorText] = useState('');
   const { t } = useTranslation('repositories');
   const isButtonDisabled = confirmationName !== itemName;
