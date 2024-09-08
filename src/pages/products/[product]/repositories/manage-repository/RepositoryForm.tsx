@@ -13,8 +13,8 @@ import { repository } from '@services/repository';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '../../../../../shared/hooks/useQuery';
 import { TextField, MenuItem, Box } from '@mui/material';
-// import MSGButton from '../../../../../components/idv/buttons/MSGButton';
-import MSGButton from 'src/components/idv/buttons/MSGButton';
+import MSGButton from '../../../../../components/idv/buttons/MSGButton';
+// import MSGButton from 'src/components/idv/buttons/MSGButton';
 
 interface ApiErrorResponse {
   name?: string[];
@@ -247,7 +247,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                 value={repositoryData.description}
                 onChange={handleInputChange}
                 sx={{ mb: 2 }}
-                data-testid="repo-name-input"
+                data-testid="repo-description-input"
                 disabled={repositoryData.imported}
               >
               </TextField>
@@ -259,7 +259,7 @@ const RepositoryForm: NextPageWithLayout = () => {
                 value={repositoryData.url}
                 onChange={handleInputChange}
                 sx={{ mb: 2 }}
-                data-testid="repo-name-input"
+                data-testid="repo-url-input"
                 disabled={repositoryData.imported}
               >
               </TextField>
