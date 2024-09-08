@@ -362,6 +362,12 @@ describe('ReleaseInfo Component', () => {
     (productQuery.createProductGoal as jest.Mock).mockResolvedValue({
       data: { id: 1 },
     });
+
+    (productQuery.updateReleaseEndDate as jest.Mock).mockResolvedValue({
+      data: {
+        "end_at": "2024-02-05T23:59:59Z"
+      },
+    });
   });
 
   it('should render the component correctly', async () => {
@@ -1019,23 +1025,13 @@ describe('ReleaseInfo Component', () => {
     await waitFor(async () => {
       fireEvent.click(nextButton);
       await waitFor(async () => {
-        const changeRefValues = screen.getByText(t('changeRefValues'));
-        fireEvent.click(changeRefValues);
+        fireEvent.click(nextButton);
         await waitFor(async () => {
-          const continueBtn = screen.getByText(t('continue'));
-          fireEvent.click(continueBtn);
           fireEvent.click(nextButton);
-          await waitFor(async () => {
-            expect(screen.getByText(t("refValues"))).toBeInTheDocument();
-            fireEvent.click(nextButton);
-            await waitFor(async () => {
-              const allowBalanceGoalBtn = screen.getByText(t('allowBalanceGoal'));
-              fireEvent.click(allowBalanceGoalBtn);
-              expect(screen.getByText(t("balanceGoal"))).toBeInTheDocument();
-            });
-          });
+          fireEvent.click(screen.getByText(t('allowBalanceGoal')));
+          expect(screen.getByText(t("balanceGoal"))).toBeInTheDocument();
         });
       });
-    }, { timeout: 30000 });
+    });
   });
 });

@@ -11,5 +11,6 @@
   },
   "select": {
     "no-options": "Não há opções disponíveis"
-  }
+  },
+  "warning": "Atenção"
 }

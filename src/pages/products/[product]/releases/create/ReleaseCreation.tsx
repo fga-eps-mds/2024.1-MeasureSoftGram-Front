@@ -11,7 +11,8 @@ import WarningModal from '@components/WarningModal/WarningModal';
 import { Characteristic, Measure, PreConfigData, ReleaseInfoForm, Subcharacteristic } from '@customTypes/preConfig';
 import { productQuery } from '@services/product';
 import { balanceMatrixService } from '@services/balanceMatrix';
-import { SnackbarProvider, useSnackbar } from '@components/snackbar';
+import { useSnackbar } from '@components/snackbar';
+import ConfirmModal from '@components/ConfirmModal/ConfirmModal';
 import * as Styles from './styles';
 import BasicInfoForm from './components/BasicInfoForm/BasicInfoForm';
 import ModelConfigForm from './components/ModelConfigForm/ModelConfigForm';
@@ -24,6 +25,7 @@ function ReleaseCreation() {
   const [productName, setProductName] = useState<string>("");
   const [activeStep, setActiveStep] = useState(0);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showChangeDateModal, setShowChangeDateModal] = useState(false);
   const [changeRefValue, setChangeRefValue] = useState<boolean>(false);
   const [followLastConfig, setFollowLastConfig] = useState<boolean>(false);
   const [dinamicBalance, setDinamicBalance] = useState<boolean>(false);
@@ -33,6 +35,7 @@ function ReleaseCreation() {
   const [balanceMatrix, setBalanceMatrix] = useState<any>();
   const [preConfigEntitiesRelationship, setPreConfigEntitiesRelationship] = useState<PreConfigEntitiesRelationship[]>();
   const [releaseGoal, setReleaseGoal] = useState<any>();
+  const [releaseConflict, setReleaseConflict] = useState<string>();
   const { enqueueSnackbar } = useSnackbar()
 
   const router = useRouter();
@@ -182,9 +185,30 @@ function ReleaseCreation() {
       await productQuery.getIsReleaseValid(organizationId, productId, getValues());
       setActiveStep(activeStep + 1);
     } catch (error: any) {
-      enqueueSnackbar(`${error?.response?.data?.detail}`, { autoHideDuration: 10000, variant: 'error' })
+      if (error?.response?.data?.detail === "Já existe uma release neste período") {
+        setReleaseConflict(error?.response?.data?.release?.id)
+        setShowChangeDateModal(true);
+      }
+      else
+        enqueueSnackbar(`${error?.response?.data?.detail}`, { autoHideDuration: 10000, variant: 'error' })
     }
   };
+
+  async function handleReleaseDateModal() {
+    try {
+      const newDate = new Date(getValues('start_at'))
+      newDate.setDate(newDate.getDate() - 1);
+
+      setShowChangeDateModal(false);
+
+      await productQuery.updateReleaseEndDate(organizationId, productId, releaseConflict!, { end_at: newDate });
+      checkBasicValues();
+    }
+    catch (error: any) {
+      setShowChangeDateModal(false);
+      enqueueSnackbar(`${error?.response?.data?.detail}`, { autoHideDuration: 10000, variant: 'error' });
+    }
+  }
 
   function handleChangeRefValue(value: boolean) {
     if (value)
@@ -353,33 +377,6 @@ function ReleaseCreation() {
     return { changes, allow_dynamic: dinamicBalance };
   }
 
-  // function generateChanges(): ReleaseGoal {
-  //   // Criação do array de mudanças com a tipagem explícita
-  //   const changes: Change[] = configPageData?.characteristics
-  //     .filter((characteristic: Characteristic) => characteristic.active)
-  //     .map((characteristic: Characteristic) => {
-  //       const referenceGoal = releaseGoal.data[characteristic.key] ?? 0;
-  //       let delta: number;
-
-  //       // Calcula delta com base no tipo de balanceamento
-  //       if (dinamicBalance) {
-  //         delta = 50 - characteristic.goal;
-  //       } else if (referenceGoal !== characteristic.goal) {
-  //         delta = characteristic.goal - referenceGoal;
-  //       } else {
-  //         return null; // Retorna null se não houver alteração
-  //       }
-
-  //       return {
-  //         characteristic_key: characteristic.key,
-  //         delta,
-  //       };
-  //     })
-  //     .filter(change => change !== null) as Change[]; // Remove os valores null
-
-  //   return { changes, allow_dynamic: dinamicBalance };
-  // }
-
   function cleanConfigData() {
     return {
       ...configPageData,
@@ -472,14 +469,31 @@ function ReleaseCreation() {
           </form>
         </Box>
       </Styles.Body >
-      <WarningModal
+      <ConfirmModal
+        // eslint-disable-next-line react/jsx-no-bind
+        setIsModalOpen={setShowChangeDateModal}
+        text={t('conflictDates')}
+        btnConfirmText={t('continue')}
+        btnDismissText={t('back')}
+        isModalOpen={showChangeDateModal}
+        // eslint-disable-next-line react/jsx-no-bind
+        handleConfirmBtnClick={handleReleaseDateModal}
+        handleDismissBtnClick={() => setShowChangeDateModal(false)}
+      />
+      <ConfirmModal
         // eslint-disable-next-line react/jsx-no-bind
         setIsModalOpen={setShowConfirmationModal}
         text={activeStep === 1 ? t('alertRefValue') : t('alertDinamicBalance')}
-        btnText={t('continue')}
+        btnConfirmText={t('continue')}
+        btnDismissText={t('back')}
         isModalOpen={showConfirmationModal}
+        /* eslint-disable no-unused-expressions */
+        handleDismissBtnClick={() => {
+          setShowConfirmationModal(false)
+          activeStep === 1 ? setChangeRefValue(false) : setDinamicBalance(false)
+        }}
         // eslint-disable-next-line react/jsx-no-bind
-        handleBtnClick={handleModalBtnClick} />
+        handleConfirmBtnClick={handleModalBtnClick} />
     </>
   );
 }
