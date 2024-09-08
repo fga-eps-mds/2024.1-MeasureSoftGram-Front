@@ -53,9 +53,11 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
 
   const [filteredRepositories, setFilteredRepositories] = useState<Repository[]>([]);
   const [repositoryToDelete, setRepositoryToDelete] = useState<Repository | null>(null);
-  const [ showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [repositoryList, setRepositoryList] = useState<Repository[]>([])
   const [confirmationName, setConfirmationName] = useState('');
+  const [errorText, setErrorText] = useState('');
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,6 +107,7 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
   const openDeleteModal = (repository: Repository) => {
     setRepositoryToDelete(repository);
     setShowDeleteModal(true);
+    setErrorText('')
   };
 
   const closeDeleteModal = () => {
@@ -210,6 +213,8 @@ const RepositoriesTable: React.FC<Props> = ({ maxCount }: Props) => {
         onConfirm={confirmDelete}
         confirmationName={confirmationName}
         setConfirmationName={setConfirmationName}
+        errorText={errorText}
+        setErrorText={setErrorText}
       />
     </TableContainer>
   );
