@@ -26,6 +26,7 @@ export default function MinMaxInput({ label, minInputValue, maxInputValue, setMi
     <Grid item md={2} display="flex" alignItems="center">
       <TextField
         sx={{ minWidth: "80px" }}
+        data-testid={`min-${label}`}
         disabled={minFixed}
         type="number"
         variant="outlined"
@@ -44,6 +45,7 @@ export default function MinMaxInput({ label, minInputValue, maxInputValue, setMi
       <TextField
         sx={{ minWidth: "80px" }}
         disabled={maxFixed}
+        data-testid={`max-${label}`}
         type="number"
         variant="outlined"
         label="Max"
