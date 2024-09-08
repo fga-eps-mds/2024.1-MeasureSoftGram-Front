@@ -1194,7 +1194,7 @@ describe('ReleaseInfo Component', () => {
     });
   });
 
-  it('should test release date change', async () => {
+  it('should test return release date modal', async () => {
     const mockError = new Error('Erro ao verificar release') as any;
     mockError.response = {
       data: {

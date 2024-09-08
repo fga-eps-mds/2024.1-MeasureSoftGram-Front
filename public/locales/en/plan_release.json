@@ -69,5 +69,15 @@
   "balanceGoal": "Balance Goal",
   "balanceGoalTooltip": "The proper balancing of objectives should be considered with a focus on what is planned to be achieved.",
   "allowBalanceGoal": "Allow dynamic balancing",
-  "conflictDates": "There is already an active release during the selected period. Would you like to close it to proceed with the new release?"
+  "conflictDates": "There is already an active release during the selected period. Would you like to close it to proceed with the new release?",
+  "measures-desc": {
+    "passed_tests": "",
+    "test_builds": "",
+    "test_coverage": "Reference values extracted from: https://research.google/pubs/code-coverage-at-google/",
+    "ci_feedback_time": "",
+    "non_complex_file_density": "",
+    "commented_file_density": "",
+    "duplication_absense": "",
+    "team_throughput": ""
+  }
 }

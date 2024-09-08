@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { Change, PreConfigEntitiesRelationship, ReleaseGoal } from '@customTypes/product';
 import getLayout from '@components/Layout';
-import WarningModal from '@components/WarningModal/WarningModal';
 import { Characteristic, Measure, PreConfigData, ReleaseInfoForm, Subcharacteristic } from '@customTypes/preConfig';
 import { productQuery } from '@services/product';
 import { balanceMatrixService } from '@services/balanceMatrix';
