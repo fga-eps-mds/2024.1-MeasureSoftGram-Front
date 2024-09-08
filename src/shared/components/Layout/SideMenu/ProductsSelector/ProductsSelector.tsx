@@ -40,7 +40,7 @@ function ProductSelector() {
           />
         ) :
         <SideMenuItem
-          startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox color="#000000" />} />}
+          startIcon={<LetterAvatar name={currentProduct?.name ?? '?'} icon={<FiBox color="#ffffff" />} />}
           text={currentProduct?.name ?? t("product.placeholder")}
           tooltip={t("tooltip.product-selection")}
           onClick={() => toggleCollapse()}
