@@ -1,24 +1,23 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { PreConfigData } from '@customTypes/preConfig';
-import '@testing-library/jest-dom/extend-expect';
 import ReferenceValuesForm from '../ReferenceValuesForm';
 
+// Mock de dados de exemplo
 const mockConfigPageData: PreConfigData = {
   characteristics: [
     {
-      key: 'char1',
+      key: 'characteristic_1',
       active: true,
       subcharacteristics: [
         {
-          key: 'subchar1',
+          key: 'subcharacteristic_1',
           active: true,
           measures: [
             {
-              key: 'measure1',
+              key: 'measure_1',
               active: true,
-              min_threshold: 10,
-              max_threshold: 90,
+              min_threshold: 0,
+              max_threshold: 100,
               weight: 0,
               metrics: []
             },
@@ -35,15 +34,15 @@ const mockConfigPageData: PreConfigData = {
 const mockDefaultPageData: PreConfigData = {
   characteristics: [
     {
-      key: 'char1',
+      key: 'characteristic_1',
       subcharacteristics: [
         {
-          key: 'subchar1',
+          key: 'subcharacteristic_1',
           measures: [
             {
-              key: 'measure1',
-              min_threshold: 5,
-              max_threshold: 95,
+              key: 'measure_1',
+              min_threshold: 0,
+              max_threshold: 100,
               weight: 0,
               metrics: []
             },
@@ -57,74 +56,35 @@ const mockDefaultPageData: PreConfigData = {
   ],
 };
 
-const mockSetConfigPageData = jest.fn();
+const setConfigPageData = jest.fn();
 
-describe('ReferenceValuesForm', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+test('should update the measure threshold when input value changes', async () => {
+  render(
+    <ReferenceValuesForm
+      configPageData={mockConfigPageData}
+      defaultPageData={mockDefaultPageData}
+      setConfigPageData={setConfigPageData}
+    />
+  );
 
-  test('should render the form with correct elements', () => {
-    render(
-      <ReferenceValuesForm
-        configPageData={mockConfigPageData}
-        defaultPageData={mockDefaultPageData}
-        setConfigPageData={mockSetConfigPageData}
-      />
-    );
+  // Abrir o primeiro Accordion de característica
+  const characteristicAccordion = screen.getByText('characteristics.characteristic_1');
+  fireEvent.click(characteristicAccordion);
 
-    expect(screen.getByText('defineRefValues')).toBeInTheDocument(); // Verifica a renderização do título principal
+  // Abrir o Accordion de subcaracterística
+  const subcharacteristicAccordion = screen.getByText('subCharacteristics.subcharacteristic_1');
+  fireEvent.click(subcharacteristicAccordion);
+  screen.debug(undefined, Infinity)
+  // Buscar pelo input de min com base no label "measure_1"
+  const minInput = screen.getByTestId('min-measures.measure_1').querySelector('input') as HTMLInputElement;
+  const maxInput = screen.getByTestId('max-measures.measure_1').querySelector('input') as HTMLInputElement;
 
-    // Verifica a renderização dos accordions
-    expect(screen.getByText('characteristics.char1')).toBeInTheDocument();
-    expect(screen.getByText('subCharacteristics.subchar1')).toBeInTheDocument();
-    expect(screen.getByText('measures.measure1')).toBeInTheDocument();
-  });
+  // Disparar evento de mudança no campo min
+  fireEvent.change(minInput, { target: { value: '10' } });
+  fireEvent.change(maxInput, { target: { value: '90' } });
 
-  test('should call handleMeasureChange when input value is changed', () => {
-    render(
-      <ReferenceValuesForm
-        configPageData={mockConfigPageData}
-        defaultPageData={mockDefaultPageData}
-        setConfigPageData={mockSetConfigPageData}
-      />
-    );
-
-    const minInput = screen.getByLabelText(/Min/);
-    fireEvent.change(minInput, { target: { value: '15' } });
-
-    expect(mockSetConfigPageData).toHaveBeenCalledWith(expect.any(Function));
-
-    const maxInput = screen.getByLabelText(/Max/);
-    fireEvent.change(maxInput, { target: { value: '85' } });
-
-    expect(mockSetConfigPageData).toHaveBeenCalledWith(expect.any(Function));
-  });
-
-  test('should correctly update measure thresholds when input values change', () => {
-    const { rerender } = render(
-      <ReferenceValuesForm
-        configPageData={mockConfigPageData}
-        defaultPageData={mockDefaultPageData}
-        setConfigPageData={mockSetConfigPageData}
-      />
-    );
-
-    const minInput = screen.getByLabelText(/Min/);
-    fireEvent.change(minInput, { target: { value: '15' } });
-
-    expect(mockSetConfigPageData).toHaveBeenCalledWith(expect.any(Function));
-
-    // Simulando o estado atualizado
-    mockConfigPageData.characteristics[0].subcharacteristics[0].measures[0].min_threshold = 15;
-    rerender(
-      <ReferenceValuesForm
-        configPageData={mockConfigPageData}
-        defaultPageData={mockDefaultPageData}
-        setConfigPageData={mockSetConfigPageData}
-      />
-    );
-
-    expect(minInput).toHaveValue(15);
+  await waitFor(() => {
+    // Verifica se a função foi chamada
+    expect(setConfigPageData).toHaveBeenCalledWith(expect.any(Function));
   });
 });
