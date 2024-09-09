@@ -65,7 +65,7 @@ class ProductQuery {
     return api.get<MeasuresHistory>(url);
   }
 
-  postPreConfig(organizationId: string, productId: string, data: { name: string; data: PreConfigData }) {
+  async postPreConfig(organizationId: string, productId: string, data: { name: string; data: PreConfigData }) {
     return api.post(`/organizations/${organizationId}/products/${productId}/create/pre-config/`, data);
   }
 
@@ -82,6 +82,11 @@ class ProductQuery {
   async getPreConfigEntitiesRelationship(organizationId: string, projectId: string) {
     const url = `organizations/${organizationId}/products/${projectId}/entity-relationship-tree/`;
     return api.get<Array<PreConfigEntitiesRelationship>>(url);
+  }
+
+  async updateReleaseEndDate(organizationId: string, projectId: string, releaseId: string, data: any) {
+    const url = `organizations/${organizationId}/products/${projectId}/create/release/${releaseId}/update-end-at/`;
+    return api.put<Array<PreConfigEntitiesRelationship>>(url, data);
   }
 
   async getCharacteristicsLatestValues(organizationId: string, productId: string, repositoryId: string) {

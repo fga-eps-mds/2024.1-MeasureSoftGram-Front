@@ -159,7 +159,7 @@ export default function ReferenceValuesForm({ configPageData, defaultPageData, s
                             ?.max_threshold!}
                           minFixed={thresholdData.find(m => m.key === measure.key)?.minFixed}
                           maxFixed={thresholdData.find(m => m.key === measure.key)?.maxFixed}
-                          tooltip=""
+                          tooltip={t(`measures-desc.${measure.key}`)}
                         />
                       ))
                     }

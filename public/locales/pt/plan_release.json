@@ -68,5 +68,16 @@
   "refValues": "Valores de Referência",
   "balanceGoal": "Definir Valores de Referência",
   "balanceGoalTooltip": "O balanceamento adequado dos objetivos deve ser pensado visando o que deve ser planejado a ser alcançado",
-  "allowBalanceGoal": "Permitir o balanceamento dinâmico"
+  "allowBalanceGoal": "Permitir o balanceamento dinâmico",
+  "conflictDates": "Já existe uma release ativa no período selecionado. Gostaria de encerrá-la para prosseguir com a nova release?",
+  "measures-desc": {
+    "passed_tests": "",
+    "test_builds": "",
+    "test_coverage": "Valores de referência retirados de: https://research.google/pubs/code-coverage-at-google/",
+    "ci_feedback_time": "",
+    "non_complex_file_density": "",
+    "commented_file_density": "",
+    "duplication_absense": "",
+    "team_throughput": ""
+  }
 }

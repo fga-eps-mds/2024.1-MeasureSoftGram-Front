@@ -3,6 +3,7 @@ import { Box, FormControlLabel, Grid, Switch, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Characteristic, PreConfigData } from '@customTypes/preConfig';
 import { StyledSlider } from '@components/Equalizer/EqualizerSlider/styles';
+import { Container } from '@mui/system';
 import SectionTooltip from '../SectionTooltip/SectionTooltip';
 
 interface CharacteristicsBalanceFormProps {
@@ -48,39 +49,37 @@ export default function CharacteristicsBalanceForm({ configPageData, setConfigPa
         marginLeft: 0
       }}
       control={<Switch
+        data-testid="allowBalanceGoal"
         checked={dinamicBalance}
         onChange={() => setDinamicBalance(!dinamicBalance)}
         color="primary" />}
       label={t("allowBalanceGoal")}
       labelPlacement="start"
     />
-    <Box sx={{ border: 1, borderRadius: 3, padding: 8 }} display='flex' justifyContent='center' alignItems='center' mb={2} height="20rem">
-      {
-        configPageData?.characteristics?.filter(characteristic => characteristic.active === true)
-          .map((characteristic) => (
+    <Container sx={{ border: 1, borderRadius: 3, paddingX: 8, paddingY: 0 }}>
+      <Box display="flex" justifyContent="center" alignItems="center" height="20rem">
+        {configPageData?.characteristics
+          ?.filter(characteristic => characteristic.active)
+          .map(characteristic => (
             <Grid container key={`GridCharacteristicsBalance-${characteristic.key}`} gap={2} direction="column" width={120}>
-              <Grid item key={`GridStyledSlider-${characteristic.key}`} xs={9} display='flex' justifyContent='center'>
+              <Grid item xs={9} display="flex" justifyContent="center">
                 <StyledSlider
                   data-testid={`characteristic-${characteristic.key}`}
                   sx={{ minHeight: "15rem" }}
-                  key={`characteristic-${characteristic.key}`}
                   value={characteristic.goal}
                   onChange={(event: any) => handleCharacteristicChange(event, characteristic.key)}
                   orientation="vertical"
                   valueLabelDisplay="auto"
                 />
               </Grid>
-              <Grid item key={`GridTypography-${characteristic.key}`} xs={2} display='flex' alignItems="center" justifyContent='center'>
-                <Typography
-                  key={`characteristicTypography-${characteristic.key}`}
-                  fontSize="14px"
-                  align="center">
+              <Grid item xs={2} display="flex" alignItems="center" justifyContent="center">
+                <Typography fontSize="14px" align="center">
                   {t(`characteristics.${characteristic.key}`)}
                 </Typography>
               </Grid>
             </Grid>
           ))}
-    </Box>
-
+      </Box>
+    </Container>
   </>
 }
