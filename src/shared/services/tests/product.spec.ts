@@ -56,7 +56,7 @@ describe('ProductQuery', () => {
     await productQuery.postPreConfig(organizationId, productId, data);
 
     expect(api.post).toHaveBeenCalledWith(
-      `/organizations/${organizationId}/products/${productId}/create/pre-config/`,
+      `/organizations/${organizationId}/products/${productId}/create/release-config/`,
       data
     );
   });
@@ -65,7 +65,7 @@ describe('ProductQuery', () => {
     const organizationId = '1';
     const productId = '2';
     await productQuery.getProductCurrentPreConfig(organizationId, productId);
-    expect(api.get).toHaveBeenCalledWith(`organizations/${organizationId}/products/${productId}/current/pre-config/`);
+    expect(api.get).toHaveBeenCalledWith(`organizations/${organizationId}/products/${productId}/current/release-config/`);
   });
 
   it('getPreConfigEntitiesRelationship should call api.get with the right URL', async () => {
