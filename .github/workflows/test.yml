@@ -36,8 +36,8 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./
-          # env_vars: OS,PYTHON
           fail_ci_if_error: true
+          ignore: "src/shared/hooks"
           files: ./coverage/clover.xml
           flags: unittests
           name: 2023-1-MeasureSoftGram-Front
