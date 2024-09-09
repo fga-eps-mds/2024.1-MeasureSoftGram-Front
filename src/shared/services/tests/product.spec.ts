@@ -171,7 +171,7 @@ describe('ProductQuery', () => {
     const organizationId = '1';
     const id = '2';
     const releaseId = 3;
-    //await productQuery.getCurrentGoal(organizationId, id, releaseId);
+    await productQuery.getCurrentGoal(organizationId, id, releaseId);
     expect(api.get).toHaveBeenCalledWith(`organizations/${organizationId}/products/${id}/current/goal/`, {
       params: { release_id: releaseId }
     });

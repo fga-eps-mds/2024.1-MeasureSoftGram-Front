@@ -125,10 +125,10 @@ class ProductQuery {
     return api.get(url, { params: releaseId && { release_id: releaseId } });
   }
 
-  // async getCurrentReleaseGoal(organizationId: string, productId: string) {
-  //   const url = `organizations/${organizationId}/products/${productId}/current/goal/`;
-  //   return api.get(url);
-  // }
+  async getCurrentReleaseGoal(organizationId: string, productId: string) {
+    const url = `organizations/${organizationId}/products/${productId}/current/goal/`;
+    return api.get(url);
+  }
 
   async getProductRepositoriesTsqmiHistory(organizationId: string, productId: string) {
     const url = `organizations/${organizationId}/products/${productId}/repositories-tsqmi-historical-values/`;
@@ -140,10 +140,10 @@ class ProductQuery {
     return api.get<RepositoriesLatestTsqmi>(url);
   }
 
-  // async getCurrentGoal(organizationId: string, productId: string, releaseId?: number) {
-  //   const url = `organizations/${organizationId}/products/${productId}/current/goal/`;
-  //   return api.get<any>(url, { params: releaseId && { release_id: releaseId } });
-  // }
+  async getCurrentGoal(organizationId: string, productId: string, releaseId?: number) {
+    const url = `organizations/${organizationId}/products/${productId}/current/goal/`;
+    return api.get<any>(url, { params: releaseId && { release_id: releaseId } });
+  }
 
   async getReleaseAnalysisDataByReleaseId(organizationId: string, productId: string, releaseId: string) {
     const url = `organizations/${organizationId}/products/${productId}/release/${releaseId}/analysis_data`;
