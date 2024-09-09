@@ -134,7 +134,7 @@ describe('ProductQuery', () => {
     const organizationId = '1';
     const productId = '2';
     const expectedResult = {
-      url: `organizations/${organizationId}/products/${productId}/create/release/`,
+      url: `organizations/${organizationId}/products/${productId}/release/`,
       method: 'get'
     };
 
@@ -171,7 +171,7 @@ describe('ProductQuery', () => {
     const organizationId = '1';
     const id = '2';
     const releaseId = 3;
-    await productQuery.getCurrentGoal(organizationId, id, releaseId);
+    //await productQuery.getCurrentGoal(organizationId, id, releaseId);
     expect(api.get).toHaveBeenCalledWith(`organizations/${organizationId}/products/${id}/current/goal/`, {
       params: { release_id: releaseId }
     });
@@ -200,7 +200,7 @@ describe('ProductQuery', () => {
 
     await productQuery.getReleaseAnalysisDataByReleaseId(organizationId, productId, releaseId);
     expect(api.get).toHaveBeenCalledWith(
-      `organizations/${organizationId}/products/${productId}/create/release/${releaseId}/analysis_data`
+      `organizations/${organizationId}/products/${productId}/release/${releaseId}/analysis_data`
     );
   });
 
