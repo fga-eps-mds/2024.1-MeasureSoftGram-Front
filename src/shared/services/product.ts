@@ -8,7 +8,6 @@ import {
   Product,
   RepositoriesLatestTsqmi,
   ReleaseGoal,
-  CurrentPreConfig
 } from '@customTypes/product';
 import { PreConfigData, PreConfigRoot, ReleaseInfoForm } from '@customTypes/preConfig';
 
@@ -66,18 +65,18 @@ class ProductQuery {
     return api.get<MeasuresHistory>(url);
   }
 
-  async getProductDefaultPreConfig(organizationId: string, productId: string) {
-    const url = `organizations/${organizationId}/products/${productId}/default/pre-config/`;
-    return api.get<PreConfigData>(url);
-  }
-
   async postPreConfig(organizationId: string, productId: string, data: { name: string; data: PreConfigData }) {
     return api.post(`/organizations/${organizationId}/products/${productId}/create/release-config/`, data);
   }
 
   async getProductCurrentPreConfig(organizationId: string, productId: string) {
     const url = `organizations/${organizationId}/products/${productId}/current/release-config/`;
-    return api.get<CurrentPreConfig>(url);
+    return api.get<PreConfigRoot>(url);
+  }
+
+  async getProductDefaultPreConfig(organizationId: string, productId: string) {
+    const url = `organizations/${organizationId}/products/${productId}/default/pre-config/`;
+    return api.get<PreConfigData>(url);
   }
 
   async getPreConfigEntitiesRelationship(organizationId: string, projectId: string) {
