@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { Botoes, Container, Description, Form, Header, Wrapper } from '@pages/organizations/styles';
+import { Container, Form, Header, Wrapper } from '@pages/organizations/styles';
 import { FaGithub, FaGitlab, FaBitbucket, FaAws, FaCodeBranch } from 'react-icons/fa';
 import { NextPageWithLayout } from '@pages/_app.next';
 import getLayout from '@components/Layout';
@@ -15,19 +15,18 @@ import { TextField, MenuItem, Box } from '@mui/material';
 import { useQuery } from '../../../../../shared/hooks/useQuery';
 import MSGButton from '../../../../../components/idv/buttons/MSGButton';
 
+interface IRepositoryData {
+  name: string,
+  description: string,
+  url: string,
+  platform: string,
+  imported?: boolean
+}
+
 interface ApiErrorResponse {
   name?: string[];
   non_field_errors?: string[];
   url?: string[];
-}
-
-interface RepositoryResponse {
-  data: {
-    name: string;
-    description: string;
-    url: string;
-    platform: string;
-  };
 }
 
 const GitHubIcon: FC = () => <FaGithub size="1.5em" />;
@@ -44,16 +43,15 @@ const RepositoryForm: NextPageWithLayout = () => {
   const { handleRepositoryAction } = useQuery();
   const { currentOrganization } = useOrganizationContext();
   const { currentProduct } = useProductContext();
+  const { t } = useTranslation('repositories');
 
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const [repositoryData, setRepositoryData] = useState({
-    name: '',
-    description: '',
-    url: '',
-    platform: 'github',
-    imported: false
-  });
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [url, setUrl] = useState('');
+  const [platform, setPlataform] = useState('');
+  const [imported, setImported] = useState(false);
 
   const platforms = [
     { value: 'github', label: 'GitHub', icon: <GitHubIcon /> },
@@ -65,17 +63,8 @@ const RepositoryForm: NextPageWithLayout = () => {
     { value: 'azure repos', label: 'Azure Repos', icon: <AzureIcon /> },
     { value: 'outros', label: 'Outros', icon: <OutrosIcon /> },
   ];
-
-  const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
-  const { t } = useTranslation('repositories');
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setRepositoryData({ ...repositoryData, [name]: value });
-  };
 
   useEffect(() => {
     if (!currentOrganization?.id || !currentProduct?.id) {
@@ -90,13 +79,11 @@ const RepositoryForm: NextPageWithLayout = () => {
           const result = await repository.getRepository(currentOrganization.id, currentProduct.id, repositoryId);
 
           if (result.data) {
-            setRepositoryData({
-              name: result.data.name,
-              description: result.data.description || '',
-              url: result.data.url || '',
-              platform: result.data.platform,
-              imported: result.data.imported || false
-            });
+            setName(result.data.name);
+            setDescription(result.data.description || '');
+            setUrl(result.data.url || '');
+            setImported(result.data.imported || false);
+            setPlataform(result.data.platform || '');
           } else {
             throw new Error(t('error.data'));
           }
@@ -119,6 +106,13 @@ const RepositoryForm: NextPageWithLayout = () => {
 
     try {
       let result;
+      const data: IRepositoryData = {
+        name,
+        description,
+        platform,
+        url,
+        imported
+      }
 
       if (isEditMode && router.query.id) {
         result = await handleRepositoryAction(
@@ -126,7 +120,7 @@ const RepositoryForm: NextPageWithLayout = () => {
           currentOrganization?.id || '',
           currentProduct?.id || '',
           router.query.id,
-          repositoryData
+          data
         );
       } else {
         result = await handleRepositoryAction(
@@ -134,7 +128,7 @@ const RepositoryForm: NextPageWithLayout = () => {
           currentOrganization?.id || '',
           currentProduct?.id || '',
           undefined,
-          repositoryData
+          data
         );
       }
 
@@ -198,8 +192,7 @@ const RepositoryForm: NextPageWithLayout = () => {
     <Container>
       <Header>{isEditMode ? t('edit.title') : t('register.title')}</Header>
       <Wrapper>
-        <Description>{t('description')}</Description>
-        <form onSubmit={handleSubmit} sx={{ mt: 2 }}>
+        <form onSubmit={handleSubmit} style={{ marginTop: '1rem' }}>
           <Form>
             <TextField
               fullWidth
@@ -216,12 +209,12 @@ const RepositoryForm: NextPageWithLayout = () => {
               fullWidth
               label={t('edit.name')}
               variant="outlined"
-              value={repositoryData.name}
-              onChange={handleInputChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
               sx={{ mb: 2 }}
               data-testid="repo-name-input"
-              disabled={repositoryData.imported}
+              disabled={imported}
             />
 
             <TextField
@@ -230,22 +223,22 @@ const RepositoryForm: NextPageWithLayout = () => {
               rows={4}
               label={t('edit.description')}
               variant="outlined"
-              value={repositoryData.description}
-              onChange={handleInputChange}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               sx={{ mb: 2 }}
               data-testid="repo-description-input"
-              disabled={repositoryData.imported}
+              disabled={imported}
             />
 
             <TextField
               fullWidth
               label={t('edit.url')}
               variant="outlined"
-              value={repositoryData.url}
-              onChange={handleInputChange}
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               sx={{ mb: 2 }}
               data-testid="repo-url-input"
-              disabled={repositoryData.imported}
+              disabled={imported}
             />
 
             <TextField
@@ -254,24 +247,22 @@ const RepositoryForm: NextPageWithLayout = () => {
               rows={8}
               select
               label={t('edit.platform')}
-              value={repositoryData.platform}
-              onChange={handleInputChange}
+              value={platform}
+              onChange={(e) => setPlataform(e.target.value)}
               sx={{ mb: 2 }}
               data-testid="repo-platform-input"
             >
-              {platforms.map((platform) => (
-                <MenuItem key={platform.value} value={platform.value}>
+              {platforms.map((plat) => (
+                <MenuItem key={plat.value} value={plat.value}>
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    {platform.icon}
-                    {platform.label}
+                    {plat.icon}
+                    {plat.label}
                   </Box>
                 </MenuItem>
               ))}
             </TextField>
 
-            <Botoes>
-              <MSGButton type="submit">{isEditMode ? t('edit.submit') : t('register.submit')}</MSGButton>
-            </Botoes>
+            <MSGButton type="submit">{isEditMode ? t('edit.save') : t('register.create')}</MSGButton>
           </Form>
         </form>
       </Wrapper>
