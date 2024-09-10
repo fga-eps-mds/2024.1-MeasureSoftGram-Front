@@ -66,11 +66,11 @@ class ProductQuery {
   }
 
   async postPreConfig(organizationId: string, productId: string, data: { name: string; data: PreConfigData }) {
-    return api.post(`/organizations/${organizationId}/products/${productId}/create/pre-config/`, data);
+    return api.post(`/organizations/${organizationId}/products/${productId}/create/release-config/`, data);
   }
 
   async getProductCurrentPreConfig(organizationId: string, productId: string) {
-    const url = `organizations/${organizationId}/products/${productId}/current/pre-config/`;
+    const url = `organizations/${organizationId}/products/${productId}/current/release-config/`;
     return api.get<PreConfigRoot>(url);
   }
 
@@ -85,7 +85,7 @@ class ProductQuery {
   }
 
   async updateReleaseEndDate(organizationId: string, projectId: string, releaseId: string, data: any) {
-    const url = `organizations/${organizationId}/products/${projectId}/create/release/${releaseId}/update-end-at/`;
+    const url = `organizations/${organizationId}/products/${projectId}/release/${releaseId}/update-end-at/`;
     return api.put<Array<PreConfigEntitiesRelationship>>(url, data);
   }
 
@@ -115,7 +115,7 @@ class ProductQuery {
   }
 
   async createProductRelease(organizationId: string, productId: string, data: any) {
-    const url = `organizations/${organizationId}/products/${productId}/create/release/`;
+    const url = `organizations/${organizationId}/products/${productId}/release/`;
     return api.post(url, data);
   }
 
@@ -145,12 +145,12 @@ class ProductQuery {
   }
 
   async getReleaseAnalysisDataByReleaseId(organizationId: string, productId: string, releaseId: string) {
-    const url = `organizations/${organizationId}/products/${productId}/create/release/${releaseId}/analysis_data`;
+    const url = `organizations/${organizationId}/products/${productId}/release/${releaseId}/analysis_data`;
     return api.get<any>(url);
   }
 
   getReleaseList(organizationId: string, productId: string, releaseId?: number): AxiosRequestConfig {
-    const url = `organizations/${organizationId}/products/${productId}/create/release/`;
+    const url = `organizations/${organizationId}/products/${productId}/release/`;
     return {
       url,
       method: 'get'
@@ -187,7 +187,7 @@ class ProductQuery {
   }
 
   async getIsReleaseValid(organizationId: string, productId: string, form: ReleaseInfoForm) {
-    const url = `organizations/${organizationId}/products/${productId}/create/release/is-valid/?nome=${form.release_name}&dt-inicial=${form.start_at}&dt-final=${form.end_at}`;
+    const url = `organizations/${organizationId}/products/${productId}/release/is-valid/?nome=${form.release_name}&dt-inicial=${form.start_at}&dt-final=${form.end_at}`;
     return api.get<any>(url);
   }
 }
