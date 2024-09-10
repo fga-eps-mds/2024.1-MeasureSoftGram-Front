@@ -7,7 +7,7 @@ import {
   LatestValues,
   Product,
   RepositoriesLatestTsqmi,
-  ReleaseGoal,
+  ReleaseGoal
 } from '@customTypes/product';
 import { PreConfigData, PreConfigRoot, ReleaseInfoForm } from '@customTypes/preConfig';
 
@@ -116,7 +116,7 @@ class ProductQuery {
 
   async createProductRelease(organizationId: string, productId: string, data: any) {
     const url = `organizations/${organizationId}/products/${productId}/release/`;
-      return api.post(url, data);
+    return api.post(url, data);
   }
 
   async getCompareGoalAccomplished(organizationId: string, productId: string, releaseId?: number) {

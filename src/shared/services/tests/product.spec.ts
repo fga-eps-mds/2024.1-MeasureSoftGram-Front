@@ -1,4 +1,5 @@
 import { ReleaseGoal } from '@customTypes/product';
+import { ReleaseInfoForm } from '@customTypes/preConfig';
 import { productQuery } from '..';
 import api from '../api';
 
@@ -65,7 +66,9 @@ describe('ProductQuery', () => {
     const organizationId = '1';
     const productId = '2';
     await productQuery.getProductCurrentPreConfig(organizationId, productId);
-    expect(api.get).toHaveBeenCalledWith(`organizations/${organizationId}/products/${productId}/current/release-config/`);
+    expect(api.get).toHaveBeenCalledWith(
+      `organizations/${organizationId}/products/${productId}/current/release-config/`
+    );
   });
 
   it('getPreConfigEntitiesRelationship should call api.get with the right URL', async () => {
@@ -88,6 +91,43 @@ describe('ProductQuery', () => {
     } as unknown as ReleaseGoal;
     await productQuery.createProductGoal(organizationId, productId, data);
     expect(api.post).toHaveBeenCalledWith(`organizations/${organizationId}/products/${productId}/create/goal/`, data);
+  });
+
+  it('updateReleaseEndDate should call api.put with the right URL and data', async () => {
+    const organizationId = '1';
+    const projectId = '2';
+    const repositoryId = '3';
+    const releaseId = '3';
+    await productQuery.updateReleaseEndDate(organizationId, projectId, repositoryId, {});
+    expect(api.put).toHaveBeenCalledWith(
+      `organizations/${organizationId}/products/${projectId}/release/${releaseId}/update-end-at/`,
+      {}
+    );
+  });
+
+  it('createProductRelease should call api.post with the right URL and data', async () => {
+    const organizationId = '1';
+    const productId = '2';
+
+    await productQuery.createProductRelease(organizationId, productId, {});
+    expect(api.post).toHaveBeenCalledWith(`organizations/${organizationId}/products/${productId}/release/`, {});
+  });
+
+  it('getIsReleaseValid should call api.get with the right URL', async () => {
+    const organizationId = '1';
+    const productId = '2';
+    const form: ReleaseInfoForm = {
+      goal: 10,
+      description: 'teste',
+      release_name: 'teste',
+      start_at: '12/12/2002',
+      end_at: '22/12/2002'
+    };
+
+    await productQuery.getIsReleaseValid(organizationId, productId, form);
+    expect(api.get).toHaveBeenCalledWith(
+      `organizations/${organizationId}/products/${productId}/release/is-valid/?nome=${form.release_name}&dt-inicial=${form.start_at}&dt-final=${form.end_at}`
+    );
   });
 
   it('getCharacteristicsLatestValues should call api.get with the right URL', async () => {
