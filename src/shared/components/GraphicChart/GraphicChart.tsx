@@ -13,7 +13,6 @@ import { useProductConfigFilterContext } from '@contexts/ProductConfigFilterProv
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { useProductContext } from '@contexts/ProductProvider';
-import { CSVFilter } from '@utils/convertToCsv';
 import { HistoryDateRange } from '@customTypes/product';
 
 interface Prop {
