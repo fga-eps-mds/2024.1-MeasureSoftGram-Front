@@ -19,7 +19,7 @@ export const AuthContext = createContext<authContextType>(authContextDefaultValu
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [loading, setLoading] = useState<'loading' | 'loaded'>('loading');
   const router = useRouter();
-  const hasExecuted = useRef(false)
+  const hasExecuted = useRef(false);
   const {
     storedValue: session,
     setValue: setSession,
@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     removeValue: removeProvider
   } = useLocalStorage<Providers>('provider', 'credentials');
 
-
   const removeAuthStorage = useCallback(async () => {
     removeSession();
     removeToken();
@@ -46,6 +45,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }, [removeProvider, removeSession, removeToken]);
 
   const logout = useCallback(async () => {
+    console.log("FUNÇÃO LOGOUT")
     const response = await signOut();
 
     if (response.type === 'success') {
@@ -73,7 +73,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   const signInWithGithub = useCallback(
     async (code: string): Promise<Result<User>> => {
-
       const response = await signInGithub(code);
 
       if (response.type === 'success' && response?.value?.key) {
@@ -90,7 +89,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
             email: '',
             avatar_url: '',
             repos_url: '',
-            organizations_url: '',
+            organizations_url: ''
           }
         };
       }
@@ -106,7 +105,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     [removeAuthStorage, setToken]
   );
 
-
   const signInWithCredentials = useCallback(
     async (data: LoginFormData): Promise<Result<User>> => {
       setProvider('credentials');
@@ -117,7 +115,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
         toast.success('Login realizado com sucesso!');
         await router.push('/home');
         return response;
-      } if (response.type === 'error') {
+      }
+      if (response.type === 'error') {
         toast.error(`Erro ao realizar login: ${response.error.message === 'Request failed with status code 400' ? 'Erro nas credenciais' : response.error.message || 'Erro desconhecido'}`);
         return response;
       }
@@ -127,12 +126,44 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     [router, setProvider, setToken]
   );
 
+  // Função para monitorar inatividade
+  const INACTIVITY_TIME = 15 * 60 * 10;
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const code = params.get('code')
+    let logoutTimer: NodeJS.Timeout;
+
+    const resetLogoutTimer = () => {
+      if (logoutTimer) {
+        clearTimeout(logoutTimer);
+      }
+
+      logoutTimer = setTimeout(() => {
+        logout();
+        toast.warning('Você foi desconectado por inatividade.');
+      }, INACTIVITY_TIME);
+    };
+
+    const activityEvents = ['mousemove', 'keydown', 'mousedown', 'touchstart'];
+
+    activityEvents.forEach((event) =>
+      window.addEventListener(event, resetLogoutTimer)
+    );
+
+    resetLogoutTimer(); // Inicia o timer ao montar o componente
+
+    return () => {
+      activityEvents.forEach((event) =>
+        window.removeEventListener(event, resetLogoutTimer)
+      );
+      clearTimeout(logoutTimer); // Limpa o timer quando o componente é desmontado
+    };
+  }, [logout]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
     if (code && provider === 'github' && !token && !hasExecuted.current) {
-      hasExecuted.current = true
+      hasExecuted.current = true;
       signInWithGithub(code as string);
     }
   }, [provider, token, signInWithGithub]);
