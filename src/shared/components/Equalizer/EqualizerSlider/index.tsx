@@ -27,7 +27,7 @@ export default function EqualizerSlider({ characteristic }: EqualizerSliderProps
           value={value}
           min={0}
           max={1}
-          valueLabelDisplay="auto"
+          valueLabelDisplay="off"
           data-testid='equalizer-slider'
         />
       </Grid>
