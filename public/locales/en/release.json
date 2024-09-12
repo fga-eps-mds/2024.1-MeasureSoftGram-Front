@@ -1,15 +1,15 @@
 {
   "title": "Release",
   "release-interval": "Release interval",
-  "view-values": "View values",
+  "view-values": "Show values",
   "planned": "Planned",
-  "accomplised": "Accomplised",
+  "accomplised": "Developed",
   "diff": "Difference",
   "norm-diff": {
     "title": "Normalized difference",
     "tooltip": "Vector transformation between the planned release and the actual release. This transformation represents the quantitative difference between the planned quality requirements and the observed outcomes after development."
   },
-  "plannedAndAccomplishedSizesAreDifferentWarning": "The number of planned metrics should match the number of accomplised metrics",
+  "plannedAndAccomplishedSizesAreDifferentWarning": "The number of planned characteristics should match the number of developed characteristics",
   "characteristics": {
     "functional_suitability": "Functional Suitability",
     "performance_efficiency": "Performance Efficiency",

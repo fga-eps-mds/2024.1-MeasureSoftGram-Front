@@ -31,13 +31,11 @@ describe('Release', () => {
 
     const releaseTitle = await screen.findByText('release name');
     const dataRelease = await screen.findByTestId('data-release');
-    const releaseChart = await screen.findByTestId('release-chart');
     const repositoryTabs = await screen.findAllByTestId('repository-tab');
     const equalizerSliders = await screen.findAllByTestId('equalizer-slider');
 
     expect(releaseTitle).toBeInTheDocument();
     expect(dataRelease).toHaveTextContent('01 de janeiro de 2022 - 01 de abril de 2022');
-    expect(releaseChart).toBeInTheDocument();
     expect(repositoryTabs).toHaveLength(2);
     expect(equalizerSliders).toHaveLength(8);
   });

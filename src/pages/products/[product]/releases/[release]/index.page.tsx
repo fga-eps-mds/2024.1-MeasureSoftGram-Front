@@ -61,10 +61,16 @@ const Release: any = () => {
                 allowScrollButtonsMobile
                 value={selectedValue}
                 onChange={handleSelectionChange}
-                sx={{ borderRight: 1, borderColor: 'divider', width: '100%' }}
+                sx={{
+                  borderRight: 1, borderColor: 'divider', width: '100%',
+                  '& [aria-selected="true"]': {
+                    backgroundColor: 'rgba(17, 61, 76, .03)',
+                  },
+                }}
               >
                 {accomplisedResults.map((repository: AccomplishedRepository) => (
                   <Tab
+                    sx={{ fontSize: 13 }}
                     label={repository.repository_name}
                     data-testid='repository-tab' />
                 ))}

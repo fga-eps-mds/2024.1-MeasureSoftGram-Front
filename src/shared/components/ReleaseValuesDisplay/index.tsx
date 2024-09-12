@@ -1,5 +1,5 @@
 import { Characteristic } from '@customTypes/product';
-import { Grid, Paper, Stack, Tooltip, Typography } from '@mui/material';
+import { Divider, Grid, Paper, Stack, Tooltip, Typography } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
@@ -41,10 +41,10 @@ export default function ReleaseValuesDisplay({ planned, accomplised, normDiff }:
 
   }, [planned, accomplised])
 
-  const renderPaper = (value: string) => (
+  const renderPaper = (value: string, isNormDiff: boolean = false) => (
     <Paper elevation={2} sx={{
       height: 40,
-      width: 40,
+      width: isNormDiff ? 60 : 40,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -89,21 +89,24 @@ export default function ReleaseValuesDisplay({ planned, accomplised, normDiff }:
 
   const renderNormDiff = () => (
     normDiff ? (
-      <Grid container>
-        <Grid item xs={3} display="flex" alignItems='center'>
-          <Typography p={2} pr={1}>
-            {t('norm-diff.title')}
-          </Typography>
-          <Tooltip title={t('norm-diff.tooltip')} >
-            <InfoOutlinedIcon fontSize='small' />
-          </Tooltip>
+      <>
+        <Divider sx={{ m: 1 }} />
+        <Grid container>
+          <Grid item xs={3} display="flex" alignItems='center'>
+            <Typography p={2} pr={1}>
+              {t('norm-diff.title')}
+            </Typography>
+            <Tooltip title={t('norm-diff.tooltip')} >
+              <InfoOutlinedIcon fontSize='small' />
+            </Tooltip>
+          </Grid>
+          <Grid item xs={8} alignItems='center' display='flex'>
+            <Stack direction='row' spacing={spacing} sx={{ ml: 4 }}>
+              {renderPaper(normDiff.toFixed(2), true)}
+            </Stack>
+          </Grid>
         </Grid>
-        <Grid item xs={8} alignItems='center' display='flex'>
-          <Stack direction='row' spacing={spacing} sx={{ ml: normDiffMarginLeft }}>
-            {renderPaper(normDiff.toFixed(2))}
-          </Stack>
-        </Grid>
-      </Grid>) : null
+      </>) : null
   )
 
 
