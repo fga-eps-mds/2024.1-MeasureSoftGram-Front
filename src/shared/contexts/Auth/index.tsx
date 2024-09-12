@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }, [removeProvider, removeSession, removeToken]);
 
   const logout = useCallback(async () => {
-    console.log("FUNÇÃO LOGOUT")
     const response = await signOut();
 
     if (response.type === 'success') {
@@ -127,7 +126,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   );
 
   // Função para monitorar inatividade
-  const INACTIVITY_TIME = 15 * 60 * 10;
+  const INACTIVITY_TIME = 3 * 60 * 1000;
 
   useEffect(() => {
     let logoutTimer: NodeJS.Timeout;
@@ -138,8 +137,12 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       }
 
       logoutTimer = setTimeout(() => {
-        logout();
-        toast.warning('Você foi desconectado por inatividade.');
+        console.log(session);
+        console.log(token);
+        if (session != null || token != null) {
+          logout();
+          toast.warning('Você foi desconectado por inatividade.');
+        }
       }, INACTIVITY_TIME);
     };
 
