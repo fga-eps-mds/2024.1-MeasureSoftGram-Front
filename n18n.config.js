@@ -13,7 +13,8 @@ export const ni18nConfig = {
     'repositories',
     'overview',
     'header',
-    'lates_value_table'
+    'lates_value_table',
+    'graphic_chart'
   ],
   react: {
     useSuspense: false
