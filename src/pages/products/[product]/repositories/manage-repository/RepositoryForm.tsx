@@ -248,13 +248,14 @@ const RepositoryForm: NextPageWithLayout = () => {
               select
               label={t('edit.platform')}
               value={platform}
+              disabled={imported}
               onChange={(e) => setPlataform(e.target.value)}
               sx={{ mb: 2 }}
               data-testid="repo-platform-input"
             >
               {platforms.map((plat) => (
                 <MenuItem key={plat.value} value={plat.value}>
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     {plat.icon}
                     {plat.label}
                   </Box>

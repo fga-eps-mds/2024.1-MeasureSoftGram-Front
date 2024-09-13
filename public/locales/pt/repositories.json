@@ -9,6 +9,7 @@
   "not-found": "Nenhum Repositório encontrado...",
   "delete": {
     "title": "Confirme a exclusão de ",
+    "titleRest": "digitando o nome dele abaixo.",
     "alert": "Isso irá deletar permanentemente o item ",
     "button": "CONFIRMAR EXCLUSÃO",
     "toast-sucess": "Repositório excluído com sucesso!",
@@ -19,7 +20,7 @@
     "name": "Nome do Repositório",
     "description": "Descrição",
     "url": "URL do Repositório",
-    "plataform": "Plataforma",
+    "platform": "Plataforma",
     "save": "Salvar Alterações",
     "sucess": "Repositório atualizado com sucesso!",
     "product": "Produto"
