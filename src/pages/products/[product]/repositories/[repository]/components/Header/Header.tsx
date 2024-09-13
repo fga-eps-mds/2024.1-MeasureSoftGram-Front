@@ -140,7 +140,7 @@ function Header() {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            {t("edit_intervals")}
+            Editar Intervalos
           </Typography>
           {values ?
             <>
@@ -172,7 +172,7 @@ function Header() {
                   onClick={handleCloseModal}
                   variant='outlined'
                 >
-                  {t("cancel")}
+                  Cancelar
                 </Button>
                 <Button
                   variant='contained'

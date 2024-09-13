@@ -101,7 +101,7 @@ exports[`<GraphicChart /> should render correctly with empty data 1`] = `
     <div
       class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
     >
-      Não há dados para serem exibidos
+      noData
     </div>
   </div>
 </div>
@@ -154,7 +154,7 @@ exports[`<GraphicChart /> should render correctly with error 1`] = `
     <div
       class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
     >
-      Ocorreu um erro ao tentar carregar as informações
+      error
     </div>
   </div>
 </div>
