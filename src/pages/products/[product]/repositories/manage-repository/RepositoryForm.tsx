@@ -263,7 +263,10 @@ const RepositoryForm: NextPageWithLayout = () => {
               ))}
             </TextField>
 
-            <MSGButton type="submit">{isEditMode ? t('edit.save') : t('register.create')}</MSGButton>
+            <MSGButton
+              disabled={imported}
+              type="submit">{isEditMode ? t('edit.save') : t('register.create')}
+            </MSGButton>
           </Form>
         </form>
       </Wrapper>
