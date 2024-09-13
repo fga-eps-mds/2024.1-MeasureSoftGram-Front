@@ -14,6 +14,7 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { useProductContext } from '@contexts/ProductProvider';
 import { HistoryDateRange } from '@customTypes/product';
+import { useTranslation } from 'react-i18next';
 
 interface Prop {
   title: string;
@@ -57,6 +58,7 @@ const GraphicChart = ({
   const [showCharts, setShowCharts] = useState(false);
   const { currentProduct } = useProductContext();
 
+  const { t } = useTranslation('graphic_chart');
 
   const sliceHistorical = (rowIdx: number): Historical[] => {
     if (!autoGrid) return historical;
@@ -124,12 +126,10 @@ const GraphicChart = ({
         >
           {(type !== 'gauge') || (type === 'gauge' && showCharts) && (typeof window !== 'undefined') ?
             (typeof window !== 'undefined') && chartsOption.map((option) => (
-              <>
-                < ReactEcharts
-                  ref={echartsRef}
-                  onEvents={option?.onEvents}
-                  key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
-              </>
+              < ReactEcharts
+                ref={echartsRef}
+                onEvents={option?.onEvents}
+                key={option.key} notMerge lazyUpdate style={chartStyle} option={option} />
             ))
             :
             (typeof window !== 'undefined') && filteredChartsOptions.map((option) => (
@@ -154,13 +154,13 @@ const GraphicChart = ({
       </Fade>
       {error && (
         <Fade in timeout={1000}>
-          <Alert severity="error">Ocorreu um erro ao tentar carregar as informações</Alert>
+          <Alert severity="error">{t('error')}</Alert>
         </Fade>
       )}
       {isEmpty && (
         <Fade in timeout={1000}>
           <Alert variant="standard" severity="warning">
-            Não há dados para serem exibidos
+            {t('noData')}
           </Alert>
         </Fade>
       )}

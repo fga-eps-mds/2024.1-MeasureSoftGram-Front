@@ -25,7 +25,7 @@ export function Breadcrumbs() {
         if (pathArray[0] === '') {
           return (
             <Typography color="text.primary" variant="subtitle1" key={path}>
-              Produtos#
+              {t('products')}
             </Typography>
           );
         }

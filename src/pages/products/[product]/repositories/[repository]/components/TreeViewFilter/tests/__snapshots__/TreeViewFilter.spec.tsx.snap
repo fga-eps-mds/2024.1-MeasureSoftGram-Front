@@ -47,6 +47,7 @@ exports[`<TreeViewFilter /> should render correctly 1`] = `
               aria-label="search"
               class="MuiFormControl-root MuiTextField-root text css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
               data-testid="input"
+              style="min-width: 250px;"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
@@ -68,13 +69,8 @@ exports[`<TreeViewFilter /> should render correctly 1`] = `
                   value=""
                 />
                 <div
-                  class="MuiInputAdornment-root MuiInputAdornment-positionStart MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-ittuaa-MuiInputAdornment-root"
+                  class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
                 >
-                  <span
-                    class="notranslate"
-                  >
-                    ​
-                  </span>
                   <svg
                     aria-hidden="true"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
