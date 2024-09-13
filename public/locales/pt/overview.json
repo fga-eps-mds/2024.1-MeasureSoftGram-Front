@@ -6,5 +6,10 @@
   "repo-button": "Ver Repositórios",
   "release": "Releases",
   "release-button": "Ver Releases",
-  "chart-title": "Comportamento observado do produto"
+  "chart-title": "Comportamento observado do produto",
+  "confirm": "Confirmar Exclusão",
+  "confirm-subtitle": "Isso vai deletar permanentemente o produto:",
+  "confirm-warning": "Para confirmar digite : ",
+  "button": "CONFIRMAR EXCLUSÃO",
+  "delete": "Deletar"
 }
