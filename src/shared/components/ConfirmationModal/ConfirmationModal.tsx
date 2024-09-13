@@ -8,7 +8,7 @@ import {
   Alert,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import WarningIcon from '@mui/icons-material/Warning';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { useTranslation } from 'react-i18next';
 
 type ConfirmationModalProps = {
@@ -56,7 +56,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        maxWidth: 600,
         bgcolor: 'background.paper',
         boxShadow: 24,
         p: 4,
@@ -66,11 +66,20 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         </IconButton>
         <Typography variant="h6"> {`${t('delete.title')} ${itemName}.`}</Typography>
         <Alert
-          icon={<WarningIcon />}
+          icon={<WarningAmberIcon style={{ color: '#df8e16' }} />}
           severity="warning"
+          style={{
+            backgroundColor: '#f8e6cb',
+            color: '#DF8E16',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px solid #df8e16',
+            fontWeight: 'bolder'
+          }}
           sx={{ mt: 2, mb: 3 }}
         >
-          {`${t('delete.title')} ${itemName}`}
+          {`${t('delete.title')} ${itemName} ${t('delete.titleRest')}`}
         </Alert>
         {/* Restante do componente */}
         <input

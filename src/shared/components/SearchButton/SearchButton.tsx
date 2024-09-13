@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 interface SearchProps {
@@ -19,9 +19,12 @@ const SearchButton = ({ onInput, label, placeHolder }: SearchProps) => (
     variant="outlined"
     placeholder={placeHolder ?? 'Buscar...'}
     size="small"
+    style={{
+      minWidth: '250px'
+    }}
     InputProps={{
       endAdornment: (
-        <InputAdornment position="start">
+        <InputAdornment position="end">
           <Search style={{ fill: '#2B4D6F' }} />
         </InputAdornment>
       ),

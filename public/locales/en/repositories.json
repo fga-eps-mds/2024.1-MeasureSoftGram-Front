@@ -9,6 +9,7 @@
   "not-found": "No Repository found...",
   "delete": {
     "title": "Confirm deletion of ",
+    "titleRest": "by typing its name bellow",
     "alert": "This will permanently delete the item ",
     "button": "CONFIRM DELETION",
     "toast-success": "Repository successfully deleted!",
