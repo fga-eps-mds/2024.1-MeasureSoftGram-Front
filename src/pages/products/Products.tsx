@@ -265,7 +265,6 @@ const Products: NextPageWithLayout = () => {
                 </Box>
               </Box>
             </Box>
-
           }
         </Box>
       </Container >
